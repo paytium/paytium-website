@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Northstar — Strategy that moves with you",
-  description: "Turn complex business data into a clear, shared plan with Northstar.",
+  title: "Paytium — Clarity that moves with you",
+  description: "Turn complex business data into a clear, shared plan with Paytium.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

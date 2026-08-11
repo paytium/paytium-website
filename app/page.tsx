@@ -8,9 +8,8 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Northstar home">
-          <span className="brand-mark"><Spark small /></span>
-          northstar
+        <a className="brand" href="#top" aria-label="Paytium home">
+          <img src="/logo-paytium.svg" alt="Paytium" />
         </a>
         <nav aria-label="Main navigation">
           <a href="#platform">Platform</a>
@@ -22,19 +21,19 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow"><span /> STRATEGY, WITHOUT THE SPREADSHEETS</p>
+          <p className="eyebrow"><span /> CLARITY, WITHOUT THE COMPLEXITY</p>
           <h1>Move your<br />business <em>forward.</em></h1>
-          <p className="hero-lede">Northstar turns complex business data into a clear, shared plan—so your team knows what matters and what to do next.</p>
+          <p className="hero-lede">Paytium turns complex business data into a clear, shared plan—so your team knows what matters and what to do next.</p>
           <div className="hero-actions">
             <a className="button button-dark" href="#contact">Build your roadmap <Arrow /></a>
             <a className="text-link" href="#platform">See how it works <span>↓</span></a>
           </div>
         </div>
 
-        <div className="hero-visual" aria-label="Northstar product dashboard preview">
+        <div className="hero-visual" aria-label="Paytium product dashboard preview">
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
-          <div className="visual-star"><Spark /></div>
+          <div className="visual-star paytium-icon"><img src="/logo-paytium.svg" alt="" /></div>
           <div className="float-card momentum-card">
             <div className="card-top"><span>Momentum score</span><span className="live-dot">Live</span></div>
             <strong>87<span>/100</span></strong>
@@ -88,7 +87,7 @@ export default function Home() {
             <div className="pulse-rings"><i /><i /><span><Spark /></span></div>
             <div className="feature-copy">
               <h3>Spot what matters.</h3>
-              <p>Northstar surfaces risks and opportunities before they turn into surprises.</p>
+              <p>Paytium surfaces risks and opportunities before they turn into surprises.</p>
             </div>
           </article>
 
@@ -122,7 +121,7 @@ export default function Home() {
       <section className="story section" id="stories">
         <div className="story-card">
           <div className="quote-mark">“</div>
-          <blockquote>Northstar didn’t give us more data. It gave us the confidence to make the right call—and move.</blockquote>
+          <blockquote>Paytium didn’t give us more data. It gave us the confidence to make the right call—and move.</blockquote>
           <div className="person"><span>MV</span><p><strong>Maya Velasquez</strong><small>COO, Current</small></p></div>
         </div>
         <div className="story-side">
@@ -136,16 +135,16 @@ export default function Home() {
       <section className="cta-section" id="contact">
         <div className="cta-star"><Spark /></div>
         <p className="section-kicker">YOUR NEXT MOVE STARTS HERE</p>
-        <h2>Ready to find<br />your <em>north star?</em></h2>
+        <h2>Ready to move<br />with <em>clarity?</em></h2>
         <p>Let’s turn your biggest ambitions into a plan your whole team can move on.</p>
-        <a className="button button-coral" href="mailto:hello@northstar.example">Start a conversation <Arrow /></a>
+        <a className="button button-coral" href="mailto:hello@paytium.example">Start a conversation <Arrow /></a>
       </section>
 
       <footer>
-        <a className="brand footer-brand" href="#top"><span className="brand-mark"><Spark small /></span>northstar</a>
+        <a className="brand footer-brand" href="#top"><img src="/logo-paytium.svg" alt="Paytium" /></a>
         <p>Clarity for ambitious teams.</p>
-        <div><a href="#platform">Platform</a><a href="#stories">Stories</a><a href="mailto:hello@northstar.example">Contact</a></div>
-        <small>© 2026 Northstar, Inc.</small>
+        <div><a href="#platform">Platform</a><a href="#stories">Stories</a><a href="mailto:hello@paytium.example">Contact</a></div>
+        <small>© 2026 Paytium, Inc.</small>
       </footer>
     </main>
   );
