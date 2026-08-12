@@ -22,7 +22,7 @@ export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
     }
     setLoading(true); setMessage("");
     try {
-      const response = await fetch(siteConfig.contactEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
+      const response = await fetch(siteConfig.contactEndpoint, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
       if (!response.ok) throw new Error("request-failed");
       form.reset(); setMessage(copy.success);
     } catch {
@@ -32,6 +32,9 @@ export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
 
   return (
     <form className="contact-form" onSubmit={submit}>
+      <input type="hidden" name="_subject" value="Nouveau message depuis le site Paytium" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
       <div className="field-grid">
         <label>{copy.name}<input name="name" autoComplete="name" placeholder={copy.namePlaceholder} required /></label>
         <label>{copy.email}<input name="email" type="email" autoComplete="email" placeholder="your.name@company.com" required /></label>

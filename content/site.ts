@@ -7,7 +7,7 @@ export const siteConfig = {
   legalCompanyName: "Paytium",
   legalNoticeUrl: null as string | null,
   privacyUrl: null as string | null,
-  contactEndpoint: process.env.VITE_CONTACT_ENDPOINT ?? null,
+  contactEndpoint: process.env.VITE_CONTACT_ENDPOINT ?? "https://formsubmit.co/ajax/paytium.solutions@gmail.com",
 };
 
 export const services = [
