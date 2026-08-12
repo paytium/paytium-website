@@ -52,7 +52,10 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
           <a href={`${prefix}/academy`}>{copy.academy}</a>
           <a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a>
         </nav>
-        <a className="language-switch" href={translationHref} hrefLang={locale === "fr" ? "en" : "fr"} aria-label={locale === "fr" ? "View the site in English" : "Voir le site en français"} onClick={() => window.localStorage.setItem("paytium-language", locale === "fr" ? "en" : "fr")}><span className={locale === "fr" ? "active" : ""}>FR</span><span className={locale === "en" ? "active" : ""}>EN</span></a>
+        <details className="language-menu">
+          <summary aria-label={locale === "fr" ? "Changer la langue" : "Change language"}><span>{locale === "fr" ? "FR" : "EN"}</span><LuChevronDown aria-hidden="true" /></summary>
+          <a className="language-option" href={translationHref} hrefLang={locale === "fr" ? "en" : "fr"} onClick={() => window.localStorage.setItem("paytium-language", locale === "fr" ? "en" : "fr")}>{locale === "fr" ? "EN" : "FR"}</a>
+        </details>
         <a className="header-cta desktop-cta" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
         <button className="menu-button" type="button" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>
           <LuMenu aria-hidden="true" /><span className="sr-only">{copy.open}</span>
@@ -64,7 +67,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
         <nav aria-label={copy.nav}>
           <a href={homeHref} onClick={() => setOpen(false)}>{copy.home}</a><a href={`${prefix}/#a-propos`} onClick={() => setOpen(false)}>{copy.about}</a><a href={`${prefix}/services`} onClick={() => setOpen(false)}>{copy.services}</a>
           {services.filter((service) => service.id !== "academy").map((service) => <a className="drawer-sub" key={service.id} href={`${prefix}/services#${service.id}`} onClick={() => setOpen(false)}>{service.short}</a>)}
-          <a href={`${prefix}/academy`} onClick={() => setOpen(false)}>{copy.academy}</a><a href={`${prefix}/facturation-electronique`} onClick={() => setOpen(false)}>{copy.invoice}</a><a href={translationHref} onClick={() => { setOpen(false); window.localStorage.setItem("paytium-language", locale === "fr" ? "en" : "fr"); }}>{locale === "fr" ? "English" : "Français"}</a>
+          <a href={`${prefix}/academy`} onClick={() => setOpen(false)}>{copy.academy}</a><a href={`${prefix}/facturation-electronique`} onClick={() => setOpen(false)}>{copy.invoice}</a>
         </nav>
         <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
       </aside>
