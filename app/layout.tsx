@@ -47,8 +47,8 @@ export const metadata: Metadata = {
     images: ["https://northstar-momentum.ltt-6.chatgpt.site/og.png"],
   },
   icons: {
-    icon: "/paytium-icon.svg",
-    shortcut: "/paytium-icon.svg",
+    icon: "/favicon-rounded.svg",
+    shortcut: "/favicon-rounded.svg",
   },
 };
 

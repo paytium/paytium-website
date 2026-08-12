@@ -12,7 +12,7 @@ const slidesFr = [
   },
   {
     eyebrow: "FACTURATION ÉLECTRONIQUE",
-    title: <>Passez à la facture digitale <em>avec clarté.</em></>,
+    title: <>Passez à la facture électronique <em>avec clarté.</em></>,
     text: "Préparez, intégrez et industrialisez vos échanges de factures grâce à une approche sécurisée, interopérable et adaptée à vos processus finance et métier.",
     primary: ["Découvrir notre approche", "/facturation-electronique"], secondary: ["Échanger avec un expert", "/#contact"], visual: "invoice",
   },

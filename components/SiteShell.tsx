@@ -79,9 +79,9 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
 
   return (
     <footer className="site-footer">
-      <div className="footer-intro"><a href={`${prefix}/` || "/"}><Brand /></a><p>{copy.footer}</p></div>
+      <div className="footer-intro">{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><span className="linkedin-icon" aria-hidden="true">in</span></a>}<a className="brand" href={`${prefix}/` || "/"}><Brand /></a><p>{copy.footer}</p></div>
       <div><h3>{copy.services}</h3><a href={`${prefix}/services#consulting`}>{locale === "fr" ? "Conseil & stratégie" : "Consulting & strategy"}</a><a href={`${prefix}/services#digital-data`}>Digital, Data & AI</a><a href={`${prefix}/services#engineering`}>Engineering</a><a href={`${prefix}/services#cloud-devops`}>Cloud & DevOps</a><a href={`${prefix}/academy`}>Paytium Academy</a></div>
-      <div><h3>{copy.company}</h3><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/#methode`}>{copy.method}</a><a href={`${prefix}/#contact`}>{copy.contact}</a>{siteConfig.linkedinUrl && <a className="footer-social" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer"><span className="linkedin-icon" aria-hidden="true">in</span>LinkedIn</a>}</div>
+      <div><h3>{copy.company}</h3><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/#methode`}>{copy.method}</a><a href={`${prefix}/#contact`}>{copy.contact}</a></div>
       <div><h3>{copy.resources}</h3><a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={`${prefix}/services#technologies`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
       <div className="footer-bottom"><span>© 2026 {siteConfig.legalCompanyName}</span><span>{copy.signature}</span></div>
     </footer>
