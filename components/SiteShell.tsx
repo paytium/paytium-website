@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { LuArrowUp, LuChevronDown, LuMenu, LuX } from "react-icons/lu";
 import { Brand, Arrow } from "./Brand";
 import { services, siteConfig } from "../content/site";
 
@@ -42,7 +44,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
           <a href={homeHref}>{copy.home}</a>
           <a href={`${prefix}/#a-propos`}>{copy.about}</a>
           <div className="nav-group">
-            <a href={`${prefix}/services`}>{copy.services} <span aria-hidden="true">⌄</span></a>
+            <a href={`${prefix}/services`}>{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></a>
             <div className="submenu">
               {services.filter((service) => service.id !== "academy").map((service) => <a key={service.id} href={`${prefix}/services#${service.id}`}>{service.short}</a>)}
             </div>
@@ -53,12 +55,12 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
         <a className="language-switch" href={translationHref} hrefLang={locale === "fr" ? "en" : "fr"} aria-label={locale === "fr" ? "View the site in English" : "Voir le site en français"} onClick={() => window.localStorage.setItem("paytium-language", locale === "fr" ? "en" : "fr")}><span className={locale === "fr" ? "active" : ""}>FR</span><span className={locale === "en" ? "active" : ""}>EN</span></a>
         <a className="header-cta desktop-cta" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
         <button className="menu-button" type="button" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>
-          <span /> <span /> <span /><span className="sr-only">{copy.open}</span>
+          <LuMenu aria-hidden="true" /><span className="sr-only">{copy.open}</span>
         </button>
       </header>
       <button className={`drawer-backdrop ${open ? "show" : ""}`} type="button" aria-label={copy.close} onClick={() => setOpen(false)} />
       <aside className={`mobile-drawer ${open ? "open" : ""}`} id="mobile-menu" aria-hidden={!open}>
-        <div className="drawer-top"><Brand /><button type="button" onClick={() => setOpen(false)} aria-label={copy.close}>×</button></div>
+        <div className="drawer-top"><Brand /><button type="button" onClick={() => setOpen(false)} aria-label={copy.close}><LuX aria-hidden="true" /></button></div>
         <nav aria-label={copy.nav}>
           <a href={homeHref} onClick={() => setOpen(false)}>{copy.home}</a><a href={`${prefix}/#a-propos`} onClick={() => setOpen(false)}>{copy.about}</a><a href={`${prefix}/services`} onClick={() => setOpen(false)}>{copy.services}</a>
           {services.filter((service) => service.id !== "academy").map((service) => <a className="drawer-sub" key={service.id} href={`${prefix}/services#${service.id}`} onClick={() => setOpen(false)}>{service.short}</a>)}
@@ -81,7 +83,7 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
 
   return (
     <footer className="site-footer">
-      <div className="footer-intro"><a className="brand" href={homeHref}><Brand /></a><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><span className="linkedin-icon" aria-hidden="true">in</span></a>}</div>
+      <div className="footer-intro"><a className="brand" href={homeHref}><Brand /></a><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><FaLinkedinIn className="linkedin-icon" aria-hidden="true" /></a>}</div>
       <div><h3>{copy.services}</h3><a href={`${prefix}/services#consulting`}>{locale === "fr" ? "Conseil & stratégie" : "Consulting & strategy"}</a><a href={`${prefix}/services#digital-data`}>Digital, Data & AI</a><a href={`${prefix}/services#engineering`}>Engineering</a><a href={`${prefix}/services#cloud-devops`}>Cloud & DevOps</a><a href={`${prefix}/academy`}>Paytium Academy</a></div>
       <div><h3>{copy.company}</h3><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/#methode`}>{copy.method}</a><a href={`${prefix}/#contact`}>{copy.contact}</a></div>
       <div><h3>{copy.resources}</h3><a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={`${prefix}/services#technologies`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
@@ -189,5 +191,5 @@ function ScrollToTop({ locale = "fr" }: { locale?: Locale }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  return <button className={`scroll-top ${visible ? "visible" : ""}`} type="button" onClick={scrollToTop} aria-label={locale === "fr" ? "Revenir en haut de la page" : "Back to the top of the page"}><span>↑</span><small>{shellCopy[locale].top}</small></button>;
+  return <button className={`scroll-top ${visible ? "visible" : ""}`} type="button" onClick={scrollToTop} aria-label={locale === "fr" ? "Revenir en haut de la page" : "Back to the top of the page"}><LuArrowUp aria-hidden="true" /><small>{shellCopy[locale].top}</small></button>;
 }

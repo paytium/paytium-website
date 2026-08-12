@@ -1,9 +1,11 @@
+import { LuArrowUpRight } from "react-icons/lu";
+
 export function Brand() {
   return <img className="brand-logo" src="/logo-paytium.svg" alt="Paytium" />;
 }
 
 export function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return <LuArrowUpRight className="icon icon-arrow" aria-hidden="true" />;
 }
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {

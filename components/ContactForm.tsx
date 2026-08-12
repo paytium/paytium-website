@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { LuSend } from "react-icons/lu";
 import { siteConfig } from "../content/site";
 
 export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
@@ -30,7 +31,7 @@ export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
     messageField.value = messageField.value.trim();
 
     const nameLetters = name.value.match(/\p{L}/gu)?.length ?? 0;
-    if (name.value.length < 2 || name.value.length > 80 || nameLetters < 2 || !/^[\p{L}\p{M}\s.'’\-]+$/u.test(name.value)) name.setCustomValidity(copy.nameInvalid);
+    if (name.value.length < 2 || name.value.length > 80 || nameLetters < 2 || !/^[\p{L}\p{M}\s.'’-]+$/u.test(name.value)) name.setCustomValidity(copy.nameInvalid);
     const phoneDigits = phone.value.replace(/\D/g, "");
     if (phone.value && (!/^[+\d][\d\s().-]+$/.test(phone.value) || phoneDigits.length < 7 || phoneDigits.length > 15)) phone.setCustomValidity(copy.phoneInvalid);
     if (company.value.length < 2 || company.value.length > 120) company.setCustomValidity(copy.companyInvalid);
@@ -65,7 +66,7 @@ export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
       <label>{copy.subject}<select name="subject" required defaultValue=""><option value="" disabled>{copy.choose}</option>{copy.subjects.map((subject) => <option key={subject}>{subject}</option>)}</select></label>
       <label><span className="field-label">{copy.message} <small aria-live="polite">{messageLength} / 2000</small></span><textarea name="message" rows={5} minLength={20} maxLength={2000} required placeholder={copy.messagePlaceholder} onInput={(event) => { event.currentTarget.setCustomValidity(""); setMessageLength(event.currentTarget.value.length); }} /></label>
       <label className="consent"><input type="checkbox" name="consent" required /><span>{copy.consent}</span></label>
-      <button className="button button-primary" type="submit" disabled={loading}>{loading ? copy.sending : copy.send} <span aria-hidden="true">↗</span></button>
+      <button className="button button-primary" type="submit" disabled={loading}>{loading ? copy.sending : copy.send} <LuSend aria-hidden="true" /></button>
       {message && <p className="form-message" role="status">{message}</p>}
     </form>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LuArrowRight, LuPlus } from "react-icons/lu";
 import { Breadcrumbs, PageShell } from "../../components/SiteShell";
 import { Eyebrow } from "../../components/Brand";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
@@ -21,7 +22,7 @@ export default function ElectronicInvoicingPage() {
   return <PageShell translationHref="/en/facturation-electronique">
     <Breadcrumbs items={[{ label: "Facturation électronique", href: "/facturation-electronique" }]} />
     <PageHero eyebrow="FACTURATION ÉLECTRONIQUE" title={<>Modernisez vos échanges de factures, <em>sans interrompre vos opérations.</em></>} text="Paytium vous accompagne dans la préparation, l’intégration et l’industrialisation d’une chaîne de facturation électronique connectée à vos outils finance, comptables et métier." primary={["Évaluer votre niveau de préparation", "/#contact"]} secondary={["Parler à un expert", "/#contact"]}>
-      <div className="einvoice-flow"><div>ERP<br/><small>Applications</small></div><i>→</i><div className="active">Contrôle<br/><small>& orchestration</small></div><i>→</i><div>Émission<br/><small>& réception</small></div><i>→</i><div>Archivage<br/><small>& pilotage</small></div></div>
+      <div className="einvoice-flow"><div>ERP<br/><small>Applications</small></div><i aria-hidden="true"><LuArrowRight /></i><div className="active">Contrôle<br/><small>& orchestration</small></div><i aria-hidden="true"><LuArrowRight /></i><div>Émission<br/><small>& réception</small></div><i aria-hidden="true"><LuArrowRight /></i><div>Archivage<br/><small>& pilotage</small></div></div>
     </PageHero>
 
     <section className="section challenges-section">
@@ -44,7 +45,7 @@ export default function ElectronicInvoicingPage() {
 
     <section className="section deployment-section"><SectionHeading eyebrow="DÉPLOIEMENT" title={<>Une transition progressive <em>et maîtrisée.</em></>} /><div className="deployment-track">{deployment.map(([title,text],index)=><article key={title}><span>{String(index+1).padStart(2,"0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
 
-    <section className="section faq-section"><div><Eyebrow>QUESTIONS FRÉQUENTES</Eyebrow><h2>Pour avancer avec <em>clarté.</em></h2></div><div className="faq-list">{faq.map(([question,answer])=><details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></section>
+    <section className="section faq-section"><div><Eyebrow>QUESTIONS FRÉQUENTES</Eyebrow><h2>Pour avancer avec <em>clarté.</em></h2></div><div className="faq-list">{faq.map(([question,answer])=><details key={question}><summary>{question}<span aria-hidden="true"><LuPlus /></span></summary><p>{answer}</p></details>)}</div></section>
 
     <FinalCta eyebrow="PRÉPAREZ LA SUITE" title={<>Où en êtes-vous dans votre transition vers la <em>facturation électronique ?</em></>} text="Réalisons un premier échange pour clarifier votre périmètre, vos priorités et les dépendances à anticiper." primary="Demander un échange" secondary={["Découvrir les services Paytium", "/services"]} />
   </PageShell>;
