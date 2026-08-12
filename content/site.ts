@@ -1,7 +1,8 @@
 export const siteConfig = {
-  contactEmail: null as string | null,
-  contactPhone: null as string | null,
-  address: null as string | null,
+  contactEmail: "connect@paytium.io" as string | null,
+  contactPhone: "+212 707-252336" as string | null,
+  address: "Casablanca, Morocco" as string | null,
+  website: "paytium.io",
   linkedinUrl: null as string | null,
   legalCompanyName: "Paytium",
   legalNoticeUrl: null as string | null,
@@ -54,6 +55,18 @@ export const services = [
     capabilities: ["Assessment et stratégie Move-to-Cloud", "Architecture cloud, hybride ou on-premise", "CI/CD et automatisation des déploiements", "Infrastructure as Code", "Conteneurs, Kubernetes et platform engineering", "Observabilité, SRE et continuité", "DevSecOps, secrets et optimisation des coûts"],
     outcomes: "Livraisons plus fluides, environnements reproductibles, meilleure résilience et coûts plus visibles.",
   },
+  {
+    id: "academy",
+    number: "05",
+    title: "Paytium Academy",
+    short: "Formation & Academy",
+    summary: "Faites monter vos équipes en compétences grâce à des formations pratiques animées par des experts du terrain.",
+    tagline: "Apprendre aujourd’hui pour mieux construire demain.",
+    description: "Paytium Academy propose des formations technologiques, produit, data, cloud, agiles et managériales. Chaque parcours associe apports ciblés, ateliers pratiques et cas proches de votre réalité métier.",
+    capabilities: ["Formations inter-entreprises", "Sessions intra-entreprise", "Parcours sur mesure", "Ateliers pratiques et études de cas", "Programmes pour managers et équipes opérationnelles", "Formats en présentiel, à distance ou hybrides"],
+    outcomes: "Compétences immédiatement mobilisables, langage commun et autonomie durable des équipes.",
+    href: "/academy",
+  },
 ];
 
 export const methods = [
@@ -66,7 +79,7 @@ export const methods = [
 export const technologies = [
   { title: "Backend", items: ["Java", "Jakarta EE", "Spring", "Node.js", "Express", "NestJS"] },
   { title: "Frontend & Desktop", items: ["React", "Angular", "Gatsby", "Tailwind CSS", "Electron", "Next.js", "Remix", "Webpack"] },
-  { title: "Mobile", items: ["React Native", "Android"] },
+  { title: "Mobile", items: ["React Native", "Android", "Swift iOS"] },
   { title: "UI / UX", items: ["Figma", "Balsamiq", "InVision", "Marvel", "Adobe Photoshop", "Adobe Illustrator"] },
   { title: "Data & Analytics", items: ["Hadoop", "Spark", "Python", "Kafka", "Airflow", "Cassandra", "Flask", "Dash"] },
   { title: "DevOps", items: ["Jenkins", "GitLab CI", "CircleCI", "Ansible", "Terraform", "Docker", "Puppet", "Chef"] },

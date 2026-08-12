@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
+import { GoogleAnalytics } from "../components/GoogleAnalytics";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,13 +20,24 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "Paytium | Transformation digitale",
+  metadataBase: new URL("https://northstar-momentum.ltt-6.chatgpt.site"),
+  title: { default: "Paytium | Transformation digitale", template: "%s | Paytium" },
   description: "Paytium accompagne les organisations de la stratégie à l’exécution de leurs transformations digitales.",
+  applicationName: "Paytium",
+  authors: [{ name: "Paytium", url: "https://paytium.io" }],
+  creator: "Paytium",
+  publisher: "Paytium",
+  keywords: ["transformation digitale", "conseil IT", "data", "intelligence artificielle", "cloud", "DevOps", "engineering", "facturation électronique", "formation digitale", "Casablanca", "Maroc"],
+  alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
     title: "Paytium | Transformation digitale",
     description: "Conseil, produits digitaux, data, engineering et cloud pour des transformations utiles, fiables et évolutives.",
     type: "website",
     locale: "fr_FR",
+    alternateLocale: ["en_US"],
+    siteName: "Paytium",
+    url: "/",
     images: ["https://northstar-momentum.ltt-6.chatgpt.site/og.png"],
   },
   twitter: {
@@ -48,6 +60,8 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable}`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Organization", "@id": "https://paytium.io/#organization", name: "Paytium", url: "https://paytium.io", logo: "https://northstar-momentum.ltt-6.chatgpt.site/logo-paytium.svg", email: "connect@paytium.io", telephone: "+212707252336", address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" } }, { "@type": "WebSite", "@id": "https://northstar-momentum.ltt-6.chatgpt.site/#website", url: "https://northstar-momentum.ltt-6.chatgpt.site", name: "Paytium", publisher: { "@id": "https://paytium.io/#organization" }, inLanguage: ["fr-FR", "en-US"] }, { "@type": "ProfessionalService", name: "Paytium", email: "connect@paytium.io", telephone: "+212707252336", areaServed: ["Morocco", "International"], address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" } }] }) }} />
+        <GoogleAnalytics />
         {children}
       </body>
     </html>

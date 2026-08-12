@@ -4,8 +4,9 @@ import { Eyebrow } from "../../components/Brand";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
 
 export const metadata: Metadata = {
-  title: "Facturation électronique et intégration | Paytium",
+  title: "Facturation électronique et intégration",
   description: "Préparez, intégrez et industrialisez votre chaîne de facturation électronique avec une approche progressive et connectée à votre SI.",
+  alternates: { canonical: "/facturation-electronique", languages: { "fr-FR": "/facturation-electronique", "en-US": "/en/facturation-electronique" } },
 };
 
 const challenges = [["Préparation", "Cartographier les flux, les acteurs, les formats et les écarts."], ["Interopérabilité", "Connecter ERP, applications métier, partenaires et plateformes d’échange."], ["Maîtrise", "Contrôler les données, suivre les statuts et traiter les exceptions."], ["Évolutivité", "Absorber les changements réglementaires, fonctionnels et volumétriques."]];
@@ -17,7 +18,7 @@ const deployment = [["Diagnostic", "Flux, données, outils, acteurs, volumes et 
 const faq = [["Peut-on connecter la solution à notre ERP ?", "Oui. Le mode d’intégration est défini après analyse de l’ERP, des interfaces disponibles, des volumes et des contraintes de sécurité. APIs, échanges batch, événements ou connecteurs peuvent être combinés."], ["Quels formats de facture sont pris en charge ?", "Les formats sont déterminés selon l’écosystème cible et les exigences applicables. Une couche de normalisation peut convertir les données internes vers les formats d’échange retenus."], ["Peut-on déployer progressivement ?", "Oui. Une approche pilote permet de valider les flux, les contrôles et l’exploitation avant d’étendre le dispositif à d’autres entités ou volumes."], ["Comment sont gérées les erreurs ?", "Les contrôles, statuts, notifications et files de traitement permettent d’identifier les exceptions, de les qualifier et d’organiser leur résolution avec une traçabilité complète."], ["La conformité est-elle garantie ?", "Paytium conçoit l’architecture et les processus pour s’adapter aux exigences applicables. La validation juridique, fiscale et réglementaire reste menée avec les fonctions compétentes du client et sur la base des référentiels officiels en vigueur."]];
 
 export default function ElectronicInvoicingPage() {
-  return <PageShell>
+  return <PageShell translationHref="/en/facturation-electronique">
     <PageHero eyebrow="FACTURATION ÉLECTRONIQUE" title={<>Modernisez vos échanges de factures, <em>sans interrompre vos opérations.</em></>} text="Paytium vous accompagne dans la préparation, l’intégration et l’industrialisation d’une chaîne de facturation électronique connectée à vos outils finance, comptables et métier." primary={["Évaluer votre niveau de préparation", "/#contact"]} secondary={["Parler à un expert", "/#contact"]}>
       <div className="einvoice-flow"><div>ERP<br/><small>Applications</small></div><i>→</i><div className="active">Contrôle<br/><small>& orchestration</small></div><i>→</i><div>Émission<br/><small>& réception</small></div><i>→</i><div>Archivage<br/><small>& pilotage</small></div></div>
     </PageHero>

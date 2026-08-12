@@ -7,18 +7,19 @@ import { FinalCta, SectionHeading, TechPreview } from "../components/Sections";
 import { methods, services, siteConfig } from "../content/site";
 
 export const metadata: Metadata = {
-  title: "Paytium | Transformation digitale, Data, Cloud et Engineering",
+  title: "Transformation digitale, Data, Cloud et Engineering",
   description: "Paytium accompagne les organisations de la stratégie à l’exécution de leurs transformations digitales, data, cloud et engineering.",
+  alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
 };
 
 const quickLinks = [
-  ["Facturation électronique", "/facturation-electronique", "01"], ["Conseil & stratégie", "/services#consulting", "02"], ["Digital, Data & IA", "/services#digital-data", "03"], ["Cloud & DevOps", "/services#cloud-devops", "04"], ["Parler de votre projet", "/#contact", "↗"],
+  ["Facturation électronique", "/facturation-electronique", "01"], ["Conseil & stratégie", "/services#consulting", "02"], ["Digital, Data & IA", "/services#digital-data", "03"], ["Paytium Academy", "/academy", "04"], ["Parler de votre projet", "/#contact", "↗"],
 ];
 
 export default function HomePage() {
   const hasContact = siteConfig.contactEmail || siteConfig.contactPhone || siteConfig.address;
   return (
-    <PageShell>
+    <PageShell translationHref="/en">
       <HomeHero />
       <nav className="quick-links" aria-label="Accès rapides">{quickLinks.map(([label, href, number]) => <a key={label} href={href}><span>{number}</span>{label}<b>↗</b></a>)}</nav>
 
@@ -37,7 +38,7 @@ export default function HomePage() {
 
       <section className="section services-home">
         <SectionHeading eyebrow="NOS SERVICES" title={<>Nous accélérons votre <em>transformation digitale.</em></>} />
-        <div className="service-grid">{services.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}>{item}</li>)}</ul><a href={`/services#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
+        <div className="service-grid">{services.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}>{item}</li>)}</ul><a href={"href" in service ? service.href : `/services#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
         <a className="button button-primary section-action" href="/services">Voir tous nos services <Arrow /></a>
       </section>
 
@@ -59,7 +60,7 @@ export default function HomePage() {
       <FinalCta />
 
       <section className="section contact-section" id="contact">
-        <div className="contact-intro"><Eyebrow>CONTACT</Eyebrow><h2>Parlons de votre <em>prochain projet.</em></h2><p>Décrivez-nous votre besoin. Notre équipe vous recontactera pour comprendre votre contexte et identifier les prochaines étapes utiles.</p><ul><li>Un échange centré sur votre contexte</li><li>Une approche claire et sans jargon inutile</li><li>Des expertises mobilisées selon le besoin</li><li>Une trajectoire pragmatique et progressive</li></ul>{hasContact && <address>{siteConfig.contactEmail && <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>}{siteConfig.contactPhone && <a href={`tel:${siteConfig.contactPhone}`}>{siteConfig.contactPhone}</a>}{siteConfig.address && <span>{siteConfig.address}</span>}</address>}</div>
+        <div className="contact-intro"><Eyebrow>CONTACT</Eyebrow><h2>Parlons de votre <em>prochain projet.</em></h2><p>Une idée, un défi ou une transformation à accélérer ? Échangeons pour transformer votre ambition en prochaines étapes concrètes.</p><ul><li>Un échange centré sur votre contexte</li><li>Une approche claire et sans jargon inutile</li><li>Des expertises mobilisées selon le besoin</li><li>Une trajectoire pragmatique et progressive</li></ul>{hasContact && <address className="contact-details"><a href={`mailto:${siteConfig.contactEmail}`}><span aria-hidden="true">✉</span><small>Email</small><b>{siteConfig.contactEmail}</b></a><a href={`tel:${siteConfig.contactPhone?.replace(/[^\d+]/g, "")}`}><span aria-hidden="true">☎</span><small>Téléphone</small><b>{siteConfig.contactPhone}</b></a><a href={`https://${siteConfig.website}`}><span aria-hidden="true">↗</span><small>Web</small><b>{siteConfig.website}</b></a><div><span aria-hidden="true">⌖</span><small>Adresse</small><b>{siteConfig.address}</b></div></address>}</div>
         <ContactForm />
       </section>
     </PageShell>

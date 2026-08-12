@@ -4,12 +4,13 @@ import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
 import { services, technologies, workingMethods } from "../../content/site";
 
 export const metadata: Metadata = {
-  title: "Services de transformation digitale | Paytium",
+  title: "Services de transformation digitale",
   description: "Conseil, produits digitaux, data, engineering, cloud et DevOps : découvrez les expertises de transformation de Paytium.",
+  alternates: { canonical: "/services", languages: { "fr-FR": "/services", "en-US": "/en/services" } },
 };
 
 export default function ServicesPage() {
-  return <PageShell>
+  return <PageShell translationHref="/en/services">
     <PageHero eyebrow="EXPERTISES PAYTIUM" title={<>De la vision à l’exploitation, une expertise <em>de bout en bout.</em></>} text="Paytium mobilise conseil, produit, ingénierie, data et cloud pour concevoir des transformations cohérentes et les faire vivre dans la durée." primary={["Parler de votre projet", "/#contact"]} secondary={["Voir notre méthode", "#methodes"]}>
       <div className="expertise-visual"><span>Conseil</span><span>Produit</span><span>Engineering</span><span>Cloud</span><i /></div>
     </PageHero>
@@ -17,7 +18,7 @@ export default function ServicesPage() {
     <section className="section service-details">
       {services.map((service, index) => <article id={service.id} key={service.id} className="service-detail">
         <div className="service-index"><span>{service.number}</span><small>EXPERTISE</small></div>
-        <div className="service-main"><h2>{service.title}</h2><h3>{service.tagline}</h3><p>{service.description}</p><div className="outcome"><small>RÉSULTATS RECHERCHÉS</small><p>{service.outcomes}</p></div></div>
+        <div className="service-main"><h2>{service.title}</h2><h3>{service.tagline}</h3><p>{service.description}</p>{service.id === "academy" && <a className="text-link" href="/academy">Explorer Paytium Academy <span aria-hidden="true">↗</span></a>}<div className="outcome"><small>RÉSULTATS RECHERCHÉS</small><p>{service.outcomes}</p></div></div>
         <div className="capability-list"><small>CAPACITÉS</small>{service.capabilities.map((item, itemIndex) => <div key={item}><span>{String(itemIndex + 1).padStart(2, "0")}</span>{item}</div>)}</div>
         {index < services.length - 1 && <hr />}
       </article>)}

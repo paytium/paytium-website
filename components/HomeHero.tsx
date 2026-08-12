@@ -3,7 +3,7 @@
 import { PointerEvent as ReactPointerEvent, useEffect, useRef, useState } from "react";
 import { Arrow, Eyebrow } from "./Brand";
 
-const slides = [
+const slidesFr = [
   {
     eyebrow: "STRATÉGIE. TECHNOLOGIE. IMPACT.",
     title: <>Faites avancer votre <em>transformation digitale.</em></>,
@@ -24,13 +24,20 @@ const slides = [
   },
 ];
 
-function HeroVisual({ type }: { type: string }) {
-  if (type === "invoice") return <div className="hero-diagram invoice-diagram"><div className="orbital-lines"/><div className="flow-node"><small>SOURCE</small><b>ERP</b></div><div className="flow-hub"><img src="/paytium-icon-white.svg" alt=""/><span>Paytium</span></div><div className="flow-node end"><small>ÉCHANGE</small><b>Partenaires</b></div><div className="status-stack"><span>✓ Contrôlée</span><span>↗ Transmise</span><span>□ Archivée</span></div></div>;
-  if (type === "platform") return <div className="hero-diagram platform-diagram"><div className="orbital-lines"/><div className="platform-panel"><p>Architecture & delivery</p><div><span>Disponibilité</span><i className="signal"><b/><b/><b/><b/></i></div><div><span>Livraison</span><i className="progress"><b/></i></div><div><span>Qualité</span><i className="dots">● ● ● ●</i></div></div><div className="code-card">API<br/><b>Connected</b></div><div className="cloud-card">Cloud<br/><b>Observable</b></div></div>;
-  return <div className="hero-diagram trajectory-diagram"><div className="orbital-lines"/><div className="paytium-core"><img src="/paytium-icon.svg" alt=""/></div><div className="float-label label-a">Stratégie</div><div className="float-label label-b">Produit</div><div className="float-label label-c">Data</div><div className="float-label label-d">Cloud</div><div className="trajectory-card"><small>TRAJECTOIRE</small><b>Vision → Produit → Impact</b><i><span/></i></div></div>;
+const slidesEn = [
+  { eyebrow: "STRATEGY. TECHNOLOGY. IMPACT.", title: <>Move your <em>digital transformation forward.</em></>, text: "Paytium turns business challenges into useful, reliable and scalable digital products, platforms and services — from strategy through delivery.", primary: ["Build your roadmap", "/en/#contact"], secondary: ["Discover our services", "/en/services"], visual: "trajectory" },
+  { eyebrow: "E-INVOICING", title: <>Move to digital invoicing <em>with clarity.</em></>, text: "Prepare, integrate and industrialise your invoice exchanges through a secure, interoperable approach designed around finance and business processes.", primary: ["Explore our approach", "/en/facturation-electronique"], secondary: ["Talk to an expert", "/en/#contact"], visual: "invoice" },
+  { eyebrow: "ENGINEERING. DATA. CLOUD.", title: <>Build platforms <em>ready to scale.</em></>, text: "Modernise your information system, accelerate delivery and unlock your data with robust architectures and multidisciplinary teams.", primary: ["Explore our expertise", "/en/services"], secondary: ["Contact us", "/en/#contact"], visual: "platform" },
+];
+
+function HeroVisual({ type, locale }: { type: string; locale: "fr" | "en" }) {
+  if (type === "invoice") return <div className="hero-diagram invoice-diagram"><div className="orbital-lines"/><div className="flow-node"><small>SOURCE</small><b>ERP</b></div><div className="flow-hub"><img src="/paytium-icon-white.svg" alt=""/><span>Paytium</span></div><div className="flow-node end"><small>{locale === "fr" ? "ÉCHANGE" : "EXCHANGE"}</small><b>{locale === "fr" ? "Partenaires" : "Partners"}</b></div><div className="status-stack"><span>✓ {locale === "fr" ? "Contrôlée" : "Checked"}</span><span>↗ {locale === "fr" ? "Transmise" : "Sent"}</span><span>□ {locale === "fr" ? "Archivée" : "Archived"}</span></div></div>;
+  if (type === "platform") return <div className="hero-diagram platform-diagram"><div className="orbital-lines"/><div className="platform-panel"><p>Architecture & delivery</p><div><span>{locale === "fr" ? "Disponibilité" : "Availability"}</span><i className="signal"><b/><b/><b/><b/></i></div><div><span>{locale === "fr" ? "Livraison" : "Delivery"}</span><i className="progress"><b/></i></div><div><span>{locale === "fr" ? "Qualité" : "Quality"}</span><i className="dots">● ● ● ●</i></div></div><div className="code-card">API<br/><b>Connected</b></div><div className="cloud-card">Cloud<br/><b>Observable</b></div></div>;
+  return <div className="hero-diagram trajectory-diagram"><div className="orbital-lines"/><div className="paytium-core"><img src="/paytium-icon.svg" alt=""/></div><div className="float-label label-a">{locale === "fr" ? "Stratégie" : "Strategy"}</div><div className="float-label label-b">{locale === "fr" ? "Produit" : "Product"}</div><div className="float-label label-c">Data</div><div className="float-label label-d">Cloud</div><div className="trajectory-card"><small>{locale === "fr" ? "TRAJECTOIRE" : "ROADMAP"}</small><b>Vision → {locale === "fr" ? "Produit" : "Product"} → Impact</b><i><span/></i></div></div>;
 }
 
-export function HomeHero() {
+export function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const slides = locale === "fr" ? slidesFr : slidesEn;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -69,12 +76,12 @@ export function HomeHero() {
   };
   const slide = slides[active];
   return (
-    <section className={`home-hero ${dragging ? "is-dragging" : ""}`} aria-roledescription="carousel" aria-label="À la une" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={() => setPaused(false)} onKeyDown={(event) => { if (event.key === "ArrowLeft") go(active - 1); if (event.key === "ArrowRight") go(active + 1); }} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onClickCapture={(event) => { if (suppressClick.current) { event.preventDefault(); event.stopPropagation(); suppressClick.current = false; } }}>
+    <section className={`home-hero ${dragging ? "is-dragging" : ""}`} aria-roledescription="carousel" aria-label={locale === "fr" ? "À la une" : "Featured content"} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={() => setPaused(false)} onKeyDown={(event) => { if (event.key === "ArrowLeft") go(active - 1); if (event.key === "ArrowRight") go(active + 1); }} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onClickCapture={(event) => { if (suppressClick.current) { event.preventDefault(); event.stopPropagation(); suppressClick.current = false; } }}>
       <div className="hero-slide" key={active} aria-live="polite" style={{ transform: `translateX(${dragOffset}px)` }}>
         <div className="hero-copy"><Eyebrow>{slide.eyebrow}</Eyebrow><h1>{slide.title}</h1><p>{slide.text}</p><div className="hero-actions"><a className="button button-primary" href={slide.primary[1]}>{slide.primary[0]} <Arrow /></a><a className="button button-secondary" href={slide.secondary[1]}>{slide.secondary[0]}</a></div></div>
-        <HeroVisual type={slide.visual} />
+        <HeroVisual type={slide.visual} locale={locale} />
       </div>
-      <div className="slider-controls"><button type="button" onClick={() => go(active - 1)} aria-label="Slide précédente">←</button><div>{slides.map((item, index) => <button className={index === active ? "active" : ""} key={item.eyebrow} type="button" aria-label={`Afficher la slide ${index + 1}`} aria-current={index === active ? "true" : undefined} onClick={() => setActive(index)} />)}</div><button type="button" onClick={() => go(active + 1)} aria-label="Slide suivante">→</button></div>
+      <div className="slider-controls"><button type="button" onClick={() => go(active - 1)} aria-label={locale === "fr" ? "Slide précédente" : "Previous slide"}>←</button><div>{slides.map((item, index) => <button className={index === active ? "active" : ""} key={item.eyebrow} type="button" aria-label={locale === "fr" ? `Afficher la slide ${index + 1}` : `Show slide ${index + 1}`} aria-current={index === active ? "true" : undefined} onClick={() => setActive(index)} />)}</div><button type="button" onClick={() => go(active + 1)} aria-label={locale === "fr" ? "Slide suivante" : "Next slide"}>→</button></div>
     </section>
   );
 }

@@ -4,9 +4,18 @@ import { useEffect, useState } from "react";
 import { Brand, Arrow } from "./Brand";
 import { services, siteConfig } from "../content/site";
 
-export function SiteHeader() {
+type Locale = "fr" | "en";
+
+const shellCopy = {
+  fr: { skip: "Aller au contenu", home: "Accueil", about: "À propos", services: "Services", invoice: "Facturation électronique", method: "Méthode", technologies: "Technologies", academy: "Academy", contact: "Contact", talk: "Parler à un expert", open: "Ouvrir le menu", close: "Fermer le menu", nav: "Navigation principale", top: "Haut", footer: "Paytium transforme les enjeux métiers en solutions numériques utiles, fiables et évolutives.", company: "Entreprise", resources: "Ressources", legal: "Mentions légales", privacy: "Confidentialité", signature: "La technologie au service de transformations maîtrisées." },
+  en: { skip: "Skip to content", home: "Home", about: "About", services: "Services", invoice: "E-invoicing", method: "Method", technologies: "Technologies", academy: "Academy", contact: "Contact", talk: "Talk to an expert", open: "Open menu", close: "Close menu", nav: "Main navigation", top: "Top", footer: "Paytium turns business challenges into useful, reliable and scalable digital solutions.", company: "Company", resources: "Resources", legal: "Legal notice", privacy: "Privacy", signature: "Technology for controlled, lasting transformations." },
+};
+
+export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?: Locale; translationHref?: string }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const copy = shellCopy[locale];
+  const prefix = locale === "en" ? "/en" : "";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -24,43 +33,45 @@ export function SiteHeader() {
 
   return (
     <>
-      <a className="skip-link" href="#main-content">Aller au contenu</a>
+      <a className="skip-link" href="#main-content">{copy.skip}</a>
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="top">
-        <a className="brand" href="/" aria-label="Paytium — Accueil"><Brand /></a>
-        <nav className="desktop-nav" aria-label="Navigation principale">
-          <a href="/">Accueil</a>
-          <a href="/#a-propos">À propos</a>
+        <a className="brand" href={`${prefix}/` || "/"} aria-label={`Paytium — ${copy.home}`}><Brand /></a>
+        <nav className="desktop-nav" aria-label={copy.nav}>
+          <a href={`${prefix}/` || "/"}>{copy.home}</a>
+          <a href={`${prefix}/#a-propos`}>{copy.about}</a>
           <div className="nav-group">
-            <a href="/services">Services <span aria-hidden="true">⌄</span></a>
+            <a href={`${prefix}/services`}>{copy.services} <span aria-hidden="true">⌄</span></a>
             <div className="submenu">
-              {services.map((service) => <a key={service.id} href={`/services#${service.id}`}>{service.short}</a>)}
+              {services.map((service) => <a key={service.id} href={service.id === "academy" ? `${prefix}/academy` : `${prefix}/services#${service.id}`}>{service.id === "academy" ? copy.academy : service.short}</a>)}
             </div>
           </div>
-          <a href="/facturation-electronique">Facturation électronique</a>
-          <a href="/#methode">Méthode</a>
-          <a href="/services#technologies">Technologies</a>
-          <a href="/#contact">Contact</a>
+          <a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a>
+          <a href={`${prefix}/academy`}>{copy.academy}</a>
+          <a href={`${prefix}/#contact`}>{copy.contact}</a>
         </nav>
-        <a className="header-cta desktop-cta" href="/#contact">Parler à un expert <Arrow /></a>
+        <a className="language-switch" href={translationHref} hrefLang={locale === "fr" ? "en" : "fr"} aria-label={locale === "fr" ? "View the site in English" : "Voir le site en français"}>{locale === "fr" ? "EN" : "FR"}</a>
+        <a className="header-cta desktop-cta" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
         <button className="menu-button" type="button" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>
-          <span /> <span /> <span /><span className="sr-only">Ouvrir le menu</span>
+          <span /> <span /> <span /><span className="sr-only">{copy.open}</span>
         </button>
       </header>
       <div className={`drawer-backdrop ${open ? "show" : ""}`} onClick={() => setOpen(false)} />
       <aside className={`mobile-drawer ${open ? "open" : ""}`} id="mobile-menu" aria-hidden={!open}>
-        <div className="drawer-top"><Brand /><button type="button" onClick={() => setOpen(false)} aria-label="Fermer le menu">×</button></div>
-        <nav aria-label="Navigation mobile" onClick={() => setOpen(false)}>
-          <a href="/">Accueil</a><a href="/#a-propos">À propos</a><a href="/services">Services</a>
-          {services.map((service) => <a className="drawer-sub" key={service.id} href={`/services#${service.id}`}>{service.short}</a>)}
-          <a href="/facturation-electronique">Facturation électronique</a><a href="/#methode">Méthode</a><a href="/services#technologies">Technologies</a><a href="/#contact">Contact</a>
+        <div className="drawer-top"><Brand /><button type="button" onClick={() => setOpen(false)} aria-label={copy.close}>×</button></div>
+        <nav aria-label={copy.nav} onClick={() => setOpen(false)}>
+          <a href={`${prefix}/` || "/"}>{copy.home}</a><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/services`}>{copy.services}</a>
+          {services.map((service) => <a className="drawer-sub" key={service.id} href={service.id === "academy" ? `${prefix}/academy` : `${prefix}/services#${service.id}`}>{service.id === "academy" ? copy.academy : service.short}</a>)}
+          <a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={`${prefix}/academy`}>{copy.academy}</a><a href={`${prefix}/#contact`}>{copy.contact}</a><a href={translationHref}>{locale === "fr" ? "English" : "Français"}</a>
         </nav>
-        <a className="button button-primary" href="/#contact">Parler à un expert <Arrow /></a>
+        <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
       </aside>
     </>
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
+  const copy = shellCopy[locale];
+  const prefix = locale === "en" ? "/en" : "";
   const legalLinks = [
     siteConfig.legalNoticeUrl && ["Mentions légales", siteConfig.legalNoticeUrl],
     siteConfig.privacyUrl && ["Confidentialité", siteConfig.privacyUrl],
@@ -68,19 +79,20 @@ export function SiteFooter() {
 
   return (
     <footer className="site-footer">
-      <div className="footer-intro"><a href="/"><Brand /></a><p>Paytium transforme les enjeux métiers en solutions numériques utiles, fiables et évolutives.</p></div>
-      <div><h3>Services</h3><a href="/services#consulting">Conseil & stratégie</a><a href="/services#digital-data">Digital, Data & IA</a><a href="/services#engineering">Engineering</a><a href="/services#cloud-devops">Cloud & DevOps</a></div>
-      <div><h3>Entreprise</h3><a href="/#a-propos">À propos</a><a href="/#methode">Notre méthode</a><a href="/#contact">Contact</a>{siteConfig.linkedinUrl && <a href={siteConfig.linkedinUrl}>LinkedIn</a>}</div>
-      <div><h3>Ressources</h3><a href="/facturation-electronique">Facturation électronique</a><a href="/services#technologies">Technologies</a>{legalLinks.map(([label, url]) => <a key={url} href={url}>{label}</a>)}</div>
-      <div className="footer-bottom"><span>© 2026 {siteConfig.legalCompanyName}</span><span>La technologie au service de transformations maîtrisées.</span></div>
+      <div className="footer-intro"><a href={`${prefix}/` || "/"}><Brand /></a><p>{copy.footer}</p></div>
+      <div><h3>{copy.services}</h3><a href={`${prefix}/services#consulting`}>{locale === "fr" ? "Conseil & stratégie" : "Consulting & strategy"}</a><a href={`${prefix}/services#digital-data`}>Digital, Data & AI</a><a href={`${prefix}/services#engineering`}>Engineering</a><a href={`${prefix}/services#cloud-devops`}>Cloud & DevOps</a><a href={`${prefix}/academy`}>Paytium Academy</a></div>
+      <div><h3>{copy.company}</h3><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/#methode`}>{copy.method}</a><a href={`${prefix}/#contact`}>{copy.contact}</a>{siteConfig.linkedinUrl && <a href={siteConfig.linkedinUrl}>LinkedIn</a>}</div>
+      <div><h3>{copy.resources}</h3><a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={`${prefix}/services#technologies`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
+      <div className="footer-bottom"><span>© 2026 {siteConfig.legalCompanyName}</span><span>{copy.signature}</span></div>
     </footer>
   );
 }
 
-export function PageShell({ children }: { children: React.ReactNode }) {
+export function PageShell({ children, locale = "fr", translationHref = "/en" }: { children: React.ReactNode; locale?: Locale; translationHref?: string }) {
   useEffect(() => {
+    document.documentElement.lang = locale;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const selector = [".section-heading", ".editorial-cards > article", ".values-row > article", ".service-card", ".method-timeline > article", ".tech-preview > article", ".service-detail", ".method-matrix > article", ".technology-groups > article", ".challenge-grid > article", ".lifecycle > article", ".security-grid > article", ".usecase-grid > article", ".deployment-track > article", ".contact-form", ".contact-intro", ".invoice-copy", ".invoice-visual"].join(",");
+    const selector = [".section-heading", ".editorial-cards > article", ".values-row > article", ".service-card", ".method-timeline > article", ".tech-preview > article", ".service-detail", ".method-matrix > article", ".technology-groups > article", ".challenge-grid > article", ".lifecycle > article", ".security-grid > article", ".usecase-grid > article", ".deployment-track > article", ".academy-format-grid > article", ".course-card", ".contact-form", ".contact-intro", ".invoice-copy", ".invoice-visual"].join(",");
     const items = Array.from(document.querySelectorAll<HTMLElement>(selector));
     items.forEach((item, index) => {
       item.classList.add("reveal-item");
@@ -94,11 +106,11 @@ export function PageShell({ children }: { children: React.ReactNode }) {
     }), { threshold: .12, rootMargin: "0px 0px -7%" });
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
-  }, []);
-  return <><SiteHeader /><main id="main-content">{children}</main><SiteFooter /><ScrollToTop /></>;
+  }, [locale]);
+  return <><SiteHeader locale={locale} translationHref={translationHref} /><main id="main-content">{children}</main><SiteFooter locale={locale} /><ScrollToTop locale={locale} /></>;
 }
 
-function ScrollToTop() {
+function ScrollToTop({ locale = "fr" }: { locale?: Locale }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 520);
@@ -106,5 +118,5 @@ function ScrollToTop() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  return <a className={`scroll-top ${visible ? "visible" : ""}`} href="#top" aria-label="Revenir en haut de la page"><span>↑</span><small>Haut</small></a>;
+  return <a className={`scroll-top ${visible ? "visible" : ""}`} href="#top" aria-label={locale === "fr" ? "Revenir en haut de la page" : "Back to the top of the page"}><span>↑</span><small>{shellCopy[locale].top}</small></a>;
 }
