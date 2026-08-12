@@ -3,7 +3,7 @@ import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const output = new URL("../dist-pages/", import.meta.url);
-const baseUrl = "https://paytium.github.io/paytium-website";
+const baseUrl = "https://paytium.io";
 const routes = [
   ["/", "fr", "Paytium | Transformation digitale", "Paytium accompagne les organisations de la stratégie à l’exécution de leurs transformations digitales."],
   ["/en", "en", "Paytium | Digital transformation", "Paytium supports organisations from strategy through delivery across digital, data, cloud and engineering transformation."],
@@ -37,5 +37,6 @@ for (const [route, language, title, description] of routes) {
 
 await copyFile(new URL("index.html", output), new URL("404.html", output));
 await writeFile(new URL(".nojekyll", output), "");
+await writeFile(new URL("CNAME", output), "paytium.io\n");
 await writeFile(new URL("robots.txt", output), `User-agent: *\nAllow: /\nSitemap: ${baseUrl}/sitemap.xml\n`);
 await writeFile(new URL("sitemap.xml", output), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map(([route]) => `  <url><loc>${escapeXml(`${baseUrl}${route === "/" ? "/" : `${route}/`}`)}</loc></url>`).join("\n")}\n</urlset>\n`);
