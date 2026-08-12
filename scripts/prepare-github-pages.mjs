@@ -23,12 +23,24 @@ function escapeXml(value) {
 
 for (const [route, language, title, description] of routes) {
   const routeUrl = `${baseUrl}${route === "/" ? "/" : `${route}/`}`;
+  const locale = language === "en" ? "en_US" : "fr_FR";
+  const alternateLocale = language === "en" ? "fr_FR" : "en_US";
+  const socialImageAlt = language === "en"
+    ? "Paytium — strategy, technology and impact"
+    : "Paytium — stratégie, technologie et impact";
   const html = template
     .replace(/<html lang="[^"]+">/, `<html lang="${language}">`)
     .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
     .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`)
     .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`)
     .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${description}" />`)
+    .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${routeUrl}" />`)
+    .replace(/<meta property="og:locale" content="[^"]*" \/>/, `<meta property="og:locale" content="${locale}" />`)
+    .replace(/<meta property="og:locale:alternate" content="[^"]*" \/>/, `<meta property="og:locale:alternate" content="${alternateLocale}" />`)
+    .replace(/<meta property="og:image:alt" content="[^"]*" \/>/, `<meta property="og:image:alt" content="${socialImageAlt}" />`)
+    .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${title}" />`)
+    .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${description}" />`)
+    .replace(/<meta name="twitter:image:alt" content="[^"]*" \/>/, `<meta name="twitter:image:alt" content="${socialImageAlt}" />`)
     .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${routeUrl}" />`);
   const destination = route === "/" ? new URL("index.html", output) : new URL(`.${route}/index.html`, output);
   await mkdir(dirname(fileURLToPath(destination)), { recursive: true });

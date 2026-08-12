@@ -20,7 +20,7 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://northstar-momentum.ltt-6.chatgpt.site"),
+  metadataBase: new URL("https://paytium.io"),
   title: { default: "Paytium | Transformation digitale", template: "%s | Paytium" },
   description: "Paytium accompagne les organisations de la stratégie à l’exécution de leurs transformations digitales.",
   applicationName: "Paytium",
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     siteName: "Paytium",
     url: "/",
-    images: ["https://northstar-momentum.ltt-6.chatgpt.site/og.png"],
+    images: [{ url: "/og.png", width: 1731, height: 909, alt: "Paytium — stratégie, technologie et impact" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Paytium | Transformation digitale",
     description: "De la vision à l’impact : conseil, produits digitaux, data, engineering et cloud.",
-    images: ["https://northstar-momentum.ltt-6.chatgpt.site/og.png"],
+    images: [{ url: "/og.png", alt: "Paytium — stratégie, technologie et impact" }],
   },
   icons: {
     icon: "/favicon-rounded.svg",
@@ -61,7 +61,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable}`}>
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var p=location.pathname,c=p==='/en'||p.indexOf('/en/')===0?'en':'fr',s=localStorage.getItem('paytium-language'),n=(navigator.language||'fr').toLowerCase(),d=s==='en'||s==='fr'?s:n.indexOf('en')===0?'en':'fr';if(d!==c){var t=d==='en'?'/en'+(p==='/'?'':p):(p.replace(/^\\/en(?=\\/|$)/,'')||'/');location.replace(t+location.search+location.hash)}}catch(e){}})();` }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Organization", "@id": "https://paytium.io/#organization", name: "Paytium", url: "https://paytium.io", logo: "https://northstar-momentum.ltt-6.chatgpt.site/logo-paytium.svg", email: "connect@paytium.io", telephone: "+212707252336", sameAs: ["https://www.linkedin.com/company/paytium"], address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" } }, { "@type": "WebSite", "@id": "https://northstar-momentum.ltt-6.chatgpt.site/#website", url: "https://northstar-momentum.ltt-6.chatgpt.site", name: "Paytium", publisher: { "@id": "https://paytium.io/#organization" }, inLanguage: ["fr-FR", "en-US"] }, { "@type": "ProfessionalService", name: "Paytium", email: "connect@paytium.io", telephone: "+212707252336", areaServed: ["Morocco", "International"], address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" } }] }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Organization", "@id": "https://paytium.io/#organization", name: "Paytium", url: "https://paytium.io", logo: "https://paytium.io/logo-paytium.svg", email: "connect@paytium.io", telephone: "+212707252336", sameAs: ["https://www.linkedin.com/company/paytium"], address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" } }, { "@type": "WebSite", "@id": "https://paytium.io/#website", url: "https://paytium.io", name: "Paytium", publisher: { "@id": "https://paytium.io/#organization" }, inLanguage: ["fr-FR", "en-US"] }, { "@type": "ProfessionalService", name: "Paytium", email: "connect@paytium.io", telephone: "+212707252336", areaServed: ["Maroc", "International"], address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" } }] }) }} />
         <GoogleAnalytics />
         {children}
       </body>
