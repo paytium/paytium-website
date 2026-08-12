@@ -1,4 +1,4 @@
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import HomePage from "../app/page";
 import EnglishHomePage from "../app/en/page";
 import ServicesPage from "../app/services/page";
@@ -28,9 +28,10 @@ const initialPath = relativePath();
 try {
   const saved = window.localStorage.getItem("paytium-language");
   const browserLanguage = (window.navigator.language || "fr").toLowerCase();
+  const isCrawler = /bot|crawl|spider|slurp|bingpreview/i.test(window.navigator.userAgent);
   const desiredLanguage: "fr" | "en" = saved === "fr" || saved === "en" ? saved : browserLanguage.startsWith("en") ? "en" : "fr";
   const currentLanguage = initialPath === "/en" || initialPath.startsWith("/en/") ? "en" : "fr";
-  if (desiredLanguage !== currentLanguage) {
+  if (!isCrawler && desiredLanguage !== currentLanguage) {
     const destination = routeForLanguage(initialPath, desiredLanguage);
     window.location.replace(`${basePath}${destination === "/" ? "/" : `${destination}/`}${window.location.search}${window.location.hash}`);
   }
@@ -74,5 +75,7 @@ observer.observe(document.documentElement, { childList: true, subtree: true });
 
 document.documentElement.style.setProperty("--font-geist-sans", "'Geist'");
 document.documentElement.style.setProperty("--font-bricolage", "'Bricolage Grotesque'");
-createRoot(document.getElementById("root")!).render(<Page />);
+const root = document.getElementById("root")!;
+if (root.hasChildNodes()) hydrateRoot(root, <Page />);
+else createRoot(root).render(<Page />);
 queueMicrotask(() => adaptInternalPaths());

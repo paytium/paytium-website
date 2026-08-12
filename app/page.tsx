@@ -9,8 +9,8 @@ import { FinalCta, SectionHeading, TechPreview } from "../components/Sections";
 import { methods, services, siteConfig } from "../content/site";
 
 export const metadata: Metadata = {
-  title: "Transformation digitale, Data, Cloud et Engineering",
-  description: "Paytium accompagne les organisations de la stratégie à l’exécution de leurs transformations digitales, data, cloud et engineering.",
+  title: "Paytium Maroc — Conseil digital, Data, Cloud & Engineering",
+  description: "Paytium accompagne les entreprises au Maroc en stratégie digitale, Data & IA, software engineering, Cloud & DevOps et facturation électronique.",
   alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
 };
 

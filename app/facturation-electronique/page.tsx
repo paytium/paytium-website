@@ -5,8 +5,8 @@ import { Eyebrow } from "../../components/Brand";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
 
 export const metadata: Metadata = {
-  title: "Facturation électronique et intégration",
-  description: "Préparez, intégrez et industrialisez votre chaîne de facturation électronique avec une approche progressive et connectée à votre SI.",
+  title: "Facturation électronique Maroc & préparation DGI",
+  description: "Paytium accompagne les entreprises au Maroc dans leur préparation à la facturation électronique : DGI, processus, ERP, intégration, contrôle et archivage.",
   alternates: { canonical: "/facturation-electronique", languages: { "fr-FR": "/facturation-electronique", "en-US": "/en/facturation-electronique" } },
 };
 
@@ -21,9 +21,14 @@ const faq = [["Peut-on connecter la solution à notre ERP ?", "Oui. Le mode d’
 export default function ElectronicInvoicingPage() {
   return <PageShell translationHref="/en/facturation-electronique">
     <Breadcrumbs items={[{ label: "Facturation électronique", href: "/facturation-electronique" }]} />
-    <PageHero eyebrow="FACTURATION ÉLECTRONIQUE" title={<>Modernisez vos échanges de factures, <em>sans interrompre vos opérations.</em></>} text="Paytium vous accompagne dans la préparation, l’intégration et l’industrialisation d’une chaîne de facturation électronique connectée à vos outils finance, comptables et métier." primary={["Évaluer votre niveau de préparation", "/#contact"]} secondary={["Parler à un expert", "/#contact"]}>
+    <PageHero eyebrow="FACTURATION ÉLECTRONIQUE MAROC" title={<>Préparez votre facturation électronique, <em>sans interrompre vos opérations.</em></>} text="Paytium accompagne les entreprises au Maroc dans la préparation à la facturation électronique et aux évolutions portées par la DGI, avec une chaîne connectée aux outils finance, comptables et métier." primary={["Évaluer votre niveau de préparation", "/#contact"]} secondary={["Parler à un expert", "/#contact"]}>
       <div className="einvoice-flow"><div>ERP<br/><small>Applications</small></div><i aria-hidden="true"><LuArrowRight /></i><div className="active">Contrôle<br/><small>& orchestration</small></div><i aria-hidden="true"><LuArrowRight /></i><div>Émission<br/><small>& réception</small></div><i aria-hidden="true"><LuArrowRight /></i><div>Archivage<br/><small>& pilotage</small></div></div>
     </PageHero>
+
+    <section className="section einvoice-morocco" aria-labelledby="dgi-maroc">
+      <div><Eyebrow>FACTURATION ÉLECTRONIQUE & DGI MAROC</Eyebrow><h2 id="dgi-maroc">Anticiper les exigences, <em>préparer le système d’information.</em></h2></div>
+      <div><p>La transition vers la facturation électronique au Maroc implique la Direction Générale des Impôts (DGI), mais aussi les équipes finance, fiscalité, achats, ventes et IT. Paytium aide à cartographier les flux, fiabiliser les données et préparer les adaptations ERP et comptables.</p><p>Le dispositif est conçu pour rester adaptable aux textes, calendriers et spécifications officiellement publiés. Paytium ne se substitue pas au conseil fiscal : chaque décision de conformité est validée avec les fonctions compétentes et les référentiels officiels.</p><a className="text-link" href="https://www.finances.gov.ma/fr/Ministere/Pages/dgi.aspx" target="_blank" rel="noreferrer">Consulter la présentation officielle de la DGI <LuArrowRight aria-hidden="true" /></a></div>
+    </section>
 
     <section className="section challenges-section">
       <SectionHeading eyebrow="UNE TRANSITION MÉTIER, PAS SEULEMENT TECHNIQUE" title={<>Transformer une obligation en <em>levier d’efficacité.</em></>} text="La facturation électronique touche les processus, les données, les systèmes et l’organisation. Une transition réussie commence par une vision claire de l’existant et se poursuit par une intégration progressive, sécurisée et mesurable." />

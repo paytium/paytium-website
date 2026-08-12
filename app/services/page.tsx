@@ -6,8 +6,8 @@ import { services, technologies, workingMethods } from "../../content/site";
 const serviceEntries = services.filter((service) => service.id !== "academy");
 
 export const metadata: Metadata = {
-  title: "Services de transformation digitale",
-  description: "Conseil, produits digitaux, data, engineering, cloud et DevOps : découvrez les expertises de transformation de Paytium.",
+  title: "Conseil digital, Data, IA, Cloud & DevOps au Maroc",
+  description: "Découvrez les services Paytium au Maroc : conseil IT, stratégie digitale, produits web et mobile, Data & IA, software engineering, Cloud et DevOps.",
   alternates: { canonical: "/services", languages: { "fr-FR": "/services", "en-US": "/en/services" } },
 };
 
@@ -17,6 +17,11 @@ export default function ServicesPage() {
     <PageHero eyebrow="EXPERTISES PAYTIUM" title={<>De la vision à l’exploitation, une expertise <em>de bout en bout.</em></>} text="Paytium mobilise conseil, produit, ingénierie, data et cloud pour concevoir des transformations cohérentes et les faire vivre dans la durée." primary={["Parler de votre projet", "/#contact"]} secondary={["Voir nos méthodes", "#methodes"]}>
       <div className="expertise-visual"><span>Conseil</span><span>Produit</span><span>Engineering</span><span>Cloud</span><i /></div>
     </PageHero>
+
+    <section className="section seo-service-intro" aria-labelledby="expertises-maroc">
+      <div><span>PAYTIUM MAROC</span><h2 id="expertises-maroc">Des expertises digitales et technologiques <em>ancrées au Maroc.</em></h2></div>
+      <div><p>Depuis Casablanca, Paytium accompagne entreprises, institutions et équipes IT dans leurs programmes de transformation digitale au Maroc et à l’international. Nos consultants relient enjeux métier, architecture du système d’information et exécution technologique.</p><nav aria-label="Expertises Paytium au Maroc"><a href="#consulting">Conseil IT & stratégie digitale</a><a href="#digital-data">Produits digitaux, Data & IA</a><a href="#engineering">Software engineering</a><a href="#cloud-devops">Cloud, DevOps & DevSecOps</a></nav></div>
+    </section>
 
     <section className="section service-details">
       {serviceEntries.map((service, index) => <article id={service.id} key={service.id} className="service-detail">

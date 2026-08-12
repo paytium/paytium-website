@@ -37,6 +37,7 @@ yarn-error.log*
 
 /dist/
 /dist-pages/
+/dist-pages-ssr/
 /.wrangler/
 /outputs/
 /work/

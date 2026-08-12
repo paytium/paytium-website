@@ -21,13 +21,13 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://paytium.io"),
-  title: { default: "Paytium | Transformation digitale", template: "%s | Paytium" },
-  description: "Paytium accompagne les organisations de la stratégie à l’exécution de leurs transformations digitales.",
+  title: { default: "Paytium Maroc | Conseil digital, Data, Cloud & Engineering", template: "%s | Paytium" },
+  description: "Paytium accompagne les entreprises au Maroc en conseil digital, Data & IA, software engineering, Cloud & DevOps et facturation électronique.",
   applicationName: "Paytium",
   authors: [{ name: "Paytium", url: "https://paytium.io" }],
   creator: "Paytium",
   publisher: "Paytium",
-  keywords: ["transformation digitale", "conseil IT", "data", "intelligence artificielle", "cloud", "DevOps", "engineering", "facturation électronique", "formation digitale", "Casablanca", "Maroc"],
+  keywords: ["Paytium", "Paytium Maroc", "transformation digitale Maroc", "conseil IT Maroc", "data", "intelligence artificielle", "cloud", "DevOps", "software engineering", "facturation électronique Maroc", "e-invoicing Morocco", "DGI Maroc", "formation digitale", "Casablanca"],
   alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
@@ -60,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable}`}>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var p=location.pathname,c=p==='/en'||p.indexOf('/en/')===0?'en':'fr',s=localStorage.getItem('paytium-language'),n=(navigator.language||'fr').toLowerCase(),d=s==='en'||s==='fr'?s:n.indexOf('en')===0?'en':'fr';if(d!==c){var t=d==='en'?'/en'+(p==='/'?'':p):(p.replace(/^\\/en(?=\\/|$)/,'')||'/');location.replace(t+location.search+location.hash)}}catch(e){}})();` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var p=location.pathname,c=p==='/en'||p.indexOf('/en/')===0?'en':'fr',s=localStorage.getItem('paytium-language'),n=(navigator.language||'fr').toLowerCase(),b=/bot|crawl|spider|slurp|bingpreview/i.test(navigator.userAgent),d=s==='en'||s==='fr'?s:n.indexOf('en')===0?'en':'fr';if(!b&&d!==c){var t=d==='en'?'/en'+(p==='/'?'':p):(p.replace(/^\\/en(?=\\/|$)/,'')||'/');location.replace(t+location.search+location.hash)}}catch(e){}})();` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Organization", "@id": "https://paytium.io/#organization", name: "Paytium", url: "https://paytium.io", logo: "https://paytium.io/logo-paytium.svg", email: "connect@paytium.io", telephone: "+212707252336", sameAs: ["https://www.linkedin.com/company/paytium"], address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" } }, { "@type": "WebSite", "@id": "https://paytium.io/#website", url: "https://paytium.io", name: "Paytium", publisher: { "@id": "https://paytium.io/#organization" }, inLanguage: ["fr-FR", "en-US"] }, { "@type": "ProfessionalService", name: "Paytium", email: "connect@paytium.io", telephone: "+212707252336", areaServed: ["Maroc", "International"], address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" } }] }) }} />
         <GoogleAnalytics />
         {children}
