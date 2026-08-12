@@ -5,6 +5,7 @@ import { Brand, Arrow } from "./Brand";
 import { services, siteConfig } from "../content/site";
 
 type Locale = "fr" | "en";
+type BreadcrumbItem = { label: string; href: string };
 
 const shellCopy = {
   fr: { skip: "Aller au contenu", home: "Accueil", about: "À propos", services: "Services", invoice: "Facturation électronique", method: "Méthode", technologies: "Technologies", academy: "Academy", contact: "Contact", talk: "Parler à un expert", open: "Ouvrir le menu", close: "Fermer le menu", nav: "Navigation principale", top: "Haut", footer: "Paytium transforme les enjeux métiers en solutions numériques utiles, fiables et évolutives.", company: "Entreprise", resources: "Ressources", legal: "Mentions légales", privacy: "Confidentialité", signature: "La technologie au service de transformations maîtrisées." },
@@ -16,6 +17,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
   const [scrolled, setScrolled] = useState(false);
   const copy = shellCopy[locale];
   const prefix = locale === "en" ? "/en" : "";
+  const homeHref = locale === "en" ? "/en/" : "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -35,9 +37,9 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
     <>
       <a className="skip-link" href="#main-content">{copy.skip}</a>
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="top">
-        <a className="brand" href={`${prefix}/` || "/"} aria-label={`Paytium — ${copy.home}`}><Brand /></a>
+        <a className="brand" href={homeHref} aria-label={`Paytium — ${copy.home}`}><Brand /></a>
         <nav className="desktop-nav" aria-label={copy.nav}>
-          <a href={`${prefix}/` || "/"}>{copy.home}</a>
+          <a href={homeHref}>{copy.home}</a>
           <a href={`${prefix}/#a-propos`}>{copy.about}</a>
           <div className="nav-group">
             <a href={`${prefix}/services`}>{copy.services} <span aria-hidden="true">⌄</span></a>
@@ -53,13 +55,13 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
           <span /> <span /> <span /><span className="sr-only">{copy.open}</span>
         </button>
       </header>
-      <div className={`drawer-backdrop ${open ? "show" : ""}`} onClick={() => setOpen(false)} />
+      <button className={`drawer-backdrop ${open ? "show" : ""}`} type="button" aria-label={copy.close} onClick={() => setOpen(false)} />
       <aside className={`mobile-drawer ${open ? "open" : ""}`} id="mobile-menu" aria-hidden={!open}>
         <div className="drawer-top"><Brand /><button type="button" onClick={() => setOpen(false)} aria-label={copy.close}>×</button></div>
-        <nav aria-label={copy.nav} onClick={() => setOpen(false)}>
-          <a href={`${prefix}/` || "/"}>{copy.home}</a><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/services`}>{copy.services}</a>
-          {services.map((service) => <a className="drawer-sub" key={service.id} href={service.id === "academy" ? `${prefix}/academy` : `${prefix}/services#${service.id}`}>{service.id === "academy" ? copy.academy : service.short}</a>)}
-          <a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={translationHref} onClick={() => window.localStorage.setItem("paytium-language", locale === "fr" ? "en" : "fr")}>{locale === "fr" ? "English" : "Français"}</a>
+        <nav aria-label={copy.nav}>
+          <a href={homeHref} onClick={() => setOpen(false)}>{copy.home}</a><a href={`${prefix}/#a-propos`} onClick={() => setOpen(false)}>{copy.about}</a><a href={`${prefix}/services`} onClick={() => setOpen(false)}>{copy.services}</a>
+          {services.map((service) => <a className="drawer-sub" key={service.id} href={service.id === "academy" ? `${prefix}/academy` : `${prefix}/services#${service.id}`} onClick={() => setOpen(false)}>{service.id === "academy" ? copy.academy : service.short}</a>)}
+          <a href={`${prefix}/facturation-electronique`} onClick={() => setOpen(false)}>{copy.invoice}</a><a href={translationHref} onClick={() => { setOpen(false); window.localStorage.setItem("paytium-language", locale === "fr" ? "en" : "fr"); }}>{locale === "fr" ? "English" : "Français"}</a>
         </nav>
         <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
       </aside>
@@ -70,6 +72,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
 export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
   const copy = shellCopy[locale];
   const prefix = locale === "en" ? "/en" : "";
+  const homeHref = locale === "en" ? "/en/" : "/";
   const legalLinks = [
     siteConfig.legalNoticeUrl && ["Mentions légales", siteConfig.legalNoticeUrl],
     siteConfig.privacyUrl && ["Confidentialité", siteConfig.privacyUrl],
@@ -77,7 +80,7 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
 
   return (
     <footer className="site-footer">
-      <div className="footer-intro"><a className="brand" href={`${prefix}/` || "/"}><Brand /></a><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><span className="linkedin-icon" aria-hidden="true">in</span></a>}</div>
+      <div className="footer-intro"><a className="brand" href={homeHref}><Brand /></a><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><span className="linkedin-icon" aria-hidden="true">in</span></a>}</div>
       <div><h3>{copy.services}</h3><a href={`${prefix}/services#consulting`}>{locale === "fr" ? "Conseil & stratégie" : "Consulting & strategy"}</a><a href={`${prefix}/services#digital-data`}>Digital, Data & AI</a><a href={`${prefix}/services#engineering`}>Engineering</a><a href={`${prefix}/services#cloud-devops`}>Cloud & DevOps</a><a href={`${prefix}/academy`}>Paytium Academy</a></div>
       <div><h3>{copy.company}</h3><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/#methode`}>{copy.method}</a><a href={`${prefix}/#contact`}>{copy.contact}</a></div>
       <div><h3>{copy.resources}</h3><a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={`${prefix}/services#technologies`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
@@ -117,6 +120,7 @@ export function PageShell({ children, locale = "fr", translationHref = "/en" }: 
       if (destination.origin !== window.location.origin || destinationPath !== currentPath || !destination.hash) return;
       event.preventDefault();
       window.history.pushState(null, "", `${destination.pathname}${destination.search}${destination.hash}`);
+      window.dispatchEvent(new Event("paytium:hashchange"));
       scheduleHashScroll();
     };
     scheduleHashScroll();
@@ -150,6 +154,29 @@ export function PageShell({ children, locale = "fr", translationHref = "/en" }: 
     return () => observer.disconnect();
   }, [locale]);
   return <><SiteHeader locale={locale} translationHref={translationHref} /><main id="main-content">{children}</main><SiteFooter locale={locale} /><ScrollToTop locale={locale} /></>;
+}
+
+export function Breadcrumbs({ items, sections = {}, locale = "fr" }: { items: BreadcrumbItem[]; sections?: Record<string, string>; locale?: Locale }) {
+  const [currentSection, setCurrentSection] = useState("");
+  const homeHref = locale === "en" ? "/en/" : "/";
+  useEffect(() => {
+    const update = () => setCurrentSection(decodeURIComponent(window.location.hash.slice(1)));
+    update();
+    window.addEventListener("hashchange", update);
+    window.addEventListener("popstate", update);
+    window.addEventListener("paytium:hashchange", update);
+    return () => {
+      window.removeEventListener("hashchange", update);
+      window.removeEventListener("popstate", update);
+      window.removeEventListener("paytium:hashchange", update);
+    };
+  }, []);
+  const sectionLabel = sections[currentSection];
+  const crumbs = [{ label: locale === "fr" ? "Accueil" : "Home", href: homeHref }, ...items];
+  return <nav className="breadcrumbs" aria-label={locale === "fr" ? "Fil d’Ariane" : "Breadcrumb"}><ol>{crumbs.map((item, index) => {
+    const isCurrent = index === crumbs.length - 1 && !sectionLabel;
+    return <li key={`${item.href}-${item.label}`}>{isCurrent ? <span aria-current="page">{item.label}</span> : <a href={item.href}>{item.label}</a>}</li>;
+  })}{sectionLabel && <li><span aria-current="page">{sectionLabel}</span></li>}</ol></nav>;
 }
 
 function ScrollToTop({ locale = "fr" }: { locale?: Locale }) {

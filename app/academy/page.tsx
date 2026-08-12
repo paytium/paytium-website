@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AcademyCatalog } from "../../components/AcademyCatalog";
 import { Eyebrow } from "../../components/Brand";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
-import { PageShell } from "../../components/SiteShell";
+import { Breadcrumbs, PageShell } from "../../components/SiteShell";
 
 export const metadata: Metadata = {
   title: "Paytium Academy — Formations digitales, Data, Cloud et Agile",
@@ -20,6 +20,7 @@ export default function AcademyPage() {
   const structuredData = { "@context": "https://schema.org", "@type": "ItemList", name: "Catalogue Paytium Academy", numberOfItems: 28, itemListOrder: "https://schema.org/ItemListUnordered" };
   return <PageShell translationHref="/en/academy">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+    <Breadcrumbs items={[{ label: "Services", href: "/services" }, { label: "Paytium Academy", href: "/academy" }]} sections={{ catalogue: "Catalogue des formations" }} />
     <PageHero eyebrow="PAYTIUM ACADEMY" title={<>Des compétences qui passent de la théorie <em>à l’action.</em></>} text="Des formations conçues et animées par des praticiens pour aider vos équipes à maîtriser les technologies, les méthodes et les postures qui font réussir les transformations." primary={["Explorer le catalogue", "#catalogue"]} secondary={["Construire un parcours", "/#contact"]} />
     <section className="section academy-intro"><div><Eyebrow>APPRENDRE PAR LA PRATIQUE</Eyebrow><h2>Des formations connectées à <em>la réalité du terrain.</em></h2></div><p>Nos programmes alternent apports ciblés, démonstrations, exercices et cas concrets. Ils s’adressent aux équipes métier, produit, design, data, engineering, cloud et management, en présentiel, à distance ou en format hybride.</p></section>
     <section className="section academy-formats"><SectionHeading eyebrow="FORMATS DE FORMATION" title={<>Le bon dispositif pour <em>chaque ambition.</em></>} /><div className="academy-format-grid">{formats.map(([number,title,text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>

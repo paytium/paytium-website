@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { FinalCta, PageHero, SectionHeading } from "../../../components/Sections";
-import { PageShell } from "../../../components/SiteShell";
+import { Breadcrumbs, PageShell } from "../../../components/SiteShell";
 import { servicesEn } from "../../../content/site-en";
 import { technologies, workingMethods } from "../../../content/site";
 
@@ -10,6 +10,7 @@ const methods = ["Start with the problem, users and expected value.", "Explore, 
 
 export default function ServicesPage() {
   return <PageShell locale="en" translationHref="/services">
+    <Breadcrumbs locale="en" items={[{ label: "Services", href: "/en/services" }]} sections={{ consulting: "Consulting & strategy", "digital-data": "Digital, Data & AI", engineering: "Engineering", "cloud-devops": "Cloud & DevOps", academy: "Paytium Academy", methods: "Ways of working", technologies: "Technologies" }} />
     <PageHero eyebrow="PAYTIUM EXPERTISE" title={<>From vision to operations, <em>end-to-end expertise.</em></>} text="Paytium brings together consulting, product, engineering, data, cloud and learning to design coherent transformations and sustain them over time." primary={["Discuss your project", "/en/#contact"]} secondary={["View our method", "#methods"]}><div className="expertise-visual"><span>Consulting</span><span>Product</span><span>Engineering</span><span>Cloud</span><i /></div></PageHero>
     <section className="section service-details">{servicesEn.map((service,index) => <article id={service.id} key={service.id} className="service-detail"><div className="service-index"><span>{service.number}</span><small>EXPERTISE</small></div><div className="service-main"><h2>{service.title}</h2><h3>{service.tagline}</h3><p>{service.description}</p>{service.id === "academy" && <a className="text-link" href="/en/academy">Explore Paytium Academy <span aria-hidden="true">↗</span></a>}<div className="outcome"><small>EXPECTED OUTCOMES</small><p>{service.outcomes}</p></div></div><div className="capability-list"><small>CAPABILITIES</small>{service.capabilities.map((item,itemIndex) => <div key={item}><span>{String(itemIndex+1).padStart(2,"0")}</span>{item}</div>)}</div>{index < servicesEn.length-1 && <hr />}</article>)}</section>
     <section className="section working-methods" id="methods"><SectionHeading eyebrow="WAYS OF WORKING" title={<>Methods adapted to the reality <em>of each programme.</em></>} /><div className="method-matrix">{workingMethods.map(([title],index) => <article key={title}><span>{String(index+1).padStart(2,"0")}</span><h3>{title}</h3><p>{methods[index]}</p></article>)}</div></section>

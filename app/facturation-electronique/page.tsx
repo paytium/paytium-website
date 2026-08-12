@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageShell } from "../../components/SiteShell";
+import { Breadcrumbs, PageShell } from "../../components/SiteShell";
 import { Eyebrow } from "../../components/Brand";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
 
@@ -19,6 +19,7 @@ const faq = [["Peut-on connecter la solution à notre ERP ?", "Oui. Le mode d’
 
 export default function ElectronicInvoicingPage() {
   return <PageShell translationHref="/en/facturation-electronique">
+    <Breadcrumbs items={[{ label: "Facturation électronique", href: "/facturation-electronique" }]} />
     <PageHero eyebrow="FACTURATION ÉLECTRONIQUE" title={<>Modernisez vos échanges de factures, <em>sans interrompre vos opérations.</em></>} text="Paytium vous accompagne dans la préparation, l’intégration et l’industrialisation d’une chaîne de facturation électronique connectée à vos outils finance, comptables et métier." primary={["Évaluer votre niveau de préparation", "/#contact"]} secondary={["Parler à un expert", "/#contact"]}>
       <div className="einvoice-flow"><div>ERP<br/><small>Applications</small></div><i>→</i><div className="active">Contrôle<br/><small>& orchestration</small></div><i>→</i><div>Émission<br/><small>& réception</small></div><i>→</i><div>Archivage<br/><small>& pilotage</small></div></div>
     </PageHero>

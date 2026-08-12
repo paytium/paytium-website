@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AcademyCatalog } from "../../../components/AcademyCatalog";
 import { Eyebrow } from "../../../components/Brand";
 import { FinalCta, PageHero, SectionHeading } from "../../../components/Sections";
-import { PageShell } from "../../../components/SiteShell";
+import { Breadcrumbs, PageShell } from "../../../components/SiteShell";
 
 export const metadata: Metadata = {
   title: "Paytium Academy — Digital, Data, Cloud and Agile training",
@@ -18,6 +18,7 @@ const formats = [
 
 export default function AcademyPage() {
   return <PageShell locale="en" translationHref="/academy">
+    <Breadcrumbs locale="en" items={[{ label: "Services", href: "/en/services" }, { label: "Paytium Academy", href: "/en/academy" }]} sections={{ catalogue: "Course catalogue" }} />
     <PageHero eyebrow="PAYTIUM ACADEMY" title={<>Skills that move from theory <em>to action.</em></>} text="Practitioner-led training that helps your teams master the technologies, methods and mindsets behind successful transformations." primary={["Explore the catalogue", "#catalogue"]} secondary={["Build a learning path", "/en/#contact"]} />
     <section className="section academy-intro"><div><Eyebrow>LEARN BY DOING</Eyebrow><h2>Training connected to <em>real-world practice.</em></h2></div><p>Our programmes combine focused input, demonstrations, exercises and concrete cases. They support business, product, design, data, engineering, cloud and management teams, in person, remotely or in a hybrid format.</p></section>
     <section className="section academy-formats"><SectionHeading eyebrow="TRAINING FORMATS" title={<>The right format for <em>every ambition.</em></>} /><div className="academy-format-grid">{formats.map(([number,title,text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>

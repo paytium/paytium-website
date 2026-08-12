@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Eyebrow } from "../../../components/Brand";
 import { FinalCta, PageHero, SectionHeading } from "../../../components/Sections";
-import { PageShell } from "../../../components/SiteShell";
+import { Breadcrumbs, PageShell } from "../../../components/SiteShell";
 
 export const metadata: Metadata = { title: "E-invoicing integration", description: "Prepare, integrate and industrialise your e-invoicing chain through a progressive approach connected to your information system.", alternates: { canonical: "/en/facturation-electronique", languages: { "fr-FR": "/facturation-electronique", "en-US": "/en/facturation-electronique" } } };
 const challenges = [["Readiness","Map flows, stakeholders, formats and gaps."],["Interoperability","Connect ERPs, business applications, partners and exchange platforms."],["Control","Validate data, track statuses and handle exceptions."],["Scalability","Absorb regulatory, functional and volume changes."]];
@@ -11,6 +11,7 @@ const faq = [["Can it connect to our ERP?","Yes. The integration method is defin
 
 export default function ElectronicInvoicingPage() {
   return <PageShell locale="en" translationHref="/facturation-electronique">
+    <Breadcrumbs locale="en" items={[{ label: "E-invoicing", href: "/en/facturation-electronique" }]} />
     <PageHero eyebrow="E-INVOICING" title={<>Modernise invoice exchanges <em>without interrupting operations.</em></>} text="Paytium helps prepare, integrate and industrialise an e-invoicing chain connected to finance, accounting and business tools." primary={["Assess your readiness", "/en/#contact"]} secondary={["Talk to an expert", "/en/#contact"]}><div className="einvoice-flow"><div>ERP<br/><small>Applications</small></div><i>→</i><div className="active">Checks<br/><small>& orchestration</small></div><i>→</i><div>Issue<br/><small>& receive</small></div><i>→</i><div>Archive<br/><small>& monitor</small></div></div></PageHero>
     <section className="section challenges-section"><SectionHeading eyebrow="A BUSINESS TRANSITION, NOT JUST A TECHNICAL ONE" title={<>Turn an obligation into <em>operational efficiency.</em></>} text="E-invoicing affects processes, data, systems and organisation. Success starts with a clear current-state view and a progressive, secure and measurable integration." /><div className="challenge-grid">{challenges.map(([title,text],index) => <article key={title}><span>{String(index+1).padStart(2,"0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
     <section className="section lifecycle-section"><SectionHeading eyebrow="PROCESSING LIFECYCLE" title={<>Six steps to stay <em>in control.</em></>} /><div className="lifecycle">{lifecycle.map(([title,text],index) => <article key={title}><span>{String(index+1).padStart(2,"0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
