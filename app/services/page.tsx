@@ -3,6 +3,8 @@ import { Breadcrumbs, PageShell } from "../../components/SiteShell";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
 import { services, technologies, workingMethods } from "../../content/site";
 
+const serviceEntries = services.filter((service) => service.id !== "academy");
+
 export const metadata: Metadata = {
   title: "Services de transformation digitale",
   description: "Conseil, produits digitaux, data, engineering, cloud et DevOps : découvrez les expertises de transformation de Paytium.",
@@ -11,17 +13,17 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return <PageShell translationHref="/en/services">
-    <Breadcrumbs items={[{ label: "Services", href: "/services" }]} sections={{ consulting: "Conseil & stratégie", "digital-data": "Digital, Data & IA", engineering: "Engineering", "cloud-devops": "Cloud & DevOps", academy: "Paytium Academy", methodes: "Méthodes de travail", technologies: "Technologies" }} />
+    <Breadcrumbs items={[{ label: "Services", href: "/services" }]} sections={{ consulting: "Conseil & stratégie", "digital-data": "Digital, Data & IA", engineering: "Engineering", "cloud-devops": "Cloud & DevOps", methodes: "Méthodes de travail", technologies: "Technologies" }} />
     <PageHero eyebrow="EXPERTISES PAYTIUM" title={<>De la vision à l’exploitation, une expertise <em>de bout en bout.</em></>} text="Paytium mobilise conseil, produit, ingénierie, data et cloud pour concevoir des transformations cohérentes et les faire vivre dans la durée." primary={["Parler de votre projet", "/#contact"]} secondary={["Voir nos méthodes", "#methodes"]}>
       <div className="expertise-visual"><span>Conseil</span><span>Produit</span><span>Engineering</span><span>Cloud</span><i /></div>
     </PageHero>
 
     <section className="section service-details">
-      {services.map((service, index) => <article id={service.id} key={service.id} className="service-detail">
+      {serviceEntries.map((service, index) => <article id={service.id} key={service.id} className="service-detail">
         <div className="service-index"><span>{service.number}</span><small>EXPERTISE</small></div>
-        <div className="service-main"><h2>{service.title}</h2><h3>{service.tagline}</h3><p>{service.description}</p>{service.id === "academy" && <a className="text-link" href="/academy">Explorer Paytium Academy <span aria-hidden="true">↗</span></a>}<div className="outcome"><small>RÉSULTATS RECHERCHÉS</small><p>{service.outcomes}</p></div></div>
+        <div className="service-main"><h2>{service.title}</h2><h3>{service.tagline}</h3><p>{service.description}</p><div className="outcome"><small>RÉSULTATS RECHERCHÉS</small><p>{service.outcomes}</p></div></div>
         <div className="capability-list"><small>CAPACITÉS</small>{service.capabilities.map((item, itemIndex) => <div key={item}><span>{String(itemIndex + 1).padStart(2, "0")}</span>{item}</div>)}</div>
-        {index < services.length - 1 && <hr />}
+        {index < serviceEntries.length - 1 && <hr />}
       </article>)}
     </section>
 
