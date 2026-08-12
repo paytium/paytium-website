@@ -90,23 +90,44 @@ export function PageShell({ children, locale = "fr", translationHref = "/en" }: 
   useEffect(() => {
     let firstFrame = 0;
     let secondFrame = 0;
-    const scrollToHash = () => {
+    let retryTimers: number[] = [];
+    const scrollToCurrentHash = (behavior: ScrollBehavior = "smooth") => {
       const id = decodeURIComponent(window.location.hash.slice(1));
       if (!id) return;
+      document.getElementById(id)?.scrollIntoView({ behavior, block: "start" });
+    };
+    const scheduleHashScroll = () => {
       window.cancelAnimationFrame(firstFrame);
       window.cancelAnimationFrame(secondFrame);
+      retryTimers.forEach((timer) => window.clearTimeout(timer));
       firstFrame = window.requestAnimationFrame(() => {
         secondFrame = window.requestAnimationFrame(() => {
-          document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+          scrollToCurrentHash();
         });
       });
+      retryTimers = [180, 550].map((delay) => window.setTimeout(() => scrollToCurrentHash("auto"), delay));
     };
-    scrollToHash();
-    window.addEventListener("hashchange", scrollToHash);
+    const handleHashLink = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href*='#']") : null;
+      if (!link) return;
+      const destination = new URL(link.href, window.location.href);
+      const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
+      const destinationPath = destination.pathname.replace(/\/$/, "") || "/";
+      if (destination.origin !== window.location.origin || destinationPath !== currentPath || !destination.hash) return;
+      event.preventDefault();
+      window.history.pushState(null, "", `${destination.pathname}${destination.search}${destination.hash}`);
+      scheduleHashScroll();
+    };
+    scheduleHashScroll();
+    window.addEventListener("hashchange", scheduleHashScroll);
+    document.addEventListener("click", handleHashLink);
     return () => {
       window.cancelAnimationFrame(firstFrame);
       window.cancelAnimationFrame(secondFrame);
-      window.removeEventListener("hashchange", scrollToHash);
+      retryTimers.forEach((timer) => window.clearTimeout(timer));
+      window.removeEventListener("hashchange", scheduleHashScroll);
+      document.removeEventListener("click", handleHashLink);
     };
   }, [locale]);
 
