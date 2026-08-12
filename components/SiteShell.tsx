@@ -116,5 +116,6 @@ function ScrollToTop({ locale = "fr" }: { locale?: Locale }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  return <a className={`scroll-top ${visible ? "visible" : ""}`} href="#top" aria-label={locale === "fr" ? "Revenir en haut de la page" : "Back to the top of the page"}><span>↑</span><small>{shellCopy[locale].top}</small></a>;
+  const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  return <button className={`scroll-top ${visible ? "visible" : ""}`} type="button" onClick={scrollToTop} aria-label={locale === "fr" ? "Revenir en haut de la page" : "Back to the top of the page"}><span>↑</span><small>{shellCopy[locale].top}</small></button>;
 }

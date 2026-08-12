@@ -54,6 +54,7 @@ export function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const go = (next: number) => setActive((next + slides.length) % slides.length);
   const startDrag = (event: ReactPointerEvent<HTMLElement>) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
+    if (event.target instanceof Element && event.target.closest("a, button, input, select, textarea, label")) return;
     pointerStart.current = event.clientX;
     suppressClick.current = false;
     setDragging(true);
