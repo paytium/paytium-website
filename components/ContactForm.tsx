@@ -30,7 +30,7 @@ export function ContactForm() {
       <div className="field-grid">
         <label>Nom et prénom<input name="name" autoComplete="name" required /></label>
         <label>Email professionnel<input name="email" type="email" autoComplete="email" required /></label>
-        <label>Téléphone <small>Facultatif</small><input name="phone" type="tel" autoComplete="tel" /></label>
+        <label><span className="field-label">Téléphone <small>Facultatif</small></span><input name="phone" type="tel" autoComplete="tel" /></label>
         <label>Entreprise<input name="company" autoComplete="organization" required /></label>
       </div>
       <label>Sujet<select name="subject" required defaultValue=""><option value="" disabled>Choisissez un sujet</option><option>Transformation digitale</option><option>Facturation électronique</option><option>Développement produit</option><option>Data & IA</option><option>Cloud & DevOps</option><option>Autre</option></select></label>
