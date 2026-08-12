@@ -1,14 +1,8 @@
-# vinext-starter
+# Site Paytium
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+Site vitrine React de Paytium construit avec vinext, TypeScript et CSS. Il comprend trois routes : l’accueil, les services et la facturation électronique.
 
-## Prerequisites
-
-- Node.js `>=22.13.0`
-
-## Quick Start
+## Lancer le projet
 
 ```bash
 npm install
@@ -16,85 +10,32 @@ npm run dev
 npm run build
 ```
 
-This starter does not use `wrangler.jsonc`.
+## Modifier les informations
 
-## Included Shape
+Les coordonnées, liens légaux, technologies, services et méthodes sont centralisés dans `content/site.ts`. Les valeurs non confirmées restent à `null` et sont automatiquement masquées dans l’interface.
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+Informations à fournir avant une mise en production publique :
 
-## Workspace Auth Headers
+- adresse email de contact ;
+- téléphone ;
+- adresse postale ;
+- URL LinkedIn ;
+- raison sociale officielle ;
+- liens Mentions légales et Politique de confidentialité ;
+- validation finale de la liste des technologies maîtrisées.
 
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
+## Configurer le formulaire de contact
 
-The user ID is stable for the same user on the same Site and different across Sites. Email and name are intended for display or contact purposes.
+Définir `VITE_CONTACT_ENDPOINT` dans l’environnement d’exécution. Le formulaire envoie une requête POST JSON vers cet endpoint. Sans endpoint, aucun faux succès n’est affiché : le visiteur reçoit un message de configuration explicite.
 
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
+## Structure
 
-Treat the full name as optional and fall back to email when it is absent:
+- `app/` : routes et métadonnées ;
+- `components/` : navigation, carousel, formulaire et sections réutilisables ;
+- `content/site.ts` : contenu structuré et configuration éditable ;
+- `public/` : logo et favicon Paytium ;
+- `app/globals.css` : tokens et système visuel responsive.
 
-```tsx
-import { headers } from "next/headers";
+## Principes UX/UI
 
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
-```
-
-## Optional Dispatch-Owned ChatGPT Sign-In
-
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
-
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
-
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
-
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
-
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
-
-## Useful Commands
-
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+Le design reprend les codes Paytium : vert profond, sauge, menthe et ivoire, grands titres éditoriaux, compositions orbitales, cartes arrondies et interfaces abstraites. Les interactions sont utilisables au clavier et les animations sont réduites avec `prefers-reduced-motion`.

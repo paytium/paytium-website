@@ -1,151 +1,67 @@
-const Arrow = () => <span aria-hidden="true">↗</span>;
+import type { Metadata } from "next";
+import { PageShell } from "../components/SiteShell";
+import { HomeHero } from "../components/HomeHero";
+import { ContactForm } from "../components/ContactForm";
+import { Arrow, Eyebrow, OrbitMark } from "../components/Brand";
+import { FinalCta, SectionHeading, TechPreview } from "../components/Sections";
+import { methods, services, siteConfig } from "../content/site";
 
-const Spark = ({ small = false }: { small?: boolean }) => (
-  <span className={small ? "spark spark-small" : "spark"} aria-hidden="true">✦</span>
-);
+export const metadata: Metadata = {
+  title: "Paytium | Transformation digitale, Data, Cloud et Engineering",
+  description: "Paytium accompagne les organisations de la stratégie à l’exécution de leurs transformations digitales, data, cloud et engineering.",
+};
 
-export default function Home() {
+const quickLinks = [
+  ["Facturation électronique", "/facturation-electronique", "01"], ["Conseil & stratégie", "/services#consulting", "02"], ["Digital, Data & IA", "/services#digital-data", "03"], ["Cloud & DevOps", "/services#cloud-devops", "04"], ["Parler de votre projet", "/#contact", "↗"],
+];
+
+export default function HomePage() {
+  const hasContact = siteConfig.contactEmail || siteConfig.contactPhone || siteConfig.address;
   return (
-    <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Paytium home">
-          <img src="/logo-paytium.svg" alt="Paytium" />
-        </a>
-        <nav aria-label="Main navigation">
-          <a href="#platform">Platform</a>
-          <a href="#results">Results</a>
-          <a href="#stories">Stories</a>
-        </nav>
-        <a className="header-cta" href="#contact">Start a project <Arrow /></a>
-      </header>
+    <PageShell>
+      <HomeHero />
+      <nav className="quick-links" aria-label="Accès rapides">{quickLinks.map(([label, href, number]) => <a key={label} href={href}><span>{number}</span>{label}<b>↗</b></a>)}</nav>
 
-      <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow"><span /> CLARITY, WITHOUT THE COMPLEXITY</p>
-          <h1>Move your<br />business <em>forward.</em></h1>
-          <p className="hero-lede">Paytium turns complex business data into a clear, shared plan—so your team knows what matters and what to do next.</p>
-          <div className="hero-actions">
-            <a className="button button-dark" href="#contact">Build your roadmap <Arrow /></a>
-            <a className="text-link" href="#platform">See how it works <span>↓</span></a>
-          </div>
-        </div>
-
-        <div className="hero-visual" aria-label="Paytium product dashboard preview">
-          <div className="orbit orbit-one" />
-          <div className="orbit orbit-two" />
-          <div className="visual-star paytium-icon"><img src="/logo-paytium.svg" alt="" /></div>
-          <div className="float-card momentum-card">
-            <div className="card-top"><span>Momentum score</span><span className="live-dot">Live</span></div>
-            <strong>87<span>/100</span></strong>
-            <div className="meter"><i /></div>
-            <small>↑ 14% this quarter</small>
-          </div>
-          <div className="float-card goal-card">
-            <p><span className="check">✓</span> Q3 PRIORITY</p>
-            <strong>Expand to Europe</strong>
-            <div className="avatars"><span>AM</span><span>JL</span><span>SK</span><b>+4</b></div>
-          </div>
-          <div className="micro-note note-one"><span>01</span> ALIGN</div>
-          <div className="micro-note note-two"><span>02</span> ACT</div>
+      <section className="section value-section">
+        <SectionHeading eyebrow="UNE TRAJECTOIRE NUMÉRIQUE PLUS CLAIRE" title={<>De l’ambition métier à une solution <em>qui fonctionne.</em></>} text="Paytium aide les entreprises et les institutions à transformer une ambition digitale en résultats concrets. Nous réunissons conseil, design, ingénierie logicielle, data et cloud pour simplifier les décisions, accélérer l’exécution et construire des solutions durables." />
+        <div className="editorial-cards">
+          {[ ["01", "Clarifier", "Aligner les priorités métier, les contraintes et la trajectoire technologique avant d’investir."], ["02", "Construire", "Concevoir et développer des produits numériques centrés sur l’usage, la qualité et la performance."], ["03", "Faire évoluer", "Industrialiser, sécuriser et améliorer continuellement les plateformes, les données et les opérations."] ].map(([n,t,p]) => <article key={t}><span>{n}</span><h3>{t}</h3><p>{p}</p></article>)}
         </div>
       </section>
 
-      <section className="logo-strip" aria-label="Trusted companies">
-        <p>Trusted by ambitious teams at</p>
-        <div><b>LOOM</b><b>Arc’teryx</b><b>vercel</b><b>Notion</b><b>linear</b></div>
+      <section className="section about-section" id="a-propos">
+        <div className="about-copy"><Eyebrow>À PROPOS DE PAYTIUM</Eyebrow><h2>Un partenaire engagé dans votre <em>transformation.</em></h2><p>Paytium accompagne les organisations dans la conception, la réalisation et l’évolution de leurs initiatives digitales. Notre approche associe compréhension métier, excellence technologique et proximité opérationnelle pour faire de chaque projet une transformation maîtrisée.</p><blockquote>Notre mission est de rendre la technologie plus utile, plus lisible et plus performante au service des métiers, des collaborateurs et des clients.</blockquote></div>
+        <div className="about-visual"><OrbitMark /><div className="discipline-stack"><span>Conseil</span><span>Design</span><span>Engineering</span><span>Run</span></div></div>
+        <div className="values-row">{[["Clarté", "Rendre les choix, les priorités et les résultats compréhensibles."], ["Engagement", "Travailler avec vos équipes et avancer avec transparence."], ["Excellence", "Privilégier qualité, sécurité, maintenabilité et progrès continu."]].map(([title,text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
 
-      <section className="intro section" id="platform">
-        <p className="section-kicker">ONE CLEAR DIRECTION</p>
-        <div className="intro-heading">
-          <h2>Great strategy should<br />feel <em>obvious.</em></h2>
-          <p>We connect your goals, metrics, and daily work in one living system. Less reporting. Fewer status meetings. More meaningful progress.</p>
-        </div>
-
-        <div className="feature-grid">
-          <article className="feature feature-large">
-            <div className="feature-number">01</div>
-            <div className="mini-product">
-              <div className="mini-nav"><Spark small /><span /><span /><span /></div>
-              <div className="mini-content">
-                <small>COMPANY DIRECTION</small>
-                <h3>Win the next<br />chapter.</h3>
-                <div className="progress-row"><span>Revenue growth</span><b>78%</b></div>
-                <div className="progress-line"><i /></div>
-                <div className="progress-row"><span>Customer love</span><b>92%</b></div>
-                <div className="progress-line second"><i /></div>
-              </div>
-            </div>
-            <div className="feature-copy">
-              <h3>See the whole picture.</h3>
-              <p>Bring goals, insights, and metrics together. Everyone sees the same reality—and the path ahead.</p>
-            </div>
-          </article>
-
-          <article className="feature feature-small coral">
-            <div className="feature-number">02</div>
-            <div className="pulse-rings"><i /><i /><span><Spark /></span></div>
-            <div className="feature-copy">
-              <h3>Spot what matters.</h3>
-              <p>Paytium surfaces risks and opportunities before they turn into surprises.</p>
-            </div>
-          </article>
-
-          <article className="feature feature-small ink">
-            <div className="feature-number">03</div>
-            <div className="stacked-plans">
-              <div><small>NEXT BEST MOVE</small><b>Launch pricing experiment</b></div>
-              <div><small>OWNER</small><b>Growth team</b></div>
-              <div><small>IMPACT</small><b>High</b></div>
-            </div>
-            <div className="feature-copy">
-              <h3>Turn insight into action.</h3>
-              <p>Translate decisions into focused work, with ownership built in from day one.</p>
-            </div>
-          </article>
-        </div>
+      <section className="section services-home">
+        <SectionHeading eyebrow="NOS SERVICES" title={<>Nous accélérons votre <em>transformation digitale.</em></>} />
+        <div className="service-grid">{services.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}>{item}</li>)}</ul><a href={`/services#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
+        <a className="button button-primary section-action" href="/services">Voir tous nos services <Arrow /></a>
       </section>
 
-      <section className="results section" id="results">
-        <div>
-          <p className="section-kicker">PROGRESS YOU CAN FEEL</p>
-          <h2>Less drift.<br /><em>More momentum.</em></h2>
-        </div>
-        <div className="stats">
-          <article><strong>3.2×</strong><p>faster strategic decisions</p></article>
-          <article><strong>42%</strong><p>fewer status meetings</p></article>
-          <article><strong>91%</strong><p>of teams feel more aligned</p></article>
-        </div>
+      <section className="invoice-focus">
+        <div className="invoice-copy"><Eyebrow>FOCUS SOLUTION</Eyebrow><h2>La facturation électronique, intégrée à votre <em>réalité métier.</em></h2><p>Paytium vous accompagne dans la digitalisation de bout en bout du cycle de facturation : préparation, contrôle, validation, transmission, suivi, rapprochement et archivage. L’objectif est de sécuriser la transition tout en préservant la continuité de vos opérations.</p><ul><li>Intégration aux ERP, systèmes comptables et applications métier</li><li>Automatisation des contrôles et workflows de validation</li><li>Traçabilité des échanges et suivi des statuts</li><li>Architecture adaptable aux exigences applicables</li></ul><div className="hero-actions"><a className="button button-light" href="/facturation-electronique">Explorer la solution <Arrow /></a><a className="button button-outline-light" href="/#contact">Évaluer votre préparation</a></div></div>
+        <div className="invoice-visual"><div className="invoice-sheet"><small>FACTURE</small><span /><span /><span /><div><b>Contrôlée</b><b>Transmise</b><b>Archivée</b></div></div><div className="invoice-orbit"/><div className="system-tag tag-erp">ERP</div><div className="system-tag tag-data">DATA</div><div className="system-tag tag-archive">ARCHIVE</div></div>
       </section>
 
-      <section className="story section" id="stories">
-        <div className="story-card">
-          <div className="quote-mark">“</div>
-          <blockquote>Paytium didn’t give us more data. It gave us the confidence to make the right call—and move.</blockquote>
-          <div className="person"><span>MV</span><p><strong>Maya Velasquez</strong><small>COO, Current</small></p></div>
-        </div>
-        <div className="story-side">
-          <p className="section-kicker">THE CURRENT STORY</p>
-          <h2>From busy<br />to <em>breakthrough.</em></h2>
-          <p>See how Current aligned 180 people around one strategy—and entered three new markets in twelve months.</p>
-          <a className="text-link light" href="#contact">Read the story <Arrow /></a>
-        </div>
+      <section className="section method-section" id="methode">
+        <SectionHeading eyebrow="UNE MÉTHODE DE BOUT EN BOUT" title={<>Avancer vite, sans perdre <em>la maîtrise.</em></>} text="Notre méthode combine Product Thinking, Agile, DevSecOps et amélioration continue. Elle s’adapte au niveau de maturité et aux contraintes de chaque organisation." />
+        <div className="method-timeline">{methods.map((method) => <article key={method.number}><span>{method.number}</span><h3>{method.title}</h3><p>{method.text}</p><small>{method.deliverables}</small></article>)}</div>
       </section>
 
-      <section className="cta-section" id="contact">
-        <div className="cta-star"><Spark /></div>
-        <p className="section-kicker">YOUR NEXT MOVE STARTS HERE</p>
-        <h2>Ready to move<br />with <em>clarity?</em></h2>
-        <p>Let’s turn your biggest ambitions into a plan your whole team can move on.</p>
-        <a className="button button-coral" href="mailto:hello@paytium.example">Start a conversation <Arrow /></a>
+      <section className="section tech-section">
+        <SectionHeading eyebrow="TECHNOLOGIES" title={<>Une technologie choisie pour le besoin, <em>pas l’inverse.</em></>} text="Nous composons des architectures modernes, ouvertes et maintenables selon le contexte métier, le patrimoine existant, la sécurité et les objectifs d’évolution." />
+        <TechPreview /><a className="text-link" href="/services#technologies">Découvrir notre stack et nos méthodes <Arrow /></a>
       </section>
 
-      <footer>
-        <a className="brand footer-brand" href="#top"><img src="/logo-paytium.svg" alt="Paytium" /></a>
-        <p>Clarity for ambitious teams.</p>
-        <div><a href="#platform">Platform</a><a href="#stories">Stories</a><a href="mailto:hello@paytium.example">Contact</a></div>
-        <small>© 2026 Paytium, Inc.</small>
-      </footer>
-    </main>
+      <FinalCta />
+
+      <section className="section contact-section" id="contact">
+        <div className="contact-intro"><Eyebrow>CONTACT</Eyebrow><h2>Parlons de votre <em>prochain projet.</em></h2><p>Décrivez-nous votre besoin. Notre équipe vous recontactera pour comprendre votre contexte et identifier les prochaines étapes utiles.</p><ul><li>Un échange centré sur votre contexte</li><li>Une approche claire et sans jargon inutile</li><li>Des expertises mobilisées selon le besoin</li><li>Une trajectoire pragmatique et progressive</li></ul>{hasContact && <address>{siteConfig.contactEmail && <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>}{siteConfig.contactPhone && <a href={`tel:${siteConfig.contactPhone}`}>{siteConfig.contactPhone}</a>}{siteConfig.address && <span>{siteConfig.address}</span>}</address>}</div>
+        <ContactForm />
+      </section>
+    </PageShell>
   );
 }
