@@ -10,6 +10,6 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow"><span />{children}</p>;
 }
 
-export function OrbitMark({ label = "P" }: { label?: string }) {
-  return <div className="orbit-mark" aria-hidden="true"><i /><i /><b>{label}</b></div>;
+export function OrbitMark({ light = false }: { light?: boolean }) {
+  return <div className="orbit-mark" aria-hidden="true"><i /><i /><b><img src={light ? "/paytium-icon-white.svg" : "/paytium-icon.svg"} alt="" /></b></div>;
 }

@@ -64,11 +64,18 @@ export const methods = [
 ];
 
 export const technologies = [
-  { title: "Web & Mobile", items: ["React", "TypeScript", "Next.js", "Angular", "Flutter", "Design systems", "Accessibilité"] },
-  { title: "Backend & APIs", items: ["Java", "Spring Boot", "Node.js", "Python", "REST", "Événements", "Microservices", "API Gateway"] },
-  { title: "Data & IA", items: ["PostgreSQL", "NoSQL", "Kafka", "Airflow", "Spark", "BI", "Machine learning", "IA générative"] },
-  { title: "Cloud & DevOps", items: ["AWS", "Microsoft Azure", "Google Cloud", "Cloud privé", "Docker", "Kubernetes", "Terraform", "CI/CD"] },
-  { title: "Sécurité & intégration", items: ["OAuth 2.0", "OpenID Connect", "Gestion des secrets", "SAST & DAST", "API management", "ESB / iPaaS", "Intégration ERP"] },
+  { title: "Backend", items: ["Java", "Jakarta EE", "Spring", "Node.js", "Express", "NestJS"] },
+  { title: "Frontend & Desktop", items: ["React", "Angular", "Gatsby", "Tailwind CSS", "Electron", "Next.js", "Remix", "Webpack"] },
+  { title: "Mobile", items: ["React Native", "Android"] },
+  { title: "UI / UX", items: ["Figma", "Balsamiq", "InVision", "Marvel", "Adobe Photoshop", "Adobe Illustrator"] },
+  { title: "Data & Analytics", items: ["Hadoop", "Spark", "Python", "Kafka", "Airflow", "Cassandra", "Flask", "Dash"] },
+  { title: "DevOps", items: ["Jenkins", "GitLab CI", "CircleCI", "Ansible", "Terraform", "Docker", "Puppet", "Chef"] },
+  { title: "Testing", items: ["Xray", "Jest", "JUnit", "Mockito", "Selenium", "TestFairy"] },
+  { title: "Bases de données", items: ["PostgreSQL", "Oracle", "MySQL", "SQL Server", "MongoDB", "Redis", "SQLite", "Elasticsearch"] },
+  { title: "Cloud & Intégrations", items: ["AWS", "Microsoft Azure", "Google Cloud", "Heroku", "Kubernetes"] },
+  { title: "Produit & Agilité", items: ["Lean Startup", "Product framing", "Product design", "Design Thinking", "Scrum", "Scaled Agile"] },
+  { title: "API Gateway", items: ["Kong", "Apigee", "WSO2", "Amazon API Gateway", "Spring Cloud Gateway"] },
+  { title: "Outils & Plateforme", items: ["Jira", "Confluence", "GitLab", "Bitbucket", "RabbitMQ", "MinIO", "Zabbix", "Nexus", "SonarQube"] },
 ];
 
 export const workingMethods = [

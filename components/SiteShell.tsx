@@ -25,7 +25,7 @@ export function SiteHeader() {
   return (
     <>
       <a className="skip-link" href="#main-content">Aller au contenu</a>
-      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="top">
         <a className="brand" href="/" aria-label="Paytium — Accueil"><Brand /></a>
         <nav className="desktop-nav" aria-label="Navigation principale">
           <a href="/">Accueil</a>
@@ -78,5 +78,33 @@ export function SiteFooter() {
 }
 
 export function PageShell({ children }: { children: React.ReactNode }) {
-  return <><SiteHeader /><main id="main-content">{children}</main><SiteFooter /></>;
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const selector = [".section-heading", ".editorial-cards > article", ".values-row > article", ".service-card", ".method-timeline > article", ".tech-preview > article", ".service-detail", ".method-matrix > article", ".technology-groups > article", ".challenge-grid > article", ".lifecycle > article", ".security-grid > article", ".usecase-grid > article", ".deployment-track > article", ".contact-form", ".contact-intro", ".invoice-copy", ".invoice-visual"].join(",");
+    const items = Array.from(document.querySelectorAll<HTMLElement>(selector));
+    items.forEach((item, index) => {
+      item.classList.add("reveal-item");
+      item.style.setProperty("--reveal-delay", `${(index % 5) * 70}ms`);
+    });
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    }), { threshold: .12, rootMargin: "0px 0px -7%" });
+    items.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+  return <><SiteHeader /><main id="main-content">{children}</main><SiteFooter /><ScrollToTop /></>;
+}
+
+function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 520);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return <a className={`scroll-top ${visible ? "visible" : ""}`} href="#top" aria-label="Revenir en haut de la page"><span>↑</span><small>Haut</small></a>;
 }
