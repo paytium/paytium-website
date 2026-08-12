@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 const quickLinks = [
   ["Facturation électronique", "/facturation-electronique", "01"], ["Conseil & stratégie", "/services#consulting", "02"], ["Digital, Data & IA", "/services#digital-data", "03"], ["Paytium Academy", "/academy", "04"], ["Parler de votre projet", "/#contact", "↗"],
 ];
+const homeServices = services.filter((service) => service.id !== "academy");
 
 export default function HomePage() {
   const hasContact = siteConfig.contactEmail || siteConfig.contactPhone || siteConfig.addressFr;
@@ -38,7 +39,7 @@ export default function HomePage() {
 
       <section className="section services-home">
         <SectionHeading eyebrow="NOS SERVICES" title={<>Nous accélérons votre <em>transformation digitale.</em></>} />
-        <div className="service-grid">{services.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}>{item}</li>)}</ul><a href={"href" in service ? service.href : `/services#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
+        <div className="service-grid">{homeServices.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}>{item}</li>)}</ul><a href={"href" in service ? service.href : `/services#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
         <a className="button button-primary section-action" href="/services">Voir tous nos services <Arrow /></a>
       </section>
 
