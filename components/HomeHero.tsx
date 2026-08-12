@@ -7,7 +7,7 @@ const slidesFr = [
   {
     eyebrow: "STRATÉGIE. TECHNOLOGIE. IMPACT.",
     title: <>Faites avancer votre <em>transformation digitale.</em></>,
-    text: "Paytium transforme vos enjeux métiers en produits, plateformes et services numériques utiles, fiables et évolutifs. De la stratégie à l’exécution, nos équipes vous accompagnent à chaque étape.",
+    text: "Paytium transforme vos enjeux métiers en produits, plateformes et services digitaux utiles, fiables et évolutifs. De la stratégie à l’exécution, nos équipes vous accompagnent à chaque étape.",
     primary: ["Construire votre feuille de route", "/#contact"], secondary: ["Découvrir nos services", "/services"], visual: "trajectory",
   },
   {

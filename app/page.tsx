@@ -24,7 +24,7 @@ export default function HomePage() {
       <nav className="quick-links" aria-label="Accès rapides">{quickLinks.map(([label, href, number]) => <a key={label} href={href}><span>{number}</span>{label}<b>↗</b></a>)}</nav>
 
       <section className="section value-section">
-        <SectionHeading eyebrow="UNE TRAJECTOIRE NUMÉRIQUE PLUS CLAIRE" title={<>De l’ambition métier à une solution <em>qui fonctionne.</em></>} text="Paytium aide les entreprises et les institutions à transformer une ambition digitale en résultats concrets. Nous réunissons conseil, design, ingénierie logicielle, data et cloud pour simplifier les décisions, accélérer l’exécution et construire des solutions durables." />
+        <SectionHeading eyebrow="UNE TRAJECTOIRE DIGITALE PLUS CLAIRE" title={<>De l’ambition métier à une solution <em>qui fonctionne.</em></>} text="Paytium aide les entreprises et les institutions à transformer une ambition digitale en résultats concrets. Nous réunissons conseil, design, ingénierie logicielle, data et cloud pour simplifier les décisions, accélérer l’exécution et construire des solutions durables." />
         <div className="editorial-cards">
           {[ ["01", "Clarifier", "Aligner les priorités métier, les contraintes et la trajectoire technologique avant d’investir."], ["02", "Construire", "Concevoir et développer des produits numériques centrés sur l’usage, la qualité et la performance."], ["03", "Faire évoluer", "Industrialiser, sécuriser et améliorer continuellement les plateformes, les données et les opérations."] ].map(([n,t,p]) => <article key={t}><span>{n}</span><h3>{t}</h3><p>{p}</p></article>)}
         </div>
