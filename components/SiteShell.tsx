@@ -88,6 +88,29 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
 
 export function PageShell({ children, locale = "fr", translationHref = "/en" }: { children: React.ReactNode; locale?: Locale; translationHref?: string }) {
   useEffect(() => {
+    let firstFrame = 0;
+    let secondFrame = 0;
+    const scrollToHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+      window.cancelAnimationFrame(firstFrame);
+      window.cancelAnimationFrame(secondFrame);
+      firstFrame = window.requestAnimationFrame(() => {
+        secondFrame = window.requestAnimationFrame(() => {
+          document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    };
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      window.cancelAnimationFrame(secondFrame);
+      window.removeEventListener("hashchange", scrollToHash);
+    };
+  }, [locale]);
+
+  useEffect(() => {
     document.documentElement.lang = locale;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const selector = [".section-heading", ".editorial-cards > article", ".values-row > article", ".service-card", ".method-timeline > article", ".tech-preview > article", ".service-detail", ".method-matrix > article", ".technology-groups > article", ".challenge-grid > article", ".lifecycle > article", ".security-grid > article", ".usecase-grid > article", ".deployment-track > article", ".academy-format-grid > article", ".course-card", ".contact-form", ".contact-intro", ".invoice-copy", ".invoice-visual"].join(",");

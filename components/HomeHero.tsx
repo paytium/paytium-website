@@ -44,7 +44,6 @@ export function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const [dragOffset, setDragOffset] = useState(0);
   const reduced = useRef(false);
   const pointerStart = useRef<number | null>(null);
-  const suppressClick = useRef(false);
   useEffect(() => { reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches; }, []);
   useEffect(() => {
     if (paused || reduced.current) return;
@@ -56,14 +55,12 @@ export function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
     if (event.pointerType === "mouse" && event.button !== 0) return;
     if (event.target instanceof Element && event.target.closest("a, button, input, select, textarea, label")) return;
     pointerStart.current = event.clientX;
-    suppressClick.current = false;
     setDragging(true);
     event.currentTarget.setPointerCapture(event.pointerId);
   };
   const moveDrag = (event: ReactPointerEvent<HTMLElement>) => {
     if (pointerStart.current === null) return;
     const offset = event.clientX - pointerStart.current;
-    if (Math.abs(offset) > 6) suppressClick.current = true;
     setDragOffset(Math.max(-180, Math.min(180, offset)));
   };
   const endDrag = (event: ReactPointerEvent<HTMLElement>) => {
@@ -77,7 +74,7 @@ export function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
   };
   const slide = slides[active];
   return (
-    <section className={`home-hero ${dragging ? "is-dragging" : ""}`} aria-roledescription="carousel" aria-label={locale === "fr" ? "À la une" : "Featured content"} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={() => setPaused(false)} onKeyDown={(event) => { if (event.key === "ArrowLeft") go(active - 1); if (event.key === "ArrowRight") go(active + 1); }} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onClickCapture={(event) => { if (suppressClick.current) { event.preventDefault(); event.stopPropagation(); suppressClick.current = false; } }}>
+    <section className={`home-hero ${dragging ? "is-dragging" : ""}`} aria-roledescription="carousel" aria-label={locale === "fr" ? "À la une" : "Featured content"} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={() => setPaused(false)} onKeyDown={(event) => { if (event.key === "ArrowLeft") go(active - 1); if (event.key === "ArrowRight") go(active + 1); }} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag}>
       <div className="hero-slide" key={active} aria-live="polite" style={{ transform: `translateX(${dragOffset}px)` }}>
         <div className="hero-copy"><Eyebrow>{slide.eyebrow}</Eyebrow><h1>{slide.title}</h1><p>{slide.text}</p><div className="hero-actions"><a className="button button-primary" href={slide.primary[1]}>{slide.primary[0]} <Arrow /></a><a className="button button-secondary" href={slide.secondary[1]}>{slide.secondary[0]}</a></div></div>
         <HeroVisual type={slide.visual} locale={locale} />
