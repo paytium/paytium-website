@@ -1,6 +1,6 @@
 # Site Paytium
 
-Site vitrine React de Paytium construit avec vinext, TypeScript et CSS. Il comprend trois routes : l’accueil, les services et la facturation électronique.
+Site vitrine React bilingue de Paytium construit avec vinext, TypeScript et CSS. Il comprend les pages d’accueil, services, facturation électronique et Paytium Academy en français et en anglais.
 
 ## Lancer le projet
 
@@ -8,6 +8,7 @@ Site vitrine React de Paytium construit avec vinext, TypeScript et CSS. Il compr
 npm install
 npm run dev
 npm run build
+npm run build:pages
 ```
 
 ## Modifier les informations
@@ -26,7 +27,11 @@ Informations à fournir avant une mise en production publique :
 
 ## Configurer le formulaire de contact
 
-Définir `VITE_CONTACT_ENDPOINT` dans l’environnement d’exécution. Le formulaire envoie une requête POST JSON vers cet endpoint. Sans endpoint, aucun faux succès n’est affiché : le visiteur reçoit un message de configuration explicite.
+Le formulaire envoie les demandes à l’adresse Paytium configurée via FormSubmit. La première demande nécessite la validation unique de l’adresse de réception.
+
+## GitHub Pages
+
+La commande `npm run build:pages` produit une version statique dans `dist-pages/`. Elle conserve les routes bilingues, le formulaire de contact, Google Analytics, les métadonnées SEO et les préférences de langue du navigateur.
 
 ## Structure
 
