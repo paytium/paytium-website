@@ -28,13 +28,13 @@ export function ContactForm() {
   return (
     <form className="contact-form" onSubmit={submit}>
       <div className="field-grid">
-        <label>Nom et prénom<input name="name" autoComplete="name" required /></label>
-        <label>Email professionnel<input name="email" type="email" autoComplete="email" required /></label>
-        <label><span className="field-label">Téléphone <small>Facultatif</small></span><input name="phone" type="tel" autoComplete="tel" /></label>
-        <label>Entreprise<input name="company" autoComplete="organization" required /></label>
+        <label>Nom et prénom<input name="name" autoComplete="name" placeholder="Votre nom complet" required /></label>
+        <label>Email professionnel<input name="email" type="email" autoComplete="email" placeholder="votre.nom@entreprise.com" required /></label>
+        <label><span className="field-label">Téléphone <small>Facultatif</small></span><input name="phone" type="tel" autoComplete="tel" placeholder="Votre numéro de téléphone" /></label>
+        <label>Entreprise<input name="company" autoComplete="organization" placeholder="Nom de votre organisation" required /></label>
       </div>
       <label>Sujet<select name="subject" required defaultValue=""><option value="" disabled>Choisissez un sujet</option><option>Transformation digitale</option><option>Facturation électronique</option><option>Développement produit</option><option>Data & IA</option><option>Cloud & DevOps</option><option>Autre</option></select></label>
-      <label>Message<textarea name="message" rows={5} required placeholder="Parlez-nous de votre contexte et de vos priorités." /></label>
+      <label>Message<textarea name="message" rows={5} required placeholder="Décrivez votre contexte, vos priorités et les prochaines étapes envisagées." /></label>
       <label className="consent"><input type="checkbox" name="consent" required /><span>J’accepte que mes informations soient utilisées pour répondre à ma demande.</span></label>
       <button className="button button-primary" type="submit" disabled={loading}>{loading ? "Envoi…" : "Envoyer ma demande"} <span aria-hidden="true">↗</span></button>
       {message && <p className="form-message" role="status">{message}</p>}
