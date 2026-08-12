@@ -23,21 +23,15 @@ export function AcademyCatalog({ locale = "fr" }: { locale?: AcademyLocale }) {
     return (!domain || course.domain === domain) && (!type || course.type === type) && (!format || course.formats.includes(format as AcademyCourse["formats"][number])) && (!query || haystack.includes(normalise(query)));
   }), [domain, type, format, query, locale]);
   const reset = () => { setDomain(""); setType(""); setFormat(""); setQuery(""); };
-  const activeFilters: Array<{ key: string; label: string; clear: () => void }> = [];
-  if (query) activeFilters.push({ key: "query", label: query, clear: () => setQuery("") });
-  if (domain) activeFilters.push({ key: "domain", label: domain, clear: () => setDomain("") });
-  if (type) activeFilters.push({ key: "type", label: copy.types[type as keyof typeof copy.types], clear: () => setType("") });
-  if (format) activeFilters.push({ key: "format", label: copy.formats[format as keyof typeof copy.formats], clear: () => setFormat("") });
 
   return <div className="academy-catalog">
     <div className="catalog-filters" role="search">
       <label className="catalog-search"><span className="sr-only">{copy.search}</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={copy.placeholder} /></label>
-      <label><span className="sr-only">{copy.allDomains}</span><select value={domain} onChange={(event) => setDomain(event.target.value)}><option value="">{copy.allDomains}</option>{academyDomains.map((item) => <option key={item}>{item}</option>)}</select></label>
-      <label><span className="sr-only">{copy.allTypes}</span><select value={type} onChange={(event) => setType(event.target.value)}><option value="">{copy.allTypes}</option>{Object.entries(copy.types).map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label>
-      <label><span className="sr-only">{copy.allFormats}</span><select value={format} onChange={(event) => setFormat(event.target.value)}><option value="">{copy.allFormats}</option>{Object.entries(copy.formats).map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label>
+      <div className={`filter-select ${domain ? "has-value" : ""}`}><label className="sr-only" htmlFor="academy-domain-filter">{copy.allDomains}</label><select id="academy-domain-filter" value={domain} onChange={(event) => setDomain(event.target.value)}><option value="">{copy.allDomains}</option>{academyDomains.map((item) => <option key={item}>{item}</option>)}</select>{domain && <button className="filter-clear" type="button" onClick={() => setDomain("")} aria-label={`${locale === "fr" ? "Supprimer le filtre" : "Remove filter"} ${domain}`}>×</button>}</div>
+      <div className={`filter-select ${type ? "has-value" : ""}`}><label className="sr-only" htmlFor="academy-type-filter">{copy.allTypes}</label><select id="academy-type-filter" value={type} onChange={(event) => setType(event.target.value)}><option value="">{copy.allTypes}</option>{Object.entries(copy.types).map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select>{type && <button className="filter-clear" type="button" onClick={() => setType("")} aria-label={`${locale === "fr" ? "Supprimer le filtre" : "Remove filter"} ${copy.types[type as keyof typeof copy.types]}`}>×</button>}</div>
+      <div className={`filter-select ${format ? "has-value" : ""}`}><label className="sr-only" htmlFor="academy-format-filter">{copy.allFormats}</label><select id="academy-format-filter" value={format} onChange={(event) => setFormat(event.target.value)}><option value="">{copy.allFormats}</option>{Object.entries(copy.formats).map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select>{format && <button className="filter-clear" type="button" onClick={() => setFormat("")} aria-label={`${locale === "fr" ? "Supprimer le filtre" : "Remove filter"} ${copy.formats[format as keyof typeof copy.formats]}`}>×</button>}</div>
     </div>
     <div className="catalog-summary"><strong>{courses.length} {copy.results}</strong>{(domain || type || format || query) && <button type="button" onClick={reset}>{copy.reset}</button>}</div>
-    {activeFilters.length > 0 && <div className="active-filters" aria-label={locale === "fr" ? "Filtres actifs" : "Active filters"}>{activeFilters.map((filter) => <button type="button" key={filter.key} onClick={filter.clear} aria-label={`${locale === "fr" ? "Supprimer le filtre" : "Remove filter"} ${filter.label}`}><span>{filter.label}</span><b aria-hidden="true">×</b></button>)}</div>}
     {courses.length ? <div className="course-grid">{courses.map((course) => <article className="course-card" key={course.code}>
       <div className="course-meta"><span>{course.code}</span><b>{copy.types[course.type]}</b></div>
       <p className="course-domain">{course.domain}</p><h3>{course.title[locale]}</h3><p>{course.description[locale]}</p>

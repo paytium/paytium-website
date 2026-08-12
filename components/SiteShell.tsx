@@ -46,10 +46,8 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
             </div>
           </div>
           <a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a>
-          <a href={`${prefix}/academy`}>{copy.academy}</a>
-          <a href={`${prefix}/#contact`}>{copy.contact}</a>
         </nav>
-        <a className="language-switch" href={translationHref} hrefLang={locale === "fr" ? "en" : "fr"} aria-label={locale === "fr" ? "View the site in English" : "Voir le site en français"}>{locale === "fr" ? "EN" : "FR"}</a>
+        <a className="language-switch" href={translationHref} hrefLang={locale === "fr" ? "en" : "fr"} aria-label={locale === "fr" ? "View the site in English" : "Voir le site en français"} onClick={() => window.localStorage.setItem("paytium-language", locale === "fr" ? "en" : "fr")}><span className={locale === "fr" ? "active" : ""}>FR</span><span className={locale === "en" ? "active" : ""}>EN</span></a>
         <a className="header-cta desktop-cta" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
         <button className="menu-button" type="button" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>
           <span /> <span /> <span /><span className="sr-only">{copy.open}</span>
@@ -61,7 +59,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
         <nav aria-label={copy.nav} onClick={() => setOpen(false)}>
           <a href={`${prefix}/` || "/"}>{copy.home}</a><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/services`}>{copy.services}</a>
           {services.map((service) => <a className="drawer-sub" key={service.id} href={service.id === "academy" ? `${prefix}/academy` : `${prefix}/services#${service.id}`}>{service.id === "academy" ? copy.academy : service.short}</a>)}
-          <a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={`${prefix}/academy`}>{copy.academy}</a><a href={`${prefix}/#contact`}>{copy.contact}</a><a href={translationHref}>{locale === "fr" ? "English" : "Français"}</a>
+          <a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={translationHref} onClick={() => window.localStorage.setItem("paytium-language", locale === "fr" ? "en" : "fr")}>{locale === "fr" ? "English" : "Français"}</a>
         </nav>
         <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
       </aside>
@@ -79,7 +77,7 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
 
   return (
     <footer className="site-footer">
-      <div className="footer-intro">{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><span className="linkedin-icon" aria-hidden="true">in</span></a>}<a className="brand" href={`${prefix}/` || "/"}><Brand /></a><p>{copy.footer}</p></div>
+      <div className="footer-intro"><a className="brand" href={`${prefix}/` || "/"}><Brand /></a><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><span className="linkedin-icon" aria-hidden="true">in</span></a>}</div>
       <div><h3>{copy.services}</h3><a href={`${prefix}/services#consulting`}>{locale === "fr" ? "Conseil & stratégie" : "Consulting & strategy"}</a><a href={`${prefix}/services#digital-data`}>Digital, Data & AI</a><a href={`${prefix}/services#engineering`}>Engineering</a><a href={`${prefix}/services#cloud-devops`}>Cloud & DevOps</a><a href={`${prefix}/academy`}>Paytium Academy</a></div>
       <div><h3>{copy.company}</h3><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/#methode`}>{copy.method}</a><a href={`${prefix}/#contact`}>{copy.contact}</a></div>
       <div><h3>{copy.resources}</h3><a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={`${prefix}/services#technologies`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
