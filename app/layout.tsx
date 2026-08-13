@@ -47,8 +47,13 @@ export const metadata: Metadata = {
     images: [{ url: "/og.png", alt: "Paytium — stratégie, technologie et impact" }],
   },
   icons: {
-    icon: "/favicon-rounded.svg",
-    shortcut: "/favicon-rounded.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon-rounded.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "192x192", type: "image/png" }],
   },
 };
 
