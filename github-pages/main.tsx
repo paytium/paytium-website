@@ -8,6 +8,7 @@ import EnglishAcademyPage from "../app/en/academy/page";
 import ElectronicInvoicingPage from "../app/facturation-electronique/page";
 import EnglishElectronicInvoicingPage from "../app/en/facturation-electronique/page";
 import NotFound from "../app/not-found";
+import { PageLoader } from "../components/PageLoader";
 import "../app/globals.css";
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -76,6 +77,7 @@ observer.observe(document.documentElement, { childList: true, subtree: true });
 document.documentElement.style.setProperty("--font-geist-sans", "'Geist'");
 document.documentElement.style.setProperty("--font-bricolage", "'Bricolage Grotesque'");
 const root = document.getElementById("root")!;
-if (root.hasChildNodes()) hydrateRoot(root, <Page />);
-else createRoot(root).render(<Page />);
+const application = <><PageLoader /><Page /></>;
+if (root.hasChildNodes()) hydrateRoot(root, application);
+else createRoot(root).render(application);
 queueMicrotask(() => adaptInternalPaths());

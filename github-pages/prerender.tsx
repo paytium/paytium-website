@@ -7,6 +7,7 @@ import AcademyPage from "../app/academy/page";
 import EnglishAcademyPage from "../app/en/academy/page";
 import ElectronicInvoicingPage from "../app/facturation-electronique/page";
 import EnglishElectronicInvoicingPage from "../app/en/facturation-electronique/page";
+import { PageLoader } from "../components/PageLoader";
 
 const routes = {
   "/": HomePage,
@@ -22,5 +23,5 @@ const routes = {
 export function renderPage(path: string) {
   const Page = routes[path as keyof typeof routes];
   if (!Page) throw new Error(`Unknown route: ${path}`);
-  return renderToString(<Page />);
+  return renderToString(<><PageLoader /><Page /></>);
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "../components/GoogleAnalytics";
+import { PageLoader } from "../components/PageLoader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -65,6 +66,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable}`}>
+        <PageLoader />
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var p=location.pathname,c=p==='/en'||p.indexOf('/en/')===0?'en':'fr',s=localStorage.getItem('paytium-language'),n=(navigator.language||'fr').toLowerCase(),b=/bot|crawl|spider|slurp|bingpreview/i.test(navigator.userAgent),d=s==='en'||s==='fr'?s:n.indexOf('en')===0?'en':'fr';if(!b&&d!==c){var t=d==='en'?'/en'+(p==='/'?'':p):(p.replace(/^\\/en(?=\\/|$)/,'')||'/');location.replace(t+location.search+location.hash)}}catch(e){}})();` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Organization", "@id": "https://paytium.io/#organization", name: "Paytium", alternateName: ["Paytium Maroc", "Paytium Morocco"], url: "https://paytium.io", logo: "https://paytium.io/logo-paytium.svg", email: "connect@paytium.io", telephone: "+212707252336", contactPoint: { "@type": "ContactPoint", contactType: "sales", email: "connect@paytium.io", telephone: "+212707252336", availableLanguage: ["French", "English"] }, sameAs: ["https://www.linkedin.com/company/paytium"], address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" }, areaServed: ["Maroc", "Morocco", "International"], knowsAbout: ["Transformation digitale", "Conseil IT", "Développement logiciel", "Data et intelligence artificielle", "Cloud et DevOps", "Facturation électronique", "E-invoicing"] }, { "@type": "WebSite", "@id": "https://paytium.io/#website", url: "https://paytium.io", name: "Paytium", alternateName: "Paytium Morocco", publisher: { "@id": "https://paytium.io/#organization" }, inLanguage: ["fr-FR", "en-US"] }, { "@type": "ProfessionalService", "@id": "https://paytium.io/#professional-service", name: "Paytium", url: "https://paytium.io", email: "connect@paytium.io", telephone: "+212707252336", areaServed: ["Maroc", "International"], address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" }, parentOrganization: { "@id": "https://paytium.io/#organization" } }] }) }} />
         <GoogleAnalytics />
