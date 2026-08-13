@@ -9,8 +9,8 @@ import { FinalCta, SectionHeading, TechPreview } from "../components/Sections";
 import { methods, services, siteConfig } from "../content/site";
 
 export const metadata: Metadata = {
-  title: "Paytium Maroc — Conseil digital, Data, Cloud & Engineering",
-  description: "Paytium accompagne les entreprises au Maroc en stratégie digitale, Data & IA, software engineering, Cloud & DevOps et facturation électronique.",
+  title: "Paytium Maroc — Conseil IT & transformation digitale",
+  description: "Cabinet de conseil et d’ingénierie digitale à Casablanca : stratégie IT, logiciels sur mesure, Data & IA, Cloud, DevOps et facturation électronique.",
   alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
 };
 
@@ -34,7 +34,7 @@ export default function HomePage() {
       </section>
 
       <section className="section about-section" id="a-propos">
-        <div className="about-copy"><Eyebrow>À PROPOS DE PAYTIUM</Eyebrow><h2>Un partenaire engagé dans votre <em>transformation.</em></h2><p>Paytium accompagne les organisations dans la conception, la réalisation et l’évolution de leurs initiatives digitales. Notre approche associe compréhension métier, excellence technologique et proximité opérationnelle pour faire de chaque projet une transformation maîtrisée.</p><blockquote>Notre mission est de rendre la technologie plus utile, plus lisible et plus performante au service des métiers, des collaborateurs et des clients.</blockquote></div>
+        <div className="about-copy"><Eyebrow>À PROPOS DE PAYTIUM</Eyebrow><h2>Un partenaire engagé dans votre <em>transformation.</em></h2><p>Paytium est un cabinet de conseil et d’ingénierie digitale basé à Casablanca. Nous accompagnons les organisations dans la conception, la réalisation et l’évolution de leurs initiatives digitales, avec une approche qui relie compréhension métier, excellence technologique et proximité opérationnelle.</p><blockquote>Notre mission est de rendre la technologie plus utile, plus lisible et plus performante au service des métiers, des collaborateurs et des clients.</blockquote></div>
         <div className="about-visual"><OrbitMark /><div className="discipline-stack"><span>Conseil</span><span>Design</span><span>Engineering</span><span>Run</span></div></div>
         <div className="values-row">{[["Clarté", "Rendre les choix, les priorités et les résultats compréhensibles."], ["Engagement", "Travailler avec vos équipes et avancer avec transparence."], ["Excellence", "Privilégier qualité, sécurité, maintenabilité et progrès continu."]].map(([title,text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
