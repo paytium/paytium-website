@@ -6,7 +6,7 @@ import { services, technologies, workingMethods } from "../../content/site";
 const serviceEntries = services.filter((service) => service.id !== "academy");
 
 export const metadata: Metadata = {
-  title: "Cabinet conseil IT & transformation digitale Maroc",
+  title: "Paytium",
   description: "Paytium, cabinet de conseil IT à Casablanca : transformation digitale, développement logiciel, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.",
   alternates: { canonical: "/services", languages: { "fr-FR": "/services", "en-US": "/en/services" } },
 };

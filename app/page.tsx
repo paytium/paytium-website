@@ -9,7 +9,7 @@ import { FinalCta, SectionHeading, TechPreview } from "../components/Sections";
 import { methods, services, siteConfig } from "../content/site";
 
 export const metadata: Metadata = {
-  title: "Paytium Maroc — Conseil IT & transformation digitale",
+  title: "Paytium",
   description: "Cabinet de conseil et d’ingénierie digitale à Casablanca : stratégie IT, logiciels sur mesure, Data & IA, Cloud, DevOps et facturation électronique.",
   alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
 };

@@ -22,7 +22,7 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://paytium.io"),
-  title: { default: "Paytium Maroc | Conseil IT & transformation digitale", template: "%s | Paytium" },
+  title: "Paytium",
   description: "Cabinet de conseil et d’ingénierie digitale à Casablanca : stratégie IT, logiciels sur mesure, Data & IA, Cloud, DevOps et facturation électronique.",
   applicationName: "Paytium",
   authors: [{ name: "Paytium", url: "https://paytium.io" }],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
-    title: "Paytium | Transformation digitale",
+    title: "Paytium",
     description: "Conseil, produits digitaux, data, engineering et cloud pour des transformations utiles, fiables et évolutives.",
     type: "website",
     locale: "fr_FR",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Paytium | Transformation digitale",
+    title: "Paytium",
     description: "De la vision à l’impact : conseil, produits digitaux, data, engineering et cloud.",
     images: [{ url: "/og-paytium.png", alt: "Paytium — stratégie, technologie et impact" }],
   },

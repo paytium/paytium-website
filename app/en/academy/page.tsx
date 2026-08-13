@@ -6,7 +6,7 @@ import { Breadcrumbs, PageShell } from "../../../components/SiteShell";
 import { servicesEn } from "../../../content/site-en";
 
 export const metadata: Metadata = {
-  title: "Paytium Academy — Digital, Data, Cloud and Agile training",
+  title: "Paytium",
   description: "Grow your teams’ skills with Paytium Academy courses in product, software engineering, cloud, data, AI, Agile and responsible digital.",
   alternates: { canonical: "/en/academy", languages: { "fr-FR": "/academy", "en-US": "/en/academy" } },
 };

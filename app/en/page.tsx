@@ -9,7 +9,7 @@ import { PageShell } from "../../components/SiteShell";
 import { methodsEn, servicesEn } from "../../content/site-en";
 import { siteConfig } from "../../content/site";
 
-export const metadata: Metadata = { title: "Paytium Morocco — IT consulting & digital engineering", description: "IT consulting and digital engineering company in Casablanca for strategy, custom software, Data & AI, Cloud, DevOps and e-invoicing.", alternates: { canonical: "/en", languages: { "fr-FR": "/", "en-US": "/en" } } };
+export const metadata: Metadata = { title: "Paytium", description: "IT consulting and digital engineering company in Casablanca for strategy, custom software, Data & AI, Cloud, DevOps and e-invoicing.", alternates: { canonical: "/en", languages: { "fr-FR": "/", "en-US": "/en" } } };
 const homeServices = servicesEn.filter((service) => service.id !== "academy");
 
 export default function EnglishHomePage() {

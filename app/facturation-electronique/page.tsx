@@ -5,7 +5,7 @@ import { Eyebrow } from "../../components/Brand";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
 
 export const metadata: Metadata = {
-  title: "E-facture & facturation électronique Maroc DGI",
+  title: "Paytium",
   description: "Conseil et intégration e-facture au Maroc : préparation DGI, connexion ERP/API, contrôles, workflows, traçabilité et archivage avec Paytium.",
   alternates: { canonical: "/facturation-electronique", languages: { "fr-FR": "/facturation-electronique", "en-US": "/en/facturation-electronique" } },
 };

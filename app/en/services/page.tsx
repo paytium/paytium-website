@@ -6,7 +6,7 @@ import { technologies, workingMethods } from "../../../content/site";
 
 const serviceEntries = servicesEn.filter((service) => service.id !== "academy");
 
-export const metadata: Metadata = { title: "IT consulting & digital transformation Morocco", description: "Paytium is an IT consulting and engineering company in Casablanca for digital transformation, custom software, Data & AI, ERP/API integration, Cloud and DevOps.", alternates: { canonical: "/en/services", languages: { "fr-FR": "/services", "en-US": "/en/services" } } };
+export const metadata: Metadata = { title: "Paytium", description: "Paytium is an IT consulting and engineering company in Casablanca for digital transformation, custom software, Data & AI, ERP/API integration, Cloud and DevOps.", alternates: { canonical: "/en/services", languages: { "fr-FR": "/services", "en-US": "/en/services" } } };
 const groupTitles: Record<string,string> = { "Bases de données": "Databases", "Produit & Agilité": "Product & Agile", "Outils & Plateforme": "Tools & Platforms" };
 const methods = ["Start with the problem, users and expected value.", "Explore, prototype and test before scaling.", "Deliver in increments and learn quickly.", "Automate quality, security and delivery.", "Improve through usage and operational data.", "Work with client teams and build autonomy."];
 

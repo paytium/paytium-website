@@ -6,7 +6,7 @@ import { Breadcrumbs, PageShell } from "../../components/SiteShell";
 import { services } from "../../content/site";
 
 export const metadata: Metadata = {
-  title: "Paytium Academy — Formations digitales, Data, Cloud et Agile",
+  title: "Paytium",
   description: "Développez les compétences de vos équipes avec les formations Paytium Academy : produit, software engineering, cloud, data, IA, Agile et numérique responsable.",
   alternates: { canonical: "/academy", languages: { "fr-FR": "/academy", "en-US": "/en/academy" } },
 };

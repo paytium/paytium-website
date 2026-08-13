@@ -20,7 +20,7 @@ test("server-renders the Paytium site and its branded page loader", async () => 
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Paytium Maroc/);
+  assert.match(html, /<title>Paytium<\/title>/);
   assert.match(html, /class="page-loader is-pending"/);
   assert.match(html, /role="status"/);
   assert.match(html, /src="\/paytium-icon\.svg"/);
