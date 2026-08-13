@@ -1,11 +1,11 @@
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const output = new URL("../dist-pages/", import.meta.url);
 const baseUrl = "https://paytium.io";
 const lastModified = new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Casablanca", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
-const { renderPage } = await import(new URL("../dist-pages-ssr/prerender.js", import.meta.url));
+const { renderPage, renderNotFound } = await import(new URL("../dist-pages-ssr/prerender.js", import.meta.url));
 
 const routes = [
   { path: "/", lang: "fr", alternate: "/en", title: "Paytium", description: "Cabinet de conseil et d’ingénierie digitale à Casablanca : stratégie IT, logiciels sur mesure, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Paytium Maroc, cabinet conseil IT Maroc, transformation digitale Maroc, développement logiciel Maroc, Data IA Maroc, Cloud DevOps Maroc" },
@@ -108,7 +108,11 @@ for (const route of routes) {
   await writeFile(destination, html);
 }
 
-await copyFile(new URL("index.html", output), new URL("404.html", output));
+const notFoundHtml = template
+  .replace(/<title>[^<]*<\/title>/, "<title>Paytium</title>")
+  .replace(/<meta name="description" content="[^"]*" \/>/, '<meta name="description" content="La page demandée est introuvable. Retrouvez les services et expertises de Paytium depuis la page d’accueil." />')
+  .replace('<div id="root"></div>', `<div id="root">${renderNotFound("fr")}</div>`);
+await writeFile(new URL("404.html", output), notFoundHtml);
 await writeFile(new URL(".nojekyll", output), "");
 await writeFile(new URL("CNAME", output), "paytium.io\n");
 await writeFile(new URL("robots.txt", output), `User-agent: *\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\nHost: paytium.io\n`);

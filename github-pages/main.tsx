@@ -51,7 +51,8 @@ const routes = {
   "/en/facturation-electronique": EnglishElectronicInvoicingPage,
 } as const;
 
-const Page = routes[initialPath as keyof typeof routes] ?? NotFound;
+const Page = routes[initialPath as keyof typeof routes];
+const notFoundLocale = initialPath === "/en" || initialPath.startsWith("/en/") ? "en" : "fr";
 
 function prefixProjectPath(value: string) {
   if (!value.startsWith("/") || value === basePath || value.startsWith(`${basePath}/`)) return value;
@@ -77,7 +78,10 @@ observer.observe(document.documentElement, { childList: true, subtree: true });
 document.documentElement.style.setProperty("--font-geist-sans", "'Geist'");
 document.documentElement.style.setProperty("--font-bricolage", "'Bricolage Grotesque'");
 const root = document.getElementById("root")!;
-const application = <><PageLoader /><Page /></>;
-if (root.hasChildNodes()) hydrateRoot(root, application);
-else createRoot(root).render(application);
+const application = <><PageLoader />{Page ? <Page /> : <NotFound locale={notFoundLocale} />}</>;
+if (Page && root.hasChildNodes()) hydrateRoot(root, application);
+else {
+  root.replaceChildren();
+  createRoot(root).render(application);
+}
 queueMicrotask(() => adaptInternalPaths());

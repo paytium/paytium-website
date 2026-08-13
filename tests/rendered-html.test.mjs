@@ -29,10 +29,12 @@ test("server-renders the Paytium site and its branded page loader", async () => 
 });
 
 test("keeps the loader animated, accessible and limited to document navigation", async () => {
-  const [loader, css, layout] = await Promise.all([
+  const [loader, css, layout, notFound, pagesEntry] = await Promise.all([
     readFile(new URL("../components/PageLoader.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/not-found.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../github-pages/main.tsx", import.meta.url), "utf8"),
   ]);
 
   assert.match(layout, /<PageLoader \/>/);
@@ -49,4 +51,8 @@ test("keeps the loader animated, accessible and limited to document navigation",
   assert.match(css, /\.page-loader\.is-pending/);
   assert.match(css, /pageLoaderReveal 1ms linear \.18s forwards/);
   assert.match(css, /@media\(prefers-reduced-motion:reduce\)/);
+  assert.match(notFound, /This page does not exist\./);
+  assert.match(notFound, /Back to home/);
+  assert.match(pagesEntry, /initialPath\.startsWith\("\/en\/"\)/);
+  assert.match(pagesEntry, /<NotFound locale=\{notFoundLocale\} \/>/);
 });
