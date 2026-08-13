@@ -7,26 +7,26 @@ const serviceEntries = services.filter((service) => service.id !== "academy");
 
 export const metadata: Metadata = {
   title: "Paytium",
-  description: "Paytium, cabinet de conseil IT à Casablanca : transformation digitale, développement logiciel, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.",
+  description: "Paytium, cabinet de conseil IT à Casablanca : transformation digitale, Squad As Service, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.",
   alternates: { canonical: "/services", languages: { "fr-FR": "/services", "en-US": "/en/services" } },
 };
 
 export default function ServicesPage() {
   return <PageShell translationHref="/en/services">
-    <Breadcrumbs items={[{ label: "Services", href: "/services" }]} sections={{ consulting: "Conseil & stratégie", "digital-data": "Digital, Data & IA", engineering: "Engineering", "cloud-devops": "Cloud & DevOps", methodes: "Méthodes de travail", technologies: "Technologies" }} />
-    <PageHero eyebrow="EXPERTISES PAYTIUM" title={<>De la vision à l’exploitation, une expertise <em>de bout en bout.</em></>} text="Paytium mobilise conseil, produit, ingénierie, data et cloud pour concevoir des transformations cohérentes et les faire vivre dans la durée." primary={["Parler de votre projet", "/#contact"]} secondary={["Voir nos méthodes", "#methodes"]}>
-      <div className="expertise-visual"><span>Conseil</span><span>Produit</span><span>Engineering</span><span>Cloud</span><i /></div>
+    <Breadcrumbs items={[{ label: "Services", href: "/services" }]} sections={{ consulting: "Conseil & stratégie", "digital-data": "Digital, Data & IA", engineering: "Squad As Service", "cloud-devops": "Cloud & DevOps", methodes: "Méthodes de travail", technologies: "Technologies" }} />
+    <PageHero eyebrow="EXPERTISES PAYTIUM" title={<>De la vision à l’exploitation, une expertise <em>de bout en bout.</em></>} text="Paytium mobilise conseil, produit, Squad As Service, data et cloud pour concevoir des transformations cohérentes et les faire vivre dans la durée." primary={["Parler de votre projet", "/#contact"]} secondary={["Voir nos méthodes", "#methodes"]}>
+      <div className="expertise-visual"><span>Conseil</span><span>Produit</span><span>Squads</span><span>Cloud</span><i /></div>
     </PageHero>
 
     <section className="section seo-service-intro" aria-labelledby="expertises-maroc">
       <div><span>PAYTIUM MAROC</span><h2 id="expertises-maroc">Des expertises digitales et technologiques <em>ancrées au Maroc.</em></h2></div>
-      <div><p>Depuis Casablanca, Paytium accompagne entreprises, institutions et équipes IT dans leurs programmes de transformation digitale au Maroc et à l’international. Nos consultants relient enjeux métier, architecture du système d’information et exécution technologique.</p><nav aria-label="Expertises Paytium au Maroc"><a href="#consulting">Conseil IT & stratégie digitale</a><a href="#digital-data">Produits digitaux, Data & IA</a><a href="#engineering">Software engineering</a><a href="#cloud-devops">Cloud, DevOps & DevSecOps</a></nav></div>
+      <div><p>Depuis Casablanca, Paytium accompagne entreprises, institutions et équipes IT dans leurs programmes de transformation digitale au Maroc et à l’international. Nos consultants relient enjeux métier, architecture du système d’information et exécution technologique.</p><nav aria-label="Expertises Paytium au Maroc"><a href="#consulting">Conseil IT & stratégie digitale</a><a href="#digital-data">Produits digitaux, Data & IA</a><a href="#engineering">Squad As Service</a><a href="#cloud-devops">Cloud, DevOps & DevSecOps</a></nav></div>
     </section>
 
     <section className="section partner-intent">
-      <SectionHeading eyebrow="UN PARTENAIRE TECHNOLOGIQUE AU MAROC" title={<>L’expertise recherchée, <em>reliée à vos résultats.</em></>} text="Paytium intervient comme cabinet de conseil et partenaire d’ingénierie digitale. Nous pouvons prendre en charge une mission ciblée ou réunir une équipe pluridisciplinaire, du diagnostic à la mise en production et au run." />
+      <SectionHeading eyebrow="UN PARTENAIRE TECHNOLOGIQUE AU MAROC" title={<>L’expertise recherchée, <em>reliée à vos résultats.</em></>} text="Paytium intervient comme cabinet de conseil et partenaire de delivery digital. Nous pouvons prendre en charge une mission ciblée ou déployer une Squad As Service pluridisciplinaire, de la discovery à la mise en production et à l’amélioration continue." />
       <div className="partner-intent-grid">
-        {[["Conseil IT & transformation digitale", "Stratégie, audit du système d’information, architecture, feuille de route et accompagnement du changement."], ["Développement logiciel sur mesure", "Applications web et mobile, plateformes métier, modernisation, intégration ERP et API."], ["Data, IA & automatisation", "Plateformes data, BI, gouvernance, cas d’usage IA, MLOps et automatisation des processus."], ["Cloud, DevOps & DevSecOps", "Migration cloud, platform engineering, CI/CD, observabilité, fiabilité et sécurité intégrée."]].map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}
+        {[["Conseil IT & transformation digitale", "Stratégie, audit du système d’information, architecture, feuille de route et accompagnement du changement."], ["Squad As Service", "Squads produit pluridisciplinaires, capacité flexible, pratiques Agile et responsabilité de bout en bout sur le delivery."], ["Data, IA & automatisation", "Plateformes data, BI, gouvernance, cas d’usage IA, MLOps et automatisation des processus."], ["Cloud, DevOps & DevSecOps", "Migration cloud, platform engineering, CI/CD, observabilité, fiabilité et sécurité intégrée."]].map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}
       </div>
       <p className="intent-note"><strong>Vous préparez aussi l’e-facture au Maroc ?</strong> Découvrez notre accompagnement en <a href="/facturation-electronique">facturation électronique, préparation DGI et intégration ERP/API</a>.</p>
     </section>

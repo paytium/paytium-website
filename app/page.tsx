@@ -10,7 +10,7 @@ import { methods, services, siteConfig } from "../content/site";
 
 export const metadata: Metadata = {
   title: "Paytium",
-  description: "Cabinet de conseil et d’ingénierie digitale à Casablanca : stratégie IT, logiciels sur mesure, Data & IA, Cloud, DevOps et facturation électronique.",
+  description: "Cabinet de conseil et de delivery digital à Casablanca : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.",
   alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
 };
 
@@ -27,15 +27,15 @@ export default function HomePage() {
       <nav className="quick-links" aria-label="Accès rapides">{quickLinks.map(([label, href, number]) => <a key={label} href={href}><span>{number}</span>{label}<b><Arrow /></b></a>)}</nav>
 
       <section className="section value-section">
-        <SectionHeading eyebrow="UNE TRAJECTOIRE DIGITALE PLUS CLAIRE" title={<>De l’ambition métier à une solution <em>qui fonctionne.</em></>} text="Paytium aide les entreprises et les institutions à transformer une ambition digitale en résultats concrets. Nous réunissons conseil, design, ingénierie logicielle, data et cloud pour simplifier les décisions, accélérer l’exécution et construire des solutions durables." />
+        <SectionHeading eyebrow="UNE TRAJECTOIRE DIGITALE PLUS CLAIRE" title={<>De l’ambition métier à une solution <em>qui fonctionne.</em></>} text="Paytium aide les entreprises et les institutions à transformer une ambition digitale en résultats concrets. Nous réunissons conseil, design, squads pluridisciplinaires, data et cloud pour simplifier les décisions, accélérer l’exécution et construire des solutions durables." />
         <div className="editorial-cards">
           {[ ["01", "Clarifier", "Aligner les priorités métier, les contraintes et la trajectoire technologique avant d’investir."], ["02", "Construire", "Concevoir et développer des produits numériques centrés sur l’usage, la qualité et la performance."], ["03", "Faire évoluer", "Industrialiser, sécuriser et améliorer continuellement les plateformes, les données et les opérations."] ].map(([n,t,p]) => <article key={t}><span>{n}</span><h3>{t}</h3><p>{p}</p></article>)}
         </div>
       </section>
 
       <section className="section about-section" id="a-propos">
-        <div className="about-copy"><Eyebrow>À PROPOS DE PAYTIUM</Eyebrow><h2>Un partenaire engagé dans votre <em>transformation.</em></h2><p>Paytium est un cabinet de conseil et d’ingénierie digitale basé à Casablanca. Nous accompagnons les organisations dans la conception, la réalisation et l’évolution de leurs initiatives digitales, avec une approche qui relie compréhension métier, excellence technologique et proximité opérationnelle.</p><blockquote>Notre mission est de rendre la technologie plus utile, plus lisible et plus performante au service des métiers, des collaborateurs et des clients.</blockquote></div>
-        <div className="about-visual"><OrbitMark /><div className="discipline-stack"><span>Conseil</span><span>Design</span><span>Engineering</span><span>Run</span></div></div>
+        <div className="about-copy"><Eyebrow>À PROPOS DE PAYTIUM</Eyebrow><h2>Un partenaire engagé dans votre <em>transformation.</em></h2><p>Paytium est un cabinet de conseil et de delivery digital basé à Casablanca. Nous accompagnons les organisations dans la conception, la réalisation et l’évolution de leurs initiatives digitales, avec une approche qui relie compréhension métier, excellence technologique et proximité opérationnelle.</p><blockquote>Notre mission est de rendre la technologie plus utile, plus lisible et plus performante au service des métiers, des collaborateurs et des clients.</blockquote></div>
+        <div className="about-visual"><OrbitMark /><div className="discipline-stack"><span>Conseil</span><span>Design</span><span>Squads</span><span>Run</span></div></div>
         <div className="values-row">{[["Clarté", "Rendre les choix, les priorités et les résultats compréhensibles."], ["Engagement", "Travailler avec vos équipes et avancer avec transparence."], ["Excellence", "Privilégier qualité, sécurité, maintenabilité et progrès continu."]].map(([title,text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
 

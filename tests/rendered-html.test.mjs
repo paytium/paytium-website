@@ -25,7 +25,28 @@ test("server-renders the Paytium site and its branded page loader", async () => 
   assert.match(html, /role="status"/);
   assert.match(html, /src="\/paytium-icon\.svg"/);
   assert.match(html, /Parlons de votre/);
+  assert.match(html, /Squad As Service/);
+  assert.doesNotMatch(html, /Engineering &amp; Technology/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
+});
+
+test("positions Squad As Service consistently in French and English", async () => {
+  const [servicesFr, servicesEn, shell, servicesPage, servicesPageEn] = await Promise.all([
+    readFile(new URL("../content/site.ts", import.meta.url), "utf8"),
+    readFile(new URL("../content/site-en.ts", import.meta.url), "utf8"),
+    readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/en/services/page.tsx", import.meta.url), "utf8"),
+  ]);
+
+  for (const source of [servicesFr, servicesEn, shell, servicesPage, servicesPageEn]) {
+    assert.match(source, /Squad As Service/);
+    assert.doesNotMatch(source, /Engineering & Technology/);
+  }
+  assert.match(servicesFr, /Réduisez vos délais de mise sur le marché/);
+  assert.match(servicesFr, /cycle de vie produit/);
+  assert.match(servicesEn, /Reduce time to market/);
+  assert.match(servicesEn, /full product lifecycle/);
 });
 
 test("keeps the loader animated, accessible and limited to document navigation", async () => {

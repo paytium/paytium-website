@@ -18,9 +18,9 @@ const slidesFr = [
     primary: ["Découvrir notre approche", "/facturation-electronique"], secondary: ["Échanger avec un expert", "/#contact"], visual: "invoice",
   },
   {
-    eyebrow: "ENGINEERING. DATA. CLOUD.",
-    title: <>Construisez des plateformes <em>prêtes à évoluer.</em></>,
-    text: "Modernisez votre système d’information, accélérez vos mises en production et valorisez vos données avec des architectures robustes et des équipes pluridisciplinaires.",
+    eyebrow: "SQUADS. DATA. CLOUD.",
+    title: <>Accélérez vos produits avec des squads <em>prêtes à délivrer.</em></>,
+    text: "Réduisez vos délais de mise sur le marché avec des squads pluridisciplinaires, des pratiques Agile éprouvées et une exécution maîtrisée de la discovery à la production.",
     primary: ["Explorer nos expertises", "/services"], secondary: ["Nous contacter", "/#contact"], visual: "platform",
   },
 ];
@@ -28,12 +28,12 @@ const slidesFr = [
 const slidesEn = [
   { eyebrow: "STRATEGY. TECHNOLOGY. IMPACT.", title: <>Move your <em>digital transformation forward.</em></>, text: "Paytium turns business challenges into useful, reliable and scalable digital products, platforms and services — from strategy through delivery.", primary: ["Build your roadmap", "/en/#contact"], secondary: ["Discover our services", "/en/services"], visual: "trajectory" },
   { eyebrow: "E-INVOICING", title: <>Move to digital invoicing <em>with clarity.</em></>, text: "Prepare, integrate and industrialise your invoice exchanges through a secure, interoperable approach designed around finance and business processes.", primary: ["Explore our approach", "/en/facturation-electronique"], secondary: ["Talk to an expert", "/en/#contact"], visual: "invoice" },
-  { eyebrow: "ENGINEERING. DATA. CLOUD.", title: <>Build platforms <em>ready to scale.</em></>, text: "Modernise your information system, accelerate delivery and unlock your data with robust architectures and multidisciplinary teams.", primary: ["Explore our expertise", "/en/services"], secondary: ["Contact us", "/en/#contact"], visual: "platform" },
+  { eyebrow: "SQUADS. DATA. CLOUD.", title: <>Accelerate products with squads <em>ready to deliver.</em></>, text: "Reduce time to market through multidisciplinary squads, proven Agile practices and controlled execution from discovery through production.", primary: ["Explore our expertise", "/en/services"], secondary: ["Contact us", "/en/#contact"], visual: "platform" },
 ];
 
 function HeroVisual({ type, locale }: { type: string; locale: "fr" | "en" }) {
   if (type === "invoice") return <div className="hero-diagram invoice-diagram"><div className="orbital-lines"/><div className="flow-node"><small>SOURCE</small><b>ERP</b></div><div className="flow-hub"><img src="/paytium-icon-white.svg" alt=""/><span>Paytium</span></div><div className="flow-node end"><small>{locale === "fr" ? "ÉCHANGE" : "EXCHANGE"}</small><b>{locale === "fr" ? "Partenaires" : "Partners"}</b></div><div className="status-stack"><span><LuCircleCheck aria-hidden="true" />{locale === "fr" ? "Contrôlée" : "Checked"}</span><span><LuSend aria-hidden="true" />{locale === "fr" ? "Transmise" : "Sent"}</span><span><LuArchive aria-hidden="true" />{locale === "fr" ? "Archivée" : "Archived"}</span></div></div>;
-  if (type === "platform") return <div className="hero-diagram platform-diagram"><div className="orbital-lines"/><div className="platform-panel"><p>Architecture & delivery</p><div><span>{locale === "fr" ? "Disponibilité" : "Availability"}</span><i className="signal"><b/><b/><b/><b/></i></div><div><span>{locale === "fr" ? "Livraison" : "Delivery"}</span><i className="progress"><b/></i></div><div><span>{locale === "fr" ? "Qualité" : "Quality"}</span><i className="dots" aria-hidden="true"><LuCircleDot/><LuCircleDot/><LuCircleDot/><LuCircleDot/></i></div></div><div className="code-card">API<br/><b>Connected</b></div><div className="cloud-card">Cloud<br/><b>Observable</b></div></div>;
+  if (type === "platform") return <div className="hero-diagram platform-diagram"><div className="orbital-lines"/><div className="platform-panel"><p>Squad & delivery</p><div><span>{locale === "fr" ? "Vélocité" : "Velocity"}</span><i className="signal"><b/><b/><b/><b/></i></div><div><span>{locale === "fr" ? "Livraison" : "Delivery"}</span><i className="progress"><b/></i></div><div><span>{locale === "fr" ? "Qualité" : "Quality"}</span><i className="dots" aria-hidden="true"><LuCircleDot/><LuCircleDot/><LuCircleDot/><LuCircleDot/></i></div></div><div className="code-card">Agile<br/><b>Aligned</b></div><div className="cloud-card">Product<br/><b>Continuous</b></div></div>;
   return <div className="hero-diagram trajectory-diagram"><div className="orbital-lines"/><div className="paytium-core"><img src="/paytium-icon.svg" alt=""/></div><div className="float-label label-a">{locale === "fr" ? "Stratégie" : "Strategy"}</div><div className="float-label label-b">{locale === "fr" ? "Produit" : "Product"}</div><div className="float-label label-c">Data</div><div className="float-label label-d">Cloud</div><div className="trajectory-card"><small>{locale === "fr" ? "TRAJECTOIRE" : "ROADMAP"}</small><b className="trajectory-steps"><span>Vision</span><LuChevronRight aria-hidden="true"/><span>{locale === "fr" ? "Produit" : "Product"}</span><LuChevronRight aria-hidden="true"/><span>Impact</span></b><i><span/></i></div></div>;
 }
 

@@ -8,10 +8,10 @@ const lastModified = new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Casabl
 const { renderPage, renderNotFound } = await import(new URL("../dist-pages-ssr/prerender.js", import.meta.url));
 
 const routes = [
-  { path: "/", lang: "fr", alternate: "/en", title: "Paytium", description: "Cabinet de conseil et d’ingénierie digitale à Casablanca : stratégie IT, logiciels sur mesure, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Paytium Maroc, cabinet conseil IT Maroc, transformation digitale Maroc, développement logiciel Maroc, Data IA Maroc, Cloud DevOps Maroc" },
-  { path: "/en", lang: "en", alternate: "/", title: "Paytium", description: "IT consulting and digital engineering company in Casablanca for strategy, custom software, Data & AI, Cloud, DevOps and e-invoicing.", keywords: "Paytium, Paytium Morocco, IT consulting company Morocco, digital transformation Morocco, custom software Morocco, Data AI Morocco, Cloud DevOps Morocco" },
-  { path: "/services", lang: "fr", alternate: "/en/services", title: "Paytium", description: "Paytium, cabinet de conseil IT à Casablanca : transformation digitale, développement logiciel, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.", keywords: "services Paytium, cabinet conseil IT Maroc, ESN Maroc, transformation digitale Maroc, développement logiciel sur mesure Maroc, intégration ERP API, Data IA Maroc, Cloud DevOps Maroc, DevSecOps" },
-  { path: "/en/services", lang: "en", alternate: "/services", title: "Paytium", description: "Paytium is an IT consulting and engineering company in Casablanca for digital transformation, custom software, Data & AI, ERP/API integration, Cloud and DevOps.", keywords: "Paytium services, IT consulting company Morocco, digital transformation company Morocco, custom software development Morocco, ERP API integration, Data AI Morocco, Cloud DevOps Morocco" },
+  { path: "/", lang: "fr", alternate: "/en", title: "Paytium", description: "Cabinet de conseil et de delivery digital à Casablanca : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Paytium Maroc, Squad As Service Maroc, squad Agile Maroc, équipe produit externalisée, cabinet conseil IT Maroc, transformation digitale Maroc, Data IA Maroc, Cloud DevOps Maroc" },
+  { path: "/en", lang: "en", alternate: "/", title: "Paytium", description: "IT consulting company in Casablanca for strategy, Squad As Service, Data & AI, Cloud, DevOps and e-invoicing.", keywords: "Paytium, Paytium Morocco, Squad As Service Morocco, Agile squad Morocco, IT consulting company Morocco, digital transformation Morocco, Data AI Morocco, Cloud DevOps Morocco" },
+  { path: "/services", lang: "fr", alternate: "/en/services", title: "Paytium", description: "Paytium, cabinet de conseil IT à Casablanca : transformation digitale, Squad As Service, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.", keywords: "services Paytium, Squad As Service Maroc, squad Agile Maroc, équipe produit externalisée, cabinet conseil IT Maroc, transformation digitale Maroc, intégration ERP API, Data IA Maroc, Cloud DevOps Maroc, DevSecOps" },
+  { path: "/en/services", lang: "en", alternate: "/services", title: "Paytium", description: "Paytium delivers IT consulting, Squad As Service, Data & AI, ERP/API integration, Cloud and DevOps from Casablanca.", keywords: "Paytium services, Squad As Service Morocco, Agile squad Morocco, product squad as a service, IT consulting company Morocco, digital transformation company Morocco, ERP API integration, Data AI Morocco, Cloud DevOps Morocco" },
   { path: "/academy", lang: "fr", alternate: "/en/academy", title: "Paytium", description: "Développez les compétences de vos équipes au Maroc avec les formations pratiques Digital, Data, IA, Cloud, DevOps et Agile de Paytium Academy.", keywords: "Paytium Academy, formation digitale Maroc, formation Data IA, formation Cloud DevOps, formation Agile Casablanca" },
   { path: "/en/academy", lang: "en", alternate: "/academy", title: "Paytium", description: "Grow your teams’ capabilities in Morocco through practical Digital, Data, AI, Cloud, DevOps and Agile training from Paytium Academy.", keywords: "Paytium Academy, digital training Morocco, Data AI training, Cloud DevOps training, Agile training Casablanca" },
   { path: "/facturation-electronique", lang: "fr", alternate: "/en/facturation-electronique", title: "Paytium", description: "Conseil et intégration e-facture au Maroc : préparation DGI, connexion ERP/API, contrôles, workflows, traçabilité et archivage avec Paytium.", keywords: "e-facture Maroc, e facture Maroc, facture électronique Maroc, facturation électronique Maroc, facturation électronique DGI, e-invoice Morocco, e-invoicing Morocco, intégrateur facturation électronique Maroc, intégration ERP facturation, Paytium" },
@@ -44,8 +44,8 @@ function jsonLd(route) {
     address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" },
     areaServed: { "@type": "Country", name: isEnglish ? "Morocco" : "Maroc" },
     knowsAbout: isEnglish
-      ? ["Digital transformation", "IT consulting", "Data and artificial intelligence", "Software engineering", "Cloud and DevOps", "E-invoice", "E-invoicing", "ERP integration"]
-      : ["Transformation digitale", "Conseil IT", "Data et intelligence artificielle", "Ingénierie logicielle", "Cloud et DevOps", "E-facture", "Facturation électronique", "Intégration ERP"],
+      ? ["Digital transformation", "IT consulting", "Squad As Service", "Agile product squads", "Data and artificial intelligence", "Cloud and DevOps", "E-invoice", "E-invoicing", "ERP integration"]
+      : ["Transformation digitale", "Conseil IT", "Squad As Service", "Squads produit Agile", "Data et intelligence artificielle", "Cloud et DevOps", "E-facture", "Facturation électronique", "Intégration ERP"],
   };
   const graph = [
     organisation,
@@ -55,8 +55,8 @@ function jsonLd(route) {
 
   if (route.path.endsWith("/services") || route.path === "/services") {
     const services = isEnglish
-      ? ["IT consulting and digital strategy", "Digital products, Data and AI", "Software engineering", "Cloud, DevOps and DevSecOps"]
-      : ["Conseil IT et stratégie digitale", "Produits digitaux, Data et IA", "Ingénierie logicielle", "Cloud, DevOps et DevSecOps"];
+      ? ["IT consulting and digital strategy", "Digital products, Data and AI", "Squad As Service", "Cloud, DevOps and DevSecOps"]
+      : ["Conseil IT et stratégie digitale", "Produits digitaux, Data et IA", "Squad As Service", "Cloud, DevOps et DevSecOps"];
     graph.push({ "@type": "ItemList", name: isEnglish ? "Paytium services in Morocco" : "Services Paytium au Maroc", itemListElement: services.map((name, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "Service", name, provider: { "@id": `${baseUrl}/#organization` }, areaServed: { "@type": "Country", name: isEnglish ? "Morocco" : "Maroc" } } })) });
   }
 
