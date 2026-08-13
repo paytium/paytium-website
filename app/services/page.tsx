@@ -18,17 +18,17 @@ export default function ServicesPage() {
       <div className="expertise-visual"><span>Conseil</span><span>Produit</span><span>Squads</span><span>Cloud</span><i /></div>
     </PageHero>
 
-    <section className="section seo-service-intro" aria-labelledby="expertises-maroc">
-      <div><span>PAYTIUM MAROC</span><h2 id="expertises-maroc">Des expertises digitales et technologiques <em>ancrées au Maroc.</em></h2></div>
-      <div><p>Depuis Casablanca, Paytium accompagne entreprises, institutions et équipes IT dans leurs programmes de transformation digitale au Maroc et à l’international. Nos consultants relient enjeux métier, architecture du système d’information et exécution technologique.</p><nav aria-label="Expertises Paytium au Maroc"><a href="#consulting">Conseil IT & stratégie digitale</a><a href="#digital-data">Produits digitaux, Data & IA</a><a href="#engineering">Squad As Service</a><a href="#cloud-devops">Cloud, DevOps & DevSecOps</a></nav></div>
+    <section className="section seo-service-intro" aria-labelledby="expertises-digitales">
+      <div><span>PAYTIUM</span><h2 id="expertises-digitales">Des expertises digitales et technologiques <em>pensées pour vos enjeux.</em></h2></div>
+      <div><p>Depuis Casablanca, Paytium accompagne entreprises, institutions et équipes IT dans leurs programmes de transformation digitale, localement et à l’international. Nos consultants relient enjeux métier, architecture du système d’information et exécution technologique.</p><nav aria-label="Expertises Paytium"><a href="#consulting">Conseil IT & stratégie digitale</a><a href="#digital-data">Produits digitaux, Data & IA</a><a href="#engineering">Squad As Service</a><a href="#cloud-devops">Cloud, DevOps & DevSecOps</a></nav></div>
     </section>
 
     <section className="section partner-intent">
-      <SectionHeading eyebrow="UN PARTENAIRE TECHNOLOGIQUE AU MAROC" title={<>L’expertise recherchée, <em>reliée à vos résultats.</em></>} text="Paytium intervient comme cabinet de conseil et partenaire de delivery digital. Nous pouvons prendre en charge une mission ciblée ou déployer une Squad As Service pluridisciplinaire, de la discovery à la mise en production et à l’amélioration continue." />
+      <SectionHeading eyebrow="UN PARTENAIRE TECHNOLOGIQUE" title={<>L’expertise recherchée, <em>reliée à vos résultats.</em></>} text="Paytium intervient comme cabinet de conseil et partenaire de delivery digital. Nous pouvons prendre en charge une mission ciblée ou déployer une Squad As Service pluridisciplinaire, de la discovery à la mise en production et à l’amélioration continue." />
       <div className="partner-intent-grid">
         {[["Conseil IT & transformation digitale", "Stratégie, audit du système d’information, architecture, feuille de route et accompagnement du changement."], ["Squad As Service", "Squads produit pluridisciplinaires, capacité flexible, pratiques Agile et responsabilité de bout en bout sur le delivery."], ["Data, IA & automatisation", "Plateformes data, BI, gouvernance, cas d’usage IA, MLOps et automatisation des processus."], ["Cloud, DevOps & DevSecOps", "Migration cloud, platform engineering, CI/CD, observabilité, fiabilité et sécurité intégrée."]].map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}
       </div>
-      <p className="intent-note"><strong>Vous préparez aussi l’e-facture au Maroc ?</strong> Découvrez notre accompagnement en <a href="/facturation-electronique">facturation électronique, préparation DGI et intégration ERP/API</a>.</p>
+      <p className="intent-note"><strong>Vous préparez aussi votre transition vers l’e-facture ?</strong> Découvrez notre accompagnement en <a href="/facturation-electronique">facturation électronique, préparation DGI et intégration ERP/API</a>.</p>
     </section>
 
     <section className="section service-details">

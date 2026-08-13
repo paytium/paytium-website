@@ -29,6 +29,7 @@ test("server-renders the Paytium site and its branded page loader", async () => 
   assert.match(html, /technologies nécessaires/);
   assert.match(html, /class="expertise-band"/);
   assert.match(html, /UNE EXPERTISE/);
+  assert.ok(html.indexOf('class="expertise-band"') < html.indexOf('class="section tech-section tech-summary"'));
   assert.doesNotMatch(html, /class="tech-preview"/);
   assert.doesNotMatch(html, /Engineering &amp; Technology/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
@@ -40,7 +41,17 @@ test("localizes the concise technology summary and expertise band", async () => 
   assert.match(html, /technologies required to cover every aspect/);
   assert.match(html, /DIGITAL EXPERTISE/);
   assert.match(html, /TO ACCELERATE YOUR TRANSFORMATION/);
+  assert.ok(html.indexOf('class="expertise-band"') < html.indexOf('class="section tech-section tech-summary"'));
   assert.doesNotMatch(html, /class="tech-preview"/);
+});
+
+test("removes country labels from every French and English page", async () => {
+  const routes = ["/", "/en", "/services", "/en/services", "/academy", "/en/academy", "/facturation-electronique", "/en/facturation-electronique"];
+  for (const route of routes) {
+    const response = await render(route);
+    const html = await response.text();
+    assert.doesNotMatch(html, /maroc|morocc/i, `country label found on ${route}`);
+  }
 });
 
 test("positions Squad As Service consistently in French and English", async () => {

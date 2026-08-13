@@ -1,8 +1,8 @@
 export const siteConfig = {
   contactEmail: "connect@paytium.io" as string | null,
   contactPhone: "+212 707-252336" as string | null,
-  addressFr: "Casablanca, Maroc" as string | null,
-  addressEn: "Casablanca, Morocco" as string | null,
+  addressFr: "Casablanca" as string | null,
+  addressEn: "Casablanca" as string | null,
   website: "paytium.io",
   linkedinUrl: "https://www.linkedin.com/company/paytium" as string | null,
   legalCompanyName: "Paytium",
