@@ -2,32 +2,23 @@
 
 import { useEffect, useState } from "react";
 
-type LoaderPhase = "visible" | "leaving" | "hidden";
+type LoaderPhase = "pending" | "leaving" | "hidden";
 
 export function PageLoader() {
-  const [phase, setPhase] = useState<LoaderPhase>("visible");
+  const [phase, setPhase] = useState<LoaderPhase>("pending");
 
   useEffect(() => {
-    let hideTimer = 0;
     let finishTimer = 0;
-    const startedAt = window.performance.now();
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const show = () => {
-      window.clearTimeout(hideTimer);
+    const waitForNavigation = () => {
       window.clearTimeout(finishTimer);
-      document.documentElement.classList.add("is-page-loading");
-      setPhase("visible");
+      setPhase("pending");
     };
 
     const hide = () => {
-      const minimumDisplay = reducedMotion ? 0 : 420;
-      const remaining = Math.max(0, minimumDisplay - (window.performance.now() - startedAt));
-      hideTimer = window.setTimeout(() => {
-        document.documentElement.classList.remove("is-page-loading");
-        setPhase(reducedMotion ? "hidden" : "leaving");
-        if (!reducedMotion) finishTimer = window.setTimeout(() => setPhase("hidden"), 360);
-      }, remaining);
+      setPhase(reducedMotion ? "hidden" : "leaving");
+      if (!reducedMotion) finishTimer = window.setTimeout(() => setPhase("hidden"), 260);
     };
 
     const handleNavigation = (event: MouseEvent) => {
@@ -40,22 +31,19 @@ export function PageLoader() {
 
       const current = new URL(window.location.href);
       const changesDocument = destination.pathname !== current.pathname || destination.search !== current.search;
-      if (changesDocument) show();
+      if (changesDocument) waitForNavigation();
     };
 
-    document.documentElement.classList.add("is-page-loading");
     if (document.readyState === "complete") hide();
     else window.addEventListener("load", hide, { once: true });
     document.addEventListener("click", handleNavigation, true);
-    window.addEventListener("beforeunload", show);
+    window.addEventListener("pageshow", hide);
 
     return () => {
-      window.clearTimeout(hideTimer);
       window.clearTimeout(finishTimer);
       window.removeEventListener("load", hide);
       document.removeEventListener("click", handleNavigation, true);
-      window.removeEventListener("beforeunload", show);
-      document.documentElement.classList.remove("is-page-loading");
+      window.removeEventListener("pageshow", hide);
     };
   }, []);
 

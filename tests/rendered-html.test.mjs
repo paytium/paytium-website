@@ -21,7 +21,7 @@ test("server-renders the Paytium site and its branded page loader", async () => 
 
   const html = await response.text();
   assert.match(html, /<title>Paytium Maroc/);
-  assert.match(html, /class="page-loader is-visible"/);
+  assert.match(html, /class="page-loader is-pending"/);
   assert.match(html, /role="status"/);
   assert.match(html, /src="\/paytium-icon\.svg"/);
   assert.match(html, /Parlons de votre/);
@@ -39,10 +39,14 @@ test("keeps the loader animated, accessible and limited to document navigation",
   assert.match(loader, /destination\.pathname !== current\.pathname/);
   assert.match(loader, /destination\.search !== current\.search/);
   assert.match(loader, /prefers-reduced-motion: reduce/);
+  assert.doesNotMatch(loader, /minimumDisplay|startedAt/);
   assert.match(loader, /aria-label="Chargement \/ Loading"/);
   assert.match(css, /@keyframes pageLoaderOrbit/);
+  assert.match(css, /@keyframes pageLoaderReveal/);
   assert.match(css, /@keyframes pageLoaderPulse/);
   assert.match(css, /@keyframes pageLoaderDot/);
   assert.match(css, /\.page-loader\.is-hidden/);
+  assert.match(css, /\.page-loader\.is-pending/);
+  assert.match(css, /pageLoaderReveal 1ms linear \.18s forwards/);
   assert.match(css, /@media\(prefers-reduced-motion:reduce\)/);
 });
