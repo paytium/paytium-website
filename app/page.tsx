@@ -5,7 +5,7 @@ import { PageShell } from "../components/SiteShell";
 import { HomeHero } from "../components/HomeHero";
 import { ContactForm } from "../components/ContactForm";
 import { Arrow, Eyebrow, OrbitMark } from "../components/Brand";
-import { FinalCta, SectionHeading, TechPreview } from "../components/Sections";
+import { ExpertiseBand, FinalCta, SectionHeading } from "../components/Sections";
 import { methods, services, siteConfig } from "../content/site";
 
 export const metadata: Metadata = {
@@ -55,10 +55,11 @@ export default function HomePage() {
         <div className="method-timeline">{methods.map((method) => <article key={method.number}><span>{method.number}</span><h3>{method.title}</h3><p>{method.text}</p><small>{method.deliverables}</small></article>)}</div>
       </section>
 
-      <section className="section tech-section">
-        <SectionHeading eyebrow="TECHNOLOGIES" title={<>Une technologie choisie pour le besoin, <em>pas l’inverse.</em></>} text="Nous composons des architectures modernes, ouvertes et maintenables selon le contexte métier, le patrimoine existant, la sécurité et les objectifs d’évolution." />
-        <TechPreview /><a className="text-link" href="/services#technologies">Découvrir notre stack et nos méthodes <Arrow /></a>
+      <section className="section tech-section tech-summary">
+        <SectionHeading eyebrow="TECHNOLOGIES" title={<>Toute la technologie nécessaire, <em>au service de votre transformation.</em></>} text="Du produit à la data, de l’IA au cloud et au DevOps, nous maîtrisons les technologies nécessaires pour couvrir tous les aspects de votre transformation digitale et composons la stack adaptée à vos objectifs." />
+        <a className="text-link" href="/services#technologies">Explorer notre stack technologique <Arrow /></a>
       </section>
+      <ExpertiseBand />
 
       <FinalCta />
 

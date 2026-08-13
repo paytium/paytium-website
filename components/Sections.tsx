@@ -1,16 +1,13 @@
 import { Arrow, Eyebrow, OrbitMark } from "./Brand";
-import { technologies } from "../content/site";
-import { LuArrowLeftRight, LuBraces, LuCircleCheckBig, LuCircleDot, LuCloud, LuCommand, LuDatabase, LuInfinity, LuLayers3, LuPanelTop, LuRows3, LuSparkles } from "react-icons/lu";
-
-const technologyIcons = [LuBraces, LuPanelTop, LuLayers3, LuSparkles, LuDatabase, LuInfinity, LuCircleCheckBig, LuRows3, LuCloud, LuCircleDot, LuArrowLeftRight, LuCommand];
 
 export function SectionHeading({ eyebrow, title, text, invert = false }: { eyebrow: string; title: React.ReactNode; text?: string; invert?: boolean }) {
   return <div className={`section-heading ${invert ? "invert" : ""}`}><div><Eyebrow>{eyebrow}</Eyebrow><h2>{title}</h2></div>{text && <p>{text}</p>}</div>;
 }
 
-export function TechPreview({ locale = "fr" }: { locale?: "fr" | "en" }) {
-  const englishTitles: Record<string, string> = { "Bases de données": "Databases", "Produit & Agilité": "Product & Agile", "Outils & Plateforme": "Tools & Platforms" };
-  return <div className="tech-preview">{technologies.map((group, index) => { const Icon = technologyIcons[index % technologyIcons.length]; return <article key={group.title}><span aria-hidden="true"><Icon /></span><h3>{locale === "en" ? englishTitles[group.title] ?? group.title : group.title}</h3><p>{group.items.join(" · ")}</p></article>; })}</div>;
+export function ExpertiseBand({ locale = "fr" }: { locale?: "fr" | "en" }) {
+  const message = locale === "en" ? ["DIGITAL EXPERTISE", "360°", "TO ACCELERATE YOUR TRANSFORMATION"] : ["UNE EXPERTISE", "360°", "POUR ACCÉLÉRER VOTRE TRANSFORMATION DIGITALE"];
+  const groups = [0, 1];
+  return <aside className="expertise-band" aria-label={message.join(" ")}><div className="expertise-band-track" aria-hidden="true">{groups.map((group) => <div className="expertise-band-group" key={group} aria-hidden={group === 1 ? true : undefined}>{Array.from({ length: 3 }, (_, index) => <div className="expertise-band-item" key={index}><img src="/paytium-icon.svg" alt="" width="46" height="46" />{message.map((part) => part === "360°" ? <b key={part}>{part}</b> : <strong key={part}>{part}</strong>)}</div>)}</div>)}</div></aside>;
 }
 
 export function FinalCta({ eyebrow = "VOTRE PROCHAINE ÉTAPE COMMENCE ICI", title = <>Un projet de transformation <em>à concrétiser ?</em></>, text = "Échangeons sur vos priorités, vos contraintes et la meilleure manière de passer de l’idée à une solution opérationnelle.", primary = "Démarrer une conversation", secondary, contactHref = "/#contact" }: { eyebrow?: string; title?: React.ReactNode; text?: string; primary?: string; secondary?: [string, string]; contactHref?: string }) {

@@ -26,8 +26,21 @@ test("server-renders the Paytium site and its branded page loader", async () => 
   assert.match(html, /src="\/paytium-icon\.svg"/);
   assert.match(html, /Parlons de votre/);
   assert.match(html, /Squad As Service/);
+  assert.match(html, /technologies nécessaires/);
+  assert.match(html, /class="expertise-band"/);
+  assert.match(html, /UNE EXPERTISE/);
+  assert.doesNotMatch(html, /class="tech-preview"/);
   assert.doesNotMatch(html, /Engineering &amp; Technology/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
+});
+
+test("localizes the concise technology summary and expertise band", async () => {
+  const response = await render("/en");
+  const html = await response.text();
+  assert.match(html, /technologies required to cover every aspect/);
+  assert.match(html, /DIGITAL EXPERTISE/);
+  assert.match(html, /TO ACCELERATE YOUR TRANSFORMATION/);
+  assert.doesNotMatch(html, /class="tech-preview"/);
 });
 
 test("positions Squad As Service consistently in French and English", async () => {

@@ -146,7 +146,7 @@ export function PageShell({ children, locale = "fr", translationHref = "/en" }: 
   useEffect(() => {
     document.documentElement.lang = locale;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const selector = [".section-heading", ".editorial-cards > article", ".values-row > article", ".service-card", ".method-timeline > article", ".tech-preview > article", ".service-detail", ".method-matrix > article", ".technology-groups > article", ".challenge-grid > article", ".lifecycle > article", ".security-grid > article", ".usecase-grid > article", ".deployment-track > article", ".academy-format-grid > article", ".course-card", ".contact-form", ".contact-intro", ".invoice-copy", ".invoice-visual"].join(",");
+    const selector = [".section-heading", ".editorial-cards > article", ".values-row > article", ".service-card", ".method-timeline > article", ".service-detail", ".method-matrix > article", ".technology-groups > article", ".challenge-grid > article", ".lifecycle > article", ".security-grid > article", ".usecase-grid > article", ".deployment-track > article", ".academy-format-grid > article", ".course-card", ".contact-form", ".contact-intro", ".invoice-copy", ".invoice-visual"].join(",");
     const items = Array.from(document.querySelectorAll<HTMLElement>(selector));
     items.forEach((item, index) => {
       item.classList.add("reveal-item");
