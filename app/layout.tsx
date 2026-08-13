@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     siteName: "Paytium",
     url: "/",
-    images: [{ url: "/og.png", width: 1731, height: 909, alt: "Paytium — stratégie, technologie et impact" }],
+    images: [{ url: "/og-paytium.png", width: 1200, height: 630, alt: "Paytium — stratégie, technologie et impact" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Paytium | Transformation digitale",
     description: "De la vision à l’impact : conseil, produits digitaux, data, engineering et cloud.",
-    images: [{ url: "/og.png", alt: "Paytium — stratégie, technologie et impact" }],
+    images: [{ url: "/og-paytium.png", alt: "Paytium — stratégie, technologie et impact" }],
   },
   icons: {
     icon: [
