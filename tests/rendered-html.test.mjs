@@ -82,6 +82,19 @@ test("adds consistent spacing around the contact subject chevron", async () => {
   assert.match(css, /\.contact-select>svg\{[^}]*right:24px/);
 });
 
+test("styles native contact controls with the Paytium design system", async () => {
+  const [form, css] = await Promise.all([
+    readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+  assert.match(form, /type="checkbox" name="consent" required/);
+  assert.match(css, /\.contact-form\{color-scheme:light/);
+  assert.match(css, /\.consent input\{appearance:none;-webkit-appearance:none/);
+  assert.match(css, /\.consent input:checked\{[^}]*background:var\(--deep\)/);
+  assert.match(css, /\.consent input:focus-visible\{[^}]*outline:3px solid/);
+  assert.match(css, /\.contact-form input:-webkit-autofill/);
+});
+
 test("positions Squad As Service consistently in French and English", async () => {
   const [servicesFr, servicesEn, shell, servicesPage, servicesPageEn] = await Promise.all([
     readFile(new URL("../content/site.ts", import.meta.url), "utf8"),
