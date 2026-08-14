@@ -6,7 +6,7 @@ import { services, technologies, workingMethods } from "../../content/site";
 const serviceEntries = services.filter((service) => service.id !== "academy");
 
 export const metadata: Metadata = {
-  title: "Paytium",
+  title: "Paytium | Services",
   description: "Paytium, cabinet de conseil IT à Casablanca : transformation digitale, Squad As Service, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.",
   alternates: { canonical: "/services", languages: { "fr-FR": "/services", "en-US": "/en/services" } },
 };
@@ -28,7 +28,7 @@ export default function ServicesPage() {
       <div className="partner-intent-grid">
         {[["Conseil IT & transformation digitale", "Stratégie, audit du système d’information, architecture, feuille de route et accompagnement du changement."], ["Squad As Service", "Squads produit pluridisciplinaires, capacité flexible, pratiques Agile et responsabilité de bout en bout sur le delivery."], ["Data, IA & automatisation", "Plateformes data, BI, gouvernance, cas d’usage IA, MLOps et automatisation des processus."], ["Cloud, DevOps & DevSecOps", "Migration cloud, platform engineering, CI/CD, observabilité, fiabilité et sécurité intégrée."]].map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}
       </div>
-      <p className="intent-note"><strong>Vous préparez aussi votre transition vers l’e-facture ?</strong> Découvrez notre accompagnement en <a href="/facturation-electronique">facturation électronique, préparation DGI et intégration ERP/API</a>.</p>
+      <p className="intent-note"><strong>Vous préparez aussi votre transition vers l’e-facture ?</strong> Découvrez notre accompagnement en <a href="/e-invoicing">facturation électronique, préparation DGI et intégration ERP/API</a>.</p>
     </section>
 
     <section className="section service-details">

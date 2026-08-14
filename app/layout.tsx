@@ -22,7 +22,7 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://paytium.io"),
-  title: "Paytium",
+  title: "Paytium | Accueil",
   description: "Cabinet de conseil et de delivery digital à Casablanca : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.",
   applicationName: "Paytium",
   authors: [{ name: "Paytium", url: "https://paytium.io" }],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: {
-    title: "Paytium",
+    title: "Paytium | Accueil",
     description: "Conseil, produits digitaux, Squad As Service, data et cloud pour accélérer vos transformations.",
     type: "website",
     locale: "fr_FR",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Paytium",
+    title: "Paytium | Accueil",
     description: "De la vision à l’impact : conseil, produits digitaux, Squad As Service, data et cloud.",
     images: [{ url: "/og-paytium.png", alt: "Paytium — stratégie, technologie et impact" }],
   },

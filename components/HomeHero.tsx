@@ -15,7 +15,7 @@ const slidesFr = [
     eyebrow: "FACTURATION ÉLECTRONIQUE",
     title: <>Passez à la facture électronique <em>avec clarté.</em></>,
     text: "Préparez, intégrez et industrialisez vos échanges de factures grâce à une approche sécurisée, interopérable et adaptée à vos processus finance et métier.",
-    primary: ["Découvrir notre approche", "/facturation-electronique"], secondary: ["Échanger avec un expert", "/#contact"], visual: "invoice",
+    primary: ["Découvrir notre approche", "/e-invoicing"], secondary: ["Échanger avec un expert", "/#contact"], visual: "invoice",
   },
   {
     eyebrow: "SQUADS. DATA. CLOUD.",
@@ -27,7 +27,7 @@ const slidesFr = [
 
 const slidesEn = [
   { eyebrow: "STRATEGY. TECHNOLOGY. IMPACT.", title: <>Move your <em>digital transformation forward.</em></>, text: "Paytium turns business challenges into useful, reliable and scalable digital products, platforms and services — from strategy through delivery.", primary: ["Build your roadmap", "/en/#contact"], secondary: ["Discover our services", "/en/services"], visual: "trajectory" },
-  { eyebrow: "E-INVOICING", title: <>Move to digital invoicing <em>with clarity.</em></>, text: "Prepare, integrate and industrialise your invoice exchanges through a secure, interoperable approach designed around finance and business processes.", primary: ["Explore our approach", "/en/facturation-electronique"], secondary: ["Talk to an expert", "/en/#contact"], visual: "invoice" },
+  { eyebrow: "E-INVOICING", title: <>Move to digital invoicing <em>with clarity.</em></>, text: "Prepare, integrate and industrialise your invoice exchanges through a secure, interoperable approach designed around finance and business processes.", primary: ["Explore our approach", "/en/e-invoicing"], secondary: ["Talk to an expert", "/en/#contact"], visual: "invoice" },
   { eyebrow: "SQUADS. DATA. CLOUD.", title: <>Accelerate products with squads <em>ready to deliver.</em></>, text: "Reduce time to market through multidisciplinary squads, proven Agile practices and controlled execution from discovery through production.", primary: ["Explore our expertise", "/en/services"], secondary: ["Contact us", "/en/#contact"], visual: "platform" },
 ];
 

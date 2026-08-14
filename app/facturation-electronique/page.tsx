@@ -5,9 +5,9 @@ import { Eyebrow } from "../../components/Brand";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
 
 export const metadata: Metadata = {
-  title: "Paytium",
+  title: "Paytium | Facturation électronique",
   description: "Conseil et intégration e-facture : préparation DGI, connexion ERP/API, contrôles, workflows, traçabilité et archivage avec Paytium.",
-  alternates: { canonical: "/facturation-electronique", languages: { "fr-FR": "/facturation-electronique", "en-US": "/en/facturation-electronique" } },
+  alternates: { canonical: "/e-invoicing", languages: { "fr-FR": "/e-invoicing", "en-US": "/en/e-invoicing" } },
 };
 
 const challenges = [["Préparation", "Cartographier les flux, les acteurs, les formats et les écarts."], ["Interopérabilité", "Connecter ERP, applications métier, partenaires et plateformes d’échange."], ["Maîtrise", "Contrôler les données, suivre les statuts et traiter les exceptions."], ["Évolutivité", "Absorber les changements réglementaires, fonctionnels et volumétriques."]];
@@ -20,8 +20,8 @@ const terminology = [["E-facture & e-invoice", "Les termes e-facture, e-invoice 
 const faq = [["Quelle différence entre une facture PDF, une e-facture et une facture électronique structurée ?", "Un PDF peut être une représentation lisible d’une facture sans être un flux de données structuré et directement exploitable. Une facture électronique structurée permet l’échange, le contrôle et l’intégration automatisés selon le format et le canal retenus."], ["Comment préparer son ERP à la facturation électronique DGI ?", "La préparation commence par la cartographie des flux, des données, des interfaces et des contrôles. Paytium identifie ensuite les adaptations ERP, comptables et d’intégration à prioriser, en gardant la cible adaptable aux publications officielles."], ["Paytium propose-t-il un logiciel de facturation ou un accompagnement d’intégration ?", "Paytium intervient en conseil, cadrage, architecture, intégration et automatisation. Le périmètre de solution — plateforme, connecteurs, portail ou composants spécifiques — est défini selon le système d’information et le besoin du client."], ["Quels systèmes peuvent être connectés ?", "ERP, logiciels comptables, applications achats et ventes, référentiels, GED, solutions de paiement et outils de reporting peuvent être reliés par API, fichiers, événements ou connecteurs, selon leurs capacités."], ["Peut-on préparer le projet avant la publication définitive de toutes les exigences ?", "Oui. Il est possible de fiabiliser les données, cartographier les flux, clarifier la gouvernance et préparer une architecture évolutive, tout en réservant les choix dépendant des textes et spécifications officiels."], ["Peut-on déployer progressivement ?", "Oui. Une approche pilote permet de valider les flux, les contrôles et l’exploitation avant d’étendre le dispositif à d’autres entités ou volumes."], ["Paytium garantit-il la conformité fiscale ?", "Paytium conçoit une architecture et des processus adaptables. La validation juridique, fiscale et réglementaire reste menée avec les fonctions compétentes du client et sur la base des référentiels officiels en vigueur."]];
 
 export default function ElectronicInvoicingPage() {
-  return <PageShell translationHref="/en/facturation-electronique">
-    <Breadcrumbs items={[{ label: "Facturation électronique", href: "/facturation-electronique" }]} />
+  return <PageShell translationHref="/en/e-invoicing">
+    <Breadcrumbs items={[{ label: "Facturation électronique", href: "/e-invoicing" }]} />
     <PageHero eyebrow="FACTURATION ÉLECTRONIQUE" title={<>Préparez votre facturation électronique, <em>sans interrompre vos opérations.</em></>} text="Paytium accompagne les entreprises dans la préparation à la facturation électronique et aux évolutions portées par la DGI, avec une chaîne connectée aux outils finance, comptables et métier." primary={["Évaluer votre niveau de préparation", "/#contact"]} secondary={["Parler à un expert", "/#contact"]}>
       <div className="einvoice-flow"><div>ERP<br/><small>Applications</small></div><i aria-hidden="true"><LuArrowRight /></i><div className="active">Contrôle<br/><small>& orchestration</small></div><i aria-hidden="true"><LuArrowRight /></i><div>Émission<br/><small>& réception</small></div><i aria-hidden="true"><LuArrowRight /></i><div>Archivage<br/><small>& pilotage</small></div></div>
     </PageHero>

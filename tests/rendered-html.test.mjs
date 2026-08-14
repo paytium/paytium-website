@@ -20,7 +20,7 @@ test("server-renders the Paytium site and its branded page loader", async () => 
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Paytium<\/title>/);
+  assert.match(html, /<title>Paytium \| Accueil<\/title>/);
   assert.match(html, /class="page-loader is-pending"/);
   assert.match(html, /role="status"/);
   assert.match(html, /src="\/paytium-icon\.svg"/);
@@ -46,12 +46,40 @@ test("localizes the concise technology summary and expertise band", async () => 
 });
 
 test("removes country labels from every French and English page", async () => {
-  const routes = ["/", "/en", "/services", "/en/services", "/academy", "/en/academy", "/facturation-electronique", "/en/facturation-electronique"];
+  const routes = ["/", "/en", "/services", "/en/services", "/academy", "/en/academy", "/e-invoicing", "/en/e-invoicing"];
   for (const route of routes) {
     const response = await render(route);
     const html = await response.text();
     assert.doesNotMatch(html, /maroc|morocc/i, `country label found on ${route}`);
   }
+});
+
+test("uses descriptive page titles and the e-invoicing route", async () => {
+  const expectedTitles = new Map([
+    ["/", "Paytium | Accueil"], ["/en", "Paytium | Home"],
+    ["/services", "Paytium | Services"], ["/en/services", "Paytium | Services"],
+    ["/academy", "Paytium | Academy"], ["/en/academy", "Paytium | Academy"],
+    ["/e-invoicing", "Paytium | Facturation électronique"], ["/en/e-invoicing", "Paytium | E-invoicing"],
+  ]);
+  for (const [route, title] of expectedTitles) {
+    const response = await render(route);
+    const html = await response.text();
+    assert.match(html, new RegExp(`<title>${title.replace("|", "\\|")}<\\/title>`));
+  }
+  const shell = await readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8");
+  assert.doesNotMatch(shell, /\/facturation-electronique/);
+  assert.match(shell, /\/e-invoicing/);
+});
+
+test("adds consistent spacing around the contact subject chevron", async () => {
+  const [form, css] = await Promise.all([
+    readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+  assert.match(form, /className="contact-select"/);
+  assert.match(form, /LuChevronDown/);
+  assert.match(css, /\.contact-select select\{appearance:none;padding-right:64px\}/);
+  assert.match(css, /\.contact-select>svg\{[^}]*right:24px/);
 });
 
 test("positions Squad As Service consistently in French and English", async () => {

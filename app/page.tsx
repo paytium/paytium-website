@@ -9,13 +9,13 @@ import { ExpertiseBand, FinalCta, SectionHeading } from "../components/Sections"
 import { methods, services, siteConfig } from "../content/site";
 
 export const metadata: Metadata = {
-  title: "Paytium",
+  title: "Paytium | Accueil",
   description: "Cabinet de conseil et de delivery digital à Casablanca : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.",
   alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
 };
 
 const quickLinks = [
-  ["Facturation électronique", "/facturation-electronique", "01"], ["Conseil & stratégie", "/services#consulting", "02"], ["Digital, Data & IA", "/services#digital-data", "03"], ["Paytium Academy", "/academy", "04"], ["Parler de votre projet", "/#contact", "05"],
+  ["Facturation électronique", "/e-invoicing", "01"], ["Conseil & stratégie", "/services#consulting", "02"], ["Digital, Data & IA", "/services#digital-data", "03"], ["Paytium Academy", "/academy", "04"], ["Parler de votre projet", "/#contact", "05"],
 ];
 const homeServices = services.filter((service) => service.id !== "academy");
 
@@ -46,7 +46,7 @@ export default function HomePage() {
       </section>
 
       <section className="invoice-focus">
-        <div className="invoice-copy"><Eyebrow>FOCUS SOLUTION</Eyebrow><h2>La facturation électronique, intégrée à votre <em>réalité métier.</em></h2><p>Paytium vous accompagne dans la digitalisation de bout en bout du cycle de facturation : préparation, contrôle, validation, transmission, suivi, rapprochement et archivage. L’objectif est de sécuriser la transition tout en préservant la continuité de vos opérations.</p><ul>{["Intégration aux ERP, systèmes comptables et applications métier", "Automatisation des contrôles et workflows de validation", "Traçabilité des échanges et suivi des statuts", "Architecture adaptable aux exigences applicables"].map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul><div className="hero-actions"><a className="button button-light" href="/facturation-electronique">Explorer la solution <Arrow /></a><a className="button button-outline-light" href="/#contact">Évaluer votre préparation</a></div></div>
+        <div className="invoice-copy"><Eyebrow>FOCUS SOLUTION</Eyebrow><h2>La facturation électronique, intégrée à votre <em>réalité métier.</em></h2><p>Paytium vous accompagne dans la digitalisation de bout en bout du cycle de facturation : préparation, contrôle, validation, transmission, suivi, rapprochement et archivage. L’objectif est de sécuriser la transition tout en préservant la continuité de vos opérations.</p><ul>{["Intégration aux ERP, systèmes comptables et applications métier", "Automatisation des contrôles et workflows de validation", "Traçabilité des échanges et suivi des statuts", "Architecture adaptable aux exigences applicables"].map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul><div className="hero-actions"><a className="button button-light" href="/e-invoicing">Explorer la solution <Arrow /></a><a className="button button-outline-light" href="/#contact">Évaluer votre préparation</a></div></div>
         <div className="invoice-visual"><div className="invoice-sheet"><small>FACTURE</small><span /><span /><span /><div><b>Contrôlée</b><b>Transmise</b><b>Archivée</b></div></div><div className="invoice-orbit"/><div className="system-tag tag-erp">ERP</div><div className="system-tag tag-data">DATA</div><div className="system-tag tag-archive">ARCHIVE</div></div>
       </section>
 

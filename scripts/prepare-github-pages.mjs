@@ -8,14 +8,14 @@ const lastModified = new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Casabl
 const { renderPage, renderNotFound } = await import(new URL("../dist-pages-ssr/prerender.js", import.meta.url));
 
 const routes = [
-  { path: "/", lang: "fr", alternate: "/en", title: "Paytium", description: "Cabinet de conseil et de delivery digital à Casablanca : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, Data IA, Cloud DevOps" },
-  { path: "/en", lang: "en", alternate: "/", title: "Paytium", description: "IT consulting company in Casablanca for strategy, Squad As Service, Data & AI, Cloud, DevOps and e-invoicing.", keywords: "Paytium, Squad As Service, Agile squad, IT consulting company, digital transformation, Data AI, Cloud DevOps" },
-  { path: "/services", lang: "fr", alternate: "/en/services", title: "Paytium", description: "Paytium, cabinet de conseil IT à Casablanca : transformation digitale, Squad As Service, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.", keywords: "services Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, intégration ERP API, Data IA, Cloud DevOps, DevSecOps" },
-  { path: "/en/services", lang: "en", alternate: "/services", title: "Paytium", description: "Paytium delivers IT consulting, Squad As Service, Data & AI, ERP/API integration, Cloud and DevOps from Casablanca.", keywords: "Paytium services, Squad As Service, Agile squad, product squad as a service, IT consulting company, digital transformation company, ERP API integration, Data AI, Cloud DevOps" },
-  { path: "/academy", lang: "fr", alternate: "/en/academy", title: "Paytium", description: "Développez les compétences de vos équipes avec les formations pratiques Digital, Data, IA, Cloud, DevOps et Agile de Paytium Academy.", keywords: "Paytium Academy, formation digitale, formation Data IA, formation Cloud DevOps, formation Agile Casablanca" },
-  { path: "/en/academy", lang: "en", alternate: "/academy", title: "Paytium", description: "Grow your teams’ capabilities through practical Digital, Data, AI, Cloud, DevOps and Agile training from Paytium Academy.", keywords: "Paytium Academy, digital training, Data AI training, Cloud DevOps training, Agile training Casablanca" },
-  { path: "/facturation-electronique", lang: "fr", alternate: "/en/facturation-electronique", title: "Paytium", description: "Conseil et intégration e-facture : préparation DGI, connexion ERP/API, contrôles, workflows, traçabilité et archivage avec Paytium.", keywords: "e-facture, e facture, facture électronique, facturation électronique, facturation électronique DGI, e-invoice, e-invoicing, intégrateur facturation électronique, intégration ERP facturation, Paytium" },
-  { path: "/en/facturation-electronique", lang: "en", alternate: "/facturation-electronique", title: "Paytium", description: "E-invoice consulting and integration: DGI readiness, ERP/API connections, controls, workflows, traceability and archiving with Paytium.", keywords: "e-invoice, e invoice, e-invoicing, electronic invoicing, DGI e-invoicing, e-invoicing integration company, ERP invoice integration, Paytium" },
+  { path: "/", lang: "fr", alternate: "/en", title: "Paytium | Accueil", description: "Cabinet de conseil et de delivery digital à Casablanca : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, Data IA, Cloud DevOps" },
+  { path: "/en", lang: "en", alternate: "/", title: "Paytium | Home", description: "IT consulting company in Casablanca for strategy, Squad As Service, Data & AI, Cloud, DevOps and e-invoicing.", keywords: "Paytium, Squad As Service, Agile squad, IT consulting company, digital transformation, Data AI, Cloud DevOps" },
+  { path: "/services", lang: "fr", alternate: "/en/services", title: "Paytium | Services", description: "Paytium, cabinet de conseil IT à Casablanca : transformation digitale, Squad As Service, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.", keywords: "services Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, intégration ERP API, Data IA, Cloud DevOps, DevSecOps" },
+  { path: "/en/services", lang: "en", alternate: "/services", title: "Paytium | Services", description: "Paytium delivers IT consulting, Squad As Service, Data & AI, ERP/API integration, Cloud and DevOps from Casablanca.", keywords: "Paytium services, Squad As Service, Agile squad, product squad as a service, IT consulting company, digital transformation company, ERP API integration, Data AI, Cloud DevOps" },
+  { path: "/academy", lang: "fr", alternate: "/en/academy", title: "Paytium | Academy", description: "Développez les compétences de vos équipes avec les formations pratiques Digital, Data, IA, Cloud, DevOps et Agile de Paytium Academy.", keywords: "Paytium Academy, formation digitale, formation Data IA, formation Cloud DevOps, formation Agile Casablanca" },
+  { path: "/en/academy", lang: "en", alternate: "/academy", title: "Paytium | Academy", description: "Grow your teams’ capabilities through practical Digital, Data, AI, Cloud, DevOps and Agile training from Paytium Academy.", keywords: "Paytium Academy, digital training, Data AI training, Cloud DevOps training, Agile training Casablanca" },
+  { path: "/e-invoicing", lang: "fr", alternate: "/en/e-invoicing", title: "Paytium | Facturation électronique", description: "Conseil et intégration e-facture : préparation DGI, connexion ERP/API, contrôles, workflows, traçabilité et archivage avec Paytium.", keywords: "e-facture, e facture, facture électronique, facturation électronique, facturation électronique DGI, e-invoice, e-invoicing, intégrateur facturation électronique, intégration ERP facturation, Paytium" },
+  { path: "/en/e-invoicing", lang: "en", alternate: "/e-invoicing", title: "Paytium | E-invoicing", description: "E-invoice consulting and integration: DGI readiness, ERP/API connections, controls, workflows, traceability and archiving with Paytium.", keywords: "e-invoice, e invoice, e-invoicing, electronic invoicing, DGI e-invoicing, e-invoicing integration company, ERP invoice integration, Paytium" },
 ];
 
 const template = await readFile(new URL("index.html", output), "utf8");
@@ -59,7 +59,7 @@ function jsonLd(route) {
     graph.push({ "@type": "ItemList", name: "Paytium services", itemListElement: services.map((name, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "Service", name, provider: { "@id": `${baseUrl}/#organization` }, areaServed: "International" } })) });
   }
 
-  if (route.path.includes("facturation-electronique")) {
+  if (route.path.includes("e-invoicing")) {
     graph.push({ "@type": "Service", "@id": `${absolute(route.path)}#service`, name: isEnglish ? "E-invoicing readiness and integration" : "Préparation et intégration de la facturation électronique", serviceType: isEnglish ? "E-invoicing consulting and integration" : "Conseil et intégration en facturation électronique", provider: { "@id": `${baseUrl}/#organization` }, areaServed: "International", audience: { "@type": "BusinessAudience", audienceType: "Businesses and institutions" }, description: route.description });
     const faq = isEnglish
       ? [["What is the difference between a PDF invoice, an e-invoice and a structured electronic invoice?", "A PDF may be a readable representation without being a structured, machine-processable data flow. A structured electronic invoice enables automated exchange, checks and integration through the selected format and channel."], ["How should an ERP be prepared for DGI e-invoicing?", "Preparation starts by mapping flows, data, interfaces and controls. Paytium then identifies priority ERP, accounting and integration changes while keeping the target adaptable to official publications."], ["Does Paytium provide invoicing software or integration services?", "Paytium provides consulting, scoping, architecture, integration and automation. The solution scope — platform, connectors, portal or specific components — is selected around the client’s information system and needs."], ["Can a business prepare before every final requirement is published?", "Yes. Data quality, flow mapping, governance and an adaptable architecture can be prepared while choices that depend on official legislation and specifications remain open."], ["Does Paytium guarantee tax compliance?", "Paytium designs adaptable architecture and processes. Legal, tax and regulatory validation remains coordinated with the client’s competent functions and official sources."]]
@@ -108,10 +108,34 @@ for (const route of routes) {
 }
 
 const notFoundHtml = template
-  .replace(/<title>[^<]*<\/title>/, "<title>Paytium</title>")
+  .replace(/<title>[^<]*<\/title>/, "<title>Paytium | Page introuvable</title>")
   .replace(/<meta name="description" content="[^"]*" \/>/, '<meta name="description" content="La page demandée est introuvable. Retrouvez les services et expertises de Paytium depuis la page d’accueil." />')
   .replace('<div id="root"></div>', `<div id="root">${renderNotFound("fr")}</div>`);
 await writeFile(new URL("404.html", output), notFoundHtml);
+
+for (const [legacyPath, destinationPath, lang, title] of [
+  ["/facturation-electronique", "/e-invoicing", "fr", "Paytium | Facturation électronique"],
+  ["/en/facturation-electronique", "/en/e-invoicing", "en", "Paytium | E-invoicing"],
+]) {
+  const destinationUrl = absolute(destinationPath);
+  const redirectHtml = `<!doctype html>
+<html lang="${lang}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0; url=${destinationUrl}" />
+    <link rel="canonical" href="${destinationUrl}" />
+    <title>${title}</title>
+    <script>location.replace(${JSON.stringify(destinationUrl)}+location.search+location.hash)</script>
+  </head>
+  <body><a href="${destinationUrl}">${lang === "en" ? "Continue to the new page" : "Continuer vers la nouvelle page"}</a></body>
+</html>`;
+  const redirectDestination = new URL(`.${legacyPath}/index.html`, output);
+  await mkdir(dirname(fileURLToPath(redirectDestination)), { recursive: true });
+  await writeFile(redirectDestination, redirectHtml);
+}
+
 await writeFile(new URL(".nojekyll", output), "");
 await writeFile(new URL("CNAME", output), "paytium.io\n");
 await writeFile(new URL("robots.txt", output), `User-agent: *\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\nHost: paytium.io\n`);
@@ -121,5 +145,5 @@ await writeFile(new URL("sitemap.xml", output), `<?xml version="1.0" encoding="U
   const frUrl = route.lang === "fr" ? routeUrl : alternateUrl;
   const enUrl = route.lang === "en" ? routeUrl : alternateUrl;
   const priority = route.path === "/" ? "1.0" : route.path === "/en" ? "0.9" : "0.8";
-  return `  <url>\n    <loc>${escapeXml(routeUrl)}</loc>\n    <lastmod>${lastModified}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="fr-MA" href="${escapeXml(frUrl)}" />\n    <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(enUrl)}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(frUrl)}" />\n  </url>`;
+  return `  <url>\n    <loc>${escapeXml(routeUrl)}</loc>\n    <lastmod>${lastModified}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${priority}</priority>\n    <xhtml:link rel="alternate" hreflang="fr" href="${escapeXml(frUrl)}" />\n    <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(enUrl)}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(frUrl)}" />\n  </url>`;
 }).join("\n")}\n</urlset>\n`);

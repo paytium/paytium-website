@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { LuSend } from "react-icons/lu";
+import { LuChevronDown, LuSend } from "react-icons/lu";
 import { siteConfig } from "../content/site";
 
 export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
@@ -63,7 +63,7 @@ export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
         <label><span className="field-label">{copy.phone} <small>{copy.optional}</small></span><input name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder={copy.phonePlaceholder} minLength={7} maxLength={25} onInput={(event) => event.currentTarget.setCustomValidity("")} /></label>
         <label>{copy.company}<input name="company" autoComplete="organization" placeholder={copy.companyPlaceholder} minLength={2} maxLength={120} onInput={(event) => event.currentTarget.setCustomValidity("")} required /></label>
       </div>
-      <label>{copy.subject}<select name="subject" required defaultValue=""><option value="" disabled>{copy.choose}</option>{copy.subjects.map((subject) => <option key={subject}>{subject}</option>)}</select></label>
+      <label>{copy.subject}<span className="contact-select"><select name="subject" required defaultValue=""><option value="" disabled>{copy.choose}</option>{copy.subjects.map((subject) => <option key={subject}>{subject}</option>)}</select><LuChevronDown aria-hidden="true" /></span></label>
       <label><span className="field-label">{copy.message} <small aria-live="polite">{messageLength} / 2000</small></span><textarea name="message" rows={5} minLength={20} maxLength={2000} required placeholder={copy.messagePlaceholder} onInput={(event) => { event.currentTarget.setCustomValidity(""); setMessageLength(event.currentTarget.value.length); }} /></label>
       <label className="consent"><input type="checkbox" name="consent" required /><span>{copy.consent}</span></label>
       <button className="button button-primary" type="submit" disabled={loading}>{loading ? copy.sending : copy.send} <LuSend aria-hidden="true" /></button>

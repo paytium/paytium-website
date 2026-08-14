@@ -52,7 +52,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
             </div>
           </div>
           <a href={`${prefix}/academy`}>{copy.academy}</a>
-          <a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a>
+          <a href={`${prefix}/e-invoicing`}>{copy.invoice}</a>
         </nav>
         <details className="language-menu">
           <summary aria-label={locale === "fr" ? "Changer la langue" : "Change language"}><span>{locale === "fr" ? "FR" : "EN"}</span><LuChevronDown aria-hidden="true" /></summary>
@@ -69,7 +69,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
         <nav aria-label={copy.nav}>
           <a href={homeHref} onClick={() => setOpen(false)}>{copy.home}</a><a href={`${prefix}/#a-propos`} onClick={() => setOpen(false)}>{copy.about}</a><a href={`${prefix}/services`} onClick={() => setOpen(false)}>{copy.services}</a>
           {navigationServices.filter((service) => service.id !== "academy").map((service) => <a className="drawer-sub" key={service.id} href={`${prefix}/services#${service.id}`} onClick={() => setOpen(false)}>{service.short}</a>)}
-          <a href={`${prefix}/academy`} onClick={() => setOpen(false)}>{copy.academy}</a><a href={`${prefix}/facturation-electronique`} onClick={() => setOpen(false)}>{copy.invoice}</a>
+          <a href={`${prefix}/academy`} onClick={() => setOpen(false)}>{copy.academy}</a><a href={`${prefix}/e-invoicing`} onClick={() => setOpen(false)}>{copy.invoice}</a>
         </nav>
         <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
       </aside>
@@ -91,7 +91,7 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
       <div className="footer-intro"><a className="brand" href={homeHref}><Brand /></a><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><FaLinkedinIn className="linkedin-icon" aria-hidden="true" /></a>}</div>
       <div><h3>{copy.services}</h3><a href={`${prefix}/services#consulting`}>{locale === "fr" ? "Conseil & stratégie" : "Consulting & strategy"}</a><a href={`${prefix}/services#digital-data`}>Digital, Data & AI</a><a href={`${prefix}/services#engineering`}>Squad As Service</a><a href={`${prefix}/services#cloud-devops`}>Cloud & DevOps</a><a href={`${prefix}/academy`}>Paytium Academy</a></div>
       <div><h3>{copy.company}</h3><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/#methode`}>{copy.method}</a><a href={`${prefix}/#contact`}>{copy.contact}</a></div>
-      <div><h3>{copy.resources}</h3><a href={`${prefix}/facturation-electronique`}>{copy.invoice}</a><a href={`${prefix}/services#technologies`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
+      <div><h3>{copy.resources}</h3><a href={`${prefix}/e-invoicing`}>{copy.invoice}</a><a href={`${prefix}/services#technologies`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
       <div className="footer-bottom"><span>© 2026 {siteConfig.legalCompanyName}</span><span>{copy.signature}</span></div>
     </footer>
   );

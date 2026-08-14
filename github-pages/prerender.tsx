@@ -5,8 +5,8 @@ import ServicesPage from "../app/services/page";
 import EnglishServicesPage from "../app/en/services/page";
 import AcademyPage from "../app/academy/page";
 import EnglishAcademyPage from "../app/en/academy/page";
-import ElectronicInvoicingPage from "../app/facturation-electronique/page";
-import EnglishElectronicInvoicingPage from "../app/en/facturation-electronique/page";
+import ElectronicInvoicingPage from "../app/e-invoicing/page";
+import EnglishElectronicInvoicingPage from "../app/en/e-invoicing/page";
 import { PageLoader } from "../components/PageLoader";
 import NotFound from "../app/not-found";
 
@@ -17,8 +17,8 @@ const routes = {
   "/en/services": EnglishServicesPage,
   "/academy": AcademyPage,
   "/en/academy": EnglishAcademyPage,
-  "/facturation-electronique": ElectronicInvoicingPage,
-  "/en/facturation-electronique": EnglishElectronicInvoicingPage,
+  "/e-invoicing": ElectronicInvoicingPage,
+  "/en/e-invoicing": EnglishElectronicInvoicingPage,
 } as const;
 
 export function renderPage(path: string) {

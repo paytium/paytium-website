@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
 import { PageShell } from "../components/SiteShell";
 import { Arrow } from "../components/Brand";
+
+export const metadata: Metadata = { title: "Paytium | Page introuvable" };
 
 export default function NotFound({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const isEnglish = locale === "en";
