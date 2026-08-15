@@ -124,10 +124,10 @@ test("positions Squad As Service consistently in French and English", async () =
     assert.doesNotMatch(source, /Engineering & Technology/);
   }
   assert.match(shell, /service\.title/);
-  assert.match(servicesFr, /Réduisez vos délais de mise sur le marché/);
-  assert.match(servicesFr, /cycle de vie produit/);
-  assert.match(servicesEn, /Reduce time to market/);
-  assert.match(servicesEn, /full product lifecycle/);
+  assert.match(servicesFr, /Renforcez votre organisation/);
+  assert.match(servicesFr, /centre de services/);
+  assert.match(servicesEn, /Strengthen your organisation/);
+  assert.match(servicesEn, /managed service centres/);
 });
 
 test("uses one ordered service naming system across the site", async () => {
@@ -166,10 +166,39 @@ test("structures the technology stack as complete areas of expertise", async () 
   assert.match(servicesPage, /Stack technologique et/);
   assert.match(servicesPageEn, /Technology stack and/);
   assert.match(servicesPage, /id="expertises"/);
-  assert.match(css, /\.technology-groups\{display:grid;grid-template-columns:repeat\(3/);
+  assert.match(css, /\.technology-groups article\{display:grid;grid-template-columns:\.4fr \.6fr/);
+  assert.doesNotMatch(css, /\.technology-groups\{display:grid;grid-template-columns:repeat\(3/);
   assert.doesNotMatch(shell, /<a href=\{homeHref\}>\{copy\.home\}<\/a>/);
   assert.match(shell, /\{copy\.playground\}/);
   assert.match(shell, /services#expertises/);
+});
+
+test("makes every service concrete and adds a profile-request workflow", async () => {
+  const [servicesFr, servicesEn, modal, servicesPage, servicesPageEn, home, homeEn] = await Promise.all([
+    readFile(new URL("../content/site.ts", import.meta.url), "utf8"),
+    readFile(new URL("../content/site-en.ts", import.meta.url), "utf8"),
+    readFile(new URL("../components/ProfileRequestModal.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/en/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/en/page.tsx", import.meta.url), "utf8"),
+  ]);
+
+  for (const expected of ["Due diligence technologique", "Schéma directeur", "Audit d’architecture", "Benchmark", "TMA corrective", "régie forfaitisée", "Centre de services", "Squads augmentées", "Cellule d’architecture", "usine logicielle industrialisée", "SAST", "OpenShift"]) assert.match(servicesFr, new RegExp(expected));
+  for (const expected of ["Technology due diligence", "master plans", "application maintenance", "service centres", "Augmented multidisciplinary squads", "software-factory implementation"]) assert.match(servicesEn, new RegExp(expected, "i"));
+  assert.match(servicesFr, /Dynatrace/);
+  assert.match(servicesFr, /Elastic Stack \(ELK\)/);
+  assert.match(modal, /contact_name/);
+  assert.match(modal, /contact_email/);
+  assert.match(modal, /profile_\$\{index \+ 1\}_role/);
+  assert.match(modal, /availability_date/);
+  assert.match(modal, /profile_\$\{index \+ 1\}_work_mode/);
+  assert.match(modal, /mission_details/);
+  assert.match(modal, /siteConfig\.contactEndpoint/);
+  assert.match(modal, /Demande de profils — Squad As Service/);
+  assert.match(modal, /Junior.*Confirmé.*Senior.*Expert/);
+  assert.match(modal, /Présentiel.*Hybride.*Remote/);
+  for (const source of [servicesPage, servicesPageEn, home, homeEn]) assert.match(source, /ProfileRequestModal/);
 });
 
 test("keeps the loader animated, accessible and limited to document navigation", async () => {

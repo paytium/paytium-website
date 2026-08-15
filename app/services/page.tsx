@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Breadcrumbs, PageShell } from "../../components/SiteShell";
 import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
+import { ProfileRequestModal } from "../../components/ProfileRequestModal";
 import { services, technologies, workingMethods } from "../../content/site";
 
 const serviceEntries = services.filter((service) => service.id !== "academy");
@@ -29,7 +30,7 @@ export default function ServicesPage() {
     <section className="section service-details">
       {serviceEntries.map((service, index) => <article id={service.id} key={service.id} className="service-detail">
         <div className="service-index"><span>{service.number}</span><small>EXPERTISE</small></div>
-        <div className="service-main"><h2>{service.title}</h2><h3>{service.tagline}</h3><p>{service.description}</p><div className="outcome"><small>RÉSULTATS RECHERCHÉS</small><p>{service.outcomes}</p></div></div>
+        <div className="service-main"><h2>{service.title}</h2><h3>{service.tagline}</h3><p>{service.description}</p><div className="outcome"><small>RÉSULTATS RECHERCHÉS</small><p>{service.outcomes}</p></div>{service.id === "engineering" && <ProfileRequestModal />}</div>
         <div className="capability-list"><small>CAPACITÉS</small>{service.capabilities.map((item, itemIndex) => <div key={item}><span>{String(itemIndex + 1).padStart(2, "0")}</span>{item}</div>)}</div>
         {index < serviceEntries.length - 1 && <hr />}
       </article>)}

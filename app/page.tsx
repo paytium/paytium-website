@@ -6,6 +6,7 @@ import { HomeHero } from "../components/HomeHero";
 import { ContactForm } from "../components/ContactForm";
 import { Arrow, Eyebrow, OrbitMark } from "../components/Brand";
 import { ExpertiseBand, FinalCta, SectionHeading } from "../components/Sections";
+import { ProfileRequestModal } from "../components/ProfileRequestModal";
 import { methods, services, siteConfig } from "../content/site";
 
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ export default function HomePage() {
       <ExpertiseBand />
       <section className="section services-home">
         <SectionHeading eyebrow="NOS SERVICES" title={<>Nous accélérons votre <em>transformation digitale.</em></>} />
-        <div className="service-grid">{homeServices.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}><LuPlus aria-hidden="true" />{item}</li>)}</ul><a href={"href" in service ? service.href : `/services#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
+        <div className="service-grid">{homeServices.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}><LuPlus aria-hidden="true" />{item}</li>)}</ul>{service.id === "engineering" && <ProfileRequestModal variant="card" />}<a href={"href" in service ? service.href : `/services#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
         <a className="button button-primary section-action" href="/services">Voir tous nos services <Arrow /></a>
       </section>
 
