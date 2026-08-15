@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 import { LuChevronDown, LuSend, LuShieldCheck } from "react-icons/lu";
 import { siteConfig } from "../content/site";
-import { isValidPhoneNumber, normalizePhoneNumber } from "../lib/contactValidation";
+import { isValidPhoneNumber, normalizePhoneNumber, sanitizePhoneInput } from "../lib/contactValidation";
 
 export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const [message, setMessage] = useState("");
@@ -60,7 +60,7 @@ export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
       <div className="field-grid">
         <label>{copy.name}<input name="name" autoComplete="name" placeholder={copy.namePlaceholder} minLength={2} maxLength={80} onInput={(event) => event.currentTarget.setCustomValidity("")} required /></label>
         <label>{copy.email}<input name="email" type="email" inputMode="email" autoComplete="email" placeholder="your.name@company.com" maxLength={254} onInput={(event) => event.currentTarget.setCustomValidity("")} required /></label>
-        <label><span className="field-label">{copy.phone} <small>{copy.optional}</small></span><input name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder={copy.phonePlaceholder} minLength={10} maxLength={25} onInput={(event) => event.currentTarget.setCustomValidity("")} /></label>
+        <label><span className="field-label">{copy.phone} <small>{copy.optional}</small></span><input name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder={copy.phonePlaceholder} minLength={10} maxLength={14} pattern="(?:0[0-9]{9}|\+[0-9]{12}|00[0-9]{12})" onInput={(event) => { event.currentTarget.value = sanitizePhoneInput(event.currentTarget.value); event.currentTarget.setCustomValidity(""); }} /></label>
         <label>{copy.company}<input name="company" autoComplete="organization" placeholder={copy.companyPlaceholder} minLength={2} maxLength={120} onInput={(event) => event.currentTarget.setCustomValidity("")} required /></label>
       </div>
       <label>{copy.subject}<span className="contact-select"><select name="subject" required defaultValue=""><option value="" disabled>{copy.choose}</option>{copy.subjects.map((subject) => <option key={subject}>{subject}</option>)}</select><LuChevronDown aria-hidden="true" /></span></label>

@@ -225,7 +225,7 @@ test("makes every service concrete and adds a profile-request workflow", async (
   assert.match(modal, /createPortal\(modal, document\.body\)/);
   assert.match(modal, /minLength=\{2\} maxLength=\{80\}/);
   assert.match(modal, /maxLength=\{254\}/);
-  assert.match(modal, /minLength=\{10\} maxLength=\{25\}/);
+  assert.match(modal, /minLength=\{10\} maxLength=\{14\}/);
   assert.match(modal, /minLength=\{3\} maxLength=\{120\}/);
   assert.match(modal, /minLength=\{20\} maxLength=\{1500\}/);
   assert.match(modal, /generalMessageLength\} \/ 2000/);
@@ -247,7 +247,9 @@ test("validates the requested phone formats and keeps profile mission input stab
   for (const source of [contactForm, modal]) {
     assert.match(source, /normalizePhoneNumber/);
     assert.match(source, /isValidPhoneNumber/);
-    assert.match(source, /minLength=\{10\} maxLength=\{25\}/);
+    assert.match(source, /minLength=\{10\} maxLength=\{14\}/);
+    assert.match(source, /sanitizePhoneInput/);
+    assert.match(source, /pattern="\(\?:0\[0-9\]\{9\}\|\\\+\[0-9\]\{12\}\|00\[0-9\]\{12\}\)"/);
   }
   assert.match(modal, /profilesSection: "Détails des profils recherchés"/);
   assert.match(modal, /profilesSection: "Details of the requested profiles"/);
@@ -255,6 +257,28 @@ test("validates the requested phone formats and keeps profile mission input stab
   assert.doesNotMatch(modal, /\[profile\.id\]: event\.currentTarget\.value\.length/);
   assert.match(css, /\.profile-details-heading/);
   assert.match(css, /\.invoice-visual\{background:#fff\}/);
+});
+
+test("uses the approved Mission and end-to-end approach copy in both languages", async () => {
+  const [fr, en, css] = await Promise.all([
+    render("/").then((response) => response.text()),
+    render("/en").then((response) => response.text()),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+  for (const text of [
+    "Nous transformons vos enjeux métier en produits digitaux et data utiles, performants et conçus pour durer.",
+    "Nous renforçons la sécurité, la fiabilité et la résilience de vos architectures, plateformes et opérations.",
+    "Nous accélérons vos projets grâce à des expertises ciblées, rapidement mobilisables et pleinement intégrées à vos équipes.",
+    "Une maîtrise",
+    "de bout en bout.",
+    "De la définition de la vision à la montée en autonomie de vos équipes",
+    "Nous transmettons nos méthodes et nos savoir-faire",
+  ]) assert.match(fr, new RegExp(text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(en, /End-to-end/);
+  assert.match(en, /We share our methods and know-how/);
+  assert.match(css, /\.approach-section\{background:var\(--pale\)/);
+  assert.match(css, /\.approach-grid article\.reveal-item\.is-visible i/);
+  assert.match(css, /@media\(min-width:1181px\)\{\.mission-pillars\{align-self:start;margin-top:48px\}\}/);
 });
 
 test("orders the services menu and uses market-aware English labels", async () => {

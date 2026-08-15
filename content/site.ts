@@ -71,11 +71,11 @@ export const services = [
 ];
 
 export const methods = [
-  { number: "01", title: "Vision", text: "Nous structurons la transformation autour de vos enjeux métier." },
-  { number: "02", title: "Architecture", text: "Nous transformons la vision en architectures claires et actionnables." },
-  { number: "03", title: "Build", text: "Nous concrétisons les stratégies par des solutions opérationnelles." },
-  { number: "04", title: "Run", text: "Nous sécurisons la performance et la résilience dans la durée." },
-  { number: "05", title: "Transfer", text: "Nous transférons les savoirs pour créer une autonomie durable." },
+  { number: "01", title: "Vision", text: "Nous alignons la transformation sur vos priorités métier et vos objectifs." },
+  { number: "02", title: "Architecture", text: "Nous concevons des architectures robustes, évolutives et adaptées à votre contexte." },
+  { number: "03", title: "Build", text: "Nous développons et déployons des solutions digitales et data concrètes, fiables et performantes." },
+  { number: "04", title: "Run", text: "Nous assurons la disponibilité, la sécurité et l’amélioration continue des solutions en production." },
+  { number: "05", title: "Transfer", text: "Nous transmettons nos méthodes et nos savoir-faire pour renforcer durablement l’autonomie de vos équipes." },
 ];
 
 export const technologies = [

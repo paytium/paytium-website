@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LuCalendarDays, LuChevronDown, LuPlus, LuSend, LuShieldCheck, LuTrash2, LuX } from "react-icons/lu";
 import { siteConfig } from "../content/site";
-import { isValidPhoneNumber, normalizePhoneNumber } from "../lib/contactValidation";
+import { isValidPhoneNumber, normalizePhoneNumber, sanitizePhoneInput } from "../lib/contactValidation";
 
 type Locale = "fr" | "en";
 type ProfileRequest = { id: number; availability: "immediate" | "date" };
@@ -107,7 +107,7 @@ export function ProfileRequestModal({ locale = "fr", variant = "detail" }: { loc
             <div className="field-grid profile-client-grid">
               <label>{copy.name} *<input name="contact_name" autoFocus autoComplete="name" placeholder={copy.namePlaceholder} minLength={2} maxLength={80} onInput={(event) => event.currentTarget.setCustomValidity("")} required /></label>
               <label>{copy.email} *<input name="contact_email" type="email" inputMode="email" autoComplete="email" placeholder={copy.emailPlaceholder} maxLength={254} required /></label>
-              <label><span className="field-label">{copy.phone}<small>{copy.optional}</small></span><input name="contact_phone" type="tel" inputMode="tel" autoComplete="tel" placeholder={copy.phonePlaceholder} minLength={10} maxLength={25} onInput={(event) => event.currentTarget.setCustomValidity("")} /></label>
+              <label><span className="field-label">{copy.phone}<small>{copy.optional}</small></span><input name="contact_phone" type="tel" inputMode="tel" autoComplete="tel" placeholder={copy.phonePlaceholder} minLength={10} maxLength={14} pattern="(?:0[0-9]{9}|\+[0-9]{12}|00[0-9]{12})" onInput={(event) => { event.currentTarget.value = sanitizePhoneInput(event.currentTarget.value); event.currentTarget.setCustomValidity(""); }} /></label>
             </div>
             <div className="profile-form-section-heading profile-details-heading"><div><span>02</span><h3>{copy.profilesSection}</h3></div></div>
             <div className="profile-list">

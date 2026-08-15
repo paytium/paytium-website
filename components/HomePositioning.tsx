@@ -15,9 +15,9 @@ const content = {
     missionTitle: <>Une promesse simple : <em>Build. Secure. Scale.</em></>,
     missionText: "Paytium transforme vos enjeux métier en trajectoires digitales exécutables. De la stratégie à l’exploitation, nous alignons décisions, architecture et delivery avec un engagement constant sur la valeur, la qualité et l’autonomie.",
     missionPillars: [
-      ["01", "Build", "Nous concevons et livrons des produits digitaux et data à fort impact."],
-      ["02", "Secure", "Nous fiabilisons les architectures, les plateformes et les opérations dans la durée."],
-      ["03", "Scale", "Nous renforçons les organisations avec des capacités flexibles et immédiatement opérationnelles."],
+      ["01", "Build", "Nous transformons vos enjeux métier en produits digitaux et data utiles, performants et conçus pour durer."],
+      ["02", "Secure", "Nous renforçons la sécurité, la fiabilité et la résilience de vos architectures, plateformes et opérations."],
+      ["03", "Scale", "Nous accélérons vos projets grâce à des expertises ciblées, rapidement mobilisables et pleinement intégrées à vos équipes."],
     ],
     valueEyebrow: "PROPOSITION DE VALEUR",
     valueTitle: <>Quatre enjeux clients. <em>Une réponse intégrée.</em></>,
@@ -30,8 +30,8 @@ const content = {
     servicesLink: "Explorer nos services",
     expertiseLink: "Découvrir nos expertises",
     approachEyebrow: "NOTRE APPROCHE",
-    approachTitle: <>Une approche <em>end-to-end.</em></>,
-    approachText: "De la vision stratégique à l’amélioration continue des solutions déployées, nous intervenons à chaque étape de la chaîne de valeur.",
+    approachTitle: <>Une maîtrise <em>de bout en bout.</em></>,
+    approachText: "De la définition de la vision à la montée en autonomie de vos équipes, nous couvrons chaque étape du cycle de vie de vos solutions.",
   },
   en: {
     aboutEyebrow: "ABOUT PAYTIUM",
@@ -43,9 +43,9 @@ const content = {
     missionTitle: <>One simple promise: <em>Build. Secure. Scale.</em></>,
     missionText: "Paytium turns business priorities into executable digital roadmaps. From strategy through operations, we align decisions, architecture and delivery with a constant focus on value, quality and client autonomy.",
     missionPillars: [
-      ["01", "Build", "We design and deliver digital and data products that create measurable impact."],
-      ["02", "Secure", "We strengthen architectures, platforms and operations for lasting performance."],
-      ["03", "Scale", "We reinforce delivery organisations with flexible, ready-to-contribute capabilities."],
+      ["01", "Build", "We turn your business priorities into useful, high-performing digital and data products designed to last."],
+      ["02", "Secure", "We strengthen the security, reliability and resilience of your architectures, platforms and operations."],
+      ["03", "Scale", "We accelerate your initiatives with targeted expertise that can be mobilised quickly and fully integrated into your teams."],
     ],
     valueEyebrow: "VALUE PROPOSITION",
     valueTitle: <>Four client priorities. <em>One integrated response.</em></>,
@@ -58,8 +58,8 @@ const content = {
     servicesLink: "Explore our services",
     expertiseLink: "Discover our expertise",
     approachEyebrow: "OUR APPROACH",
-    approachTitle: <>An <em>end-to-end</em> approach.</>,
-    approachText: "From strategic vision to the continuous improvement of live solutions, we support every stage of the value chain.",
+    approachTitle: <><em>End-to-end</em> mastery.</>,
+    approachText: "From defining the vision to building your teams’ autonomy, we cover every stage of your solutions’ lifecycle.",
   },
 };
 

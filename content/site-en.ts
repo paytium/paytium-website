@@ -7,11 +7,11 @@ export const servicesEn = [
 ];
 
 export const methodsEn = [
-  { number: "01", title: "Vision", text: "We structure transformation around your business priorities." },
-  { number: "02", title: "Architecture", text: "We turn the vision into clear, actionable architectures." },
-  { number: "03", title: "Build", text: "We translate strategy into operational solutions." },
-  { number: "04", title: "Run", text: "We secure performance and resilience over time." },
-  { number: "05", title: "Transfer", text: "We transfer knowledge to build lasting autonomy." },
+  { number: "01", title: "Vision", text: "We align transformation with your business priorities and objectives." },
+  { number: "02", title: "Architecture", text: "We design robust, scalable architectures tailored to your context." },
+  { number: "03", title: "Build", text: "We develop and deploy concrete, reliable and high-performing digital and data solutions." },
+  { number: "04", title: "Run", text: "We ensure the availability, security and continuous improvement of live solutions." },
+  { number: "05", title: "Transfer", text: "We share our methods and know-how to strengthen your teams’ long-term autonomy." },
 ];
 
 export const workingMethodsEn = [
