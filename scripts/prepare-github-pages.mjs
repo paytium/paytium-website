@@ -45,8 +45,8 @@ function jsonLd(route) {
     address: { "@type": "PostalAddress", addressLocality: "Casablanca" },
     areaServed: "International",
     knowsAbout: isEnglish
-      ? ["Digital transformation", "IT consulting", "Squad As Service", "Agile product squads", "Data and artificial intelligence", "Cloud and DevOps", "E-invoice", "E-invoicing", "ERP integration"]
-      : ["Transformation digitale", "Conseil IT", "Squad As Service", "Squads produit Agile", "Data et intelligence artificielle", "Cloud et DevOps", "E-facture", "Facturation électronique", "Intégration ERP"],
+      ? ["Digital transformation", "Business & Technology Consulting", "Digital & Data Factory", "Squad As Service", "DevSecOps & Cloud Engineering", "E-invoice", "E-invoicing", "ERP integration"]
+      : ["Transformation digitale", "Business & Technology Consulting", "Digital & Data Factory", "Squad As Service", "DevSecOps & Cloud Engineering", "E-facture", "Facturation électronique", "Intégration ERP"],
   };
   const breadcrumbId = `${absolute(route.path)}#breadcrumb`;
   const webPage = { "@type": "WebPage", "@id": `${absolute(route.path)}#webpage`, url: absolute(route.path), name: route.title, description: route.description, isPartOf: { "@id": `${baseUrl}/#website` }, about: { "@id": `${baseUrl}/#organization` }, inLanguage: isEnglish ? "en-US" : "fr-FR" };
@@ -69,9 +69,7 @@ function jsonLd(route) {
   }
 
   if (route.path.endsWith("/services") || route.path === "/services") {
-    const services = isEnglish
-      ? ["IT consulting and digital strategy", "Digital products, Data and AI", "Squad As Service", "Cloud, DevOps and DevSecOps"]
-      : ["Conseil IT et stratégie digitale", "Produits digitaux, Data et IA", "Squad As Service", "Cloud, DevOps et DevSecOps"];
+    const services = ["Business & Technology Consulting", "Digital & Data Factory", "Squad As Service", "DevSecOps & Cloud Engineering"];
     graph.push({ "@type": "ItemList", name: "Paytium services", itemListElement: services.map((name, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "Service", name, provider: { "@id": `${baseUrl}/#organization` }, areaServed: "International" } })) });
   }
 

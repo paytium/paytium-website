@@ -26,23 +26,23 @@ test("server-renders the Paytium site and its branded page loader", async () => 
   assert.match(html, /src="\/paytium-icon\.svg"/);
   assert.match(html, /Parlons de votre/);
   assert.match(html, /Squad As Service/);
-  assert.match(html, /technologies nécessaires/);
   assert.match(html, /class="expertise-band"/);
   assert.match(html, /UNE EXPERTISE/);
-  assert.ok(html.indexOf('class="expertise-band"') < html.indexOf('class="section tech-section tech-summary"'));
+  assert.ok(html.indexOf('class="expertise-band"') < html.indexOf('class="section services-home"'));
   assert.doesNotMatch(html, /class="tech-preview"/);
+  assert.doesNotMatch(html, /class="section tech-section tech-summary"/);
   assert.doesNotMatch(html, /Engineering &amp; Technology/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
 
-test("localizes the concise technology summary and expertise band", async () => {
+test("localizes and positions the expertise band before services", async () => {
   const response = await render("/en");
   const html = await response.text();
-  assert.match(html, /technologies required to cover every aspect/);
   assert.match(html, /DIGITAL EXPERTISE/);
   assert.match(html, /TO ACCELERATE YOUR TRANSFORMATION/);
-  assert.ok(html.indexOf('class="expertise-band"') < html.indexOf('class="section tech-section tech-summary"'));
+  assert.ok(html.indexOf('class="expertise-band"') < html.indexOf('class="section services-home"'));
   assert.doesNotMatch(html, /class="tech-preview"/);
+  assert.doesNotMatch(html, /class="section tech-section tech-summary"/);
 });
 
 test("removes country labels from every French and English page", async () => {
@@ -119,14 +119,32 @@ test("positions Squad As Service consistently in French and English", async () =
     readFile(new URL("../app/en/services/page.tsx", import.meta.url), "utf8"),
   ]);
 
-  for (const source of [servicesFr, servicesEn, shell, servicesPage, servicesPageEn]) {
+  for (const source of [servicesFr, servicesEn, servicesPage, servicesPageEn]) {
     assert.match(source, /Squad As Service/);
     assert.doesNotMatch(source, /Engineering & Technology/);
   }
+  assert.match(shell, /service\.title/);
   assert.match(servicesFr, /Réduisez vos délais de mise sur le marché/);
   assert.match(servicesFr, /cycle de vie produit/);
   assert.match(servicesEn, /Reduce time to market/);
   assert.match(servicesEn, /full product lifecycle/);
+});
+
+test("uses one ordered service naming system across the site", async () => {
+  const [servicesFr, servicesEn, shell, servicesPage, servicesPageEn, pagesScript] = await Promise.all([
+    readFile(new URL("../content/site.ts", import.meta.url), "utf8"),
+    readFile(new URL("../content/site-en.ts", import.meta.url), "utf8"),
+    readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/en/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../scripts/prepare-github-pages.mjs", import.meta.url), "utf8"),
+  ]);
+  const orderedNames = /Business & Technology Consulting[\s\S]*Digital & Data Factory[\s\S]*Squad As Service[\s\S]*DevSecOps & Cloud Engineering/;
+  for (const source of [servicesFr, servicesEn, servicesPage, servicesPageEn]) assert.match(source, orderedNames);
+  assert.match(pagesScript, /const services = \["Business & Technology Consulting", "Digital & Data Factory", "Squad As Service", "DevSecOps & Cloud Engineering"\]/);
+  assert.match(shell, /service\.title/);
+  assert.doesNotMatch(servicesPage, /seo-service-intro/);
+  assert.doesNotMatch(servicesPageEn, /seo-service-intro/);
 });
 
 test("keeps the loader animated, accessible and limited to document navigation", async () => {

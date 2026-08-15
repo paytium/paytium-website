@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const quickLinks = [
-  ["Facturation électronique", "/e-invoicing", "01"], ["Conseil & stratégie", "/services#consulting", "02"], ["Digital, Data & IA", "/services#digital-data", "03"], ["Paytium Academy", "/academy", "04"], ["Parler de votre projet", "/#contact", "05"],
+  ["Facturation électronique", "/e-invoicing", "01"], ["Business & Technology Consulting", "/services#consulting", "02"], ["Digital & Data Factory", "/services#digital-data", "03"], ["Paytium Academy", "/academy", "04"], ["Parler de votre projet", "/#contact", "05"],
 ];
 const homeServices = services.filter((service) => service.id !== "academy");
 
@@ -39,6 +39,7 @@ export default function HomePage() {
         <div className="values-row">{[["Clarté", "Rendre les choix, les priorités et les résultats compréhensibles."], ["Engagement", "Travailler avec vos équipes et avancer avec transparence."], ["Excellence", "Privilégier qualité, sécurité, maintenabilité et progrès continu."]].map(([title,text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
 
+      <ExpertiseBand />
       <section className="section services-home">
         <SectionHeading eyebrow="NOS SERVICES" title={<>Nous accélérons votre <em>transformation digitale.</em></>} />
         <div className="service-grid">{homeServices.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}><LuPlus aria-hidden="true" />{item}</li>)}</ul><a href={"href" in service ? service.href : `/services#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
@@ -53,12 +54,6 @@ export default function HomePage() {
       <section className="section method-section" id="methode">
         <SectionHeading eyebrow="UNE MÉTHODE DE BOUT EN BOUT" title={<>Avancer vite, sans perdre <em>la maîtrise.</em></>} text="Notre méthode combine Product Thinking, Agile, DevSecOps et amélioration continue. Elle s’adapte au niveau de maturité et aux contraintes de chaque organisation." />
         <div className="method-timeline">{methods.map((method) => <article key={method.number}><span>{method.number}</span><h3>{method.title}</h3><p>{method.text}</p><small>{method.deliverables}</small></article>)}</div>
-      </section>
-
-      <ExpertiseBand />
-      <section className="section tech-section tech-summary">
-        <SectionHeading eyebrow="TECHNOLOGIES" title={<>Toute la technologie nécessaire, <em>au service de votre transformation.</em></>} text="Du produit à la data, de l’IA au cloud et au DevOps, nous maîtrisons les technologies nécessaires pour couvrir tous les aspects de votre transformation digitale et composons la stack adaptée à vos objectifs." />
-        <a className="text-link" href="/services#technologies">Explorer notre stack technologique <Arrow /></a>
       </section>
 
       <FinalCta />
