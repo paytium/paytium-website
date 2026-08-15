@@ -123,6 +123,7 @@ test("restructures the homepage around mission, value proposition and approach",
     assert.match(html, /class="mission-panel"/);
     assert.match(html, /Build\. Secure\. Scale\./);
     assert.match(html, /class="section value-proposition"/);
+    assert.doesNotMatch(html, /value-proposition-head/);
     assert.match(html, /Business &amp; Technology Consulting/);
     assert.match(html, /class="section approach-section"/);
     assert.match(html, /Vision[\s\S]*Architecture[\s\S]*Build[\s\S]*Run[\s\S]*Transfer/);
@@ -224,13 +225,36 @@ test("makes every service concrete and adds a profile-request workflow", async (
   assert.match(modal, /createPortal\(modal, document\.body\)/);
   assert.match(modal, /minLength=\{2\} maxLength=\{80\}/);
   assert.match(modal, /maxLength=\{254\}/);
-  assert.match(modal, /minLength=\{7\} maxLength=\{25\}/);
+  assert.match(modal, /minLength=\{10\} maxLength=\{25\}/);
   assert.match(modal, /minLength=\{3\} maxLength=\{120\}/);
   assert.match(modal, /minLength=\{20\} maxLength=\{1500\}/);
   assert.match(modal, /generalMessageLength\} \/ 2000/);
   assert.match(modal, /Junior.*Confirmé.*Senior.*Expert/);
   assert.match(modal, /Présentiel.*Hybride.*Remote/);
   for (const source of [servicesPage, servicesPageEn, home, homeEn]) assert.match(source, /ProfileRequestModal/);
+});
+
+test("validates the requested phone formats and keeps profile mission input stable", async () => {
+  const [validation, contactForm, modal, css] = await Promise.all([
+    readFile(new URL("../lib/contactValidation.ts", import.meta.url), "utf8"),
+    readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/ProfileRequestModal.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+  assert.ok(validation.includes("0\\d{9}"));
+  assert.ok(validation.includes("\\+\\d{12}"));
+  assert.ok(validation.includes("00\\d{12}"));
+  for (const source of [contactForm, modal]) {
+    assert.match(source, /normalizePhoneNumber/);
+    assert.match(source, /isValidPhoneNumber/);
+    assert.match(source, /minLength=\{10\} maxLength=\{25\}/);
+  }
+  assert.match(modal, /profilesSection: "Détails des profils recherchés"/);
+  assert.match(modal, /profilesSection: "Details of the requested profiles"/);
+  assert.match(modal, /const length = event\.currentTarget\.value\.length/);
+  assert.doesNotMatch(modal, /\[profile\.id\]: event\.currentTarget\.value\.length/);
+  assert.match(css, /\.profile-details-heading/);
+  assert.match(css, /\.invoice-visual\{background:#fff\}/);
 });
 
 test("orders the services menu and uses market-aware English labels", async () => {

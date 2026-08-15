@@ -21,7 +21,6 @@ const content = {
     ],
     valueEyebrow: "PROPOSITION DE VALEUR",
     valueTitle: <>Quatre enjeux clients. <em>Une réponse intégrée.</em></>,
-    valueColumns: ["N°", "PILIER", "ENJEU CLIENT", "NOTRE RÉPONSE"],
     propositions: [
       { number: "01", pillar: "Cadrer", challenge: "Les décisions et investissements technologiques", answer: "Business & Technology Consulting", detail: "Audit SI, due diligence, architecture et roadmaps", href: "/services#consulting" },
       { number: "02", pillar: "Construire", challenge: "Les produits, les données et les intégrations", answer: "Digital & Data Factory", detail: "Product delivery, Data & IA, APIs et TMA", href: "/services#digital-data" },
@@ -50,7 +49,6 @@ const content = {
     ],
     valueEyebrow: "VALUE PROPOSITION",
     valueTitle: <>Four client priorities. <em>One integrated response.</em></>,
-    valueColumns: ["NO.", "PILLAR", "CLIENT PRIORITY", "OUR RESPONSE"],
     propositions: [
       { number: "01", pillar: "Frame", challenge: "Technology decisions and investment priorities", answer: "Business & Technology Consulting", detail: "IT assessment, due diligence, architecture and roadmaps", href: "/en/services#consulting" },
       { number: "02", pillar: "Build", challenge: "Digital products, data and integration", answer: "Digital & Data Factory", detail: "Product delivery, Data & AI, APIs and application support", href: "/en/services#digital-data" },
@@ -85,7 +83,6 @@ export function HomePositioning({ locale = "fr" }: { locale?: Locale }) {
       <Eyebrow>{copy.valueEyebrow}</Eyebrow>
       <h2>{copy.valueTitle}</h2>
       <div className="value-proposition-table">
-        <div className="value-proposition-head" aria-hidden="true">{copy.valueColumns.map((label) => <span key={label}>{label}</span>)}</div>
         {copy.propositions.map((item) => <article className="value-proposition-row" key={item.number}>
           <span>{item.number}</span><h3>{item.pillar}</h3><p>{item.challenge}</p>
           <a href={item.href}><span><b>{item.answer}</b><small>{item.detail}</small></span><Arrow /></a>
