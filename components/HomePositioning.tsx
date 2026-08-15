@@ -40,7 +40,7 @@ const content = {
     disciplines: ["Consulting", "Design", "Squads", "Operate"],
     values: [["Clarity", "Make choices, priorities and outcomes understandable."], ["Commitment", "Work alongside your teams and move forward transparently."], ["Excellence", "Prioritise quality, security, maintainability and continuous improvement."]],
     missionEyebrow: "MISSION",
-    missionTitle: <>One simple promise: <em>Build. Secure. Scale.</em></>,
+    missionTitle: <>One simple promise : <em>Build. Secure. Scale.</em></>,
     missionText: "Paytium turns business priorities into executable digital roadmaps. From strategy through operations, we align decisions, architecture and delivery with a constant focus on value, quality and client autonomy.",
     missionPillars: [
       ["01", "Build", "We turn your business priorities into useful, high-performing digital and data products designed to last."],
@@ -69,7 +69,7 @@ export function HomePositioning({ locale = "fr" }: { locale?: Locale }) {
   const prefix = locale === "en" ? "/en" : "";
 
   return <>
-    <section className="section about-section home-about" id="a-propos">
+    <section className="section about-section home-about" id="about">
       <div className="about-copy"><Eyebrow>{copy.aboutEyebrow}</Eyebrow><h2>{copy.aboutTitle}</h2><p>{copy.aboutText}</p></div>
       <div className="about-visual"><OrbitMark /><div className="discipline-stack">{copy.disciplines.map((item) => <span key={item}>{item}</span>)}</div></div>
       <div className="values-row">{copy.values.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
@@ -79,7 +79,7 @@ export function HomePositioning({ locale = "fr" }: { locale?: Locale }) {
       </div>
     </section>
 
-    <section className="section value-proposition" id="proposition-valeur">
+    <section className="section value-proposition" id="value-proposition">
       <Eyebrow>{copy.valueEyebrow}</Eyebrow>
       <h2>{copy.valueTitle}</h2>
       <div className="value-proposition-table">
@@ -88,11 +88,11 @@ export function HomePositioning({ locale = "fr" }: { locale?: Locale }) {
           <a href={item.href}><span><b>{item.answer}</b><small>{item.detail}</small></span><Arrow /></a>
         </article>)}
       </div>
-      <div className="value-proposition-actions"><a className="button button-primary" href={`${prefix}/services`}>{copy.servicesLink} <Arrow /></a><a className="button button-secondary" href={`${prefix}/services#expertises`}>{copy.expertiseLink} <Arrow /></a></div>
+      <div className="value-proposition-actions"><a className="button button-primary" href={`${prefix}/services`}>{copy.servicesLink} <Arrow /></a><a className="button button-secondary" href={`${prefix}/services#expertise`}>{copy.expertiseLink} <Arrow /></a></div>
     </section>
 
-    <section className="section approach-section" id="methode">
-      <span className="section-anchor" id="approche" aria-hidden="true" />
+    <section className="section approach-section" id="method">
+      <span className="section-anchor" id="approach" aria-hidden="true" />
       <div className="approach-heading"><Eyebrow>{copy.approachEyebrow}</Eyebrow><h2>{copy.approachTitle}</h2><p>{copy.approachText}</p></div>
       <div className="approach-grid">{approach.map((step) => <article key={step.number}><span>{step.number}</span><i aria-hidden="true" /><h3>{step.title}</h3><p>{step.text}</p></article>)}</div>
     </section>

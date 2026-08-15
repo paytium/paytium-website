@@ -31,7 +31,7 @@ export default function ElectronicInvoicingPage() {
       <div><p>La transition vers la facturation électronique implique la Direction Générale des Impôts (DGI), mais aussi les équipes finance, fiscalité, achats, ventes et IT. Paytium aide à cartographier les flux, fiabiliser les données et préparer les adaptations ERP et comptables.</p><p>Le dispositif est conçu pour rester adaptable aux textes, calendriers et spécifications officiellement publiés. Paytium ne se substitue pas au conseil fiscal : chaque décision de conformité est validée avec les fonctions compétentes et les référentiels officiels.</p><a className="text-link" href="https://www.finances.gov.ma/fr/Ministere/Pages/dgi.aspx" target="_blank" rel="noreferrer">Consulter la présentation officielle de la DGI <LuArrowRight aria-hidden="true" /></a></div>
     </section>
 
-    <section className="section einvoice-terms" id="e-facture">
+    <section className="section einvoice-terms" id="e-invoice">
       <SectionHeading eyebrow="E-FACTURE, E-INVOICE & E-INVOICING" title={<>Un même projet, <em>plusieurs enjeux métier et techniques.</em></>} text="Que vos équipes parlent d’e-facture, d’e-invoice, d’e-invoicing ou de facturation électronique DGI, l’objectif est le même : rendre les flux fiables, interopérables et exploitables sans fragiliser les opérations." />
       <div className="einvoice-term-grid">{terminology.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
       <p className="intent-note"><strong>Besoin d’un intégrateur de facturation électronique ?</strong> Paytium vous accompagne du diagnostic à l’intégration ERP/API, puis au déploiement et à l’amélioration continue.</p>

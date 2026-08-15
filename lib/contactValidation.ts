@@ -1,4 +1,4 @@
-const phonePattern = /^(?:0\d{9}|\+\d{12}|00\d{12})$/;
+const phonePattern = /^(?:0\d{9}|\+\d{10,12}|00\d{10,12})$/;
 
 export function sanitizePhoneInput(value: string) {
   const trimmed = value.trim();

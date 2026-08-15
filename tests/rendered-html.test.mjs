@@ -133,7 +133,44 @@ test("restructures the homepage around mission, value proposition and approach",
   }
   const source = await readFile(new URL("../components/HomePositioning.tsx", import.meta.url), "utf8");
   assert.match(source, /services#consulting/);
-  assert.match(source, /services#expertises/);
+  assert.match(source, /services#expertise/);
+});
+
+test("uses English URL anchors across both locales and preserves legacy hash migration", async () => {
+  for (const route of ["/", "/en"]) {
+    const response = await render(route);
+    const html = await response.text();
+    assert.match(html, /id="about"/);
+    assert.match(html, /id="value-proposition"/);
+    assert.match(html, /id="method"/);
+    assert.match(html, /id="approach"/);
+    assert.match(html, /href="(?:\/en)?\/#about"/);
+    assert.doesNotMatch(html, /id="(?:a-propos|proposition-valeur|methode|approche)"/);
+  }
+
+  for (const route of ["/services", "/en/services"]) {
+    const response = await render(route);
+    const html = await response.text();
+    assert.match(html, /id="methods"/);
+    assert.match(html, /id="expertise"/);
+    assert.doesNotMatch(html, /id="(?:methodes|expertises)"/);
+  }
+
+  for (const route of ["/academy", "/en/academy"]) {
+    const response = await render(route);
+    const html = await response.text();
+    assert.match(html, /id="catalog"/);
+    assert.doesNotMatch(html, /id="catalogue"/);
+  }
+
+  const [positioning, shell] = await Promise.all([
+    readFile(new URL("../components/HomePositioning.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(positioning, /One simple promise :/);
+  assert.match(shell, /"a-propos": "about"/);
+  assert.match(shell, /methodes: "methods"/);
+  assert.match(shell, /catalogue: "catalog"/);
 });
 
 test("positions Squad As Service consistently in French and English", async () => {
@@ -191,12 +228,12 @@ test("structures the technology stack as complete areas of expertise", async () 
   assert.match(servicesPage, /NOS EXPERTISES/);
   assert.match(servicesPage, /Stack technologique et/);
   assert.match(servicesPageEn, /Technology stack and/);
-  assert.match(servicesPage, /id="expertises"/);
+  assert.match(servicesPage, /id="expertise"/);
   assert.match(css, /\.technology-groups article\{display:grid;grid-template-columns:\.4fr \.6fr/);
   assert.doesNotMatch(css, /\.technology-groups\{display:grid;grid-template-columns:repeat\(3/);
   assert.doesNotMatch(shell, /<a href=\{homeHref\}>\{copy\.home\}<\/a>/);
   assert.match(shell, /\{copy\.playground\}/);
-  assert.match(shell, /services#expertises/);
+  assert.match(shell, /services#expertise/);
 });
 
 test("makes every service concrete and adds a profile-request workflow", async () => {
@@ -242,14 +279,14 @@ test("validates the requested phone formats and keeps profile mission input stab
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
   assert.ok(validation.includes("0\\d{9}"));
-  assert.ok(validation.includes("\\+\\d{12}"));
-  assert.ok(validation.includes("00\\d{12}"));
+  assert.ok(validation.includes("\\+\\d{10,12}"));
+  assert.ok(validation.includes("00\\d{10,12}"));
   for (const source of [contactForm, modal]) {
     assert.match(source, /normalizePhoneNumber/);
     assert.match(source, /isValidPhoneNumber/);
     assert.match(source, /minLength=\{10\} maxLength=\{14\}/);
     assert.match(source, /sanitizePhoneInput/);
-    assert.match(source, /pattern="\(\?:0\[0-9\]\{9\}\|\\\+\[0-9\]\{12\}\|00\[0-9\]\{12\}\)"/);
+    assert.match(source, /pattern="\(\?:0\[0-9\]\{9\}\|\\\+\[0-9\]\{10,12\}\|00\[0-9\]\{10,12\}\)"/);
   }
   assert.match(modal, /profilesSection: "Détails des profils recherchés"/);
   assert.match(modal, /profilesSection: "Details of the requested profiles"/);
