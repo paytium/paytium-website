@@ -78,18 +78,20 @@ export const methods = [
 ];
 
 export const technologies = [
-  { title: "Backend", items: ["Java", "Jakarta EE", "Spring", "Node.js", "Express", "NestJS"] },
-  { title: "Frontend & Desktop", items: ["React", "Angular", "Gatsby", "Tailwind CSS", "Electron", "Next.js", "Remix", "Webpack"] },
-  { title: "Mobile", items: ["React Native", "Android", "Swift iOS"] },
-  { title: "UI / UX", items: ["Figma", "Balsamiq", "InVision", "Marvel", "Adobe Photoshop", "Adobe Illustrator"] },
-  { title: "Data & Analytics", items: ["Hadoop", "Spark", "Python", "Kafka", "Airflow", "Cassandra", "Flask", "Dash"] },
-  { title: "DevOps", items: ["Jenkins", "GitLab CI", "CircleCI", "Ansible", "Terraform", "Docker", "Puppet", "Chef"] },
-  { title: "Testing", items: ["Xray", "Jest", "JUnit", "Mockito", "Selenium", "TestFairy"] },
-  { title: "Bases de données", items: ["PostgreSQL", "Oracle", "MySQL", "SQL Server", "MongoDB", "Redis", "SQLite", "Elasticsearch"] },
-  { title: "Cloud & Intégrations", items: ["AWS", "Microsoft Azure", "Google Cloud", "Heroku", "Kubernetes"] },
-  { title: "Produit & Agilité", items: ["Lean Startup", "Product framing", "Product design", "Design Thinking", "Scrum", "Scaled Agile"] },
-  { title: "API Gateway", items: ["Kong", "Apigee", "WSO2", "Amazon API Gateway", "Spring Cloud Gateway"] },
-  { title: "Outils & Plateforme", items: ["Jira", "Confluence", "GitLab", "Bitbucket", "RabbitMQ", "MinIO", "Zabbix", "Nexus", "SonarQube"] },
+  { title: "Ingénierie logicielle", items: ["React", "Angular", "Vue.js", "Gatsby", "Next.js", "Remix", "Tailwind CSS", "Webpack", "Electron", "Java", "Jakarta EE", "Spring", "PHP", "Python", "Node.js", "Express", "NestJS", "Swift / iOS", "Android", "Flutter", "React Native"] },
+  { title: "Data & IA", items: ["Data Engineering", "Machine Learning", "GenAI", "NLP", "Computer Vision", "RPA", "Hadoop", "Spark", "Airflow", "Python", "Flask", "Dash"] },
+  { title: "Cloud & Platform Engineering", items: ["Cloud Architecture", "AWS", "Microsoft Azure", "Google Cloud", "OpenShift", "Kubernetes", "Docker", "Heroku"] },
+  { title: "DevSecOps", items: ["CI/CD", "Jenkins", "GitLab CI", "GitHub Actions", "CircleCI", "GitLab", "GitHub", "Bitbucket", "SonarQube", "Nexus Repository", "AWX", "Ansible", "Terraform", "Puppet", "Chef"] },
+  { title: "API Management & Intégration", items: ["API Design", "Azure API Management (APIM)", "Kong", "Apigee", "WSO2", "Amazon API Gateway", "Spring Cloud Gateway"] },
+  { title: "Cybersécurité", items: ["Security Architecture", "Audit & Compliance", "SOC", "IAM", "Secrets Management", "Application Security"] },
+  { title: "Monitoring & Observabilité", items: ["Zabbix", "Prometheus", "Grafana", "OpenTelemetry", "Elastic Observability"] },
+  { title: "Collaboration", items: ["Miro", "Slack", "Microsoft Teams", "Notion"] },
+  { title: "GED & Stockage objet", items: ["MinIO", "Alfresco"] },
+  { title: "Brokers & Messaging", items: ["Kafka", "RabbitMQ"] },
+  { title: "Bases de données", items: ["PostgreSQL", "Oracle", "MySQL", "SQL Server", "MongoDB", "Redis", "SQLite", "Cassandra", "Elasticsearch"] },
+  { title: "Tests & Qualité", items: ["Xray", "Jest", "JUnit", "Mockito", "Selenium", "TestFairy", "QA Automation"] },
+  { title: "UX & Product Design", items: ["UX/UI", "Product Design", "Digital Experience", "Figma", "Balsamiq", "InVision", "Marvel", "Adobe Photoshop", "Adobe Illustrator"] },
+  { title: "Business & Delivery", items: ["AMOA", "Business Analysis", "Product framing", "Product Owner", "PMO", "Scrum", "Scrum Master", "Coach Agile", "QA", "Lean Startup", "Design Thinking", "Scaled Agile"] },
 ];
 
 export const workingMethods = [

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return <PageShell translationHref="/en/services">
-    <Breadcrumbs items={[{ label: "Services", href: "/services" }]} sections={{ consulting: "Business & Technology Consulting", "digital-data": "Digital & Data Factory", engineering: "Squad As Service", "cloud-devops": "DevSecOps & Cloud Engineering", methodes: "Méthodes de travail", technologies: "Technologies" }} />
+    <Breadcrumbs items={[{ label: "Services", href: "/services" }]} sections={{ consulting: "Business & Technology Consulting", "digital-data": "Digital & Data Factory", engineering: "Squad As Service", "cloud-devops": "DevSecOps & Cloud Engineering", methodes: "Méthodes de travail", expertises: "Nos expertises", technologies: "Nos expertises" }} />
     <PageHero eyebrow="EXPERTISES PAYTIUM" title={<>De la vision à l’exploitation, une expertise <em>de bout en bout.</em></>} text="Paytium mobilise conseil, produit, Squad As Service, data et cloud pour concevoir des transformations cohérentes et les faire vivre dans la durée." primary={["Parler de votre projet", "/#contact"]} secondary={["Voir nos méthodes", "#methodes"]}>
       <div className="expertise-visual"><span>Conseil</span><span>Produit</span><span>Squads</span><span>Cloud</span><i /></div>
     </PageHero>
@@ -40,8 +40,9 @@ export default function ServicesPage() {
       <div className="method-matrix">{workingMethods.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
     </section>
 
-    <section className="section technology-library" id="technologies">
-      <SectionHeading eyebrow="STACK TECHNOLOGIQUE" title={<>Un écosystème moderne, ouvert <em>et composable.</em></>} text="La stack est sélectionnée selon les besoins, les standards du client et les contraintes d’exploitation. L’objectif n’est pas d’imposer un outil, mais de construire une solution cohérente, sécurisée et maintenable." />
+    <section className="section technology-library" id="expertises">
+      <span className="section-anchor" id="technologies" aria-hidden="true" />
+      <SectionHeading eyebrow="NOS EXPERTISES" title={<>Stack technologique et <em>domaines de maîtrise.</em></>} text="Nos expertises couvrent l’ensemble de la chaîne de valeur digitale : conseil, software engineering, Data & IA, Cloud, DevSecOps, cybersécurité, intégration et delivery produit. Nous composons chaque stack selon votre contexte, vos standards et vos contraintes d’exploitation." />
       <div className="technology-groups">{technologies.map((group, index) => <article key={group.title}><div><span>{String(index + 1).padStart(2, "0")}</span><h3>{group.title}</h3></div><ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}</div>
       <p className="responsible-note">Les technologies et services sont retenus après cadrage. Leur présence ici ne constitue pas une revendication de partenariat ou de certification éditeur.</p>
     </section>

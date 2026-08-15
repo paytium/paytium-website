@@ -11,8 +11,8 @@ type Locale = "fr" | "en";
 type BreadcrumbItem = { label: string; href: string };
 
 const shellCopy = {
-  fr: { skip: "Aller au contenu", home: "Accueil", about: "À propos", services: "Services", invoice: "Facturation électronique", method: "Méthode", technologies: "Technologies", academy: "Academy", contact: "Contact", talk: "Parler à un expert", open: "Ouvrir le menu", close: "Fermer le menu", nav: "Navigation principale", top: "Haut", footer: "Paytium transforme les enjeux métiers en solutions numériques utiles, fiables et évolutives.", company: "Entreprise", resources: "Ressources", legal: "Mentions légales", privacy: "Confidentialité", signature: "La technologie au service de transformations maîtrisées." },
-  en: { skip: "Skip to content", home: "Home", about: "About", services: "Services", invoice: "E-invoicing", method: "Method", technologies: "Technologies", academy: "Academy", contact: "Contact", talk: "Talk to an expert", open: "Open menu", close: "Close menu", nav: "Main navigation", top: "Top", footer: "Paytium turns business challenges into useful, reliable and scalable digital solutions.", company: "Company", resources: "Resources", legal: "Legal notice", privacy: "Privacy", signature: "Technology for controlled, lasting transformations." },
+  fr: { skip: "Aller au contenu", home: "Accueil", about: "À propos", services: "Services", playground: "Notre terrain de jeu", invoice: "Facturation électronique", method: "Méthode", technologies: "Expertises", academy: "Academy", contact: "Contact", talk: "Parler à un expert", open: "Ouvrir le menu", close: "Fermer le menu", nav: "Navigation principale", top: "Haut", footer: "Paytium transforme les enjeux métiers en solutions numériques utiles, fiables et évolutives.", company: "Entreprise", resources: "Ressources", legal: "Mentions légales", privacy: "Confidentialité", signature: "La technologie au service de transformations maîtrisées." },
+  en: { skip: "Skip to content", home: "Home", about: "About", services: "Services", playground: "Our playground", invoice: "E-invoicing", method: "Method", technologies: "Expertise", academy: "Academy", contact: "Contact", talk: "Talk to an expert", open: "Open menu", close: "Close menu", nav: "Main navigation", top: "Top", footer: "Paytium turns business challenges into useful, reliable and scalable digital solutions.", company: "Company", resources: "Resources", legal: "Legal notice", privacy: "Privacy", signature: "Technology for controlled, lasting transformations." },
 };
 
 export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?: Locale; translationHref?: string }) {
@@ -21,7 +21,6 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
   const copy = shellCopy[locale];
   const prefix = locale === "en" ? "/en" : "";
   const homeHref = locale === "en" ? "/en/" : "/";
-  const navigationServices = locale === "en" ? servicesEn : services;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -43,12 +42,12 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="top">
         <a className="brand" href={homeHref} aria-label={`Paytium — ${copy.home}`}><Brand /></a>
         <nav className="desktop-nav" aria-label={copy.nav}>
-          <a href={homeHref}>{copy.home}</a>
           <a href={`${prefix}/#a-propos`}>{copy.about}</a>
           <div className="nav-group">
             <a href={`${prefix}/services`}>{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></a>
             <div className="submenu">
-              {navigationServices.filter((service) => service.id !== "academy").map((service) => <a key={service.id} href={`${prefix}/services#${service.id}`}>{service.short}</a>)}
+              <a href={`${prefix}/services`}>{copy.playground}</a>
+              <a href={`${prefix}/services#expertises`}>{copy.technologies}</a>
             </div>
           </div>
           <a href={`${prefix}/academy`}>{copy.academy}</a>
@@ -67,8 +66,9 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
       <aside className={`mobile-drawer ${open ? "open" : ""}`} id="mobile-menu" aria-hidden={!open}>
         <div className="drawer-top"><Brand /><button type="button" onClick={() => setOpen(false)} aria-label={copy.close}><LuX aria-hidden="true" /></button></div>
         <nav aria-label={copy.nav}>
-          <a href={homeHref} onClick={() => setOpen(false)}>{copy.home}</a><a href={`${prefix}/#a-propos`} onClick={() => setOpen(false)}>{copy.about}</a><a href={`${prefix}/services`} onClick={() => setOpen(false)}>{copy.services}</a>
-          {navigationServices.filter((service) => service.id !== "academy").map((service) => <a className="drawer-sub" key={service.id} href={`${prefix}/services#${service.id}`} onClick={() => setOpen(false)}>{service.short}</a>)}
+          <a href={`${prefix}/#a-propos`} onClick={() => setOpen(false)}>{copy.about}</a><span className="drawer-menu-label">{copy.services}</span>
+          <a className="drawer-sub" href={`${prefix}/services`} onClick={() => setOpen(false)}>{copy.playground}</a>
+          <a className="drawer-sub" href={`${prefix}/services#expertises`} onClick={() => setOpen(false)}>{copy.technologies}</a>
           <a href={`${prefix}/academy`} onClick={() => setOpen(false)}>{copy.academy}</a><a href={`${prefix}/e-invoicing`} onClick={() => setOpen(false)}>{copy.invoice}</a>
         </nav>
         <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
@@ -91,7 +91,7 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
       <div className="footer-intro"><a className="brand" href={homeHref}><Brand /></a><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><FaLinkedinIn className="linkedin-icon" aria-hidden="true" /></a>}</div>
       <div><h3>{copy.services}</h3>{(locale === "en" ? servicesEn : services).filter((service) => service.id !== "academy").map((service) => <a key={service.id} href={`${prefix}/services#${service.id}`}>{service.title}</a>)}</div>
       <div><h3>{copy.company}</h3><a href={`${prefix}/#a-propos`}>{copy.about}</a><a href={`${prefix}/#methode`}>{copy.method}</a><a href={`${prefix}/#contact`}>{copy.contact}</a></div>
-      <div><h3>{copy.resources}</h3><a href={`${prefix}/academy`}>Paytium Academy</a><a href={`${prefix}/e-invoicing`}>{copy.invoice}</a><a href={`${prefix}/services#technologies`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
+      <div><h3>{copy.resources}</h3><a href={`${prefix}/academy`}>Paytium Academy</a><a href={`${prefix}/e-invoicing`}>{copy.invoice}</a><a href={`${prefix}/services#expertises`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
       <div className="footer-bottom"><span>© 2026 {siteConfig.legalCompanyName}</span><span>{copy.signature}</span></div>
     </footer>
   );

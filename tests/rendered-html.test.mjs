@@ -147,6 +147,31 @@ test("uses one ordered service naming system across the site", async () => {
   assert.doesNotMatch(servicesPageEn, /seo-service-intro/);
 });
 
+test("structures the technology stack as complete areas of expertise", async () => {
+  const [content, shell, servicesPage, servicesPageEn, css] = await Promise.all([
+    readFile(new URL("../content/site.ts", import.meta.url), "utf8"),
+    readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/en/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  for (const expected of ["Ingénierie logicielle", "Data & IA", "Cloud & Platform Engineering", "DevSecOps", "API Management & Intégration", "Cybersécurité", "Monitoring & Observabilité", "Collaboration", "GED & Stockage objet", "Brokers & Messaging", "Tests & Qualité", "Business & Delivery"]) {
+    assert.match(content, new RegExp(expected.replace(/[&]/g, "\\&")));
+  }
+  for (const expected of ["OpenShift", "APIM", "SonarQube", "Nexus Repository", "AWX", "MinIO", "Alfresco", "Kafka", "RabbitMQ", "GitLab", "GitHub", "Bitbucket"]) assert.match(content, new RegExp(expected));
+  assert.doesNotMatch(content, /Jira|Confluence/);
+  assert.doesNotMatch(content, /title: "DevOps"/);
+  assert.match(servicesPage, /NOS EXPERTISES/);
+  assert.match(servicesPage, /Stack technologique et/);
+  assert.match(servicesPageEn, /Technology stack and/);
+  assert.match(servicesPage, /id="expertises"/);
+  assert.match(css, /\.technology-groups\{display:grid;grid-template-columns:repeat\(3/);
+  assert.doesNotMatch(shell, /<a href=\{homeHref\}>\{copy\.home\}<\/a>/);
+  assert.match(shell, /\{copy\.playground\}/);
+  assert.match(shell, /services#expertises/);
+});
+
 test("keeps the loader animated, accessible and limited to document navigation", async () => {
   const [loader, css, layout, notFound, pagesEntry] = await Promise.all([
     readFile(new URL("../components/PageLoader.tsx", import.meta.url), "utf8"),
