@@ -126,8 +126,8 @@ test("positions Squad As Service consistently in French and English", async () =
   assert.match(shell, /service\.title/);
   assert.match(servicesFr, /Renforcez votre organisation/);
   assert.match(servicesFr, /centre de services/);
-  assert.match(servicesEn, /Strengthen your organisation/);
-  assert.match(servicesEn, /managed service centres/);
+  assert.match(servicesEn, /Scale your delivery capacity/);
+  assert.match(servicesEn, /managed delivery centres/);
 });
 
 test("uses one ordered service naming system across the site", async () => {
@@ -185,7 +185,7 @@ test("makes every service concrete and adds a profile-request workflow", async (
   ]);
 
   for (const expected of ["Due diligence technologique", "Schéma directeur", "Audit d’architecture", "Benchmark", "TMA corrective", "régie forfaitisée", "Centre de services", "Squads augmentées", "Cellule d’architecture", "usine logicielle industrialisée", "SAST", "OpenShift"]) assert.match(servicesFr, new RegExp(expected));
-  for (const expected of ["Technology due diligence", "master plans", "application maintenance", "service centres", "Augmented multidisciplinary squads", "software-factory implementation"]) assert.match(servicesEn, new RegExp(expected, "i"));
+  for (const expected of ["Technology due diligence", "master plans", "application support", "delivery centres", "Augmented multidisciplinary squads", "delivery-platform implementation"]) assert.match(servicesEn, new RegExp(expected, "i"));
   assert.match(servicesFr, /Dynatrace/);
   assert.match(servicesFr, /Elastic Stack \(ELK\)/);
   assert.match(modal, /contact_name/);
@@ -196,9 +196,33 @@ test("makes every service concrete and adds a profile-request workflow", async (
   assert.match(modal, /mission_details/);
   assert.match(modal, /siteConfig\.contactEndpoint/);
   assert.match(modal, /Demande de profils — Squad As Service/);
+  assert.match(modal, /createPortal\(modal, document\.body\)/);
+  assert.match(modal, /minLength=\{2\} maxLength=\{80\}/);
+  assert.match(modal, /maxLength=\{254\}/);
+  assert.match(modal, /minLength=\{7\} maxLength=\{25\}/);
+  assert.match(modal, /minLength=\{3\} maxLength=\{120\}/);
+  assert.match(modal, /minLength=\{20\} maxLength=\{1500\}/);
+  assert.match(modal, /generalMessageLength\} \/ 2000/);
   assert.match(modal, /Junior.*Confirmé.*Senior.*Expert/);
   assert.match(modal, /Présentiel.*Hybride.*Remote/);
   for (const source of [servicesPage, servicesPageEn, home, homeEn]) assert.match(source, /ProfileRequestModal/);
+});
+
+test("orders the services menu and uses market-aware English labels", async () => {
+  const [shell, servicesPageEn, servicesEn, contactForm] = await Promise.all([
+    readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/en/services/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../content/site-en.ts", import.meta.url), "utf8"),
+    readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(shell, /playground: "Field of play"/);
+  assert.match(shell, /methodsMenu: "Our methods"/);
+  assert.match(shell, /copy\.playground[\s\S]*copy\.methodsMenu[\s\S]*copy\.technologies/);
+  assert.match(servicesPageEn, /DELIVERY METHODS/);
+  assert.match(servicesPageEn, /workingMethodsEn/);
+  assert.match(servicesEn, /managed delivery centres/);
+  assert.match(contactForm, /DevSecOps & Cloud Engineering/);
+  assert.doesNotMatch(servicesPageEn, /Ways of working|View our method/);
 });
 
 test("keeps the loader animated, accessible and limited to document navigation", async () => {

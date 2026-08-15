@@ -26,9 +26,9 @@ const slidesFr = [
 ];
 
 const slidesEn = [
-  { eyebrow: "PAYTIUM — CONSULTING & TECHNOLOGY", title: <>Move your <em>digital transformation forward.</em></>, text: "Paytium turns business challenges into useful, reliable and scalable digital products, platforms and services — from strategy through delivery.", primary: ["Build your roadmap", "/en/#contact"], secondary: ["Discover our services", "/en/services"], visual: "trajectory" },
-  { eyebrow: "E-INVOICING", title: <>Move to digital invoicing <em>with clarity.</em></>, text: "Prepare, integrate and industrialise your invoice exchanges through a secure, interoperable approach designed around finance and business processes.", primary: ["Explore our approach", "/en/e-invoicing"], secondary: ["Talk to an expert", "/en/#contact"], visual: "invoice" },
-  { eyebrow: "SQUADS. DATA. CLOUD.", title: <>Accelerate products with squads <em>ready to deliver.</em></>, text: "Reduce time to market through multidisciplinary squads, proven Agile practices and controlled execution from discovery through production.", primary: ["Explore our expertise", "/en/services"], secondary: ["Contact us", "/en/#contact"], visual: "platform" },
+  { eyebrow: "PAYTIUM — CONSULTING & TECHNOLOGY", title: <>Move your <em>digital transformation forward.</em></>, text: "Paytium turns business challenges into useful, reliable and scalable digital products, platforms and services — from strategy through delivery.", primary: ["Build your roadmap", "/en/#contact"], secondary: ["Explore our services", "/en/services"], visual: "trajectory" },
+  { eyebrow: "E-INVOICING", title: <>Move to e-invoicing <em>with clarity.</em></>, text: "Prepare, integrate and scale automated invoice flows through a secure, interoperable approach designed around finance and business processes.", primary: ["Explore our approach", "/en/e-invoicing"], secondary: ["Talk to an expert", "/en/#contact"], visual: "invoice" },
+  { eyebrow: "SQUADS. DATA. CLOUD.", title: <>Accelerate products with squads <em>ready to deliver.</em></>, text: "Reduce time to market through multidisciplinary squads, proven Agile practices and end-to-end delivery from discovery through production.", primary: ["Explore our expertise", "/en/services"], secondary: ["Contact us", "/en/#contact"], visual: "platform" },
 ];
 
 function HeroVisual({ type, locale }: { type: string; locale: "fr" | "en" }) {

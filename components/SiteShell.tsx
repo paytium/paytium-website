@@ -11,8 +11,8 @@ type Locale = "fr" | "en";
 type BreadcrumbItem = { label: string; href: string };
 
 const shellCopy = {
-  fr: { skip: "Aller au contenu", home: "Accueil", about: "À propos", services: "Services", playground: "Notre terrain de jeu", invoice: "Facturation électronique", method: "Méthode", technologies: "Expertises", academy: "Academy", contact: "Contact", talk: "Parler à un expert", open: "Ouvrir le menu", close: "Fermer le menu", nav: "Navigation principale", top: "Haut", footer: "Paytium transforme les enjeux métiers en solutions numériques utiles, fiables et évolutives.", company: "Entreprise", resources: "Ressources", legal: "Mentions légales", privacy: "Confidentialité", signature: "La technologie au service de transformations maîtrisées." },
-  en: { skip: "Skip to content", home: "Home", about: "About", services: "Services", playground: "Our playground", invoice: "E-invoicing", method: "Method", technologies: "Expertise", academy: "Academy", contact: "Contact", talk: "Talk to an expert", open: "Open menu", close: "Close menu", nav: "Main navigation", top: "Top", footer: "Paytium turns business challenges into useful, reliable and scalable digital solutions.", company: "Company", resources: "Resources", legal: "Legal notice", privacy: "Privacy", signature: "Technology for controlled, lasting transformations." },
+  fr: { skip: "Aller au contenu", home: "Accueil", about: "À propos", services: "Services", playground: "Notre terrain de jeu", methodsMenu: "Nos méthodes", invoice: "Facturation électronique", method: "Méthode", technologies: "Expertises", academy: "Academy", contact: "Contact", talk: "Parler à un expert", open: "Ouvrir le menu", close: "Fermer le menu", nav: "Navigation principale", top: "Haut", footer: "Paytium transforme les enjeux métiers en solutions numériques utiles, fiables et évolutives.", company: "Entreprise", resources: "Ressources", legal: "Mentions légales", privacy: "Confidentialité", signature: "La technologie au service de transformations maîtrisées." },
+  en: { skip: "Skip to content", home: "Home", about: "About", services: "Services", playground: "Field of play", methodsMenu: "Our methods", invoice: "E-invoicing", method: "Delivery approach", technologies: "Expertise", academy: "Academy", contact: "Contact", talk: "Talk to an expert", open: "Open menu", close: "Close menu", nav: "Main navigation", top: "Top", footer: "Paytium turns business challenges into useful, reliable and scalable digital solutions.", company: "Company", resources: "Resources", legal: "Legal notice", privacy: "Privacy", signature: "Technology for controlled, lasting transformations." },
 };
 
 export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?: Locale; translationHref?: string }) {
@@ -47,6 +47,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
             <a href={`${prefix}/services`}>{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></a>
             <div className="submenu">
               <a href={`${prefix}/services`}>{copy.playground}</a>
+              <a href={`${prefix}/services#${locale === "en" ? "methods" : "methodes"}`}>{copy.methodsMenu}</a>
               <a href={`${prefix}/services#expertises`}>{copy.technologies}</a>
             </div>
           </div>
@@ -68,6 +69,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
         <nav aria-label={copy.nav}>
           <a href={`${prefix}/#a-propos`} onClick={() => setOpen(false)}>{copy.about}</a><span className="drawer-menu-label">{copy.services}</span>
           <a className="drawer-sub" href={`${prefix}/services`} onClick={() => setOpen(false)}>{copy.playground}</a>
+          <a className="drawer-sub" href={`${prefix}/services#${locale === "en" ? "methods" : "methodes"}`} onClick={() => setOpen(false)}>{copy.methodsMenu}</a>
           <a className="drawer-sub" href={`${prefix}/services#expertises`} onClick={() => setOpen(false)}>{copy.technologies}</a>
           <a href={`${prefix}/academy`} onClick={() => setOpen(false)}>{copy.academy}</a><a href={`${prefix}/e-invoicing`} onClick={() => setOpen(false)}>{copy.invoice}</a>
         </nav>
