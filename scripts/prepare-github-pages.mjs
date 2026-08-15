@@ -8,14 +8,14 @@ const lastModified = new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Casabl
 const { renderPage, renderNotFound } = await import(new URL("../dist-pages-ssr/prerender.js", import.meta.url));
 
 const routes = [
-  { path: "/", lang: "fr", alternate: "/en", title: "Paytium | Accueil", description: "Cabinet de conseil et de delivery digital à Casablanca : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, Data IA, Cloud DevOps" },
-  { path: "/en", lang: "en", alternate: "/", title: "Paytium | Home", description: "IT consulting company in Casablanca for strategy, Squad As Service, Data & AI, Cloud, DevOps and e-invoicing.", keywords: "Paytium, Squad As Service, Agile squad, IT consulting company, digital transformation, Data AI, Cloud DevOps" },
-  { path: "/services", lang: "fr", alternate: "/en/services", title: "Paytium | Services", description: "Paytium, cabinet de conseil IT à Casablanca : transformation digitale, Squad As Service, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.", keywords: "services Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, intégration ERP API, Data IA, Cloud DevOps, DevSecOps" },
-  { path: "/en/services", lang: "en", alternate: "/services", title: "Paytium | Services", description: "Paytium delivers IT consulting, Squad As Service, Data & AI, ERP/API integration, Cloud and DevOps from Casablanca.", keywords: "Paytium services, Squad As Service, Agile squad, product squad as a service, IT consulting company, digital transformation company, ERP API integration, Data AI, Cloud DevOps" },
-  { path: "/academy", lang: "fr", alternate: "/en/academy", title: "Paytium | Academy", description: "Développez les compétences de vos équipes avec les formations pratiques Digital, Data, IA, Cloud, DevOps et Agile de Paytium Academy.", keywords: "Paytium Academy, formation digitale, formation Data IA, formation Cloud DevOps, formation Agile Casablanca" },
-  { path: "/en/academy", lang: "en", alternate: "/academy", title: "Paytium | Academy", description: "Grow your teams’ capabilities through practical Digital, Data, AI, Cloud, DevOps and Agile training from Paytium Academy.", keywords: "Paytium Academy, digital training, Data AI training, Cloud DevOps training, Agile training Casablanca" },
-  { path: "/e-invoicing", lang: "fr", alternate: "/en/e-invoicing", title: "Paytium | Facturation électronique", description: "Conseil et intégration e-facture : préparation DGI, connexion ERP/API, contrôles, workflows, traçabilité et archivage avec Paytium.", keywords: "e-facture, e facture, facture électronique, facturation électronique, facturation électronique DGI, e-invoice, e-invoicing, intégrateur facturation électronique, intégration ERP facturation, Paytium" },
-  { path: "/en/e-invoicing", lang: "en", alternate: "/e-invoicing", title: "Paytium | E-invoicing", description: "E-invoice consulting and integration: DGI readiness, ERP/API connections, controls, workflows, traceability and archiving with Paytium.", keywords: "e-invoice, e invoice, e-invoicing, electronic invoicing, DGI e-invoicing, e-invoicing integration company, ERP invoice integration, Paytium" },
+  { path: "/", lang: "fr", alternate: "/en", title: "Paytium | Conseil & technologie", breadcrumb: "Accueil", description: "Paytium est un cabinet de conseil et de delivery digital : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, Data IA, Cloud DevOps" },
+  { path: "/en", lang: "en", alternate: "/", title: "Paytium | Consulting & Technology", breadcrumb: "Home", description: "Paytium is a digital consulting and delivery company for IT strategy, Squad As Service, Data & AI, Cloud, DevOps and e-invoicing.", keywords: "Paytium, Squad As Service, Agile squad, IT consulting company, digital transformation, Data AI, Cloud DevOps" },
+  { path: "/services", lang: "fr", alternate: "/en/services", title: "Paytium | Services", breadcrumb: "Services", description: "Paytium, cabinet de conseil IT : transformation digitale, Squad As Service, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.", keywords: "services Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, intégration ERP API, Data IA, Cloud DevOps, DevSecOps" },
+  { path: "/en/services", lang: "en", alternate: "/services", title: "Paytium | Services", breadcrumb: "Services", description: "Paytium delivers IT consulting, Squad As Service, Data & AI, ERP/API integration, Cloud, DevOps and DevSecOps.", keywords: "Paytium services, Squad As Service, Agile squad, product squad as a service, IT consulting company, digital transformation company, ERP API integration, Data AI, Cloud DevOps" },
+  { path: "/academy", lang: "fr", alternate: "/en/academy", title: "Paytium | Academy", breadcrumb: "Academy", description: "Développez les compétences de vos équipes avec les formations pratiques Digital, Data, IA, Cloud, DevOps et Agile de Paytium Academy.", keywords: "Paytium Academy, formation digitale, formation Data IA, formation Cloud DevOps, formation Agile" },
+  { path: "/en/academy", lang: "en", alternate: "/academy", title: "Paytium | Academy", breadcrumb: "Academy", description: "Grow your teams’ capabilities through practical Digital, Data, AI, Cloud, DevOps and Agile training from Paytium Academy.", keywords: "Paytium Academy, digital training, Data AI training, Cloud DevOps training, Agile training" },
+  { path: "/e-invoicing", lang: "fr", alternate: "/en/e-invoicing", title: "Paytium | Facturation électronique", breadcrumb: "Facturation électronique", description: "Conseil et intégration e-facture : préparation DGI, connexion ERP/API, contrôles, workflows, traçabilité et archivage avec Paytium.", keywords: "e-facture, e facture, facture électronique, facturation électronique, facturation électronique DGI, e-invoice, e-invoicing, intégrateur facturation électronique, intégration ERP facturation, Paytium" },
+  { path: "/en/e-invoicing", lang: "en", alternate: "/e-invoicing", title: "Paytium | E-invoicing", breadcrumb: "E-invoicing", description: "E-invoice consulting and integration: DGI readiness, ERP/API connections, controls, workflows, traceability and archiving with Paytium.", keywords: "e-invoice, e invoice, e-invoicing, electronic invoicing, DGI e-invoicing, e-invoicing integration company, ERP invoice integration, Paytium" },
 ];
 
 const template = await readFile(new URL("index.html", output), "utf8");
@@ -34,8 +34,10 @@ function jsonLd(route) {
     "@type": "Organization",
     "@id": `${baseUrl}/#organization`,
     name: "Paytium",
-    url: baseUrl,
-    logo: `${baseUrl}/logo-paytium.svg`,
+    alternateName: "paytium.io",
+    url: `${baseUrl}/`,
+    logo: `${baseUrl}/apple-touch-icon.png`,
+    image: `${baseUrl}/og-paytium.png`,
     email: "connect@paytium.io",
     telephone: "+212707252336",
     contactPoint: { "@type": "ContactPoint", contactType: "sales", email: "connect@paytium.io", telephone: "+212707252336", availableLanguage: ["French", "English"] },
@@ -46,11 +48,25 @@ function jsonLd(route) {
       ? ["Digital transformation", "IT consulting", "Squad As Service", "Agile product squads", "Data and artificial intelligence", "Cloud and DevOps", "E-invoice", "E-invoicing", "ERP integration"]
       : ["Transformation digitale", "Conseil IT", "Squad As Service", "Squads produit Agile", "Data et intelligence artificielle", "Cloud et DevOps", "E-facture", "Facturation électronique", "Intégration ERP"],
   };
+  const breadcrumbId = `${absolute(route.path)}#breadcrumb`;
+  const webPage = { "@type": "WebPage", "@id": `${absolute(route.path)}#webpage`, url: absolute(route.path), name: route.title, description: route.description, isPartOf: { "@id": `${baseUrl}/#website` }, about: { "@id": `${baseUrl}/#organization` }, inLanguage: isEnglish ? "en-US" : "fr-FR" };
   const graph = [
     organisation,
-    { "@type": "WebSite", "@id": `${baseUrl}/#website`, url: baseUrl, name: "Paytium", publisher: { "@id": `${baseUrl}/#organization` }, inLanguage: ["fr-FR", "en-US"] },
-    { "@type": "WebPage", "@id": `${absolute(route.path)}#webpage`, url: absolute(route.path), name: route.title, description: route.description, isPartOf: { "@id": `${baseUrl}/#website` }, about: { "@id": `${baseUrl}/#organization` }, inLanguage: isEnglish ? "en-US" : "fr-FR" },
+    { "@type": "WebSite", "@id": `${baseUrl}/#website`, url: `${baseUrl}/`, name: "Paytium", alternateName: "paytium.io", publisher: { "@id": `${baseUrl}/#organization` }, inLanguage: ["fr-FR", "en-US"] },
+    webPage,
   ];
+
+  if (route.path !== "/" && route.path !== "/en") {
+    webPage.breadcrumb = { "@id": breadcrumbId };
+    graph.push({
+      "@type": "BreadcrumbList",
+      "@id": breadcrumbId,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: isEnglish ? "Home" : "Accueil", item: absolute(isEnglish ? "/en" : "/") },
+        { "@type": "ListItem", position: 2, name: route.breadcrumb, item: absolute(route.path) },
+      ],
+    });
+  }
 
   if (route.path.endsWith("/services") || route.path === "/services") {
     const services = isEnglish

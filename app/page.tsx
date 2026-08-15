@@ -9,8 +9,8 @@ import { ExpertiseBand, FinalCta, SectionHeading } from "../components/Sections"
 import { methods, services, siteConfig } from "../content/site";
 
 export const metadata: Metadata = {
-  title: "Paytium | Accueil",
-  description: "Cabinet de conseil et de delivery digital à Casablanca : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.",
+  title: "Paytium | Conseil & technologie",
+  description: "Paytium est un cabinet de conseil et de delivery digital : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.",
   alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
 };
 

@@ -20,7 +20,7 @@ test("server-renders the Paytium site and its branded page loader", async () => 
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Paytium \| Accueil<\/title>/);
+  assert.match(html, /<title>Paytium \| Conseil &amp; technologie<\/title>/);
   assert.match(html, /class="page-loader is-pending"/);
   assert.match(html, /role="status"/);
   assert.match(html, /src="\/paytium-icon\.svg"/);
@@ -56,7 +56,7 @@ test("removes country labels from every French and English page", async () => {
 
 test("uses descriptive page titles and the e-invoicing route", async () => {
   const expectedTitles = new Map([
-    ["/", "Paytium | Accueil"], ["/en", "Paytium | Home"],
+    ["/", "Paytium | Conseil &amp; technologie"], ["/en", "Paytium | Consulting &amp; Technology"],
     ["/services", "Paytium | Services"], ["/en/services", "Paytium | Services"],
     ["/academy", "Paytium | Academy"], ["/en/academy", "Paytium | Academy"],
     ["/e-invoicing", "Paytium | Facturation électronique"], ["/en/e-invoicing", "Paytium | E-invoicing"],
@@ -69,6 +69,21 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
   const shell = await readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8");
   assert.doesNotMatch(shell, /\/facturation-electronique/);
   assert.match(shell, /\/e-invoicing/);
+});
+
+test("strengthens brand and page hierarchy signals for search engines", async () => {
+  const [layout, pagesScript, hero] = await Promise.all([
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../scripts/prepare-github-pages.mjs", import.meta.url), "utf8"),
+    readFile(new URL("../components/HomeHero.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(layout, /alternateName: "paytium\.io"/);
+  assert.match(layout, /logo: "https:\/\/paytium\.io\/apple-touch-icon\.png"/);
+  assert.match(pagesScript, /"@type": "BreadcrumbList"/);
+  assert.match(pagesScript, /webPage\.breadcrumb = \{ "@id": breadcrumbId \}/);
+  assert.match(pagesScript, /alternateName: "paytium\.io"/);
+  assert.match(hero, /PAYTIUM — CONSEIL & TECHNOLOGIE/);
+  assert.match(hero, /PAYTIUM — CONSULTING & TECHNOLOGY/);
 });
 
 test("adds consistent spacing around the contact subject chevron", async () => {
