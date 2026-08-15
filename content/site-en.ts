@@ -7,10 +7,11 @@ export const servicesEn = [
 ];
 
 export const methodsEn = [
-  { number: "01", title: "Frame", text: "Understand the challenge, map the current state and define measurable outcomes.", deliverables: "Assessment · Target vision · Roadmap · Initial backlog" },
-  { number: "02", title: "Design", text: "Co-design the experience, architecture and operating model with business and IT teams.", deliverables: "Journeys · Prototypes · Architecture · Delivery plan" },
-  { number: "03", title: "Build", text: "Develop, integrate and test in short iterations with quality built in.", deliverables: "Working product · APIs · Automation · Documentation" },
-  { number: "04", title: "Evolve", text: "Deploy, observe, secure and improve based on real usage and data.", deliverables: "Production · Observability · Handover · Improvement" },
+  { number: "01", title: "Vision", text: "We structure transformation around your business priorities." },
+  { number: "02", title: "Architecture", text: "We turn the vision into clear, actionable architectures." },
+  { number: "03", title: "Build", text: "We translate strategy into operational solutions." },
+  { number: "04", title: "Run", text: "We secure performance and resilience over time." },
+  { number: "05", title: "Transfer", text: "We transfer knowledge to build lasting autonomy." },
 ];
 
 export const workingMethodsEn = [

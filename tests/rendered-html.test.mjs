@@ -97,17 +97,42 @@ test("adds consistent spacing around the contact subject chevron", async () => {
   assert.match(css, /\.contact-select>svg\{[^}]*right:24px/);
 });
 
-test("styles native contact controls with the Paytium design system", async () => {
-  const [form, css] = await Promise.all([
+test("replaces consent checkboxes with bilingual privacy notices", async () => {
+  const [form, profileForm, css] = await Promise.all([
     readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/ProfileRequestModal.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
-  assert.match(form, /type="checkbox" name="consent" required/);
+  for (const source of [form, profileForm]) {
+    assert.match(source, /className="privacy-note"/);
+    assert.match(source, /LuShieldCheck/);
+    assert.doesNotMatch(source, /type="checkbox" name="consent"/);
+  }
+  assert.match(form, /Paytium protège et respecte votre vie privée/);
+  assert.match(profileForm, /protecting and respecting your privacy/);
   assert.match(css, /\.contact-form\{color-scheme:light/);
-  assert.match(css, /\.consent input\{appearance:none;-webkit-appearance:none/);
-  assert.match(css, /\.consent input:checked\{[^}]*background:var\(--deep\)/);
-  assert.match(css, /\.consent input:focus-visible\{[^}]*outline:3px solid/);
+  assert.match(css, /\.privacy-note\{display:flex/);
   assert.match(css, /\.contact-form input:-webkit-autofill/);
+});
+
+test("restructures the homepage around mission, value proposition and approach", async () => {
+  for (const route of ["/", "/en"]) {
+    const response = await render(route);
+    const html = await response.text();
+    assert.match(html, /class="section about-section home-about"/);
+    assert.match(html, /class="mission-panel"/);
+    assert.match(html, /Build\. Secure\. Scale\./);
+    assert.match(html, /class="section value-proposition"/);
+    assert.match(html, /Business &amp; Technology Consulting/);
+    assert.match(html, /class="section approach-section"/);
+    assert.match(html, /Vision[\s\S]*Architecture[\s\S]*Build[\s\S]*Run[\s\S]*Transfer/);
+    assert.ok(html.indexOf('class="section about-section home-about"') < html.indexOf('class="section value-proposition"'));
+    assert.ok(html.indexOf('class="section value-proposition"') < html.indexOf('class="section approach-section"'));
+    assert.doesNotMatch(html, /UNE TRAJECTOIRE DIGITALE PLUS CLAIRE|A CLEARER DIGITAL ROADMAP/);
+  }
+  const source = await readFile(new URL("../components/HomePositioning.tsx", import.meta.url), "utf8");
+  assert.match(source, /services#consulting/);
+  assert.match(source, /services#expertises/);
 });
 
 test("positions Squad As Service consistently in French and English", async () => {

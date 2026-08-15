@@ -71,10 +71,11 @@ export const services = [
 ];
 
 export const methods = [
-  { number: "01", title: "Cadrer", text: "Comprendre les enjeux, cartographier l’existant, prioriser les cas d’usage et définir des résultats mesurables.", deliverables: "Diagnostic · Vision cible · Feuille de route · Backlog initial" },
-  { number: "02", title: "Concevoir", text: "Co-construire l’expérience, l’architecture et le modèle opérationnel avec les équipes métier et IT.", deliverables: "Parcours · Prototypes · Architecture · Plan de livraison" },
-  { number: "03", title: "Construire", text: "Développer, intégrer et tester par itérations courtes avec une qualité intégrée dès le départ.", deliverables: "Produit opérationnel · APIs · Automatisation · Documentation" },
-  { number: "04", title: "Faire évoluer", text: "Déployer, observer, sécuriser et améliorer la solution à partir des usages et des données réelles.", deliverables: "Mise en production · Observabilité · Transfert · Amélioration" },
+  { number: "01", title: "Vision", text: "Nous structurons la transformation autour de vos enjeux métier." },
+  { number: "02", title: "Architecture", text: "Nous transformons la vision en architectures claires et actionnables." },
+  { number: "03", title: "Build", text: "Nous concrétisons les stratégies par des solutions opérationnelles." },
+  { number: "04", title: "Run", text: "Nous sécurisons la performance et la résilience dans la durée." },
+  { number: "05", title: "Transfer", text: "Nous transférons les savoirs pour créer une autonomie durable." },
 ];
 
 export const technologies = [
