@@ -14,7 +14,7 @@ const routes = [
   { path: "/en/services", lang: "en", alternate: "/services", title: "Paytium | Services", breadcrumb: "Services", description: "Paytium provides technology consulting, Digital & Data Factory delivery, Squad As Service, API integration and DevSecOps & Cloud Engineering.", keywords: "Paytium services, Squad As Service, Agile squad, product squad as a service, technology consulting company, digital transformation company, ERP API integration, Data AI, DevSecOps cloud engineering" },
   { path: "/academy", lang: "fr", alternate: "/en/academy", title: "Paytium | Academy", breadcrumb: "Academy", description: "Développez les compétences de vos équipes avec les formations pratiques Digital, Data, IA, Cloud, DevOps et Agile de Paytium Academy.", keywords: "Paytium Academy, formation digitale, formation Data IA, formation Cloud DevOps, formation Agile" },
   { path: "/en/academy", lang: "en", alternate: "/academy", title: "Paytium | Academy", breadcrumb: "Academy", description: "Build practical capabilities through practitioner-led training in digital product delivery, software engineering, Data & AI, cloud, DevSecOps and Agile.", keywords: "Paytium Academy, digital product training, software engineering training, Data AI training, cloud DevSecOps training, Agile delivery training" },
-  { path: "/e-invoicing", lang: "fr", alternate: "/en/e-invoicing", title: "Paytium | Facturation électronique", breadcrumb: "Facturation électronique", description: "Conseil et intégration e-facture : préparation DGI, connexion ERP/API, contrôles, workflows, traçabilité et archivage avec Paytium.", keywords: "e-facture, e facture, facture électronique, facturation électronique, facturation électronique DGI, e-invoice, e-invoicing, intégrateur facturation électronique, intégration ERP facturation, Paytium" },
+  { path: "/e-invoicing", lang: "fr", alternate: "/en/e-invoicing", title: "Facturation électronique Maroc & Connector DGI | Paytium", breadcrumb: "Facturation électronique", description: "Préparez votre conformité à la facturation électronique au Maroc avec Paytium : conseil, intégration ERP, e-Invoice Connector, projets CSP et accompagnement à la certification.", keywords: "e-facture Maroc, facture électronique Maroc, facturation électronique DGI, e-invoice Morocco, e-invoicing Morocco, Connector DGI, intégration ERP facturation, CSP facturation électronique, Paytium", socialImage: "/og-einvoicing.png", socialImageAlt: "Paytium — Facturation électronique au Maroc et e-Invoice Connector" },
   { path: "/en/e-invoicing", lang: "en", alternate: "/e-invoicing", title: "Paytium | E-invoicing", breadcrumb: "E-invoicing", description: "E-invoice consulting and integration: DGI readiness, ERP/API connections, controls, workflows, traceability and archiving with Paytium.", keywords: "e-invoice, e invoice, e-invoicing, electronic invoicing, DGI e-invoicing, e-invoicing integration company, ERP invoice integration, Paytium" },
 ];
 
@@ -95,7 +95,9 @@ for (const route of routes) {
   const enUrl = route.lang === "en" ? routeUrl : alternateUrl;
   const locale = route.lang === "en" ? "en_US" : "fr_FR";
   const alternateLocale = route.lang === "en" ? "fr_FR" : "en_US";
-  const socialImageAlt = route.lang === "en" ? "Paytium — strategy, technology and impact" : "Paytium — stratégie, technologie et impact";
+  const socialImage = route.socialImage ?? "/og-paytium.png";
+  const socialImageUrl = `${baseUrl}${socialImage}`;
+  const socialImageAlt = route.socialImageAlt ?? (route.lang === "en" ? "Paytium — strategy, technology and impact" : "Paytium — stratégie, technologie et impact");
   const alternateLinks = `<link rel="alternate" hreflang="fr" href="${frUrl}" />\n    <link rel="alternate" hreflang="en" href="${enUrl}" />\n    <link rel="alternate" hreflang="x-default" href="${frUrl}" />`;
   const renderedContent = renderPage(route.path);
   const html = template
@@ -108,9 +110,12 @@ for (const route of routes) {
     .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${routeUrl}" />`)
     .replace(/<meta property="og:locale" content="[^"]*" \/>/, `<meta property="og:locale" content="${locale}" />`)
     .replace(/<meta property="og:locale:alternate" content="[^"]*" \/>/, `<meta property="og:locale:alternate" content="${alternateLocale}" />`)
+    .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${socialImageUrl}" />`)
+    .replace(/<meta property="og:image:secure_url" content="[^"]*" \/>/, `<meta property="og:image:secure_url" content="${socialImageUrl}" />`)
     .replace(/<meta property="og:image:alt" content="[^"]*" \/>/, `<meta property="og:image:alt" content="${socialImageAlt}" />`)
     .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${route.title}" />`)
     .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${route.description}" />`)
+    .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${socialImageUrl}" />`)
     .replace(/<meta name="twitter:image:alt" content="[^"]*" \/>/, `<meta name="twitter:image:alt" content="${socialImageAlt}" />`)
     .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${routeUrl}" />`)
     .replace(/<link rel="alternate" hreflang="fr"[^>]*>\s*<link rel="alternate" hreflang="en"[^>]*>/, alternateLinks)
