@@ -37,6 +37,7 @@ function HeroVisual({ type, locale }: { type: string; locale: "fr" | "en" }) {
   return <div className="hero-diagram trajectory-diagram"><div className="orbital-lines"/><div className="paytium-core"><img src="/paytium-icon.svg" alt=""/></div><div className="float-label label-a">{locale === "fr" ? "Stratégie" : "Strategy"}</div><div className="float-label label-b">{locale === "fr" ? "Produit" : "Product"}</div><div className="float-label label-c">Data</div><div className="float-label label-d">Cloud</div><div className="trajectory-card"><small>{locale === "fr" ? "TRAJECTOIRE" : "ROADMAP"}</small><b className="trajectory-steps"><span>Vision</span><LuChevronRight aria-hidden="true"/><span>{locale === "fr" ? "Produit" : "Product"}</span><LuChevronRight aria-hidden="true"/><span>Impact</span></b><i><span/></i></div></div>;
 }
 
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions -- The carousel surface supports drag and arrow-key navigation; equivalent native buttons remain available. */
 export function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
   const slides = locale === "fr" ? slidesFr : slidesEn;
   const [active, setActive] = useState(0);
@@ -50,7 +51,7 @@ export function HomeHero({ locale = "fr" }: { locale?: "fr" | "en" }) {
     if (paused || reduced.current) return;
     const timer = window.setInterval(() => setActive((value) => (value + 1) % slides.length), 7000);
     return () => window.clearInterval(timer);
-  }, [paused]);
+  }, [paused, slides.length]);
   const go = (next: number) => setActive((next + slides.length) % slides.length);
   const startDrag = (event: ReactPointerEvent<HTMLElement>) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;

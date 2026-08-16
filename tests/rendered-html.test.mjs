@@ -60,7 +60,7 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
     ["/", "Paytium | Conseil &amp; technologie"], ["/en", "Paytium | Consulting &amp; Technology"],
     ["/services", "Paytium | Services"], ["/en/services", "Paytium | Services"],
     ["/academy", "Paytium | Academy"], ["/en/academy", "Paytium | Academy"],
-    ["/e-invoicing", "Paytium | Facturation électronique"], ["/en/e-invoicing", "Paytium | E-invoicing"],
+    ["/e-invoicing", "Facturation électronique Maroc &amp; Connector DGI | Paytium"], ["/en/e-invoicing", "Paytium | E-invoicing"],
   ]);
   for (const [route, title] of expectedTitles) {
     const response = await render(route);
@@ -70,6 +70,29 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
   const shell = await readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8");
   assert.doesNotMatch(shell, /\/facturation-electronique/);
   assert.match(shell, /\/e-invoicing/);
+});
+
+test("presents the Moroccan e-invoicing offer, connector and consultation flow", async () => {
+  const response = await render("/e-invoicing");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /Connectez votre système de facturation à l’écosystème DGI/);
+  assert.match(html, /Paytium e-Invoice Connector/);
+  assert.match(html, /id="connector"/);
+  assert.match(html, /id="offres"/);
+  assert.match(html, /id="consultation"/);
+  assert.match(html, /id="faq"/);
+  assert.match(html, /API REST/);
+  assert.match(html, /API SOAP/);
+  assert.match(html, /SFTP \/ transfert sécurisé/);
+  assert.match(html, /Intégration personnalisée/);
+  assert.match(html, /name="need"/);
+  assert.match(html, /name="stage"/);
+  assert.match(html, /name="consent"/);
+  assert.match(html, /einvoicing-marrakech\.webp/);
+  assert.match(html, /FAQPage/);
+  assert.match(html, /Cette page ne présente pas Paytium comme CSP agréé ou certifié/);
 });
 
 test("strengthens brand and page hierarchy signals for search engines", async () => {

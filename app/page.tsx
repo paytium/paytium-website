@@ -10,6 +10,8 @@ import { ExpertiseBand, FinalCta, SectionHeading } from "../components/Sections"
 import { ProfileRequestModal } from "../components/ProfileRequestModal";
 import { services, siteConfig } from "../content/site";
 
+/* eslint-disable @next/next/no-html-link-for-pages -- This entry is also bundled by the standalone Vite build used for GitHub Pages. */
+
 export const metadata: Metadata = {
   title: "Paytium | Conseil & technologie",
   description: "Paytium est un cabinet de conseil et de delivery digital : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.",

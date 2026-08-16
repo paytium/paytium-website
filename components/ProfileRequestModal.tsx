@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { LuCalendarDays, LuChevronDown, LuPlus, LuSend, LuShieldCheck, LuTrash2, LuX } from "react-icons/lu";
 import { siteConfig } from "../content/site";
@@ -10,13 +10,14 @@ type Locale = "fr" | "en";
 type ProfileRequest = { id: number; availability: "immediate" | "date" };
 
 let nextProfileId = 2;
+const subscribeToBrowser = () => () => {};
 
 export function ProfileRequestModal({ locale = "fr", variant = "detail" }: { locale?: Locale; variant?: "detail" | "card" }) {
   const [open, setOpen] = useState(false);
   const [profiles, setProfiles] = useState<ProfileRequest[]>([{ id: 1, availability: "immediate" }]);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<"" | "success" | "error">("");
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribeToBrowser, () => true, () => false);
   const [generalMessageLength, setGeneralMessageLength] = useState(0);
   const [missionLengths, setMissionLengths] = useState<Record<number, number>>({});
   const copy = locale === "fr" ? {
@@ -24,8 +25,6 @@ export function ProfileRequestModal({ locale = "fr", variant = "detail" }: { loc
   } : {
     trigger: "Request specialists", title: "Tell us which specialists you need", intro: "Share your requirement and our team will recommend the right delivery model and qualified specialists.", close: "Close", client: "Your contact details", profilesSection: "Details of the requested profiles", name: "Full name", namePlaceholder: "Your full name", email: "Business email", emailPlaceholder: "your.name@company.com", phone: "Contact number", phonePlaceholder: "E.g. 0707252336 or +212707252336", optional: "Optional", profile: "Required role", profilePlaceholder: "E.g. Java / Spring Backend Engineer", level: "Seniority", chooseLevel: "Select seniority", levels: ["Junior", "Mid-level", "Senior", "Expert"], availability: "Availability", immediate: "Immediate", exactDate: "From a specific date", startDate: "Available from", workMode: "Delivery mode", chooseMode: "Select a delivery mode", modes: ["On-site", "Hybrid", "Remote"], mission: "Engagement details", missionPlaceholder: "Business context, responsibilities, required skills and estimated duration…", remove: "Remove this role", add: "Add another role", general: "Additional context", generalPlaceholder: "Add constraints, team size, target start date or any other useful information.", privacy: "Paytium is committed to protecting and respecting your privacy. We will use your personal data only to process your request and provide the information or services you asked for.", send: "Submit request", sending: "Submitting…", successTitle: "Your request has been submitted", success: "We have received the full brief. The Paytium team will contact you shortly.", another: "Submit another request", error: "Your request could not be submitted. Please try again or email connect@paytium.io.", profileNumber: "Profile", required: "Required fields", nameInvalid: "Enter a valid name between 2 and 80 characters, without numbers or special symbols.", phoneInvalid: "Use 10 digits starting with 0, + followed by 10 to 12 digits, or 12 to 14 digits starting with 00.", profileInvalid: "Describe the required role in 3 to 120 characters.", missionInvalid: "Engagement details must contain between 20 and 1,500 characters.",
   };
-
-  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!open) return;
@@ -94,7 +93,8 @@ export function ProfileRequestModal({ locale = "fr", variant = "detail" }: { loc
     }
   }
 
-  const modal = open ? <div className="profile-modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && setOpen(false)}>
+  const modal = open ? <div className="profile-modal-backdrop">
+      <button className="profile-modal-dismiss" type="button" onClick={() => setOpen(false)} aria-label={copy.close} />
       <section className="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profile-request-title">
         <header className="profile-modal-header"><div><small>SQUAD AS SERVICE</small><h2 id="profile-request-title">{copy.title}</h2><p>{copy.intro}</p></div><button type="button" onClick={() => setOpen(false)} aria-label={copy.close}><LuX aria-hidden="true" /></button></header>
         {status === "success" ? <div className="profile-request-success" role="status"><span><LuSend aria-hidden="true" /></span><h3>{copy.successTitle}</h3><p>{copy.success}</p><button className="button button-primary" type="button" onClick={() => setStatus("")}>{copy.another}</button></div> :
@@ -105,7 +105,7 @@ export function ProfileRequestModal({ locale = "fr", variant = "detail" }: { loc
             <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
             <div className="profile-form-section-heading"><div><span>01</span><h3>{copy.client}</h3></div><small>* {copy.required}</small></div>
             <div className="field-grid profile-client-grid">
-              <label>{copy.name} *<input name="contact_name" autoFocus autoComplete="name" placeholder={copy.namePlaceholder} minLength={2} maxLength={80} onInput={(event) => event.currentTarget.setCustomValidity("")} required /></label>
+              <label>{copy.name} *<input name="contact_name" autoComplete="name" placeholder={copy.namePlaceholder} minLength={2} maxLength={80} onInput={(event) => event.currentTarget.setCustomValidity("")} required /></label>
               <label>{copy.email} *<input name="contact_email" type="email" inputMode="email" autoComplete="email" placeholder={copy.emailPlaceholder} maxLength={254} required /></label>
               <label><span className="field-label">{copy.phone}<small>{copy.optional}</small></span><input name="contact_phone" type="tel" inputMode="tel" autoComplete="tel" placeholder={copy.phonePlaceholder} minLength={10} maxLength={14} pattern="(?:0[0-9]{9}|\+[0-9]{10,12}|00[0-9]{10,12})" onInput={(event) => { event.currentTarget.value = sanitizePhoneInput(event.currentTarget.value); event.currentTarget.setCustomValidity(""); }} /></label>
             </div>

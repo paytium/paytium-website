@@ -1,64 +1,211 @@
 import type { Metadata } from "next";
-import { LuArrowRight, LuPlus } from "react-icons/lu";
+import { FaMicrosoft, FaStar } from "react-icons/fa6";
+import { LuArrowLeft, LuArrowRight, LuCheck, LuDatabase, LuGlobe, LuLayers3, LuPlus, LuShieldCheck, LuZap } from "react-icons/lu";
+import { SiOdoo, SiSage, SiSap } from "react-icons/si";
 import { Breadcrumbs, PageShell } from "../../components/SiteShell";
-import { Eyebrow } from "../../components/Brand";
-import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
+import { Arrow, Eyebrow } from "../../components/Brand";
+import { SectionHeading } from "../../components/Sections";
+import { EinvoiceConsultationForm, TrackedLink } from "../../components/EinvoiceConsultationForm";
 
 export const metadata: Metadata = {
-  title: "Paytium | Facturation électronique",
-  description: "Conseil et intégration e-facture : préparation DGI, connexion ERP/API, contrôles, workflows, traçabilité et archivage avec Paytium.",
+  title: "Facturation électronique Maroc & Connector DGI | Paytium",
+  description: "Préparez votre conformité à la facturation électronique au Maroc avec Paytium : conseil, intégration ERP, e-Invoice Connector, projets CSP et accompagnement à la certification.",
   alternates: { canonical: "/e-invoicing", languages: { "fr-FR": "/e-invoicing", "en-US": "/en/e-invoicing" } },
+  openGraph: {
+    title: "Facturation électronique Maroc & Connector DGI | Paytium",
+    description: "Conseil, intégration ERP, Paytium e-Invoice Connector et accompagnement CSP pour préparer la facturation électronique au Maroc.",
+    url: "/e-invoicing",
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Paytium",
+    images: [{ url: "/og-einvoicing.png", width: 1200, height: 630, alt: "Paytium — Facturation électronique au Maroc et e-Invoice Connector" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Facturation électronique Maroc & Connector DGI | Paytium",
+    description: "Préparez vos flux, vos ERP et votre trajectoire CSP avec Paytium.",
+    images: ["/og-einvoicing.png"],
+  },
 };
 
-const challenges = [["Préparation", "Cartographier les flux, les acteurs, les formats et les écarts."], ["Interopérabilité", "Connecter ERP, applications métier, partenaires et plateformes d’échange."], ["Maîtrise", "Contrôler les données, suivre les statuts et traiter les exceptions."], ["Évolutivité", "Absorber les changements réglementaires, fonctionnels et volumétriques."]];
-const lifecycle = [["Collecter", "Recevoir la facture ou les données depuis les canaux configurés."], ["Contrôler", "Vérifier la structure, les données obligatoires et les règles métier."], ["Valider", "Appliquer les circuits d’approbation et gérer les exceptions."], ["Échanger", "Transmettre ou recevoir via le canal et le format attendus."], ["Rapprocher", "Synchroniser les statuts et alimenter les systèmes comptables."], ["Archiver & piloter", "Conserver les éléments requis et suivre l’activité."]];
-const capabilities = ["Émission et réception de factures électroniques", "Import depuis ERP, fichiers, APIs ou portail", "Contrôles de complétude, cohérence et règles métier", "Enrichissement et normalisation des données", "Workflows de validation et gestion des exceptions", "Transmission, accusés, statuts et notifications", "Rapprochement comptable et de paiement", "Archivage, recherche et piste d’audit", "Tableaux de bord et supervision opérationnelle"];
-const security = ["Accès par rôles et séparation des responsabilités", "Chiffrement des échanges et protection des données", "Journalisation des actions, statuts et erreurs", "Intégrité et traçabilité des documents", "Conservation et archivage configurables", "Supervision, alertes et traitement des exceptions", "Adaptation aux exigences applicables"];
-const useCases = [["Factures clients", "Automatiser l’émission, le suivi et la réconciliation des factures de vente."], ["Factures fournisseurs", "Accélérer la réception, le contrôle, l’approbation et l’intégration comptable."], ["Groupes multi-entités", "Harmoniser les règles et consolider le pilotage en respectant les spécificités locales."], ["Écosystèmes partenaires", "Proposer des canaux adaptés à des partenaires de maturités différentes."]];
-const deployment = [["Diagnostic", "Flux, données, outils, acteurs, volumes et risques."], ["Cible", "Architecture, processus, modèle opérationnel et feuille de route."], ["Pilote", "Périmètre contrôlé, intégrations prioritaires et mesure."], ["Industrialisation", "Automatisation, sécurité, supervision et documentation."], ["Déploiement", "Extension par entité, population, flux ou cas d’usage."], ["Amélioration continue", "Suivi, assistance, optimisation et évolutions."]];
-const terminology = [["E-facture & e-invoice", "Les termes e-facture, e-invoice et e-invoicing désignent la digitalisation des échanges de factures. Le format et le canal cibles sont confirmés selon les exigences applicables."], ["ERP & comptabilité", "Les données de facturation sont reliées aux ERP, logiciels comptables, applications métier et référentiels existants."], ["API & automatisation", "Les contrôles, validations, transmissions, retours de statut et exceptions sont orchestrés dans des workflows traçables."], ["Archivage & pilotage", "Les documents, statuts et preuves sont organisés pour faciliter la recherche, le suivi opérationnel et l’audit."]];
-const faq = [["Quelle différence entre une facture PDF, une e-facture et une facture électronique structurée ?", "Un PDF peut être une représentation lisible d’une facture sans être un flux de données structuré et directement exploitable. Une facture électronique structurée permet l’échange, le contrôle et l’intégration automatisés selon le format et le canal retenus."], ["Comment préparer son ERP à la facturation électronique DGI ?", "La préparation commence par la cartographie des flux, des données, des interfaces et des contrôles. Paytium identifie ensuite les adaptations ERP, comptables et d’intégration à prioriser, en gardant la cible adaptable aux publications officielles."], ["Paytium propose-t-il un logiciel de facturation ou un accompagnement d’intégration ?", "Paytium intervient en conseil, cadrage, architecture, intégration et automatisation. Le périmètre de solution — plateforme, connecteurs, portail ou composants spécifiques — est défini selon le système d’information et le besoin du client."], ["Quels systèmes peuvent être connectés ?", "ERP, logiciels comptables, applications achats et ventes, référentiels, GED, solutions de paiement et outils de reporting peuvent être reliés par API, fichiers, événements ou connecteurs, selon leurs capacités."], ["Peut-on préparer le projet avant la publication définitive de toutes les exigences ?", "Oui. Il est possible de fiabiliser les données, cartographier les flux, clarifier la gouvernance et préparer une architecture évolutive, tout en réservant les choix dépendant des textes et spécifications officiels."], ["Peut-on déployer progressivement ?", "Oui. Une approche pilote permet de valider les flux, les contrôles et l’exploitation avant d’étendre le dispositif à d’autres entités ou volumes."], ["Paytium garantit-il la conformité fiscale ?", "Paytium conçoit une architecture et des processus adaptables. La validation juridique, fiscale et réglementaire reste menée avec les fonctions compétentes du client et sur la base des référentiels officiels en vigueur."]];
+const publicMarkers = [
+  ["Format structuré", "UBL a été annoncé comme standard de référence. La version et le profil national seront confirmés par les spécifications officielles."],
+  ["Authenticité et intégrité", "Une signature électronique qualifiée a été annoncée afin de sécuriser l’origine et l’intégrité de la facture."],
+  ["Validation et traçabilité", "Le flux annoncé prévoit une validation en temps réel, des accusés et une date de réception fiable."],
+  ["Déploiement progressif", "Le B2B est annoncé comme premier périmètre, avec un calendrier et des modalités à confirmer officiellement."],
+];
+
+const compliancePillars = [
+  ["Processus", "Émission, réception, avoirs, validations, exceptions et rapprochements."],
+  ["Données", "Qualité des référentiels, complétude, cohérence et traçabilité."],
+  ["Technologie", "Intégration ERP, interopérabilité, sécurité, supervision et résilience."],
+  ["Gouvernance", "Rôles, contrôles, documentation, conduite du changement et pilotage."],
+];
+
+const connectionModes = [
+  ["API REST", "Intégration moderne, synchrone ou asynchrone selon les usages."],
+  ["API SOAP", "Compatibilité avec les architectures et applications existantes."],
+  ["SFTP / transfert sécurisé", "Échanges batch CFT ou SFTP pour les systèmes orientés fichiers."],
+  ["Intégration personnalisée", "Adaptateur spécifique, middleware, ESB, événements ou contraintes propriétaires."],
+];
+
+const connectorCapabilities = [
+  "Émission et réception des factures et avoirs",
+  "Mapping et transformation des données",
+  "Contrôles de complétude, de cohérence et règles métier",
+  "Orchestration des échanges et des retours",
+  "Suivi des statuts et gestion des erreurs",
+  "Reprise, idempotence et traitement des doublons",
+  "Synchronisation avec les ERP et applications comptables",
+  "Journalisation, supervision, alertes et piste d’audit",
+  "Événements de paiement selon le périmètre disponible",
+  "Déploiement progressif par entité, flux, ERP ou population",
+];
+
+const offers = [
+  { title: "Conseil métier & readiness", text: "Évaluer votre maturité, transformer les exigences publiques en décisions opérationnelles et construire une feuille de route réaliste.", items: ["Diagnostic métier, data, SI, sécurité et organisation", "Cartographie des flux d’émission et de réception", "Analyse d’écarts, risques et priorités", "Audit ERP, référentiels et interfaces", "Cible, feuille de route, gouvernance et conduite du changement"] },
+  { title: "Paytium e-Invoice Connector", text: "Connecter vos systèmes au dispositif DGI à travers une couche bidirectionnelle, adaptable et supervisée.", items: ["Connecteurs ERP et adaptateurs spécifiques", "API, services web et échanges fichiers", "Émission, réception, statuts et exceptions", "Contrôles, transformation et orchestration", "Supervision, traçabilité et déploiement multi-entités"], featured: true },
+  { title: "Plateforme pour candidats CSP", text: "Concevoir et industrialiser la plateforme, les services et les opérations nécessaires aux acteurs qui souhaitent se positionner comme CSP.", items: ["Modèle opérationnel et architecture cible", "Services d’échange, portails et supervision", "Enrôlement, traitement, traçabilité et exploitation", "Architecture sécurisée, résiliente et observable", "Environnements, transfert et accompagnement au démarrage"] },
+  { title: "Accompagnement à la certification CSP", text: "Préparer les équipes, la plateforme et le dossier de preuves pour aborder le processus officiel avec méthode.", items: ["Recette fonctionnelle et technique", "Campagnes de tests et gestion des anomalies", "Qualité, sécurité, résilience et exploitation", "Préparation documentaire et dossier de preuves", "Répétitions à blanc et plans de remédiation"] },
+  { title: "Pilotage, data, sécurité & change", text: "Sécuriser les dimensions transverses qui conditionnent la réussite du programme.", items: ["PMO et gouvernance du programme", "Qualité des données et référentiels", "Architecture, cybersécurité et données personnelles", "Tests, performance et continuité d’activité", "Formation, documentation et hypercare"] },
+  { title: "Run, support & veille", text: "Maintenir la qualité des échanges et adapter le dispositif aux évolutions officiellement publiées.", items: ["Supervision et traitement des incidents", "Support applicatif et amélioration continue", "Suivi des versions et interfaces", "Veille réglementaire et analyse d’impact", "Optimisation des contrôles, performances et coûts"] },
+];
+
+const deployment = [
+  ["Diagnostiquer", "Flux, systèmes, données, acteurs, volumes et risques."],
+  ["Cadrer", "Cible, périmètre, gouvernance, responsabilités et feuille de route."],
+  ["Préparer", "Qualité des données, interfaces, contrôles et environnements."],
+  ["Piloter", "Un flux, une entité ou un ERP sur un périmètre contrôlé."],
+  ["Industrialiser", "Automatisation, sécurité, supervision, documentation et support."],
+  ["Déployer & améliorer", "Extension progressive et adaptation aux évolutions officielles."],
+];
+
+const whyPaytium = [
+  "Connaissance des processus de facturation, de leurs statuts et de leurs impacts opérationnels",
+  "Traduction des exigences réglementaires en architecture, données, contrôles et backlog",
+  "Expertise d’intégration ERP, API, middleware, fichiers et systèmes legacy",
+  "Développement de plateformes sécurisées, observables et évolutives",
+  "Accompagnement de bout en bout : conseil, build, certification, déploiement et run",
+];
+
+const faq = [
+  ["Quelle différence entre un PDF et une facture électronique structurée ?", "Un PDF peut être une représentation lisible d’une facture, sans offrir de données directement exploitables par les systèmes. Une facture électronique structurée contient des données normalisées qui peuvent être contrôlées, transmises et intégrées automatiquement."],
+  ["Quelles caractéristiques du dispositif marocain sont déjà annoncées publiquement ?", "Les annonces publiques mentionnent notamment un format structuré fondé sur UBL, une signature électronique qualifiée, un circuit de validation en temps réel, un premier périmètre B2B et l’intervention progressive de CSP certifiés. Les versions, profils, règles détaillées, calendriers et modalités applicables restent à confirmer par les textes et spécifications officiels."],
+  ["La date d’entrée en vigueur pour mon entreprise est-elle déjà connue ?", "Un lancement courant 2026 et un déploiement progressif ont été annoncés. Le calendrier précis par catégorie d’entreprise, activité ou marché doit être confirmé par les textes officiels. Paytium peut néanmoins préparer les travaux qui ne dépendent pas de ces arbitrages : cartographie, qualité des données, gouvernance et architecture évolutive."],
+  ["Quel format de facture faut-il préparer ?", "UBL a été annoncé comme standard international de référence. La version, le profil marocain, les données obligatoires et les règles de contrôle doivent être alignés sur les spécifications officiellement publiées. Le Connector Paytium est conçu pour adapter les formats internes à la cible applicable."],
+  ["Paytium remplace-t-il mon ERP ou mon logiciel de facturation ?", "Non. Le Paytium e-Invoice Connector se place entre vos systèmes et le canal de facturation électronique. Il préserve les usages existants et prend en charge l’intégration, la transformation, l’orchestration et les retours de statut."],
+  ["Le Connector gère-t-il l’émission et la réception ?", "Oui, son positionnement est bidirectionnel : émission de factures et avoirs, réception des factures fournisseurs, gestion des accusés, statuts, notifications et erreurs, selon le périmètre et les interfaces officiellement disponibles."],
+  ["Quels modes d’intégration sont disponibles ?", "API REST, services SOAP, échanges de fichiers sécurisés via CFT ou SFTP, middleware, événements ou connecteur personnalisé. Le mode est choisi selon l’architecture, les contraintes de sécurité, les volumes et les capacités du système client."],
+  ["Quels ERP peuvent être connectés ?", "Paytium peut connecter des ERP, logiciels comptables, TMS et applications métier au moyen de connecteurs, d’accélérateurs ou d’adaptateurs spécifiques. La compatibilité exacte est confirmée selon le produit, sa version, ses modules et les possibilités d’intégration disponibles."],
+  ["Peut-on commencer avant la publication de toutes les spécifications ?", "Oui. Il est possible d’évaluer la maturité, cartographier les flux, fiabiliser les référentiels, clarifier la gouvernance et préparer une architecture adaptable. Les choix dépendant des textes ou spécifications définitifs restent ouverts jusqu’à leur publication."],
+  ["Paytium est-il un CSP certifié par la DGI ?", "Cette page ne présente pas Paytium comme CSP agréé ou certifié. Paytium accompagne les entreprises et les acteurs qui souhaitent construire une plateforme CSP et préparer leur parcours de certification, sur la base du cadre officiel applicable."],
+  ["Comment Paytium accompagne-t-il un candidat CSP ?", "Paytium intervient sur le cadrage, l’architecture, le développement, les tests, la sécurité, la gouvernance des données, l’exploitation et la préparation documentaire. L’objectif est d’accélérer et de sécuriser le parcours, sans garantir une décision qui relève de l’autorité de certification."],
+  ["Comment sont traitées la sécurité et la protection des données ?", "Le dispositif est défini selon le contexte du client et les exigences applicables : contrôle d’accès, chiffrement des échanges, journalisation, séparation des responsabilités, supervision, continuité d’activité et protection des données personnelles. L’architecture et l’hébergement sont validés pendant le cadrage."],
+  ["Que couvre la consultation gratuite de 30 minutes ?", "Elle permet de comprendre votre contexte, identifier les principaux écarts et vous orienter vers le prochain pas le plus utile. Elle ne constitue pas un audit complet ni un avis fiscal ou juridique."],
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Service", "@id": "https://paytium.io/e-invoicing#service", name: "Facturation électronique Maroc & Paytium e-Invoice Connector", serviceType: "Conseil et intégration de facturation électronique", provider: { "@id": "https://paytium.io/#organization" }, areaServed: { "@type": "Country", name: "Maroc" }, url: "https://paytium.io/e-invoicing", description: metadata.description },
+    { "@type": "FAQPage", "@id": "https://paytium.io/e-invoicing#faq", mainEntity: faq.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
+  ],
+};
 
 export default function ElectronicInvoicingPage() {
   return <PageShell translationHref="/en/e-invoicing">
-    <Breadcrumbs items={[{ label: "Facturation électronique", href: "/e-invoicing" }]} />
-    <PageHero eyebrow="FACTURATION ÉLECTRONIQUE" title={<>Préparez votre facturation électronique, <em>sans interrompre vos opérations.</em></>} text="Paytium accompagne les entreprises dans la préparation à la facturation électronique et aux évolutions portées par la DGI, avec une chaîne connectée aux outils finance, comptables et métier." primary={["Évaluer votre niveau de préparation", "/#contact"]} secondary={["Parler à un expert", "/#contact"]}>
-      <div className="einvoice-flow"><div>ERP<br/><small>Applications</small></div><i aria-hidden="true"><LuArrowRight /></i><div className="active">Contrôle<br/><small>& orchestration</small></div><i aria-hidden="true"><LuArrowRight /></i><div>Émission<br/><small>& réception</small></div><i aria-hidden="true"><LuArrowRight /></i><div>Archivage<br/><small>& pilotage</small></div></div>
-    </PageHero>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+    <Breadcrumbs items={[{ label: "Facturation électronique", href: "/e-invoicing" }]} sections={{ connector: "Connector", offres: "Offres", consultation: "Consultation", faq: "FAQ" }} />
 
-    <section className="section einvoice-readiness" aria-labelledby="dgi-readiness">
-      <div><Eyebrow>FACTURATION ÉLECTRONIQUE & DGI</Eyebrow><h2 id="dgi-readiness">Anticiper les exigences, <em>préparer le système d’information.</em></h2></div>
-      <div><p>La transition vers la facturation électronique implique la Direction Générale des Impôts (DGI), mais aussi les équipes finance, fiscalité, achats, ventes et IT. Paytium aide à cartographier les flux, fiabiliser les données et préparer les adaptations ERP et comptables.</p><p>Le dispositif est conçu pour rester adaptable aux textes, calendriers et spécifications officiellement publiés. Paytium ne se substitue pas au conseil fiscal : chaque décision de conformité est validée avec les fonctions compétentes et les référentiels officiels.</p><a className="text-link" href="https://www.finances.gov.ma/fr/Ministere/Pages/dgi.aspx" target="_blank" rel="noreferrer">Consulter la présentation officielle de la DGI <LuArrowRight aria-hidden="true" /></a></div>
+    <section className="einvoice-hero">
+      <div className="einvoice-hero-copy">
+        <Eyebrow>FACTURATION ÉLECTRONIQUE AU MAROC</Eyebrow>
+        <h1>Connectez votre système de facturation à l’écosystème DGI, <em>sans bouleverser vos opérations.</em></h1>
+        <p>Paytium accompagne les entreprises de l’évaluation de maturité à l’intégration opérationnelle. Le Paytium e-Invoice Connector crée une passerelle bidirectionnelle entre vos ERP, TMS, logiciels comptables et applications métier, et le système de facturation électronique de la Direction Générale des Impôts.</p>
+        <p className="einvoice-proof">Conseil métier & réglementaire · Intégration ERP · Connector · Projets CSP · Accompagnement à la certification</p>
+        <div className="hero-actions"><TrackedLink className="button button-primary" href="#consultation" eventName="einvoice_hero_cta_click">Réserver ma consultation gratuite de 30 min <Arrow /></TrackedLink><TrackedLink className="button button-secondary" href="#connector" eventName="einvoice_connector_cta_click">Découvrir le Connector</TrackedLink></div>
+        <div className="einvoice-consultation-note"><b>Consultation offerte · 30 minutes</b><span>Un échange sans engagement pour clarifier votre périmètre, vos risques et les prochaines étapes.</span></div>
+      </div>
+      <figure className="einvoice-hero-media">
+        <img src="/einvoicing-marrakech.webp" alt="La Koutoubia à Marrakech au coucher du soleil" width="1600" height="1179" fetchPriority="high" />
+        <figcaption>Marrakech · Photo Federico Mata, <a href="https://commons.wikimedia.org/wiki/File:Koutoubia,_Marrakech_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">CC BY 3.0</a></figcaption>
+      </figure>
     </section>
 
-    <section className="section einvoice-terms" id="e-invoice">
-      <SectionHeading eyebrow="E-FACTURE, E-INVOICE & E-INVOICING" title={<>Un même projet, <em>plusieurs enjeux métier et techniques.</em></>} text="Que vos équipes parlent d’e-facture, d’e-invoice, d’e-invoicing ou de facturation électronique DGI, l’objectif est le même : rendre les flux fiables, interopérables et exploitables sans fragiliser les opérations." />
-      <div className="einvoice-term-grid">{terminology.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
-      <p className="intent-note"><strong>Besoin d’un intégrateur de facturation électronique ?</strong> Paytium vous accompagne du diagnostic à l’intégration ERP/API, puis au déploiement et à l’amélioration continue.</p>
+    <section className="section einvoice-erp-section">
+      <SectionHeading eyebrow="CONÇU POUR VOTRE ÉCOSYSTÈME" title={<>Votre ERP reste au cœur <em>de vos opérations.</em></>} text="Paytium s’adapte à vos systèmes existants et limite les ruptures dans les processus finance, achats et ventes. Des connecteurs ou accélérateurs d’intégration sont mobilisés selon l’ERP, sa version et les modules utilisés." />
+      <div className="erp-logo-grid" aria-label="Exemples de systèmes intégrables">
+        <div><SiSap aria-hidden="true" /><span>SAP</span></div><div><LuDatabase aria-hidden="true" /><span>Oracle</span></div><div><LuDatabase aria-hidden="true" /><span>Oracle NetSuite</span></div><div><FaMicrosoft aria-hidden="true" /><span>Dynamics 365</span></div><div><SiSage aria-hidden="true" /><span>Sage</span></div><div><SiOdoo aria-hidden="true" /><span>Odoo</span></div><div><LuLayers3 aria-hidden="true" /><span>Cegid</span></div><div><LuLayers3 aria-hidden="true" /><span>Infor</span></div>
+      </div>
+      <p className="brand-disclaimer">Marques citées à titre d’illustration. La disponibilité et le périmètre d’un connecteur sont confirmés selon la version et l’architecture du système client. Les marques appartiennent à leurs propriétaires respectifs.</p>
     </section>
 
-    <section className="section challenges-section">
-      <SectionHeading eyebrow="UNE TRANSITION MÉTIER, PAS SEULEMENT TECHNIQUE" title={<>Transformer une obligation en <em>levier d’efficacité.</em></>} text="La facturation électronique touche les processus, les données, les systèmes et l’organisation. Une transition réussie commence par une vision claire de l’existant et se poursuit par une intégration progressive, sécurisée et mesurable." />
-      <div className="challenge-grid">{challenges.map(([title,text], index) => <article key={title}><span>{String(index + 1).padStart(2,"0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+    <section className="section einvoice-context-section">
+      <SectionHeading invert eyebrow="LE CONTEXTE MAROCAIN" title={<>Une facture structurée, sécurisée et <em>intégrée aux systèmes.</em></>} text="La facturation électronique transforme la facture en un flux de données exploitable de bout en bout. Selon les annonces publiques de la DGI, le dispositif marocain doit permettre de contrôler, transmettre et tracer les factures B2B à travers un format structuré et des échanges sécurisés." />
+      <div className="public-marker-grid">{publicMarkers.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+      <div className="dgi-context-card"><div className="morocco-flag" role="img" aria-label="Drapeau du Maroc"><FaStar aria-hidden="true" /></div><div><small>DIRECTION GÉNÉRALE DES IMPÔTS</small><strong>Royaume du Maroc</strong><p>Réforme portée par la Direction Générale des Impôts du Royaume du Maroc.</p></div><LuGlobe aria-hidden="true" /></div>
+      <p className="independence-note">Paytium est un acteur indépendant. Cette identification de l’institution concernée ne vaut ni partenariat, ni agrément, ni certification.</p>
+      <p className="regulatory-note"><LuShieldCheck aria-hidden="true" /><span>Informations fondées sur les annonces publiques disponibles. Le rapport d’activité 2025 de la DGI indique que le portail a été développé et couvre notamment l’émission, la transmission, la réception et la déclaration d’événements postérieurs à la facturation. Les modalités applicables à chaque entreprise seront déterminées par les textes, le calendrier et les spécifications officiellement publiés.</span></p>
     </section>
 
-    <section className="section invoice-capabilities">
-      <div><Eyebrow>CHAÎNE DE VALEUR</Eyebrow><h2>Une chaîne de facturation pensée <em>de bout en bout.</em></h2><p>Notre approche combine conseil, intégration et ingénierie pour fluidifier le cycle de vie de la facture, depuis sa création ou sa réception jusqu’au suivi, au rapprochement et à l’archivage.</p></div>
-      <ol>{capabilities.map((item,index) => <li key={item}><span>{String(index+1).padStart(2,"0")}</span>{item}</li>)}</ol>
+    <section className="section einvoice-compliance-section">
+      <SectionHeading eyebrow="VOTRE TRAJECTOIRE DE CONFORMITÉ" title={<>Des exigences réglementaires à <em>un dispositif opérationnel.</em></>} text="Paytium traduit les exigences officiellement applicables en processus, données, contrôles, interfaces et preuves exploitables. L’objectif : aligner votre chaîne de facturation sur le cadre technique et réglementaire de la DGI, tout en protégeant la continuité de vos opérations." />
+      <div className="compliance-pillar-grid">{compliancePillars.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+      <p className="responsible-note">La validation juridique et fiscale reste menée avec les fonctions compétentes du client et sur la base des textes officiels en vigueur.</p>
     </section>
 
-    <section className="section lifecycle-section"><SectionHeading eyebrow="CYCLE DE TRAITEMENT" title={<>Six étapes pour garder <em>la maîtrise.</em></>} /><div className="lifecycle">{lifecycle.map(([title,text],index) => <article key={title}><span>{String(index+1).padStart(2,"0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+    <section className="section connector-positioning" aria-labelledby="connector-positioning-title">
+      <div className="connector-positioning-copy"><Eyebrow>UNE INTEROPÉRABILITÉ BIDIRECTIONNELLE</Eyebrow><h2 id="connector-positioning-title">Paytium e-Invoice Connector : votre point d’accès à la facturation électronique DGI.</h2><p>Une couche d’intégration unique orchestre les échanges dans les deux sens, sans imposer le remplacement de vos outils. Elle adapte les données et protocoles au canal attendu, puis restitue factures reçues, accusés, statuts et erreurs dans vos applications.</p></div>
+      <div className="connector-diagram" aria-label="Schéma fonctionnel bidirectionnel du Paytium e-Invoice Connector">
+        <div className="connector-node"><small>SYSTÈMES DE L’ENTREPRISE</small><b>ERP · TMS · Comptabilité</b><span>Achats · Ventes · Applications métier · Fichiers</span></div>
+        <div className="connector-flows"><span><LuArrowRight aria-hidden="true" />Flux sortants</span><span><LuArrowLeft aria-hidden="true" />Flux entrants</span></div>
+        <div className="connector-node connector-core"><img src="/paytium-icon-white.svg" alt="" width="44" height="44" /><small>PAYTIUM E-INVOICE CONNECTOR</small><b>Collecter · Contrôler · Transformer</b><span>Orchestrer · Transmettre · Superviser</span></div>
+        <div className="connector-flows"><span><LuArrowRight aria-hidden="true" />Factures · avoirs · données</span><span><LuArrowLeft aria-hidden="true" />Accusés · statuts · erreurs</span></div>
+        <div className="connector-node"><small>ÉCOSYSTÈME DGI / CSP</small><b>Validation · Échange</b><span>Accusés · Statuts · Clients · Fournisseurs</span></div>
+      </div>
+      <p className="diagram-note">Représentation fonctionnelle simplifiée. Les rôles, formats et modalités d’échange sont adaptés aux spécifications officiellement applicables et au contexte de chaque entreprise.</p>
+    </section>
 
-    <section className="integration-section"><div className="integration-copy"><Eyebrow>INTÉGRATION AU SI</Eyebrow><h2>Connectée à votre <em>écosystème existant.</em></h2><p>L’intégration est définie à partir de votre architecture et de vos contraintes. Elle peut associer APIs, événements, échanges batch, connecteurs ERP et portail sécurisé.</p><small>Les formats, protocoles et connecteurs définitifs sont validés lors du cadrage technique.</small></div><div className="ecosystem-map"><div className="ecosystem-core"><img src="/paytium-icon-white.svg" alt=""/><b>Orchestration</b></div>{["ERP & comptabilité", "Achats & ventes", "Référentiels", "Paiement", "GED & archivage", "Data & reporting"].map((item,index)=><span className={`eco-${index+1}`} key={item}>{item}</span>)}</div></section>
+    <section className="section connector-detail" id="connector">
+      <SectionHeading eyebrow="PAYTIUM E-INVOICE CONNECTOR" title={<>Une intégration transparente, <em>quel que soit votre point de départ.</em></>} text="Le Connector absorbe l’hétérogénéité de vos systèmes et centralise l’orchestration. Vos équipes continuent à travailler dans leurs outils habituels pendant que la couche Paytium gère les transformations, contrôles, transmissions et retours nécessaires au flux cible." />
+      <div className="connection-mode-grid">{connectionModes.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+      <div className="connector-capability-layout"><div><h3>Capacités du Connector</h3><p>Un socle d’intégration conçu pour évoluer avec votre architecture et les publications officielles.</p><div className="connector-promises"><strong>Votre ERP n’est pas remplacé.</strong><strong>Vos utilisateurs conservent leurs outils habituels.</strong><strong>L’intégration évolue avec les publications officielles.</strong></div></div><ul>{connectorCapabilities.map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul></div>
+      <TrackedLink className="button button-primary connector-cta" href="#consultation" eventName="einvoice_connector_cta_click">Évaluer mon architecture d’intégration <Arrow /></TrackedLink>
+    </section>
 
-    <section className="section security-section"><SectionHeading eyebrow="SÉCURITÉ, TRAÇABILITÉ & CONFORMITÉ" title={<>La maîtrise intégrée à <em>chaque échange.</em></>} /><div className="security-grid">{security.map((item,index)=><article key={item}><span>0{index+1}</span><p>{item}</p></article>)}</div><p className="responsible-note">Le périmètre de conformité est défini avec les équipes juridique, fiscale, sécurité et protection des données du client, à partir des textes et référentiels officiellement applicables.</p></section>
+    <section className="section einvoice-offers" id="offres">
+      <SectionHeading invert eyebrow="DES OFFRES ADAPTÉES À VOTRE AMBITION" title={<>Du diagnostic au déploiement, <em>jusqu’au parcours CSP.</em></>} text="Un accompagnement modulaire pour préparer vos équipes, intégrer vos systèmes ou construire et sécuriser un parcours CSP." />
+      <div className="einvoice-offer-grid">{offers.map((offer, index) => <article className={offer.featured ? "featured" : ""} key={offer.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{offer.title}</h3><p>{offer.text}</p><ul>{offer.items.map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul>{index === 2 && <small>Objectif : accélérer et sécuriser le parcours, sans promettre un délai de certification.</small>}</article>)}</div>
+    </section>
 
-    <section className="section usecase-section"><SectionHeading eyebrow="CAS D’USAGE" title={<>Des flux adaptés à <em>votre organisation.</em></>} /><div className="usecase-grid">{useCases.map(([title,text])=><article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+    <section className="section einvoice-deployment">
+      <SectionHeading eyebrow="MÉTHODE DE DÉPLOIEMENT" title={<>Une trajectoire progressive, <em>mesurable et maîtrisée.</em></>} text="Paytium travaille aux côtés de vos équipes pour réduire les risques, préserver la continuité métier et construire leur autonomie." />
+      <div className="einvoice-deployment-track">{deployment.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+    </section>
 
-    <section className="section deployment-section"><SectionHeading eyebrow="DÉPLOIEMENT" title={<>Une transition progressive <em>et maîtrisée.</em></>} /><div className="deployment-track">{deployment.map(([title,text],index)=><article key={title}><span>{String(index+1).padStart(2,"0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+    <section className="section why-paytium-section">
+      <div><Eyebrow>POURQUOI PAYTIUM</Eyebrow><h2>Une double maîtrise <em>métier et technologique.</em></h2><p>Du cadrage à l’exploitation, nous réunissons les expertises nécessaires pour transformer une exigence complexe en dispositif utilisable, observable et durable.</p></div>
+      <ol>{whyPaytium.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</li>)}</ol>
+    </section>
 
-    <section className="section faq-section"><div><Eyebrow>QUESTIONS FRÉQUENTES</Eyebrow><h2>Pour avancer avec <em>clarté.</em></h2></div><div className="faq-list">{faq.map(([question,answer])=><details key={question}><summary>{question}<span aria-hidden="true"><LuPlus /></span></summary><p>{answer}</p></details>)}</div></section>
+    <section className="section einvoice-consultation" id="consultation">
+      <div className="consultation-copy"><Eyebrow>CONSULTATION OFFERTE · 30 MINUTES</Eyebrow><h2>Où en êtes-vous dans votre préparation à la <em>facturation électronique ?</em></h2><p>Échangez avec un expert Paytium pour clarifier votre contexte, identifier les principaux écarts et choisir le prochain pas le plus utile — diagnostic, intégration du Connector, projet CSP ou préparation à la certification.</p><div className="consultation-agenda"><span><b>5 min</b>Votre contexte, vos systèmes et priorités</span><span><b>15 min</b>Risques, dépendances et options d’architecture</span><span><b>10 min</b>Recommandations initiales et prochaines étapes</span></div><div className="after-consultation"><h3>Après la consultation</h3><p><b>01 · Synthèse</b> Récapitulatif des enjeux identifiés.</p><p><b>02 · Orientation</b> Trajectoire recommandée.</p><p><b>03 · Proposition ciblée</b> Périmètre et étapes adaptés si vous souhaitez poursuivre.</p></div></div>
+      <EinvoiceConsultationForm />
+    </section>
 
-    <FinalCta eyebrow="PRÉPAREZ LA SUITE" title={<>Où en êtes-vous dans votre transition vers la <em>facturation électronique ?</em></>} text="Réalisons un premier échange pour clarifier votre périmètre, vos priorités et les dépendances à anticiper." primary="Demander un échange" secondary={["Découvrir les services Paytium", "/services"]} />
+    <section className="section faq-section einvoice-faq" id="faq"><div><Eyebrow>QUESTIONS FRÉQUENTES</Eyebrow><h2>Avancer avec une information <em>claire et prudente.</em></h2><p>Les réponses distinguent les annonces publiques des modalités qui restent à confirmer officiellement.</p></div><div className="faq-list">{faq.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true"><LuPlus /></span></summary><p>{answer}</p></details>)}</div></section>
+
+    <section className="section public-sources-section">
+      <div><Eyebrow>SOURCES PUBLIQUES ET INFORMATIONS RÉGLEMENTAIRES</Eyebrow><h2>Des références accessibles, <em>à vérifier dans le temps.</em></h2></div>
+      <div className="source-link-list">
+        <a href="https://www.tax.gov.ma/" target="_blank" rel="noopener noreferrer"><span>01</span>Direction Générale des Impôts <LuArrowRight aria-hidden="true" /></a>
+        <a href="https://www.finances.gov.ma/fr/pages/publications.aspx" target="_blank" rel="noopener noreferrer"><span>02</span>Publications du ministère de l’Économie et des Finances <LuArrowRight aria-hidden="true" /></a>
+        <a href="https://www.finances.gov.ma/Publication/dgi/2026/rapport-activit%C3%A9-2025-DGI.pdf" target="_blank" rel="noopener noreferrer"><span>03</span>Rapport d’activité 2025 de la DGI <LuArrowRight aria-hidden="true" /></a>
+        <a href="https://medias24.com/2026/04/18/la-facturation-electronique-expliquee-par-younes-idrissi-kaitouni-directeur-des-impots-1661379/" target="_blank" rel="noopener noreferrer"><span>04</span>Entretien public du Directeur général des impôts — Médias24, 18 avril 2026 <LuArrowRight aria-hidden="true" /></a>
+      </div>
+      <p className="sources-note">Dernière vérification éditoriale : 16 août 2026. Aucun calendrier détaillé ni spécifications techniques officiellement accessibles n’ont été identifiés lors de cette vérification. Les sources officielles prévalent en cas d’évolution du cadre.</p>
+    </section>
+
+    <TrackedLink className="einvoice-mobile-cta" href="#consultation" eventName="einvoice_hero_cta_click"><LuZap aria-hidden="true" />Consultation gratuite — 30 min</TrackedLink>
   </PageShell>;
 }
