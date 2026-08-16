@@ -45,13 +45,14 @@ test("localizes and positions the expertise band before services", async () => {
   assert.doesNotMatch(html, /class="section tech-section tech-summary"/);
 });
 
-test("removes country labels from every French and English page", async () => {
-  const routes = ["/", "/en", "/services", "/en/services", "/academy", "/en/academy", "/e-invoicing", "/en/e-invoicing"];
-  for (const route of routes) {
-    const response = await render(route);
-    const html = await response.text();
-    assert.doesNotMatch(html, /maroc|morocc/i, `country label found on ${route}`);
-  }
+test("localizes the country in the contact address", async () => {
+  const frenchHtml = await (await render("/")).text();
+  const englishHtml = await (await render("/en")).text();
+
+  assert.match(frenchHtml, /Casablanca, Maroc/);
+  assert.doesNotMatch(frenchHtml, /Casablanca, Morocco/);
+  assert.match(englishHtml, /Casablanca, Morocco/);
+  assert.doesNotMatch(englishHtml, /Casablanca, Maroc/);
 });
 
 test("uses descriptive page titles and the e-invoicing route", async () => {
