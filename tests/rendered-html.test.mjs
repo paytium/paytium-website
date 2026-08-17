@@ -93,6 +93,17 @@ test("presents the Moroccan e-invoicing offer, connector and consultation flow",
   assert.match(html, /einvoicing-marrakech\.webp/);
   assert.match(html, /FAQPage/);
   assert.match(html, /Cette page ne présente pas Paytium comme CSP agréé ou certifié/);
+  assert.doesNotMatch(html, /SOURCES PUBLIQUES ET INFORMATIONS RÉGLEMENTAIRES/);
+  for (const label of ["UNE INTEROPÉRABILITÉ BIDIRECTIONNELLE", "POURQUOI PAYTIUM", "CONSULTATION OFFERTE · 30 MINUTES"]) {
+    assert.match(html, new RegExp(`class="eyebrow page-kicker"[^>]*><span><\\/span>${label}`));
+  }
+});
+
+test("uses the shared page-kicker design on service and academy page introductions", async () => {
+  const servicesHtml = await (await render("/services")).text();
+  const academyHtml = await (await render("/academy")).text();
+  assert.match(servicesHtml, /class="eyebrow page-kicker"[^>]*><span><\/span>EXPERTISES PAYTIUM/);
+  assert.match(academyHtml, /class="eyebrow page-kicker"[^>]*><span><\/span>PAYTIUM ACADEMY/);
 });
 
 test("strengthens brand and page hierarchy signals for search engines", async () => {

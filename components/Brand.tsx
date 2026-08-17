@@ -8,8 +8,8 @@ export function Arrow() {
   return <LuArrowUpRight className="icon icon-arrow" aria-hidden="true" />;
 }
 
-export function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="eyebrow"><span />{children}</p>;
+export function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return <p className={`eyebrow ${className}`.trim()}><span />{children}</p>;
 }
 
 export function OrbitMark({ light = false }: { light?: boolean }) {

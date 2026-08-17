@@ -155,7 +155,7 @@ export default function ElectronicInvoicingPage() {
     </section>
 
     <section className="section connector-positioning" aria-labelledby="connector-positioning-title">
-      <div className="connector-positioning-copy"><Eyebrow>UNE INTEROPÉRABILITÉ BIDIRECTIONNELLE</Eyebrow><h2 id="connector-positioning-title">Paytium e-Invoice Connector : votre point d’accès à la facturation électronique DGI.</h2><p>Une couche d’intégration unique orchestre les échanges dans les deux sens, sans imposer le remplacement de vos outils. Elle adapte les données et protocoles au canal attendu, puis restitue factures reçues, accusés, statuts et erreurs dans vos applications.</p></div>
+      <div className="connector-positioning-copy"><div><Eyebrow className="page-kicker">UNE INTEROPÉRABILITÉ BIDIRECTIONNELLE</Eyebrow><h2 id="connector-positioning-title">Paytium e-Invoice Connector : votre point d’accès à la facturation électronique DGI.</h2></div><p>Une couche d’intégration unique orchestre les échanges dans les deux sens, sans imposer le remplacement de vos outils. Elle adapte les données et protocoles au canal attendu, puis restitue factures reçues, accusés, statuts et erreurs dans vos applications.</p></div>
       <div className="connector-diagram" aria-label="Schéma fonctionnel bidirectionnel du Paytium e-Invoice Connector">
         <div className="connector-node"><small>SYSTÈMES DE L’ENTREPRISE</small><b>ERP · TMS · Comptabilité</b><span>Achats · Ventes · Applications métier · Fichiers</span></div>
         <div className="connector-flows"><span><LuArrowRight aria-hidden="true" />Flux sortants</span><span><LuArrowLeft aria-hidden="true" />Flux entrants</span></div>
@@ -184,27 +184,16 @@ export default function ElectronicInvoicingPage() {
     </section>
 
     <section className="section why-paytium-section">
-      <div><Eyebrow>POURQUOI PAYTIUM</Eyebrow><h2>Une double maîtrise <em>métier et technologique.</em></h2><p>Du cadrage à l’exploitation, nous réunissons les expertises nécessaires pour transformer une exigence complexe en dispositif utilisable, observable et durable.</p></div>
+      <div><Eyebrow className="page-kicker">POURQUOI PAYTIUM</Eyebrow><h2>Une double maîtrise <em>métier et technologique.</em></h2><p>Du cadrage à l’exploitation, nous réunissons les expertises nécessaires pour transformer une exigence complexe en dispositif utilisable, observable et durable.</p></div>
       <ol>{whyPaytium.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</li>)}</ol>
     </section>
 
     <section className="section einvoice-consultation" id="consultation">
-      <div className="consultation-copy"><Eyebrow>CONSULTATION OFFERTE · 30 MINUTES</Eyebrow><h2>Où en êtes-vous dans votre préparation à la <em>facturation électronique ?</em></h2><p>Échangez avec un expert Paytium pour clarifier votre contexte, identifier les principaux écarts et choisir le prochain pas le plus utile — diagnostic, intégration du Connector, projet CSP ou préparation à la certification.</p><div className="consultation-agenda"><span><b>5 min</b>Votre contexte, vos systèmes et priorités</span><span><b>15 min</b>Risques, dépendances et options d’architecture</span><span><b>10 min</b>Recommandations initiales et prochaines étapes</span></div><div className="after-consultation"><h3>Après la consultation</h3><p><b>01 · Synthèse</b> Récapitulatif des enjeux identifiés.</p><p><b>02 · Orientation</b> Trajectoire recommandée.</p><p><b>03 · Proposition ciblée</b> Périmètre et étapes adaptés si vous souhaitez poursuivre.</p></div></div>
+      <div className="consultation-copy"><Eyebrow className="page-kicker">CONSULTATION OFFERTE · 30 MINUTES</Eyebrow><h2>Où en êtes-vous dans votre préparation à la <em>facturation électronique ?</em></h2><p>Échangez avec un expert Paytium pour clarifier votre contexte, identifier les principaux écarts et choisir le prochain pas le plus utile — diagnostic, intégration du Connector, projet CSP ou préparation à la certification.</p><div className="consultation-agenda"><span><b>5 min</b>Votre contexte, vos systèmes et priorités</span><span><b>15 min</b>Risques, dépendances et options d’architecture</span><span><b>10 min</b>Recommandations initiales et prochaines étapes</span></div><div className="after-consultation"><h3>Après la consultation</h3><p><b>01 · Synthèse</b> Récapitulatif des enjeux identifiés.</p><p><b>02 · Orientation</b> Trajectoire recommandée.</p><p><b>03 · Proposition ciblée</b> Périmètre et étapes adaptés si vous souhaitez poursuivre.</p></div></div>
       <EinvoiceConsultationForm />
     </section>
 
     <section className="section faq-section einvoice-faq" id="faq"><div><Eyebrow>QUESTIONS FRÉQUENTES</Eyebrow><h2>Avancer avec une information <em>claire et prudente.</em></h2><p>Les réponses distinguent les annonces publiques des modalités qui restent à confirmer officiellement.</p></div><div className="faq-list">{faq.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true"><LuPlus /></span></summary><p>{answer}</p></details>)}</div></section>
-
-    <section className="section public-sources-section">
-      <div><Eyebrow>SOURCES PUBLIQUES ET INFORMATIONS RÉGLEMENTAIRES</Eyebrow><h2>Des références accessibles, <em>à vérifier dans le temps.</em></h2></div>
-      <div className="source-link-list">
-        <a href="https://www.tax.gov.ma/" target="_blank" rel="noopener noreferrer"><span>01</span>Direction Générale des Impôts <LuArrowRight aria-hidden="true" /></a>
-        <a href="https://www.finances.gov.ma/fr/pages/publications.aspx" target="_blank" rel="noopener noreferrer"><span>02</span>Publications du ministère de l’Économie et des Finances <LuArrowRight aria-hidden="true" /></a>
-        <a href="https://www.finances.gov.ma/Publication/dgi/2026/rapport-activit%C3%A9-2025-DGI.pdf" target="_blank" rel="noopener noreferrer"><span>03</span>Rapport d’activité 2025 de la DGI <LuArrowRight aria-hidden="true" /></a>
-        <a href="https://medias24.com/2026/04/18/la-facturation-electronique-expliquee-par-younes-idrissi-kaitouni-directeur-des-impots-1661379/" target="_blank" rel="noopener noreferrer"><span>04</span>Entretien public du Directeur général des impôts — Médias24, 18 avril 2026 <LuArrowRight aria-hidden="true" /></a>
-      </div>
-      <p className="sources-note">Dernière vérification éditoriale : 16 août 2026. Aucun calendrier détaillé ni spécifications techniques officiellement accessibles n’ont été identifiés lors de cette vérification. Les sources officielles prévalent en cas d’évolution du cadre.</p>
-    </section>
 
     <TrackedLink className="einvoice-mobile-cta" href="#consultation" eventName="einvoice_hero_cta_click"><LuZap aria-hidden="true" />Consultation gratuite — 30 min</TrackedLink>
   </PageShell>;
