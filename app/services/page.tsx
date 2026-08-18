@@ -43,7 +43,7 @@ export default function ServicesPage() {
 
     <section className="section technology-library" id="expertise">
       <span className="section-anchor" id="technologies" aria-hidden="true" />
-      <SectionHeading eyebrow="NOS EXPERTISES" title={<>Stack technologique et <em>domaines de maîtrise.</em></>} text="Nos expertises couvrent l’ensemble de la chaîne de valeur digitale : conseil, software engineering, Data & IA, Cloud, DevSecOps, cybersécurité, intégration et delivery produit. Nous composons chaque stack selon votre contexte, vos standards et vos contraintes d’exploitation." />
+      <SectionHeading eyebrow="NOS EXPERTISES" title={<>Expertises technologiques et <em>domaines de maîtrise.</em></>} text="Nos expertises couvrent l’ensemble de la chaîne de valeur digitale : conseil, software engineering, Data & IA, Cloud, DevSecOps, cybersécurité, intégration et delivery produit. Nous mobilisons les technologies et savoir-faire adaptés à votre contexte, vos standards et vos contraintes d’exploitation." />
       <div className="technology-groups">{technologies.map((group, index) => <article key={group.title}><div><span>{String(index + 1).padStart(2, "0")}</span><h3>{group.title}</h3></div><ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}</div>
       <p className="responsible-note">Les technologies et services sont retenus après cadrage. Leur présence ici ne constitue pas une revendication de partenariat ou de certification éditeur.</p>
     </section>

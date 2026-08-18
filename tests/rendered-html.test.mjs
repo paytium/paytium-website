@@ -89,7 +89,7 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
     ["/services", "Paytium | Services"], ["/en/services", "Paytium | Services"],
     ["/academy", "Paytium | Academy"], ["/en/academy", "Paytium | Academy"],
     ["/e-invoicing", "Paytium | Facturation électronique &amp; e-Invoice Connector"], ["/en/e-invoicing", "Paytium | E-Invoicing &amp; DGI Connector"],
-    ["/expertises", "Expertises Fintech, Paiements et Digital Banking | Paytium"], ["/en/expertises", "Fintech, Payments &amp; Digital Banking Expertise | Paytium"],
+    ["/expertises", "Études de cas Fintech, Paiements et Digital Banking | Paytium"], ["/en/expertises", "Fintech, Payments &amp; Digital Banking Case Studies | Paytium"],
   ]);
   for (const [route, title] of expectedTitles) {
     const response = await render(route);
@@ -111,6 +111,12 @@ test("publishes bilingual anonymised financial-platform expertise", async () => 
   }
   assert.match(frenchHtml, /href="\/e-invoicing\/"/);
   assert.match(englishHtml, /href="\/en\/e-invoicing\/"/);
+  assert.match(frenchHtml, /ÉTUDES DE CAS/);
+  assert.match(englishHtml, /CASE STUDIES/);
+  assert.match(frenchHtml, /CAS.{0,40}1.{0,40}Facturation électronique/);
+  assert.match(frenchHtml, /CAS.{0,40}12.{0,40}API &amp; interopérabilité/);
+  assert.match(englishHtml, /CASE.{0,40}1.{0,40}E-invoicing/);
+  assert.match(englishHtml, /CASE.{0,40}12.{0,40}API &amp; interoperability/);
   assert.doesNotMatch(frenchHtml, /NOTRE MÉTHODE|De l’idée à/);
   assert.doesNotMatch(englishHtml, /OUR DELIVERY APPROACH|From idea to/);
   assert.match(shell, /aria-current=\{activeNav === "expertises" \? "page"/);
@@ -322,8 +328,10 @@ test("structures the technology stack as complete areas of expertise", async () 
   assert.doesNotMatch(content, /Jira|Confluence/);
   assert.doesNotMatch(content, /title: "DevOps"/);
   assert.match(servicesPage, /NOS EXPERTISES/);
-  assert.match(servicesPage, /Stack technologique et/);
-  assert.match(servicesPageEn, /Technology stack and/);
+  assert.match(servicesPage, /Expertises technologiques et/);
+  assert.match(servicesPageEn, /Technology expertise and/);
+  assert.doesNotMatch(servicesPage, /Stack technologique et/);
+  assert.doesNotMatch(servicesPageEn, /Technology stack and/);
   assert.match(servicesPage, /id="expertise"/);
   assert.match(css, /\.technology-groups article\{display:grid;grid-template-columns:\.4fr \.6fr/);
   assert.doesNotMatch(css, /\.technology-groups\{display:grid;grid-template-columns:repeat\(3/);
@@ -423,7 +431,14 @@ test("orders the services menu and uses market-aware English labels", async () =
   ]);
   assert.match(shell, /playground: "Field of play"/);
   assert.match(shell, /methodsMenu: "Our methods"/);
-  assert.match(shell, /copy\.playground[\s\S]*copy\.methodsMenu[\s\S]*copy\.technologies/);
+  assert.match(shell, /cases: "Études de cas"/);
+  assert.match(shell, /cases: "Case studies"/);
+  assert.match(shell, /technologies: "Expertises"/);
+  assert.match(shell, /technologies: "Expertise"/);
+  assert.match(shell, /copy\.playground[\s\S]*copy\.methodsMenu[\s\S]*copy\.technologies[\s\S]*copy\.academy/);
+  assert.match(shell, /services\/#methods/);
+  assert.match(shell, /e-invoicing\/#offres/);
+  assert.match(shell, /e-invoicing\/#consultation/);
   assert.match(servicesPageEn, /DELIVERY METHODS/);
   assert.match(servicesPageEn, /workingMethodsEn/);
   assert.match(servicesEn, /managed delivery centres/);
