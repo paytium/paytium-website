@@ -106,3 +106,37 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 @media(max-width:1180px){.language-menu{margin-left:auto}.menu-button{margin-left:0}}
 .seo-service-intro,.einvoice-readiness{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;background:var(--pale);align-items:start}.seo-service-intro>div>span{display:block;margin-bottom:24px;color:var(--sage);font-size:10px;font-weight:800;letter-spacing:.16em}.seo-service-intro h2,.einvoice-readiness h2{font-size:clamp(2.2rem,4vw,4.4rem)}.seo-service-intro p,.einvoice-readiness p{font-size:16px;line-height:1.8}.seo-service-intro nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}.seo-service-intro nav a{padding:15px 17px;border:1px solid var(--border);border-radius:14px;background:#fff;font-size:12px;font-weight:700;transition:all .2s}.seo-service-intro nav a:hover{border-color:var(--sage);transform:translateY(-2px)}.einvoice-readiness{background:#fff}.einvoice-readiness .text-link{width:max-content}.einvoice-readiness .text-link svg{width:15px;height:15px;flex:0 0 auto}@media(max-width:800px){.seo-service-intro,.einvoice-readiness{grid-template-columns:1fr;gap:30px}.seo-service-intro nav{grid-template-columns:1fr}.seo-service-intro p,.einvoice-readiness p{font-size:15px}.einvoice-readiness .text-link{width:auto}}
 .einvoice-terms,.partner-intent{background:var(--ivory)}.einvoice-term-grid,.partner-intent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.einvoice-term-grid article,.partner-intent-grid article{min-height:270px;padding:26px;border:1px solid var(--border);border-radius:24px;background:#fff;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}.einvoice-term-grid article:nth-child(2),.partner-intent-grid article:nth-child(3){background:var(--mint)}.einvoice-term-grid article>span,.partner-intent-grid article>span{color:var(--sage);font-size:10px;font-weight:750;letter-spacing:.1em}.einvoice-term-grid h3,.partner-intent-grid h3{margin:66px 0 14px;font-size:21px}.einvoice-term-grid p,.partner-intent-grid p{margin:0;font-size:13px;line-height:1.72}.intent-note{margin:24px 0 0;padding:20px 22px;border-left:3px solid var(--sage);background:var(--pale);font-size:14px;line-height:1.7}.intent-note strong{color:var(--deep)}.intent-note a{color:var(--deep);font-weight:700;text-decoration:underline;text-decoration-color:var(--sage);text-underline-offset:4px}@media(hover:hover){.einvoice-term-grid article:hover,.partner-intent-grid article:hover{transform:translateY(-5px);border-color:var(--sage);box-shadow:var(--shadow)}}@media(max-width:1000px){.einvoice-term-grid,.partner-intent-grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.einvoice-term-grid,.partner-intent-grid{grid-template-columns:1fr}.einvoice-term-grid article,.partner-intent-grid article{min-height:230px}.einvoice-term-grid h3,.partner-intent-grid h3{margin-top:48px}}
+
+/* E-invoicing — visual alignment with the Paytium design system */
+.section-heading.invert .eyebrow,.einvoice-context-section .eyebrow,.einvoice-offers .eyebrow,.einvoice-consultation .eyebrow{color:var(--white)}
+.section-heading.invert em,.einvoice-context-section em,.einvoice-offers em,.einvoice-consultation em,.einvoice-faq em{color:var(--mint)}
+.einvoice-hero .page-kicker,.connector-positioning .page-kicker,.why-paytium-section .page-kicker,.einvoice-consultation .page-kicker{font-family:var(--font-bricolage),var(--font-geist-sans),sans-serif;font-size:10px;font-weight:700;line-height:1.4;letter-spacing:.19em}
+.einvoice-hero-copy h1,.einvoice-hero h2,.einvoice-erp-section h2,.einvoice-context-section h2,.einvoice-compliance-section h2,.connector-positioning h2,.connector-detail h2,.einvoice-offers h2,.einvoice-deployment h2,.why-paytium-section h2,.einvoice-consultation h2,.einvoice-faq h2,.public-marker-grid h3,.compliance-pillar-grid h3,.connection-mode-grid h3,.einvoice-offer-grid h3,.einvoice-deployment-track h3,.connector-node b,.connector-capability-layout h3{font-family:var(--font-bricolage),var(--font-geist-sans),sans-serif}
+.public-marker-grid h3,.compliance-pillar-grid h3,.connection-mode-grid h3,.einvoice-offer-grid h3,.einvoice-deployment-track h3,.connector-capability-layout h3{font-weight:600;letter-spacing:-.025em}
+.einvoice-hero{background:var(--ivory)}
+.einvoice-erp-section,.connector-positioning,.einvoice-deployment{background:var(--white)}
+.einvoice-compliance-section,.connector-detail{background:var(--pale)}
+.why-paytium-section{background:var(--ivory)}
+.einvoice-context-section,.einvoice-offers{background:var(--deep)}
+.einvoice-consultation,.einvoice-faq{background:var(--dark)}
+.public-marker-grid article,.einvoice-offer-grid>article{border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.055);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.public-marker-grid article h3,.einvoice-offer-grid>article h3{color:var(--white)}
+.public-marker-grid p,.einvoice-offer-grid p{color:rgba(255,255,255,.74)}
+.einvoice-offer-grid li{color:rgba(255,255,255,.82)}
+.einvoice-offer-grid>article.featured{border-color:var(--mint);background:var(--mint);color:var(--deep);box-shadow:0 18px 48px rgba(7,31,27,.18)}
+.einvoice-offer-grid>article.featured h3{color:var(--deep)}
+.compliance-pillar-grid article,.connection-mode-grid article,.connector-capability-layout,.connector-node,.einvoice-deployment-track article{border:1px solid var(--border);background:var(--white)}
+.compliance-pillar-grid article:nth-child(2),.connection-mode-grid article:nth-child(3){border-color:rgba(119,169,148,.45);background:var(--mint)}
+.connector-diagram{border-color:var(--border);background:var(--pale)}
+.connector-node.connector-core{border-color:var(--deep);background:var(--deep);color:var(--white)}
+.connector-node b{font-weight:600;letter-spacing:-.015em}
+.connector-promises strong{border-left-color:var(--sage);background:var(--ivory);font-weight:650}
+.einvoice-deployment-track{gap:10px}
+.einvoice-deployment-track article{border-top:3px solid var(--sage);border-radius:0 0 18px 18px}
+.why-paytium-section ol{display:grid;gap:10px}
+.why-paytium-section li{align-items:start;padding:18px 20px;border:1px solid var(--border);border-radius:16px;background:var(--white);font-weight:550}
+.consultation-agenda span{color:rgba(255,255,255,.8)}
+.after-consultation{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.055)}
+.einvoice-consultation-form{border:1px solid rgba(255,255,255,.15);box-shadow:0 24px 60px rgba(0,0,0,.16)}
+.einvoice-faq .faq-list summary{font-family:var(--font-bricolage),var(--font-geist-sans),sans-serif;font-weight:600}
+@media(max-width:600px){.einvoice-deployment-track{gap:12px}.einvoice-deployment-track article{border-right:1px solid var(--border);border-radius:0 0 18px 18px}.why-paytium-section li{grid-template-columns:34px 1fr;padding:16px}}

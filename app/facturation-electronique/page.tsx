@@ -119,7 +119,7 @@ export default function ElectronicInvoicingPage() {
 
     <section className="einvoice-hero">
       <div className="einvoice-hero-copy">
-        <Eyebrow>FACTURATION ÉLECTRONIQUE AU MAROC</Eyebrow>
+        <Eyebrow className="page-kicker">FACTURATION ÉLECTRONIQUE AU MAROC</Eyebrow>
         <h1>Connectez votre système de facturation à l’écosystème DGI, <em>sans bouleverser vos opérations.</em></h1>
         <p>Paytium accompagne les entreprises de l’évaluation de maturité à l’intégration opérationnelle. Le Paytium e-Invoice Connector crée une passerelle bidirectionnelle entre vos ERP, TMS, logiciels comptables et applications métier, et le système de facturation électronique de la Direction Générale des Impôts.</p>
         <p className="einvoice-proof">Conseil métier & réglementaire · Intégration ERP · Connector · Projets CSP · Accompagnement à la certification</p>
