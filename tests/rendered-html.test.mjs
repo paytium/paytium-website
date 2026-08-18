@@ -111,8 +111,8 @@ test("publishes bilingual anonymised financial-platform expertise", async () => 
   }
   assert.match(frenchHtml, /href="\/e-invoicing\/"/);
   assert.match(englishHtml, /href="\/en\/e-invoicing\/"/);
-  assert.match(frenchHtml, /De l’idée à/);
-  assert.match(englishHtml, /From idea to/);
+  assert.doesNotMatch(frenchHtml, /NOTRE MÉTHODE|De l’idée à/);
+  assert.doesNotMatch(englishHtml, /OUR DELIVERY APPROACH|From idea to/);
   assert.match(shell, /aria-current=\{activeNav === "expertises" \? "page"/);
   assert.doesNotMatch(frenchHtml, /XHUB|logo client|nom du client/i);
 });
