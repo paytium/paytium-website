@@ -60,7 +60,7 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
     ["/", "Paytium | Conseil &amp; technologie"], ["/en", "Paytium | Consulting &amp; Technology"],
     ["/services", "Paytium | Services"], ["/en/services", "Paytium | Services"],
     ["/academy", "Paytium | Academy"], ["/en/academy", "Paytium | Academy"],
-    ["/e-invoicing", "Facturation électronique Maroc &amp; Connector DGI | Paytium"], ["/en/e-invoicing", "Paytium | E-invoicing"],
+    ["/e-invoicing", "Paytium | Facturation électronique &amp; e-Invoice Connector"], ["/en/e-invoicing", "Paytium | E-Invoicing &amp; DGI Connector"],
   ]);
   for (const [route, title] of expectedTitles) {
     const response = await render(route);
@@ -89,14 +89,27 @@ test("presents the Moroccan e-invoicing offer, connector and consultation flow",
   assert.match(html, /Intégration personnalisée/);
   assert.match(html, /name="need"/);
   assert.match(html, /name="stage"/);
-  assert.match(html, /name="consent"/);
-  assert.match(html, /einvoicing-marrakech\.webp/);
+  assert.doesNotMatch(html, /name="consent"/);
+  assert.match(html, /einvoicing-rabat\.jpg/);
+  assert.match(html, /logo-morocco\.png/);
+  assert.match(html, /logo-dgi\.png/);
+  assert.doesNotMatch(html, /Paytium est un acteur indépendant/);
+  assert.doesNotMatch(html, /Informations fondées sur les annonces publiques disponibles/);
+  assert.doesNotMatch(html, /Représentation fonctionnelle simplifiée/);
   assert.match(html, /FAQPage/);
   assert.match(html, /Cette page ne présente pas Paytium comme CSP agréé ou certifié/);
   assert.doesNotMatch(html, /SOURCES PUBLIQUES ET INFORMATIONS RÉGLEMENTAIRES/);
   for (const label of ["UNE INTEROPÉRABILITÉ BIDIRECTIONNELLE", "POURQUOI PAYTIUM", "CONSULTATION OFFERTE · 30 MINUTES"]) {
     assert.match(html, new RegExp(`class="eyebrow page-kicker"[^>]*><span><\\/span>${label}`));
   }
+
+  const englishHtml = await (await render("/en/e-invoicing")).text();
+  assert.match(englishHtml, /Connect your invoicing systems to the DGI ecosystem/);
+  assert.match(englishHtml, /BIDIRECTIONAL INTEROPERABILITY/);
+  assert.match(englishHtml, /WHY PAYTIUM/);
+  assert.match(englishHtml, /FREE CONSULTATION · 30 MINUTES/);
+  assert.match(englishHtml, /name="need"/);
+  assert.doesNotMatch(englishHtml, /name="consent"/);
 });
 
 test("uses the shared page-kicker design on service and academy page introductions", async () => {
@@ -133,12 +146,13 @@ test("adds consistent spacing around the contact subject chevron", async () => {
 });
 
 test("replaces consent checkboxes with bilingual privacy notices", async () => {
-  const [form, profileForm, css] = await Promise.all([
+  const [form, profileForm, consultationForm, css] = await Promise.all([
     readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/ProfileRequestModal.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/EinvoiceConsultationForm.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
-  for (const source of [form, profileForm]) {
+  for (const source of [form, profileForm, consultationForm]) {
     assert.match(source, /className="privacy-note"/);
     assert.match(source, /LuShieldCheck/);
     assert.doesNotMatch(source, /type="checkbox" name="consent"/);

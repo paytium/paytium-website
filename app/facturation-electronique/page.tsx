@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { FaMicrosoft, FaStar } from "react-icons/fa6";
-import { LuArrowLeft, LuArrowRight, LuCheck, LuDatabase, LuGlobe, LuLayers3, LuPlus, LuShieldCheck, LuZap } from "react-icons/lu";
+import { FaMicrosoft } from "react-icons/fa6";
+import { LuArrowLeft, LuArrowRight, LuCheck, LuDatabase, LuLayers3, LuPlus, LuZap } from "react-icons/lu";
 import { SiOdoo, SiSage, SiSap } from "react-icons/si";
 import { Breadcrumbs, PageShell } from "../../components/SiteShell";
 import { Arrow, Eyebrow } from "../../components/Brand";
@@ -8,23 +8,23 @@ import { SectionHeading } from "../../components/Sections";
 import { EinvoiceConsultationForm, TrackedLink } from "../../components/EinvoiceConsultationForm";
 
 export const metadata: Metadata = {
-  title: "Facturation électronique Maroc & Connector DGI | Paytium",
-  description: "Préparez votre conformité à la facturation électronique au Maroc avec Paytium : conseil, intégration ERP, e-Invoice Connector, projets CSP et accompagnement à la certification.",
+  title: "Paytium | Facturation électronique & e-Invoice Connector",
+  description: "Connectez vos ERP et applications à l’écosystème de facturation électronique avec Paytium : conseil, intégration bidirectionnelle, Connector et accompagnement CSP.",
   alternates: { canonical: "/e-invoicing", languages: { "fr-FR": "/e-invoicing", "en-US": "/en/e-invoicing" } },
   openGraph: {
-    title: "Facturation électronique Maroc & Connector DGI | Paytium",
-    description: "Conseil, intégration ERP, Paytium e-Invoice Connector et accompagnement CSP pour préparer la facturation électronique au Maroc.",
+    title: "Paytium | Facturation électronique & e-Invoice Connector",
+    description: "Conseil, intégration ERP et Paytium e-Invoice Connector pour orchestrer vos flux de facturation électronique de bout en bout.",
     url: "/e-invoicing",
     type: "website",
     locale: "fr_FR",
     siteName: "Paytium",
-    images: [{ url: "/og-einvoicing.png", width: 1200, height: 630, alt: "Paytium — Facturation électronique au Maroc et e-Invoice Connector" }],
+    images: [{ url: "/og-einvoicing-rabat.png", width: 1200, height: 630, alt: "Paytium — Facturation électronique, e-Invoice Connector et Rabat" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Facturation électronique Maroc & Connector DGI | Paytium",
-    description: "Préparez vos flux, vos ERP et votre trajectoire CSP avec Paytium.",
-    images: ["/og-einvoicing.png"],
+    title: "Paytium | Facturation électronique & e-Invoice Connector",
+    description: "Connectez vos ERP, automatisez vos échanges et sécurisez votre trajectoire e-invoicing avec Paytium.",
+    images: ["/og-einvoicing-rabat.png"],
   },
 };
 
@@ -127,8 +127,8 @@ export default function ElectronicInvoicingPage() {
         <div className="einvoice-consultation-note"><b>Consultation offerte · 30 minutes</b><span>Un échange sans engagement pour clarifier votre périmètre, vos risques et les prochaines étapes.</span></div>
       </div>
       <figure className="einvoice-hero-media">
-        <img src="/einvoicing-marrakech.webp" alt="La Koutoubia à Marrakech au coucher du soleil" width="1600" height="1179" fetchPriority="high" />
-        <figcaption>Marrakech · Photo Federico Mata, <a href="https://commons.wikimedia.org/wiki/File:Koutoubia,_Marrakech_-_panoramio.jpg" target="_blank" rel="noopener noreferrer">CC BY 3.0</a></figcaption>
+        <img src="/einvoicing-rabat.jpg" alt="Vue panoramique de Rabat depuis la Tour Hassan" width="1920" height="1280" fetchPriority="high" />
+        <figcaption>Rabat · Photo Steven C. Price, <a href="https://commons.wikimedia.org/wiki/File:View-of-Rabat-from-Hassan-Tower.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></figcaption>
       </figure>
     </section>
 
@@ -143,9 +143,7 @@ export default function ElectronicInvoicingPage() {
     <section className="section einvoice-context-section">
       <SectionHeading invert eyebrow="LE CONTEXTE MAROCAIN" title={<>Une facture structurée, sécurisée et <em>intégrée aux systèmes.</em></>} text="La facturation électronique transforme la facture en un flux de données exploitable de bout en bout. Selon les annonces publiques de la DGI, le dispositif marocain doit permettre de contrôler, transmettre et tracer les factures B2B à travers un format structuré et des échanges sécurisés." />
       <div className="public-marker-grid">{publicMarkers.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
-      <div className="dgi-context-card"><div className="morocco-flag" role="img" aria-label="Drapeau du Maroc"><FaStar aria-hidden="true" /></div><div><small>DIRECTION GÉNÉRALE DES IMPÔTS</small><strong>Royaume du Maroc</strong><p>Réforme portée par la Direction Générale des Impôts du Royaume du Maroc.</p></div><LuGlobe aria-hidden="true" /></div>
-      <p className="independence-note">Paytium est un acteur indépendant. Cette identification de l’institution concernée ne vaut ni partenariat, ni agrément, ni certification.</p>
-      <p className="regulatory-note"><LuShieldCheck aria-hidden="true" /><span>Informations fondées sur les annonces publiques disponibles. Le rapport d’activité 2025 de la DGI indique que le portail a été développé et couvre notamment l’émission, la transmission, la réception et la déclaration d’événements postérieurs à la facturation. Les modalités applicables à chaque entreprise seront déterminées par les textes, le calendrier et les spécifications officiellement publiés.</span></p>
+      <div className="institutional-logos" aria-label="Institutions de référence"><div><img src="/logo-morocco.png" alt="Armoiries du Royaume du Maroc" width="98" height="100" /><span>Royaume du Maroc</span></div><div><img src="/logo-dgi.png" alt="Logo de la Direction Générale des Impôts" width="100" height="100" /><span>Direction Générale des Impôts</span></div></div>
     </section>
 
     <section className="section einvoice-compliance-section">
@@ -163,7 +161,6 @@ export default function ElectronicInvoicingPage() {
         <div className="connector-flows"><span><LuArrowRight aria-hidden="true" />Factures · avoirs · données</span><span><LuArrowLeft aria-hidden="true" />Accusés · statuts · erreurs</span></div>
         <div className="connector-node"><small>ÉCOSYSTÈME DGI / CSP</small><b>Validation · Échange</b><span>Accusés · Statuts · Clients · Fournisseurs</span></div>
       </div>
-      <p className="diagram-note">Représentation fonctionnelle simplifiée. Les rôles, formats et modalités d’échange sont adaptés aux spécifications officiellement applicables et au contexte de chaque entreprise.</p>
     </section>
 
     <section className="section connector-detail" id="connector">
