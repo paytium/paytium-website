@@ -35,6 +35,15 @@ test("server-renders the Paytium site and its branded page loader", async () => 
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
 
+test("displays the Paytium promise prominently in the footer", async () => {
+  const [shell, css] = await Promise.all([
+    readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+  assert.match(shell, /footer-slogan">Build\. <em>Secure\.<\/em> Scale\./);
+  assert.match(css, /\.footer-slogan\{/);
+});
+
 test("promotes e-invoicing consultations and keeps English pages directly indexable", async () => {
   const [hero, homeFr, homeEn, rootLayout, pagesEntry, socialTemplate] = await Promise.all([
     readFile(new URL("../components/HomeHero.tsx", import.meta.url), "utf8"),
