@@ -90,9 +90,11 @@ test("presents the Moroccan e-invoicing offer, connector and consultation flow",
   assert.match(html, /name="need"/);
   assert.match(html, /name="stage"/);
   assert.doesNotMatch(html, /name="consent"/);
-  assert.match(html, /einvoicing-rabat\.jpg/);
-  assert.match(html, /logo-morocco\.png/);
+  assert.match(html, /einvoicing-casablanca\.jpg/);
+  assert.match(html, /flag-morocco\.png/);
   assert.match(html, /logo-dgi\.png/);
+  assert.match(html, /og-einvoicing-casablanca\.png/);
+  assert.doesNotMatch(html, /class="institutional-logos"/);
   assert.doesNotMatch(html, /Paytium est un acteur indépendant/);
   assert.doesNotMatch(html, /Informations fondées sur les annonces publiques disponibles/);
   assert.doesNotMatch(html, /Représentation fonctionnelle simplifiée/);

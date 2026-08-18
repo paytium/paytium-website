@@ -141,13 +141,17 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 .einvoice-faq .faq-list summary{font-family:var(--font-bricolage),var(--font-geist-sans),sans-serif;font-weight:600}
 
 /* E-invoicing — institutional media and section balance */
-.einvoice-hero-media img{object-position:center bottom}
-.einvoice-context-section .section-heading{align-items:end}
-.einvoice-context-section .section-heading>p{color:rgba(255,255,255,.76)}
-.institutional-logos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}
-.institutional-logos>div{display:flex;min-height:132px;align-items:center;gap:22px;padding:18px 24px;border:1px solid rgba(255,255,255,.16);border-radius:22px;background:var(--white);color:var(--deep)}
-.institutional-logos img{width:88px;height:88px;flex:0 0 88px;object-fit:contain}
-.institutional-logos span{font-family:var(--font-bricolage),var(--font-geist-sans),sans-serif;font-size:17px;font-weight:650;line-height:1.25}
+.einvoice-hero-media>img{object-position:center center}
+.einvoice-hero-badges{position:absolute;top:22px;right:22px;z-index:2;display:flex;gap:9px}
+.einvoice-hero-badges>span{display:grid;width:76px;min-height:88px;place-items:center;padding:10px 8px 8px;border:1px solid rgba(18,63,54,.12);border-radius:16px;background:rgba(255,255,255,.94);box-shadow:0 10px 26px rgba(8,42,36,.16);backdrop-filter:blur(8px)}
+.einvoice-hero-badges img{width:56px!important;height:46px!important;object-fit:contain!important}
+.einvoice-hero-badges small{color:var(--deep);font-size:8px;font-weight:800;letter-spacing:.12em}
+.einvoice-context-section .section-heading,.einvoice-offers .section-heading{align-items:end;gap:clamp(36px,7vw,120px)}
+.einvoice-context-section .section-heading.invert,.einvoice-offers .section-heading.invert{filter:none}
+.einvoice-context-section .section-heading h2,.einvoice-offers .section-heading h2{color:var(--white)}
+.einvoice-context-section .section-heading h2 em,.einvoice-offers .section-heading h2 em{color:var(--mint)}
+.einvoice-context-section .section-heading .eyebrow,.einvoice-offers .section-heading .eyebrow{color:var(--white)}
+.einvoice-context-section .section-heading>p,.einvoice-offers .section-heading>p{color:rgba(255,255,255,.76)}
 .responsible-note{margin:24px 0 0;padding:16px 18px;border-left:3px solid var(--sage);background:rgba(255,255,255,.72);color:var(--text);font-size:12px;line-height:1.7}
 .connector-positioning-copy>div,.consultation-copy{min-width:0}
 .einvoice-offer-grid>article{position:relative}
@@ -167,4 +171,4 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
   letter-spacing:.19em;
 }
 @media(max-width:600px){.einvoice-deployment-track{gap:12px}.einvoice-deployment-track article{border-right:1px solid var(--border);border-radius:0 0 18px 18px}.why-paytium-section li{grid-template-columns:34px 1fr;padding:16px}}
-@media(max-width:700px){.institutional-logos{grid-template-columns:1fr}.institutional-logos>div{min-height:112px;padding:15px 18px}.institutional-logos img{width:72px;height:72px;flex-basis:72px}.institutional-logos span{font-size:15px}}
+@media(max-width:700px){.einvoice-hero-badges{top:14px;right:14px}.einvoice-hero-badges>span{width:62px;min-height:72px;padding:7px 6px}.einvoice-hero-badges img{width:46px!important;height:36px!important}}

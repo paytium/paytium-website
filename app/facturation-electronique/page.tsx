@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: "Paytium",
-    images: [{ url: "/og-einvoicing-rabat.png", width: 1200, height: 630, alt: "Paytium — Facturation électronique, e-Invoice Connector et Rabat" }],
+    images: [{ url: "/og-einvoicing-casablanca.png", width: 1200, height: 630, alt: "Paytium — Facturation électronique et e-Invoice Connector à Casablanca" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Paytium | Facturation électronique & e-Invoice Connector",
     description: "Connectez vos ERP, automatisez vos échanges et sécurisez votre trajectoire e-invoicing avec Paytium.",
-    images: ["/og-einvoicing-rabat.png"],
+    images: ["/og-einvoicing-casablanca.png"],
   },
 };
 
@@ -127,8 +127,9 @@ export default function ElectronicInvoicingPage() {
         <div className="einvoice-consultation-note"><b>Consultation offerte · 30 minutes</b><span>Un échange sans engagement pour clarifier votre périmètre, vos risques et les prochaines étapes.</span></div>
       </div>
       <figure className="einvoice-hero-media">
-        <img src="/einvoicing-rabat.jpg" alt="Vue panoramique de Rabat depuis la Tour Hassan" width="1920" height="1280" fetchPriority="high" />
-        <figcaption>Rabat · Photo Steven C. Price, <a href="https://commons.wikimedia.org/wiki/File:View-of-Rabat-from-Hassan-Tower.jpg" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></figcaption>
+        <img src="/einvoicing-casablanca.jpg" alt="Architecture marocaine à Casablanca" width="2400" height="1594" fetchPriority="high" />
+        <div className="einvoice-hero-badges" aria-label="Maroc et Direction Générale des Impôts"><span><img src="/flag-morocco.png" alt="Drapeau du Maroc" width="56" height="36" /><small>MAROC</small></span><span><img src="/logo-dgi.png" alt="Logo de la Direction Générale des Impôts" width="56" height="56" /><small>DGI</small></span></div>
+        <figcaption>Casablanca · Photo <a href="https://unsplash.com/fr/@hansjuergen" target="_blank" rel="noopener noreferrer">Hans-Jürgen Weinhardt</a> / Unsplash</figcaption>
       </figure>
     </section>
 
@@ -143,7 +144,6 @@ export default function ElectronicInvoicingPage() {
     <section className="section einvoice-context-section">
       <SectionHeading invert eyebrow="LE CONTEXTE MAROCAIN" title={<>Une facture structurée, sécurisée et <em>intégrée aux systèmes.</em></>} text="La facturation électronique transforme la facture en un flux de données exploitable de bout en bout. Selon les annonces publiques de la DGI, le dispositif marocain doit permettre de contrôler, transmettre et tracer les factures B2B à travers un format structuré et des échanges sécurisés." />
       <div className="public-marker-grid">{publicMarkers.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
-      <div className="institutional-logos" aria-label="Institutions de référence"><div><img src="/logo-morocco.png" alt="Armoiries du Royaume du Maroc" width="98" height="100" /><span>Royaume du Maroc</span></div><div><img src="/logo-dgi.png" alt="Logo de la Direction Générale des Impôts" width="100" height="100" /><span>Direction Générale des Impôts</span></div></div>
     </section>
 
     <section className="section einvoice-compliance-section">
