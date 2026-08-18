@@ -142,7 +142,8 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 
 /* E-invoicing — institutional media and section balance */
 .einvoice-hero-media>img{object-position:center center}
-.einvoice-hero-badges{position:absolute;top:22px;right:22px;z-index:2;display:flex;gap:9px}
+.einvoice-hero-media:before{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(18,63,54,.84) 0%,rgba(18,63,54,.5) 38%,rgba(18,63,54,.12) 72%,transparent 100%);content:"";pointer-events:none}
+.einvoice-hero-badges{position:absolute;top:22px;left:22px;z-index:2;display:flex;gap:9px}
 .einvoice-hero-badges>span{display:grid;width:76px;min-height:88px;place-items:center;padding:10px 8px 8px;border:1px solid rgba(18,63,54,.12);border-radius:16px;background:rgba(255,255,255,.94);box-shadow:0 10px 26px rgba(8,42,36,.16);backdrop-filter:blur(8px)}
 .einvoice-hero-badges img{width:56px!important;height:46px!important;object-fit:contain!important}
 .einvoice-hero-badges small{color:var(--deep);font-size:8px;font-weight:800;letter-spacing:.12em}
@@ -155,6 +156,16 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 .responsible-note{margin:24px 0 0;padding:16px 18px;border-left:3px solid var(--sage);background:rgba(255,255,255,.72);color:var(--text);font-size:12px;line-height:1.7}
 .connector-positioning-copy>div,.consultation-copy{min-width:0}
 .einvoice-offer-grid>article{position:relative}
+
+/* E-invoicing — compact first viewport */
+.einvoice-hero{min-height:calc(100svh - var(--header) - 72px);padding-top:40px;padding-bottom:48px;align-items:stretch}
+.einvoice-hero-copy{align-self:start;padding-top:24px}
+.einvoice-hero-copy h1{font-size:clamp(2.7rem,3.85vw,4.6rem)}
+.einvoice-hero-copy>p:not(.eyebrow){margin-top:18px;font-size:14px;line-height:1.62}
+.einvoice-hero .hero-actions{margin-top:22px}
+.einvoice-proof{padding-top:13px}
+.einvoice-consultation-note{margin-top:12px}
+.einvoice-hero-media{min-height:0}
 
 /* Shared small-title rhythm across page heroes and e-invoicing blocks */
 .page-hero>div:first-child>.page-kicker,
@@ -171,4 +182,5 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
   letter-spacing:.19em;
 }
 @media(max-width:600px){.einvoice-deployment-track{gap:12px}.einvoice-deployment-track article{border-right:1px solid var(--border);border-radius:0 0 18px 18px}.why-paytium-section li{grid-template-columns:34px 1fr;padding:16px}}
-@media(max-width:700px){.einvoice-hero-badges{top:14px;right:14px}.einvoice-hero-badges>span{width:62px;min-height:72px;padding:7px 6px}.einvoice-hero-badges img{width:46px!important;height:36px!important}}
+@media(max-width:800px){.einvoice-hero{padding:34px 22px 56px;gap:24px}.einvoice-hero-copy{padding-top:0}.einvoice-hero-copy h1{font-size:clamp(2.2rem,9.2vw,3.2rem)}.einvoice-hero-copy>p:not(.eyebrow){margin-top:16px;font-size:13px;line-height:1.55}.einvoice-hero .hero-actions{gap:8px;margin-top:18px}.einvoice-hero .hero-actions .button{min-height:44px;padding-block:11px}.einvoice-proof{padding-top:11px;font-size:10px!important}.einvoice-consultation-note{gap:6px;margin-top:10px}.einvoice-consultation-note span{font-size:10px;line-height:1.5}}
+@media(max-width:700px){.einvoice-hero-badges{top:14px;left:14px}.einvoice-hero-badges>span{width:62px;min-height:72px;padding:7px 6px}.einvoice-hero-badges img{width:46px!important;height:36px!important}}
