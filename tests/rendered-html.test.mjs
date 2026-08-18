@@ -89,6 +89,7 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
     ["/services", "Paytium | Services"], ["/en/services", "Paytium | Services"],
     ["/academy", "Paytium | Academy"], ["/en/academy", "Paytium | Academy"],
     ["/e-invoicing", "Paytium | Facturation électronique &amp; e-Invoice Connector"], ["/en/e-invoicing", "Paytium | E-Invoicing &amp; DGI Connector"],
+    ["/expertises", "Expertises Fintech, Paiements et Digital Banking | Paytium"], ["/en/expertises", "Fintech, Payments &amp; Digital Banking Expertise | Paytium"],
   ]);
   for (const [route, title] of expectedTitles) {
     const response = await render(route);
@@ -98,6 +99,22 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
   const shell = await readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8");
   assert.doesNotMatch(shell, /\/facturation-electronique/);
   assert.match(shell, /\/e-invoicing/);
+});
+
+test("publishes bilingual anonymised financial-platform expertise", async () => {
+  const frenchHtml = await (await render("/expertises")).text();
+  const englishHtml = await (await render("/en/expertises")).text();
+  const shell = await readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8");
+  for (const text of ["E-invoicing", "Cash Management solutions", "ISO 20022", "Digital Banking", "Trade Finance", "API Gateway"]) {
+    assert.match(frenchHtml, new RegExp(text));
+    assert.match(englishHtml, new RegExp(text));
+  }
+  assert.match(frenchHtml, /href="\/e-invoicing\/"/);
+  assert.match(englishHtml, /href="\/en\/e-invoicing\/"/);
+  assert.match(frenchHtml, /De l’idée à/);
+  assert.match(englishHtml, /From idea to/);
+  assert.match(shell, /aria-current=\{activeNav === "expertises" \? "page"/);
+  assert.doesNotMatch(frenchHtml, /XHUB|logo client|nom du client/i);
 });
 
 test("presents the Moroccan e-invoicing offer, connector and consultation flow", async () => {
