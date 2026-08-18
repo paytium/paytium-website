@@ -8,6 +8,7 @@ import { HomePositioning } from "../../components/HomePositioning";
 import { ExpertiseBand, FinalCta, SectionHeading } from "../../components/Sections";
 import { ProfileRequestModal } from "../../components/ProfileRequestModal";
 import { PageShell } from "../../components/SiteShell";
+import { EinvoicePromoPopup } from "../../components/EinvoicePromoPopup";
 import { servicesEn } from "../../content/site-en";
 import { siteConfig } from "../../content/site";
 
@@ -27,5 +28,6 @@ export default function EnglishHomePage() {
     </section>
     <FinalCta eyebrow="YOUR NEXT STEP STARTS HERE" title={<>A transformation initiative <em>ready to move forward?</em></>} text="Let’s discuss your priorities, constraints and the best path from idea to an operational solution." primary="Start a conversation" contactHref="/en/#contact" />
     <section className="section contact-section" id="contact"><div className="contact-intro"><Eyebrow>CONTACT</Eyebrow><h2>Let’s discuss your <em>next project.</em></h2><p>An idea, challenge or transformation to accelerate? Let’s turn your ambition into concrete next steps.</p><ul>{["A conversation focused on your context", "A clear approach without unnecessary jargon", "Specialists matched to the requirement", "A pragmatic, phased roadmap"].map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul><address className="contact-details"><a href={`mailto:${siteConfig.contactEmail}`}><span aria-hidden="true"><LuMail /></span><small>Email</small><b>{siteConfig.contactEmail}</b></a><a href={`tel:${siteConfig.contactPhone?.replace(/[^\d+]/g, "")}`}><span aria-hidden="true"><LuPhone /></span><small>Phone</small><b>{siteConfig.contactPhone}</b></a><div><span aria-hidden="true"><LuMapPin /></span><small>Address</small><b>{siteConfig.addressEn}</b></div>{siteConfig.linkedinUrl && <a className="linkedin-detail" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer"><span className="linkedin-icon" aria-hidden="true"><FaLinkedinIn /></span><small>Professional network</small><b>Follow Paytium on LinkedIn</b></a>}</address></div><ContactForm locale="en" /></section>
+    <EinvoicePromoPopup locale="en" />
   </PageShell>;
 }

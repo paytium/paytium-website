@@ -63,6 +63,25 @@ test("promotes e-invoicing consultations and keeps English pages directly indexa
   assert.match(socialTemplate, /Paytium — Build\. Secure\. Scale\./);
 });
 
+test("offers a bilingual remembered e-invoicing promotion on the homepage", async () => {
+  const [popup, homeFr, homeEn, css] = await Promise.all([
+    readFile(new URL("../components/EinvoicePromoPopup.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/en/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+  assert.match(popup, /paytium-einvoice-popup-dismissed-v1/);
+  assert.match(popup, /window\.localStorage\.getItem/);
+  assert.match(popup, /window\.localStorage\.setItem/);
+  assert.match(popup, /role="dialog"/);
+  assert.match(popup, /e-invoicing\/#consultation/);
+  assert.match(popup, /Réserver une consultation gratuite/);
+  assert.match(popup, /Book a free consultation/);
+  assert.match(homeFr, /<EinvoicePromoPopup \/>/);
+  assert.match(homeEn, /<EinvoicePromoPopup locale="en" \/>/);
+  assert.match(css, /@keyframes einvoicePromoIn/);
+});
+
 test("localizes and positions the expertise band before services", async () => {
   const response = await render("/en");
   const html = await response.text();

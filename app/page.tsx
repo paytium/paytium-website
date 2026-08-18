@@ -8,6 +8,7 @@ import { ContactForm } from "../components/ContactForm";
 import { Arrow, Eyebrow } from "../components/Brand";
 import { ExpertiseBand, FinalCta, SectionHeading } from "../components/Sections";
 import { ProfileRequestModal } from "../components/ProfileRequestModal";
+import { EinvoicePromoPopup } from "../components/EinvoicePromoPopup";
 import { services, siteConfig } from "../content/site";
 
 /* eslint-disable @next/next/no-html-link-for-pages -- This entry is also bundled by the standalone Vite build used for GitHub Pages. */
@@ -50,6 +51,7 @@ export default function HomePage() {
         <div className="contact-intro"><Eyebrow>CONTACT</Eyebrow><h2>Parlons de votre <em>prochain projet.</em></h2><p>Une idée, un défi ou une transformation à accélérer ? Échangeons pour transformer votre ambition en prochaines étapes concrètes.</p><ul>{["Un échange centré sur votre contexte", "Une approche claire et sans jargon inutile", "Des expertises mobilisées selon le besoin", "Une trajectoire pragmatique et progressive"].map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul>{hasContact && <address className="contact-details"><a href={`mailto:${siteConfig.contactEmail}`}><span aria-hidden="true"><LuMail /></span><small>Email</small><b>{siteConfig.contactEmail}</b></a><a href={`tel:${siteConfig.contactPhone?.replace(/[^\d+]/g, "")}`}><span aria-hidden="true"><LuPhone /></span><small>Téléphone</small><b>{siteConfig.contactPhone}</b></a><div><span aria-hidden="true"><LuMapPin /></span><small>Adresse</small><b>{siteConfig.addressFr}</b></div>{siteConfig.linkedinUrl && <a className="linkedin-detail" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer"><span className="linkedin-icon" aria-hidden="true"><FaLinkedinIn /></span><small>Réseau professionnel</small><b>Suivre Paytium sur LinkedIn</b></a>}</address>}</div>
         <ContactForm />
       </section>
+      <EinvoicePromoPopup />
     </PageShell>
   );
 }
