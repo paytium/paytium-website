@@ -101,7 +101,7 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
   assert.match(shell, /\/e-invoicing/);
 });
 
-test("publishes bilingual anonymised financial-platform expertise", async () => {
+test("publishes bilingual financial-platform case studies", async () => {
   const frenchHtml = await (await render("/case-studies")).text();
   const englishHtml = await (await render("/en/case-studies")).text();
   const [shell, css] = await Promise.all([
