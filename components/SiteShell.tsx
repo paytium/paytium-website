@@ -44,7 +44,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
         <nav className="desktop-nav" aria-label={copy.nav}>
           <a href={`${prefix}/#about`}>{copy.about}</a>
           <div className="nav-group">
-            <a href={`${prefix}/services/`}>{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></a>
+            <button className="nav-services-trigger" type="button" aria-haspopup="true">{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></button>
             <div className="submenu">
               <a href={`${prefix}/services/`}>{copy.playground}</a>
               <a href={`${prefix}/services/#methods`}>{copy.methodsMenu}</a>

@@ -435,6 +435,8 @@ test("orders the services menu and uses market-aware English labels", async () =
   assert.match(shell, /cases: "Case studies"/);
   assert.match(shell, /technologies: "Expertises"/);
   assert.match(shell, /technologies: "Expertise"/);
+  assert.match(shell, /<button className="nav-services-trigger" type="button" aria-haspopup="true">\{copy\.services\}/);
+  assert.doesNotMatch(shell, /<a href=\{`\$\{prefix\}\/services\/`\}>\{copy\.services\}/);
   assert.match(shell, /copy\.playground[\s\S]*copy\.methodsMenu[\s\S]*copy\.technologies[\s\S]*copy\.academy/);
   assert.match(shell, /services\/#methods/);
   assert.match(shell, /e-invoicing\/#offres/);
