@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LuFileCheck2, LuX } from "react-icons/lu";
+import { LuX } from "react-icons/lu";
 import { Arrow } from "./Brand";
 
 type Locale = "fr" | "en";
@@ -58,7 +58,16 @@ export function EinvoicePromoPopup({ locale = "fr" }: { locale?: Locale }) {
 
   return <aside className="einvoice-promo-popup" role="dialog" aria-modal="false" aria-labelledby="einvoice-promo-title">
     <button className="einvoice-promo-close" type="button" onClick={dismiss} aria-label={content.close}><LuX aria-hidden="true" /></button>
-    <div className="einvoice-promo-icon" aria-hidden="true"><LuFileCheck2 /></div>
+    <div className="einvoice-promo-identities" aria-label={locale === "fr" ? "Maroc et Direction Générale des Impôts" : "Morocco and Directorate General of Taxes"}>
+      <span className="einvoice-promo-identity einvoice-promo-flag">
+        <img src="/flag-morocco.png" alt={locale === "fr" ? "Drapeau du Maroc" : "Flag of Morocco"} width="42" height="27" />
+        <small>{locale === "fr" ? "MAROC" : "MOROCCO"}</small>
+      </span>
+      <span className="einvoice-promo-identity einvoice-promo-dgi">
+        <img src="/logo-dgi.png" alt={locale === "fr" ? "Logo de la Direction Générale des Impôts" : "Directorate General of Taxes logo"} width="40" height="40" />
+        <small>DGI</small>
+      </span>
+    </div>
     <small>{content.eyebrow}</small>
     <h2 id="einvoice-promo-title">{content.title}</h2>
     <p>{content.text}</p>
