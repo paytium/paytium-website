@@ -16,8 +16,8 @@ const routes = [
   { path: "/en/academy", lang: "en", alternate: "/academy", title: "Paytium | Academy", breadcrumb: "Academy", description: "Build practical capabilities through practitioner-led training in digital product delivery, software engineering, Data & AI, cloud, DevSecOps and Agile.", keywords: "Paytium Academy, digital product training, software engineering training, Data AI training, cloud DevSecOps training, Agile delivery training" },
   { path: "/e-invoicing", lang: "fr", alternate: "/en/e-invoicing", title: "Paytium | Facturation électronique & e-Invoice Connector", breadcrumb: "Facturation électronique", description: "Connectez vos ERP et applications à l’écosystème de facturation électronique avec Paytium : conseil, intégration bidirectionnelle, Connector et accompagnement CSP.", keywords: "e-facture Maroc, facture électronique Maroc, facturation électronique DGI, e-invoice Morocco, e-invoicing Morocco, Connector DGI, intégration ERP facturation, CSP facturation électronique, Paytium", socialImage: "/og-einvoicing-casablanca.png", socialImageAlt: "Paytium — Facturation électronique et e-Invoice Connector à Casablanca" },
   { path: "/en/e-invoicing", lang: "en", alternate: "/e-invoicing", title: "Paytium | E-Invoicing & DGI Connector", breadcrumb: "E-invoicing", description: "Connect ERP and business applications to the e-invoicing ecosystem with Paytium: advisory, bidirectional integration, e-Invoice Connector and CSP support.", keywords: "e-invoice, e invoice, e-invoicing, electronic invoicing, DGI e-invoicing, e-invoicing integration company, ERP invoice integration, Paytium", socialImage: "/og-einvoicing-casablanca.png", socialImageAlt: "Paytium — E-invoicing and e-Invoice Connector in Casablanca" },
-  { path: "/expertises", lang: "fr", alternate: "/en/expertises", title: "Expertises Fintech, Paiements et Digital Banking | Paytium", breadcrumb: "Expertises", description: "Découvrez les expertises Paytium en facturation électronique, paiements, cash management, Host-to-Host, ISO 20022, Digital Banking, Trade Finance, crédit, workflows métiers et API Gateway.", keywords: "expertises Paytium, fintech, paiements, transaction banking, cash management, host-to-host, ISO 20022, digital banking, trade finance, API Gateway, e-invoicing", socialImage: null },
-  { path: "/en/expertises", lang: "en", alternate: "/expertises", title: "Fintech, Payments & Digital Banking Expertise | Paytium", breadcrumb: "Expertise", description: "Explore Paytium expertise in e-invoicing, payments, cash management, Host-to-Host banking, ISO 20022, Digital Banking, Trade Finance, lending, workflows and API Gateway.", keywords: "Paytium expertise, fintech, payments, transaction banking, cash management, host-to-host, ISO 20022, digital banking, trade finance, API Gateway, e-invoicing", socialImage: null },
+  { path: "/case-studies", lang: "fr", alternate: "/en/case-studies", title: "Études de cas Fintech, Paiements et Digital Banking | Paytium", breadcrumb: "Études de cas", description: "Découvrez comment Paytium transforme des enjeux complexes de facturation électronique, paiements, banque digitale, crédit, orchestration métier et API en plateformes fiables et créatrices de valeur.", keywords: "études de cas Paytium, fintech, paiements, transaction banking, cash management, host-to-host, ISO 20022, banque digitale, crédit digital, API Gateway, facturation électronique", socialImage: null },
+  { path: "/en/case-studies", lang: "en", alternate: "/case-studies", title: "Fintech, Payments & Digital Banking Case Studies | Paytium", breadcrumb: "Case studies", description: "See how Paytium turns complex e-invoicing, payments, digital banking, lending, workflow and API challenges into reliable platforms that deliver measurable business value.", keywords: "Paytium case studies, fintech, payments, transaction banking, cash management, host-to-host, ISO 20022, digital banking, digital lending, Point of Sale POS, API Gateway, e-invoicing", socialImage: null },
 ];
 
 const template = await readFile(new URL("index.html", output), "utf8");
@@ -123,7 +123,7 @@ for (const route of routes) {
     .replace(/<link rel="alternate" hreflang="fr"[^>]*>\s*<link rel="alternate" hreflang="en"[^>]*>/, alternateLinks)
     .replace("</head>", `    <script type="application/ld+json">${jsonLd(route)}</script>\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root">${renderedContent}</div>`)
-    .replace(/href="(\/(?:en(?:\/(?:services|academy|e-invoicing|expertises))?|services|academy|e-invoicing|expertises))(#[^"]*)?"/g, (_match, path, hash = "") => `href="${path}/${hash}"`);
+    .replace(/href="(\/(?:en(?:\/(?:services|academy|e-invoicing|case-studies))?|services|academy|e-invoicing|case-studies))(#[^"]*)?"/g, (_match, path, hash = "") => `href="${path}/${hash}"`);
   if (!socialImage) html = html
     .replace(/\s*<meta property="og:image(?::[^" ]+)?"[^>]*\/>/g, "")
     .replace(/\s*<meta name="twitter:image(?::[^" ]+)?"[^>]*\/>/g, "");
@@ -141,6 +141,8 @@ await writeFile(new URL("404.html", output), notFoundHtml);
 for (const [legacyPath, destinationPath, lang, title] of [
   ["/facturation-electronique", "/e-invoicing", "fr", "Paytium | Facturation électronique"],
   ["/en/facturation-electronique", "/en/e-invoicing", "en", "Paytium | E-invoicing"],
+  ["/expertises", "/case-studies", "fr", "Paytium | Études de cas"],
+  ["/en/expertises", "/en/case-studies", "en", "Paytium | Case studies"],
 ]) {
   const destinationUrl = absolute(destinationPath);
   const redirectHtml = `<!doctype html>

@@ -7,8 +7,8 @@ import AcademyPage from "../app/academy/page";
 import EnglishAcademyPage from "../app/en/academy/page";
 import ElectronicInvoicingPage from "../app/e-invoicing/page";
 import EnglishElectronicInvoicingPage from "../app/en/e-invoicing/page";
-import ExpertisesPage from "../app/expertises/page";
-import EnglishExpertisesPage from "../app/en/expertises/page";
+import CaseStudiesPage from "../app/case-studies/page";
+import EnglishCaseStudiesPage from "../app/en/case-studies/page";
 import NotFound from "../app/not-found";
 import { PageLoader } from "../components/PageLoader";
 import "../app/globals.css";
@@ -42,8 +42,8 @@ const routes = {
   "/en/academy": EnglishAcademyPage,
   "/e-invoicing": ElectronicInvoicingPage,
   "/en/e-invoicing": EnglishElectronicInvoicingPage,
-  "/expertises": ExpertisesPage,
-  "/en/expertises": EnglishExpertisesPage,
+  "/case-studies": CaseStudiesPage,
+  "/en/case-studies": EnglishCaseStudiesPage,
 } as const;
 
 const Page = routes[initialPath as keyof typeof routes];

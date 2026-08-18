@@ -89,7 +89,7 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
     ["/services", "Paytium | Services"], ["/en/services", "Paytium | Services"],
     ["/academy", "Paytium | Academy"], ["/en/academy", "Paytium | Academy"],
     ["/e-invoicing", "Paytium | Facturation électronique &amp; e-Invoice Connector"], ["/en/e-invoicing", "Paytium | E-Invoicing &amp; DGI Connector"],
-    ["/expertises", "Études de cas Fintech, Paiements et Digital Banking | Paytium"], ["/en/expertises", "Fintech, Payments &amp; Digital Banking Case Studies | Paytium"],
+    ["/case-studies", "Études de cas Fintech, Paiements et Digital Banking | Paytium"], ["/en/case-studies", "Fintech, Payments &amp; Digital Banking Case Studies | Paytium"],
   ]);
   for (const [route, title] of expectedTitles) {
     const response = await render(route);
@@ -102,9 +102,12 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
 });
 
 test("publishes bilingual anonymised financial-platform expertise", async () => {
-  const frenchHtml = await (await render("/expertises")).text();
-  const englishHtml = await (await render("/en/expertises")).text();
-  const shell = await readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8");
+  const frenchHtml = await (await render("/case-studies")).text();
+  const englishHtml = await (await render("/en/case-studies")).text();
+  const [shell, css] = await Promise.all([
+    readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
   for (const text of ["E-invoicing", "Cash Management solutions", "ISO 20022", "Digital Banking", "Trade Finance", "API Gateway"]) {
     assert.match(frenchHtml, new RegExp(text));
     assert.match(englishHtml, new RegExp(text));
@@ -119,7 +122,15 @@ test("publishes bilingual anonymised financial-platform expertise", async () => 
   assert.match(englishHtml, /CASE.{0,40}12.{0,40}API &amp; interoperability/);
   assert.doesNotMatch(frenchHtml, /NOTRE MÉTHODE|De l’idée à/);
   assert.doesNotMatch(englishHtml, /OUR DELIVERY APPROACH|From idea to/);
-  assert.match(shell, /aria-current=\{activeNav === "expertises" \? "page"/);
+  assert.match(shell, /aria-current=\{activeNav === "case-studies" \? "page"/);
+  assert.match(shell, /href=\{`\$\{prefix\}\/case-studies\/`\}/);
+  assert.match(shell, /\.expertise-cases-visual[\s\S]*\.expertise-domain-heading[\s\S]*\.case-study/);
+  assert.match(css, /@keyframes expertiseOrbit/);
+  assert.match(css, /\.case-study\.reveal-item>div/);
+  assert.match(frenchHtml, /Crédit et financement/);
+  assert.match(englishHtml, /Digital lending/);
+  assert.match(englishHtml, /Point of Sale \(POS\)/);
+  assert.doesNotMatch(englishHtml, /Credit &amp; Loan|digital workplace/);
   assert.doesNotMatch(frenchHtml, /XHUB|logo client|nom du client/i);
 });
 

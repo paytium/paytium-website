@@ -52,7 +52,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
               <a href={`${prefix}/academy/`}>{copy.academy}</a>
             </div>
           </div>
-          <a className={activeNav === "expertises" ? "active" : undefined} aria-current={activeNav === "expertises" ? "page" : undefined} href={`${prefix}/expertises/`}>{copy.cases}</a>
+          <a className={activeNav === "case-studies" ? "active" : undefined} aria-current={activeNav === "case-studies" ? "page" : undefined} href={`${prefix}/case-studies/`}>{copy.cases}</a>
           <a href={`${prefix}/e-invoicing/`}>{copy.invoice}</a>
         </nav>
         <details className="language-menu">
@@ -73,7 +73,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
           <a className="drawer-sub" href={`${prefix}/services/#methods`} onClick={() => setOpen(false)}>{copy.methodsMenu}</a>
           <a className="drawer-sub" href={`${prefix}/services/#expertise`} onClick={() => setOpen(false)}>{copy.technologies}</a>
           <a className="drawer-sub" href={`${prefix}/academy/`} onClick={() => setOpen(false)}>{copy.academy}</a>
-          <a className={activeNav === "expertises" ? "active" : undefined} aria-current={activeNav === "expertises" ? "page" : undefined} href={`${prefix}/expertises/`} onClick={() => setOpen(false)}>{copy.cases}</a>
+          <a className={activeNav === "case-studies" ? "active" : undefined} aria-current={activeNav === "case-studies" ? "page" : undefined} href={`${prefix}/case-studies/`} onClick={() => setOpen(false)}>{copy.cases}</a>
           <a href={`${prefix}/e-invoicing/`} onClick={() => setOpen(false)}>{copy.invoice}</a>
         </nav>
         <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
@@ -154,7 +154,7 @@ export function PageShell({ children, locale = "fr", translationHref = "/en/", a
   useEffect(() => {
     document.documentElement.lang = locale;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const selector = [".section-heading", ".values-row > article", ".mission-statement", ".mission-pillars > article", ".value-proposition-row", ".approach-heading", ".approach-grid > article", ".service-card", ".service-detail", ".method-matrix > article", ".technology-groups > article", ".challenge-grid > article", ".lifecycle > article", ".security-grid > article", ".usecase-grid > article", ".deployment-track > article", ".academy-format-grid > article", ".course-card", ".contact-form", ".contact-intro", ".invoice-copy", ".invoice-visual", ".einvoice-hero-copy", ".einvoice-hero-media", ".erp-logo-grid > div", ".public-marker-grid > article", ".compliance-pillar-grid > article", ".connector-node", ".connection-mode-grid > article", ".einvoice-offer-grid > article", ".einvoice-deployment-track > article"].join(",");
+    const selector = [".section-heading", ".values-row > article", ".mission-statement", ".mission-pillars > article", ".value-proposition-row", ".approach-heading", ".approach-grid > article", ".service-card", ".service-detail", ".method-matrix > article", ".technology-groups > article", ".challenge-grid > article", ".lifecycle > article", ".security-grid > article", ".usecase-grid > article", ".deployment-track > article", ".academy-format-grid > article", ".course-card", ".contact-form", ".contact-intro", ".invoice-copy", ".invoice-visual", ".einvoice-hero-copy", ".einvoice-hero-media", ".erp-logo-grid > div", ".public-marker-grid > article", ".compliance-pillar-grid > article", ".connector-node", ".connection-mode-grid > article", ".einvoice-offer-grid > article", ".einvoice-deployment-track > article", ".expertise-cases-visual", ".expertise-anchor-nav > a", ".expertise-domain-heading", ".case-study"].join(",");
     const items = Array.from(document.querySelectorAll<HTMLElement>(selector));
     items.forEach((item, index) => {
       item.classList.add("reveal-item");
