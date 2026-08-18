@@ -59,13 +59,12 @@ export function EinvoicePromoPopup({ locale = "fr" }: { locale?: Locale }) {
   return <aside className="einvoice-promo-popup" role="dialog" aria-modal="false" aria-labelledby="einvoice-promo-title">
     <button className="einvoice-promo-close" type="button" onClick={dismiss} aria-label={content.close}><LuX aria-hidden="true" /></button>
     <div className="einvoice-promo-identities" aria-label={locale === "fr" ? "Maroc et Direction Générale des Impôts" : "Morocco and Directorate General of Taxes"}>
-      <span className="einvoice-promo-identity einvoice-promo-flag">
+      <span className="einvoice-promo-flag">
         <img src="/flag-morocco.png" alt={locale === "fr" ? "Drapeau du Maroc" : "Flag of Morocco"} width="42" height="27" />
-        <small>{locale === "fr" ? "MAROC" : "MOROCCO"}</small>
       </span>
-      <span className="einvoice-promo-identity einvoice-promo-dgi">
+      <span className="einvoice-promo-divider" aria-hidden="true" />
+      <span className="einvoice-promo-dgi">
         <img src="/logo-dgi.png" alt={locale === "fr" ? "Logo de la Direction Générale des Impôts" : "Directorate General of Taxes logo"} width="40" height="40" />
-        <small>DGI</small>
       </span>
     </div>
     <small>{content.eyebrow}</small>
