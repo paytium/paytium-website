@@ -20,7 +20,7 @@ const academyOffering = services.find((service) => service.id === "academy")!;
 
 export default function AcademyPage() {
   const structuredData = { "@context": "https://schema.org", "@type": "ItemList", name: "Catalogue Paytium Academy", numberOfItems: 28, itemListOrder: "https://schema.org/ItemListUnordered" };
-  return <PageShell translationHref="/en/academy/">
+  return <PageShell translationHref="/en/academy/" activeNav="services">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
     <Breadcrumbs items={[{ label: "Academy", href: "/academy" }]} sections={{ catalog: "Catalogue des formations" }} />
     <PageHero eyebrow="PAYTIUM ACADEMY" title={<>Des compétences qui passent de la théorie <em>à l’action.</em></>} text="Des formations conçues et animées par des praticiens pour aider vos équipes à maîtriser les technologies, les méthodes et les postures qui font réussir les transformations." primary={["Explorer le catalogue", "#catalog"]} secondary={["Construire un parcours", "/#contact"]} />

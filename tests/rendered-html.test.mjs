@@ -124,6 +124,10 @@ test("publishes bilingual financial-platform case studies", async () => {
   assert.doesNotMatch(englishHtml, /OUR DELIVERY APPROACH|From idea to/);
   assert.match(shell, /aria-current=\{activeNav === "case-studies" \? "page"/);
   assert.match(shell, /href=\{`\$\{prefix\}\/case-studies\/`\}/);
+  assert.match(shell, /activeNav === "about"/);
+  assert.match(shell, /activeNav === "services"/);
+  assert.match(shell, /activeNav === "e-invoicing"/);
+  assert.match(css, /nav-services-trigger\.active:after/);
   assert.match(shell, /\.expertise-cases-visual[\s\S]*\.expertise-domain-heading[\s\S]*\.case-study/);
   assert.match(css, /@keyframes expertiseOrbit/);
   assert.match(css, /\.case-study\.reveal-item>div/);
@@ -446,7 +450,7 @@ test("orders the services menu and uses market-aware English labels", async () =
   assert.match(shell, /cases: "Case studies"/);
   assert.match(shell, /technologies: "Expertises"/);
   assert.match(shell, /technologies: "Expertise"/);
-  assert.match(shell, /<button className="nav-services-trigger" type="button" aria-haspopup="true">\{copy\.services\}/);
+  assert.match(shell, /<button className=\{`nav-services-trigger \$\{activeNav === "services" \? "active" : ""\}`\} type="button" aria-haspopup="true">\{copy\.services\}/);
   assert.doesNotMatch(shell, /<a href=\{`\$\{prefix\}\/services\/`\}>\{copy\.services\}/);
   assert.match(shell, /copy\.playground[\s\S]*copy\.methodsMenu[\s\S]*copy\.technologies[\s\S]*copy\.academy/);
   assert.match(shell, /services\/#methods/);

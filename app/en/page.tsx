@@ -15,7 +15,7 @@ export const metadata: Metadata = { title: "Paytium | Consulting & Technology", 
 const homeServices = servicesEn.filter((service) => service.id !== "academy");
 
 export default function EnglishHomePage() {
-  return <PageShell locale="en" translationHref="/">
+  return <PageShell locale="en" translationHref="/" activeNav="about">
     <HomeHero locale="en" />
     <nav className="quick-links" aria-label="Quick access">{[["E-invoicing","/en/e-invoicing/","01"],["Business & Technology Consulting","/en/services/#consulting","02"],["Digital & Data Factory","/en/services/#digital-data","03"],["Paytium Academy","/en/academy/","04"],["Discuss your project","/en/#contact","05"]].map(([label,href,number]) => <a key={label} href={href}><span>{number}</span>{label}<b><Arrow /></b></a>)}</nav>
     <HomePositioning locale="en" />

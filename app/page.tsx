@@ -26,7 +26,7 @@ const homeServices = services.filter((service) => service.id !== "academy");
 export default function HomePage() {
   const hasContact = siteConfig.contactEmail || siteConfig.contactPhone || siteConfig.addressFr;
   return (
-    <PageShell translationHref="/en/">
+    <PageShell translationHref="/en/" activeNav="about">
       <HomeHero />
       <nav className="quick-links" aria-label="Accès rapides">{quickLinks.map(([label, href, number]) => <a key={label} href={href}><span>{number}</span>{label}<b><Arrow /></b></a>)}</nav>
 

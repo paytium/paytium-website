@@ -113,7 +113,7 @@ const structuredData = {
 };
 
 export default function ElectronicInvoicingPage() {
-  return <PageShell translationHref="/en/e-invoicing/">
+  return <PageShell translationHref="/en/e-invoicing/" activeNav="e-invoicing">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
     <Breadcrumbs items={[{ label: "Facturation électronique", href: "/e-invoicing" }]} sections={{ connector: "Connector", offres: "Offres", consultation: "Consultation", faq: "FAQ" }} />
 

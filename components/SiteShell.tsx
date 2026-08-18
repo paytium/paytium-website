@@ -42,9 +42,9 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="top">
         <a className="brand" href={homeHref} aria-label={`Paytium — ${copy.home}`}><Brand /></a>
         <nav className="desktop-nav" aria-label={copy.nav}>
-          <a href={`${prefix}/#about`}>{copy.about}</a>
+          <a className={activeNav === "about" ? "active" : undefined} aria-current={activeNav === "about" ? "page" : undefined} href={`${prefix}/#about`}>{copy.about}</a>
           <div className="nav-group">
-            <button className="nav-services-trigger" type="button" aria-haspopup="true">{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></button>
+            <button className={`nav-services-trigger ${activeNav === "services" ? "active" : ""}`} type="button" aria-haspopup="true">{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></button>
             <div className="submenu">
               <a href={`${prefix}/services/`}>{copy.playground}</a>
               <a href={`${prefix}/services/#methods`}>{copy.methodsMenu}</a>
@@ -53,7 +53,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
             </div>
           </div>
           <a className={activeNav === "case-studies" ? "active" : undefined} aria-current={activeNav === "case-studies" ? "page" : undefined} href={`${prefix}/case-studies/`}>{copy.cases}</a>
-          <a href={`${prefix}/e-invoicing/`}>{copy.invoice}</a>
+          <a className={activeNav === "e-invoicing" ? "active" : undefined} aria-current={activeNav === "e-invoicing" ? "page" : undefined} href={`${prefix}/e-invoicing/`}>{copy.invoice}</a>
         </nav>
         <details className="language-menu">
           <summary aria-label={locale === "fr" ? "Changer la langue" : "Change language"}><span>{locale === "fr" ? "FR" : "EN"}</span><LuChevronDown aria-hidden="true" /></summary>
@@ -68,13 +68,13 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
       <aside className={`mobile-drawer ${open ? "open" : ""}`} id="mobile-menu" aria-hidden={!open}>
         <div className="drawer-top"><Brand /><button type="button" onClick={() => setOpen(false)} aria-label={copy.close}><LuX aria-hidden="true" /></button></div>
         <nav aria-label={copy.nav}>
-          <a href={`${prefix}/#about`} onClick={() => setOpen(false)}>{copy.about}</a><span className="drawer-menu-label">{copy.services}</span>
+          <a className={activeNav === "about" ? "active" : undefined} aria-current={activeNav === "about" ? "page" : undefined} href={`${prefix}/#about`} onClick={() => setOpen(false)}>{copy.about}</a><span className={`drawer-menu-label ${activeNav === "services" ? "active" : ""}`}>{copy.services}</span>
           <a className="drawer-sub" href={`${prefix}/services/`} onClick={() => setOpen(false)}>{copy.playground}</a>
           <a className="drawer-sub" href={`${prefix}/services/#methods`} onClick={() => setOpen(false)}>{copy.methodsMenu}</a>
           <a className="drawer-sub" href={`${prefix}/services/#expertise`} onClick={() => setOpen(false)}>{copy.technologies}</a>
           <a className="drawer-sub" href={`${prefix}/academy/`} onClick={() => setOpen(false)}>{copy.academy}</a>
           <a className={activeNav === "case-studies" ? "active" : undefined} aria-current={activeNav === "case-studies" ? "page" : undefined} href={`${prefix}/case-studies/`} onClick={() => setOpen(false)}>{copy.cases}</a>
-          <a href={`${prefix}/e-invoicing/`} onClick={() => setOpen(false)}>{copy.invoice}</a>
+          <a className={activeNav === "e-invoicing" ? "active" : undefined} aria-current={activeNav === "e-invoicing" ? "page" : undefined} href={`${prefix}/e-invoicing/`} onClick={() => setOpen(false)}>{copy.invoice}</a>
         </nav>
         <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
       </aside>
