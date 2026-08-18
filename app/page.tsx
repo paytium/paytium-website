@@ -15,7 +15,7 @@ import { services, siteConfig } from "../content/site";
 export const metadata: Metadata = {
   title: "Paytium | Conseil & technologie",
   description: "Paytium est un cabinet de conseil et de delivery digital : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.",
-  alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en" } },
+  alternates: { canonical: "/", languages: { "fr-FR": "/", "en-US": "/en/" } },
 };
 
 const quickLinks = [
@@ -26,7 +26,7 @@ const homeServices = services.filter((service) => service.id !== "academy");
 export default function HomePage() {
   const hasContact = siteConfig.contactEmail || siteConfig.contactPhone || siteConfig.addressFr;
   return (
-    <PageShell translationHref="/en">
+    <PageShell translationHref="/en/">
       <HomeHero />
       <nav className="quick-links" aria-label="Accès rapides">{quickLinks.map(([label, href, number]) => <a key={label} href={href}><span>{number}</span>{label}<b><Arrow /></b></a>)}</nav>
 
@@ -40,7 +40,7 @@ export default function HomePage() {
       </section>
 
       <section className="invoice-focus">
-        <div className="invoice-copy"><Eyebrow>FOCUS SOLUTION</Eyebrow><h2>La facturation électronique, intégrée à votre <em>réalité métier.</em></h2><p>Paytium vous accompagne dans la digitalisation de bout en bout du cycle de facturation : préparation, contrôle, validation, transmission, suivi, rapprochement et archivage. L’objectif est de sécuriser la transition tout en préservant la continuité de vos opérations.</p><ul>{["Intégration aux ERP, systèmes comptables et applications métier", "Automatisation des contrôles et workflows de validation", "Traçabilité des échanges et suivi des statuts", "Architecture adaptable aux exigences applicables"].map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul><div className="hero-actions"><a className="button button-light" href="/e-invoicing">Explorer la solution <Arrow /></a><a className="button button-outline-light" href="/#contact">Évaluer votre préparation</a></div></div>
+        <div className="invoice-copy"><Eyebrow>FOCUS E-INVOICING</Eyebrow><h2>Connectez votre facturation à l’écosystème DGI, <em>sans remplacer vos outils.</em></h2><p>De l’évaluation de votre préparation au déploiement, Paytium sécurise votre trajectoire e-invoice. Notre e-Invoice Connector relie vos ERP et applications métier aux échanges attendus, avec des contrôles, une traçabilité et une architecture conçue pour évoluer.</p><ul>{["Diagnostic de préparation métier, data et SI", "Intégration bidirectionnelle ERP, API et fichiers", "Contrôles, transformation et orchestration des flux", "Supervision, traçabilité et déploiement progressif"].map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul><div className="hero-actions"><a className="button button-light" href="/e-invoicing/#consultation">Réserver ma consultation gratuite de 30 minutes <Arrow /></a><a className="button button-outline-light" href="/e-invoicing/#offres">Explorer nos offres e-invoice</a></div></div>
         <div className="invoice-visual"><div className="invoice-sheet"><small>FACTURE</small><span /><span /><span /><div><b>Contrôlée</b><b>Transmise</b><b>Archivée</b></div></div><div className="invoice-orbit"/><div className="system-tag tag-erp">ERP</div><div className="system-tag tag-data">DATA</div><div className="system-tag tag-archive">ARCHIVE</div></div>
       </section>
 

@@ -8,7 +8,7 @@ import { servicesEn } from "../../../content/site-en";
 export const metadata: Metadata = {
   title: "Paytium | Academy",
   description: "Grow your teams’ skills with Paytium Academy courses in product, software engineering, cloud, data, AI, Agile and responsible digital.",
-  alternates: { canonical: "/en/academy", languages: { "fr-FR": "/academy", "en-US": "/en/academy" } },
+  alternates: { canonical: "/en/academy/", languages: { "fr-FR": "/academy/", "en-US": "/en/academy/" } },
 };
 
 const formats = [
@@ -19,7 +19,7 @@ const formats = [
 const academyOffering = servicesEn.find((service) => service.id === "academy")!;
 
 export default function AcademyPage() {
-  return <PageShell locale="en" translationHref="/academy">
+  return <PageShell locale="en" translationHref="/academy/">
     <Breadcrumbs locale="en" items={[{ label: "Academy", href: "/en/academy" }]} sections={{ catalog: "Course catalogue" }} />
     <PageHero eyebrow="PAYTIUM ACADEMY" title={<>Skills that move from theory <em>to action.</em></>} text="Practitioner-led training that helps your teams master the technologies, methods and mindsets behind successful transformations." primary={["Explore the catalogue", "#catalog"]} secondary={["Build a learning path", "/en/#contact"]} />
     <section className="section academy-intro"><div><Eyebrow>LEARN BY DOING</Eyebrow><h2>Training connected to <em>real-world practice.</em></h2></div><p>Our programmes combine expert-led instruction, demonstrations, exercises and real delivery cases. They support business, product, design, data, engineering, cloud and management teams, in person, remotely or in a hybrid format.</p></section>

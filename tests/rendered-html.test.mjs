@@ -35,6 +35,25 @@ test("server-renders the Paytium site and its branded page loader", async () => 
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
 
+test("promotes e-invoicing consultations and keeps English pages directly indexable", async () => {
+  const [hero, homeFr, homeEn, rootLayout, pagesEntry, socialTemplate] = await Promise.all([
+    readFile(new URL("../components/HomeHero.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/en/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../github-pages/main.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../github-pages/index.html", import.meta.url), "utf8"),
+  ]);
+  assert.match(hero, /Réserver ma consultation gratuite de 30 minutes/);
+  assert.match(hero, /Explorer nos offres e-invoice/);
+  assert.match(homeFr, /Diagnostic de préparation métier, data et SI/);
+  assert.match(homeEn, /Business, data and information-system readiness assessment/);
+  assert.match(rootLayout, /p==='\/'&&d==='en'/);
+  assert.match(pagesEntry, /if \(initialPath === "\/"\)/);
+  assert.doesNotMatch(pagesEntry, /desiredLanguage !== currentLanguage/);
+  assert.match(socialTemplate, /Paytium — Build\. Secure\. Scale\./);
+});
+
 test("localizes and positions the expertise band before services", async () => {
   const response = await render("/en");
   const html = await response.text();
@@ -284,7 +303,7 @@ test("structures the technology stack as complete areas of expertise", async () 
   assert.doesNotMatch(css, /\.technology-groups\{display:grid;grid-template-columns:repeat\(3/);
   assert.doesNotMatch(shell, /<a href=\{homeHref\}>\{copy\.home\}<\/a>/);
   assert.match(shell, /\{copy\.playground\}/);
-  assert.match(shell, /services#expertise/);
+  assert.match(shell, /services\/#expertise/);
 });
 
 test("makes every service concrete and adds a profile-request workflow", async () => {

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://paytium.io";
-  const routes = [["", "/en"], ["/services", "/en/services"], ["/e-invoicing", "/en/e-invoicing"], ["/academy", "/en/academy"]];
+  const routes = [["", "/en/"], ["/services/", "/en/services/"], ["/e-invoicing/", "/en/e-invoicing/"], ["/academy/", "/en/academy/"]];
   return routes.flatMap(([fr, en], pairIndex) => [fr, en].map((route, localeIndex) => ({
     url: `${base}${route || "/"}`,
     lastModified: new Date(),

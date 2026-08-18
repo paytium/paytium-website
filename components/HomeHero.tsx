@@ -9,26 +9,26 @@ const slidesFr = [
     eyebrow: "PAYTIUM — CONSEIL & TECHNOLOGIE",
     title: <>Faites avancer votre <em>transformation digitale.</em></>,
     text: "Paytium transforme vos enjeux métiers en produits, plateformes et services digitaux utiles, fiables et évolutifs. De la stratégie à l’exécution, nos équipes vous accompagnent à chaque étape.",
-    primary: ["Construire votre feuille de route", "/#contact"], secondary: ["Découvrir nos services", "/services"], visual: "trajectory",
+    primary: ["Construire votre feuille de route", "/#contact"], secondary: ["Découvrir nos services", "/services/"], visual: "trajectory",
   },
   {
     eyebrow: "FACTURATION ÉLECTRONIQUE",
     title: <>Passez à la facture électronique <em>avec clarté.</em></>,
     text: "Préparez, intégrez et industrialisez vos échanges de factures grâce à une approche sécurisée, interopérable et adaptée à vos processus finance et métier.",
-    primary: ["Découvrir notre approche", "/e-invoicing"], secondary: ["Échanger avec un expert", "/#contact"], visual: "invoice",
+    primary: ["Réserver ma consultation gratuite de 30 minutes", "/e-invoicing/#consultation"], secondary: ["Explorer nos offres e-invoice", "/e-invoicing/#offres"], visual: "invoice",
   },
   {
     eyebrow: "SQUADS. DATA. CLOUD.",
     title: <>Accélérez vos produits avec des squads <em>prêtes à délivrer.</em></>,
     text: "Réduisez vos délais de mise sur le marché avec des squads pluridisciplinaires, des pratiques Agile éprouvées et une exécution maîtrisée de la discovery à la production.",
-    primary: ["Explorer nos expertises", "/services"], secondary: ["Nous contacter", "/#contact"], visual: "platform",
+    primary: ["Explorer nos expertises", "/services/"], secondary: ["Nous contacter", "/#contact"], visual: "platform",
   },
 ];
 
 const slidesEn = [
-  { eyebrow: "PAYTIUM — CONSULTING & TECHNOLOGY", title: <>Move your <em>digital transformation forward.</em></>, text: "Paytium turns business challenges into useful, reliable and scalable digital products, platforms and services — from strategy through delivery.", primary: ["Build your roadmap", "/en/#contact"], secondary: ["Explore our services", "/en/services"], visual: "trajectory" },
-  { eyebrow: "E-INVOICING", title: <>Move to e-invoicing <em>with clarity.</em></>, text: "Prepare, integrate and scale automated invoice flows through a secure, interoperable approach designed around finance and business processes.", primary: ["Explore our approach", "/en/e-invoicing"], secondary: ["Talk to an expert", "/en/#contact"], visual: "invoice" },
-  { eyebrow: "SQUADS. DATA. CLOUD.", title: <>Accelerate products with squads <em>ready to deliver.</em></>, text: "Reduce time to market through multidisciplinary squads, proven Agile practices and end-to-end delivery from discovery through production.", primary: ["Explore our expertise", "/en/services"], secondary: ["Contact us", "/en/#contact"], visual: "platform" },
+  { eyebrow: "PAYTIUM — CONSULTING & TECHNOLOGY", title: <>Move your <em>digital transformation forward.</em></>, text: "Paytium turns business challenges into useful, reliable and scalable digital products, platforms and services — from strategy through delivery.", primary: ["Build your roadmap", "/en/#contact"], secondary: ["Explore our services", "/en/services/"], visual: "trajectory" },
+  { eyebrow: "E-INVOICING", title: <>Move to e-invoicing <em>with clarity.</em></>, text: "Prepare, integrate and scale automated invoice flows through a secure, interoperable approach designed around finance and business processes.", primary: ["Book my free 30-minute consultation", "/en/e-invoicing/#consultation"], secondary: ["Explore our e-invoicing offers", "/en/e-invoicing/#offres"], visual: "invoice" },
+  { eyebrow: "SQUADS. DATA. CLOUD.", title: <>Accelerate products with squads <em>ready to deliver.</em></>, text: "Reduce time to market through multidisciplinary squads, proven Agile practices and end-to-end delivery from discovery through production.", primary: ["Explore our expertise", "/en/services/"], secondary: ["Contact us", "/en/#contact"], visual: "platform" },
 ];
 
 function HeroVisual({ type, locale }: { type: string; locale: "fr" | "en" }) {

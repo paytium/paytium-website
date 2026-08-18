@@ -97,7 +97,7 @@ for (const route of routes) {
   const alternateLocale = route.lang === "en" ? "fr_FR" : "en_US";
   const socialImage = route.socialImage ?? "/og-paytium.png";
   const socialImageUrl = `${baseUrl}${socialImage}`;
-  const socialImageAlt = route.socialImageAlt ?? (route.lang === "en" ? "Paytium — strategy, technology and impact" : "Paytium — stratégie, technologie et impact");
+  const socialImageAlt = route.socialImageAlt ?? "Paytium — Build. Secure. Scale.";
   const alternateLinks = `<link rel="alternate" hreflang="fr" href="${frUrl}" />\n    <link rel="alternate" hreflang="en" href="${enUrl}" />\n    <link rel="alternate" hreflang="x-default" href="${frUrl}" />`;
   const renderedContent = renderPage(route.path);
   const html = template
@@ -120,7 +120,8 @@ for (const route of routes) {
     .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${routeUrl}" />`)
     .replace(/<link rel="alternate" hreflang="fr"[^>]*>\s*<link rel="alternate" hreflang="en"[^>]*>/, alternateLinks)
     .replace("</head>", `    <script type="application/ld+json">${jsonLd(route)}</script>\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root">${renderedContent}</div>`);
+    .replace('<div id="root"></div>', `<div id="root">${renderedContent}</div>`)
+    .replace(/href="(\/(?:en(?:\/(?:services|academy|e-invoicing))?|services|academy|e-invoicing))(#[^"]*)?"/g, (_match, path, hash = "") => `href="${path}/${hash}"`);
   const destination = route.path === "/" ? new URL("index.html", output) : new URL(`.${route.path}/index.html`, output);
   await mkdir(dirname(fileURLToPath(destination)), { recursive: true });
   await writeFile(destination, html);

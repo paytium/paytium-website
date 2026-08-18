@@ -10,11 +10,11 @@ import { EinvoiceConsultationForm, TrackedLink } from "../../components/Einvoice
 export const metadata: Metadata = {
   title: "Paytium | Facturation électronique & e-Invoice Connector",
   description: "Connectez vos ERP et applications à l’écosystème de facturation électronique avec Paytium : conseil, intégration bidirectionnelle, Connector et accompagnement CSP.",
-  alternates: { canonical: "/e-invoicing", languages: { "fr-FR": "/e-invoicing", "en-US": "/en/e-invoicing" } },
+  alternates: { canonical: "/e-invoicing/", languages: { "fr-FR": "/e-invoicing/", "en-US": "/en/e-invoicing/" } },
   openGraph: {
     title: "Paytium | Facturation électronique & e-Invoice Connector",
     description: "Conseil, intégration ERP et Paytium e-Invoice Connector pour orchestrer vos flux de facturation électronique de bout en bout.",
-    url: "/e-invoicing",
+    url: "/e-invoicing/",
     type: "website",
     locale: "fr_FR",
     siteName: "Paytium",
@@ -113,7 +113,7 @@ const structuredData = {
 };
 
 export default function ElectronicInvoicingPage() {
-  return <PageShell translationHref="/en/e-invoicing">
+  return <PageShell translationHref="/en/e-invoicing/">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
     <Breadcrumbs items={[{ label: "Facturation électronique", href: "/e-invoicing" }]} sections={{ connector: "Connector", offres: "Offres", consultation: "Consultation", faq: "FAQ" }} />
 

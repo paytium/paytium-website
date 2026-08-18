@@ -20,22 +20,13 @@ function relativePath() {
   return withoutBase.replace(/\/+$/, "") || "/";
 }
 
-function routeForLanguage(path: string, locale: "fr" | "en") {
-  if (locale === "en") return path === "/" ? "/en" : path.startsWith("/en") ? path : `/en${path}`;
-  return path.replace(/^\/en(?=\/|$)/, "") || "/";
-}
-
 const initialPath = relativePath();
-try {
+if (initialPath === "/") try {
   const saved = window.localStorage.getItem("paytium-language");
   const browserLanguage = (window.navigator.language || "fr").toLowerCase();
   const isCrawler = /bot|crawl|spider|slurp|bingpreview/i.test(window.navigator.userAgent);
   const desiredLanguage: "fr" | "en" = saved === "fr" || saved === "en" ? saved : browserLanguage.startsWith("en") ? "en" : "fr";
-  const currentLanguage = initialPath === "/en" || initialPath.startsWith("/en/") ? "en" : "fr";
-  if (!isCrawler && desiredLanguage !== currentLanguage) {
-    const destination = routeForLanguage(initialPath, desiredLanguage);
-    window.location.replace(`${basePath}${destination === "/" ? "/" : `${destination}/`}${window.location.search}${window.location.hash}`);
-  }
+  if (!isCrawler && desiredLanguage === "en") window.location.replace(`${basePath}/en/${window.location.search}${window.location.hash}`);
 } catch {
   // Keep French as the safe fallback when browser storage is unavailable.
 }

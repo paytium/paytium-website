@@ -15,7 +15,7 @@ const shellCopy = {
   en: { skip: "Skip to content", home: "Home", about: "About", services: "Services", playground: "Field of play", methodsMenu: "Our methods", invoice: "E-invoicing", method: "Delivery approach", technologies: "Expertise", academy: "Academy", contact: "Contact", talk: "Talk to an expert", open: "Open menu", close: "Close menu", nav: "Main navigation", top: "Top", footer: "Paytium turns business challenges into useful, reliable and scalable digital solutions.", company: "Company", resources: "Resources", legal: "Legal notice", privacy: "Privacy", signature: "Technology for controlled, lasting transformations." },
 };
 
-export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?: Locale; translationHref?: string }) {
+export function SiteHeader({ locale = "fr", translationHref = "/en/" }: { locale?: Locale; translationHref?: string }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const copy = shellCopy[locale];
@@ -44,15 +44,15 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
         <nav className="desktop-nav" aria-label={copy.nav}>
           <a href={`${prefix}/#about`}>{copy.about}</a>
           <div className="nav-group">
-            <a href={`${prefix}/services`}>{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></a>
+            <a href={`${prefix}/services/`}>{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></a>
             <div className="submenu">
-              <a href={`${prefix}/services`}>{copy.playground}</a>
-              <a href={`${prefix}/services#methods`}>{copy.methodsMenu}</a>
-              <a href={`${prefix}/services#expertise`}>{copy.technologies}</a>
+              <a href={`${prefix}/services/`}>{copy.playground}</a>
+              <a href={`${prefix}/services/#methods`}>{copy.methodsMenu}</a>
+              <a href={`${prefix}/services/#expertise`}>{copy.technologies}</a>
             </div>
           </div>
-          <a href={`${prefix}/academy`}>{copy.academy}</a>
-          <a href={`${prefix}/e-invoicing`}>{copy.invoice}</a>
+          <a href={`${prefix}/academy/`}>{copy.academy}</a>
+          <a href={`${prefix}/e-invoicing/`}>{copy.invoice}</a>
         </nav>
         <details className="language-menu">
           <summary aria-label={locale === "fr" ? "Changer la langue" : "Change language"}><span>{locale === "fr" ? "FR" : "EN"}</span><LuChevronDown aria-hidden="true" /></summary>
@@ -68,10 +68,10 @@ export function SiteHeader({ locale = "fr", translationHref = "/en" }: { locale?
         <div className="drawer-top"><Brand /><button type="button" onClick={() => setOpen(false)} aria-label={copy.close}><LuX aria-hidden="true" /></button></div>
         <nav aria-label={copy.nav}>
           <a href={`${prefix}/#about`} onClick={() => setOpen(false)}>{copy.about}</a><span className="drawer-menu-label">{copy.services}</span>
-          <a className="drawer-sub" href={`${prefix}/services`} onClick={() => setOpen(false)}>{copy.playground}</a>
-          <a className="drawer-sub" href={`${prefix}/services#methods`} onClick={() => setOpen(false)}>{copy.methodsMenu}</a>
-          <a className="drawer-sub" href={`${prefix}/services#expertise`} onClick={() => setOpen(false)}>{copy.technologies}</a>
-          <a href={`${prefix}/academy`} onClick={() => setOpen(false)}>{copy.academy}</a><a href={`${prefix}/e-invoicing`} onClick={() => setOpen(false)}>{copy.invoice}</a>
+          <a className="drawer-sub" href={`${prefix}/services/`} onClick={() => setOpen(false)}>{copy.playground}</a>
+          <a className="drawer-sub" href={`${prefix}/services/#methods`} onClick={() => setOpen(false)}>{copy.methodsMenu}</a>
+          <a className="drawer-sub" href={`${prefix}/services/#expertise`} onClick={() => setOpen(false)}>{copy.technologies}</a>
+          <a href={`${prefix}/academy/`} onClick={() => setOpen(false)}>{copy.academy}</a><a href={`${prefix}/e-invoicing/`} onClick={() => setOpen(false)}>{copy.invoice}</a>
         </nav>
         <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
       </aside>
@@ -91,15 +91,15 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
   return (
     <footer className="site-footer">
       <div className="footer-intro"><a className="brand" href={homeHref}><Brand /></a><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><FaLinkedinIn className="linkedin-icon" aria-hidden="true" /></a>}</div>
-      <div><h3>{copy.services}</h3>{(locale === "en" ? servicesEn : services).filter((service) => service.id !== "academy").map((service) => <a key={service.id} href={`${prefix}/services#${service.id}`}>{service.title}</a>)}</div>
+      <div><h3>{copy.services}</h3>{(locale === "en" ? servicesEn : services).filter((service) => service.id !== "academy").map((service) => <a key={service.id} href={`${prefix}/services/#${service.id}`}>{service.title}</a>)}</div>
       <div><h3>{copy.company}</h3><a href={`${prefix}/#about`}>{copy.about}</a><a href={`${prefix}/#method`}>{copy.method}</a><a href={`${prefix}/#contact`}>{copy.contact}</a></div>
-      <div><h3>{copy.resources}</h3><a href={`${prefix}/academy`}>Paytium Academy</a><a href={`${prefix}/e-invoicing`}>{copy.invoice}</a><a href={`${prefix}/services#expertise`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
+      <div><h3>{copy.resources}</h3><a href={`${prefix}/academy/`}>Paytium Academy</a><a href={`${prefix}/e-invoicing/`}>{copy.invoice}</a><a href={`${prefix}/services/#expertise`}>{copy.technologies}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
       <div className="footer-bottom"><span>© 2026 {siteConfig.legalCompanyName}</span><span>{copy.signature}</span></div>
     </footer>
   );
 }
 
-export function PageShell({ children, locale = "fr", translationHref = "/en" }: { children: React.ReactNode; locale?: Locale; translationHref?: string }) {
+export function PageShell({ children, locale = "fr", translationHref = "/en/" }: { children: React.ReactNode; locale?: Locale; translationHref?: string }) {
   useEffect(() => {
     let firstFrame = 0;
     let secondFrame = 0;
