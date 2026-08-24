@@ -21,6 +21,11 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
   const copy = shellCopy[locale];
   const prefix = locale === "en" ? "/en" : "";
   const homeHref = locale === "en" ? "/en/" : "/";
+  const caseStudyAreas = locale === "en" ? [
+    ["E-invoicing", "e-invoicing"], ["Payments & Transaction Banking", "payments"], ["Digital banking & lending", "digital-banking"], ["Orchestration & channels", "orchestration"], ["API & interoperability", "api"], ["Advisory & Due diligence", "technical-due-diligence"],
+  ] : [
+    ["Facturation électronique", "e-invoicing"], ["Paiements & Transaction Banking", "payments"], ["Banque digitale & financement", "digital-banking"], ["Orchestration & canaux", "orchestration"], ["API & interopérabilité", "api"], ["Conseil & Due diligence", "technical-due-diligence"],
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -52,7 +57,10 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
               <a href={`${prefix}/academy/`}>{copy.academy}</a>
             </div>
           </div>
-          <a className={activeNav === "case-studies" ? "active" : undefined} aria-current={activeNav === "case-studies" ? "page" : undefined} href={`${prefix}/case-studies/`}>{copy.cases}</a>
+          <div className="nav-group nav-cases-group">
+            <a className={`nav-cases-trigger ${activeNav === "case-studies" ? "active" : ""}`} aria-current={activeNav === "case-studies" ? "page" : undefined} href={`${prefix}/case-studies/`}>{copy.cases} <LuChevronDown className="nav-chevron" aria-hidden="true" /></a>
+            <div className="submenu case-studies-submenu">{caseStudyAreas.map(([label, id]) => <a key={id} href={`${prefix}/case-studies/#${id}`}>{label}</a>)}</div>
+          </div>
           <a className={activeNav === "e-invoicing" ? "active" : undefined} aria-current={activeNav === "e-invoicing" ? "page" : undefined} href={`${prefix}/e-invoicing/`}>{copy.invoice}</a>
         </nav>
         <details className="language-menu">
@@ -73,7 +81,8 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
           <a className="drawer-sub" href={`${prefix}/services/#methods`} onClick={() => setOpen(false)}>{copy.methodsMenu}</a>
           <a className="drawer-sub" href={`${prefix}/services/#expertise`} onClick={() => setOpen(false)}>{copy.technologies}</a>
           <a className="drawer-sub" href={`${prefix}/academy/`} onClick={() => setOpen(false)}>{copy.academy}</a>
-          <a className={activeNav === "case-studies" ? "active" : undefined} aria-current={activeNav === "case-studies" ? "page" : undefined} href={`${prefix}/case-studies/`} onClick={() => setOpen(false)}>{copy.cases}</a>
+          <span className={`drawer-menu-label ${activeNav === "case-studies" ? "active" : ""}`}>{copy.cases}</span>
+          {caseStudyAreas.map(([label, id]) => <a className="drawer-sub" key={id} href={`${prefix}/case-studies/#${id}`} onClick={() => setOpen(false)}>{label}</a>)}
           <a className={activeNav === "e-invoicing" ? "active" : undefined} aria-current={activeNav === "e-invoicing" ? "page" : undefined} href={`${prefix}/e-invoicing/`} onClick={() => setOpen(false)}>{copy.invoice}</a>
         </nav>
         <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>

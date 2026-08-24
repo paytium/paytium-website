@@ -128,7 +128,7 @@ export default function ElectronicInvoicingPage() {
       </div>
       <figure className="einvoice-hero-media">
         <img src="/einvoicing-casablanca.jpg" alt="Architecture marocaine à Casablanca" width="2400" height="1594" fetchPriority="high" />
-        <div className="einvoice-hero-badges" aria-label="Maroc et Direction Générale des Impôts"><span><img src="/flag-morocco.png" alt="Drapeau du Maroc" width="56" height="36" /><small>MAROC</small></span><span><img src="/logo-dgi.png" alt="Logo de la Direction Générale des Impôts" width="56" height="56" /><small>DGI</small></span></div>
+        <div className="einvoice-hero-badges" aria-label="Drapeau du Maroc et logo de la Direction Générale des Impôts"><img className="einvoice-hero-flag" src="/flag-morocco.png" alt="Drapeau du Maroc" width="56" height="36" /><span aria-hidden="true" /><img className="einvoice-hero-dgi" src="/logo-dgi.png" alt="Logo de la Direction Générale des Impôts" width="56" height="56" /></div>
         <figcaption>Casablanca · Photo <a href="https://unsplash.com/fr/@hansjuergen" target="_blank" rel="noopener noreferrer">Hans-Jürgen Weinhardt</a> / Unsplash</figcaption>
       </figure>
     </section>

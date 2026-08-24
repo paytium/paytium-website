@@ -77,6 +77,10 @@ test("offers a bilingual remembered e-invoicing promotion on the homepage", asyn
   assert.match(popup, /e-invoicing\/#consultation/);
   assert.match(popup, /Réserver une consultation gratuite/);
   assert.match(popup, /Book a free consultation/);
+  assert.match(popup, /einvoice-promo-backdrop/);
+  assert.match(popup, /einvoicing-casablanca\.jpg/);
+  assert.match(popup, /flag-morocco\.png/);
+  assert.match(popup, /logo-dgi\.png/);
   assert.match(homeFr, /<EinvoicePromoPopup \/>/);
   assert.match(homeEn, /<EinvoicePromoPopup locale="en" \/>/);
   assert.match(css, /@keyframes einvoicePromoIn/);
@@ -108,7 +112,7 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
     ["/services", "Paytium | Services"], ["/en/services", "Paytium | Services"],
     ["/academy", "Paytium | Academy"], ["/en/academy", "Paytium | Academy"],
     ["/e-invoicing", "Paytium | Facturation électronique &amp; e-Invoice Connector"], ["/en/e-invoicing", "Paytium | E-Invoicing &amp; DGI Connector"],
-    ["/case-studies", "Études de cas Fintech, Paiements et Digital Banking | Paytium"], ["/en/case-studies", "Fintech, Payments &amp; Digital Banking Case Studies | Paytium"],
+    ["/case-studies", "Paytium | Études de cas Fintech, Paiements et Digital Banking"], ["/en/case-studies", "Paytium | Fintech, Payments &amp; Digital Banking Case Studies"],
   ]);
   for (const [route, title] of expectedTitles) {
     const response = await render(route);
@@ -139,10 +143,16 @@ test("publishes bilingual financial-platform case studies", async () => {
   assert.match(frenchHtml, /CAS.{0,40}12.{0,40}API &amp; interopérabilité/);
   assert.match(englishHtml, /CASE.{0,40}1.{0,40}E-invoicing/);
   assert.match(englishHtml, /CASE.{0,40}12.{0,40}API &amp; interoperability/);
+  assert.match(frenchHtml, /CAS.{0,40}13.{0,40}Conseil &amp; Due diligence/);
+  assert.match(englishHtml, /CASE.{0,40}13.{0,40}Advisory &amp; Due diligence/);
+  assert.match(frenchHtml, /Due diligence d’une plateforme digitale critique/);
+  assert.match(englishHtml, /Technical due diligence of a business-critical digital platform/);
   assert.doesNotMatch(frenchHtml, /NOTRE MÉTHODE|De l’idée à/);
   assert.doesNotMatch(englishHtml, /OUR DELIVERY APPROACH|From idea to/);
   assert.match(shell, /aria-current=\{activeNav === "case-studies" \? "page"/);
   assert.match(shell, /href=\{`\$\{prefix\}\/case-studies\/`\}/);
+  assert.match(shell, /technical-due-diligence/);
+  assert.match(shell, /case-studies-submenu/);
   assert.match(shell, /activeNav === "about"/);
   assert.match(shell, /activeNav === "services"/);
   assert.match(shell, /activeNav === "e-invoicing"/);
