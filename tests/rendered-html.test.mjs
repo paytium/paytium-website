@@ -70,7 +70,9 @@ test("offers a bilingual remembered e-invoicing promotion on the homepage", asyn
     readFile(new URL("../app/en/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
-  assert.match(popup, /paytium-einvoice-popup-dismissed-v1/);
+  assert.match(popup, /paytium-einvoice-popup-dismissed-v2/);
+  assert.match(popup, /onClick=\{closeForNow\}/);
+  assert.match(popup, /onClick=\{dismissPermanently\}/);
   assert.match(popup, /window\.localStorage\.getItem/);
   assert.match(popup, /window\.localStorage\.setItem/);
   assert.match(popup, /role="dialog"/);
@@ -414,7 +416,8 @@ test("makes every service concrete and adds a profile-request workflow", async (
   assert.match(modal, /minLength=\{3\} maxLength=\{120\}/);
   assert.match(modal, /minLength=\{20\} maxLength=\{1500\}/);
   assert.match(modal, /generalMessageLength\} \/ 2000/);
-  assert.match(modal, /Junior.*Confirmé.*Senior.*Expert/);
+  assert.match(modal, /Junior \(< 2 ans d’expérience\).*Confirmé \(< 5 ans d’expérience\).*Senior \(< 10 ans d’expérience\).*Expert \(> 10 ans d’expérience\)/);
+  assert.match(modal, /Junior \(< 2 years of experience\).*Mid-level \(< 5 years of experience\).*Senior \(< 10 years of experience\).*Expert \(> 10 years of experience\)/);
   assert.match(modal, /Présentiel.*Hybride.*Remote/);
   for (const source of [servicesPage, servicesPageEn, home, homeEn]) assert.match(source, /ProfileRequestModal/);
 });

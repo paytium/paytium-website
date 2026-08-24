@@ -6,7 +6,7 @@ import { Arrow } from "./Brand";
 
 type Locale = "fr" | "en";
 
-const STORAGE_KEY = "paytium-einvoice-popup-dismissed-v1";
+const STORAGE_KEY = "paytium-einvoice-popup-dismissed-v2";
 
 const copy = {
   fr: {
@@ -17,7 +17,7 @@ const copy = {
     consultation: "Réserver une consultation gratuite",
     benefits: ["Diagnostic de préparation et feuille de route", "Intégration ERP, API et plateformes CSP", "Sécurité, traçabilité et conformité de bout en bout"],
     close: "Fermer cette présentation",
-    memory: "En fermant, ce message ne sera plus affiché sur cet appareil.",
+    memory: "Ne plus afficher ce message sur cet appareil.",
   },
   en: {
     eyebrow: "E-INVOICING",
@@ -27,7 +27,7 @@ const copy = {
     consultation: "Book a free consultation",
     benefits: ["Readiness assessment and actionable roadmap", "ERP, API and CSP platform integration", "End-to-end security, traceability and compliance"],
     close: "Close this introduction",
-    memory: "Once closed, this message will not be shown again on this device.",
+    memory: "Don’t show this message again on this device.",
   },
 };
 
@@ -44,14 +44,16 @@ export function EinvoicePromoPopup({ locale = "fr" }: { locale?: Locale }) {
     return () => window.clearTimeout(timer);
   }, []);
 
-  const dismiss = () => {
+  const closeForNow = () => setVisible(false);
+
+  const dismissPermanently = () => {
     try { window.localStorage.setItem(STORAGE_KEY, "true"); } catch { /* Closing still works without storage. */ }
     setVisible(false);
   };
 
   useEffect(() => {
     if (!visible) return;
-    const onKeyDown = (event: KeyboardEvent) => event.key === "Escape" && dismiss();
+    const onKeyDown = (event: KeyboardEvent) => event.key === "Escape" && setVisible(false);
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [visible]);
@@ -59,7 +61,7 @@ export function EinvoicePromoPopup({ locale = "fr" }: { locale?: Locale }) {
   if (!visible) return null;
 
   return <div className="einvoice-promo-backdrop">
-    <button className="einvoice-promo-scrim" type="button" onClick={dismiss} aria-label={content.close} />
+    <button className="einvoice-promo-scrim" type="button" onClick={closeForNow} aria-label={content.close} />
     <aside className="einvoice-promo-popup" role="dialog" aria-modal="true" aria-labelledby="einvoice-promo-title">
       <div className="einvoice-promo-media">
         <img src="/einvoicing-casablanca.jpg" alt={locale === "fr" ? "Architecture à Casablanca" : "Architecture in Casablanca"} width="2400" height="1594" />
@@ -70,7 +72,7 @@ export function EinvoicePromoPopup({ locale = "fr" }: { locale?: Locale }) {
         </div>
       </div>
       <div className="einvoice-promo-content">
-        <button className="einvoice-promo-close" type="button" onClick={dismiss} aria-label={content.close}><LuX aria-hidden="true" /></button>
+        <button className="einvoice-promo-close" type="button" onClick={closeForNow} aria-label={content.close}><LuX aria-hidden="true" /></button>
         <small>{content.eyebrow}</small>
         <h2 id="einvoice-promo-title">{content.title}</h2>
         <p>{content.text}</p>
@@ -79,7 +81,7 @@ export function EinvoicePromoPopup({ locale = "fr" }: { locale?: Locale }) {
           <a className="button button-primary" href={`${prefix}/e-invoicing/`}>{content.discover} <Arrow /></a>
           <a className="button button-secondary" href={`${prefix}/e-invoicing/#consultation`}>{content.consultation}</a>
         </div>
-        <button className="einvoice-promo-memory" type="button" onClick={dismiss}>{content.memory}</button>
+        <button className="einvoice-promo-memory" type="button" onClick={dismissPermanently}>{content.memory}</button>
       </div>
     </aside>
   </div>;
