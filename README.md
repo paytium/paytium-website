@@ -1,4 +1,4 @@
-# Site Paytium
+# Paytium Website
 
 Site vitrine React bilingue de Paytium construit avec vinext, TypeScript et CSS. Il comprend les pages d’accueil, services, facturation électronique et Paytium Academy en français et en anglais.
 
