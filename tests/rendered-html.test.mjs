@@ -126,6 +126,14 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
   assert.match(shell, /\/e-invoicing/);
 });
 
+test("links directly to canonical trailing-slash routes", async () => {
+  const routes = ["/", "/en", "/services", "/en/services", "/academy", "/en/academy", "/e-invoicing", "/en/e-invoicing", "/case-studies", "/en/case-studies"];
+  for (const route of routes) {
+    const html = await (await render(route)).text();
+    assert.doesNotMatch(html, /href="\/(?:en\/)?(?:services|academy|e-invoicing|case-studies)(?:#|")/);
+  }
+});
+
 test("publishes bilingual financial-platform case studies", async () => {
   const frenchHtml = await (await render("/case-studies")).text();
   const englishHtml = await (await render("/en/case-studies")).text();
@@ -280,8 +288,8 @@ test("restructures the homepage around mission, value proposition and approach",
     assert.doesNotMatch(html, /UNE TRAJECTOIRE DIGITALE PLUS CLAIRE|A CLEARER DIGITAL ROADMAP/);
   }
   const source = await readFile(new URL("../components/HomePositioning.tsx", import.meta.url), "utf8");
-  assert.match(source, /services#consulting/);
-  assert.match(source, /services#expertise/);
+  assert.match(source, /services\/#consulting/);
+  assert.match(source, /services\/#expertise/);
 });
 
 test("uses English URL anchors across both locales and preserves legacy hash migration", async () => {

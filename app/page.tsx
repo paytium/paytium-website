@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 const quickLinks = [
-  ["Facturation électronique", "/e-invoicing", "01"], ["Business & Technology Consulting", "/services#consulting", "02"], ["Digital & Data Factory", "/services#digital-data", "03"], ["Paytium Academy", "/academy", "04"], ["Parler de votre projet", "/#contact", "05"],
+  ["Facturation électronique", "/e-invoicing/", "01"], ["Business & Technology Consulting", "/services/#consulting", "02"], ["Digital & Data Factory", "/services/#digital-data", "03"], ["Paytium Academy", "/academy/", "04"], ["Parler de votre projet", "/#contact", "05"],
 ];
 const homeServices = services.filter((service) => service.id !== "academy");
 
@@ -36,8 +36,8 @@ export default function HomePage() {
       <ExpertiseBand />
       <section className="section services-home">
         <SectionHeading eyebrow="NOS SERVICES" title={<>Nous accélérons votre <em>transformation digitale.</em></>} />
-        <div className="service-grid">{homeServices.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}><LuPlus aria-hidden="true" />{item}</li>)}</ul>{service.id === "engineering" && <ProfileRequestModal variant="card" />}<a href={"href" in service ? service.href : `/services#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
-        <a className="button button-primary section-action" href="/services">Voir tous nos services <Arrow /></a>
+        <div className="service-grid">{homeServices.map((service) => <article className={`service-card service-${service.number}`} key={service.id}><span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><ul>{service.capabilities.slice(0, 5).map((item) => <li key={item}><LuPlus aria-hidden="true" />{item}</li>)}</ul>{service.id === "engineering" && <ProfileRequestModal variant="card" />}<a href={"href" in service ? service.href : `/services/#${service.id}`} aria-label={`Découvrir ${service.title}`}><Arrow /></a></article>)}</div>
+        <a className="button button-primary section-action" href="/services/">Voir tous nos services <Arrow /></a>
       </section>
 
       <section className="invoice-focus">

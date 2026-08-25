@@ -107,15 +107,15 @@ const faq = [
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Service", "@id": "https://paytium.io/e-invoicing#service", name: "Facturation électronique Maroc & Paytium e-Invoice Connector", serviceType: "Conseil et intégration de facturation électronique", provider: { "@id": "https://paytium.io/#organization" }, areaServed: { "@type": "Country", name: "Maroc" }, url: "https://paytium.io/e-invoicing", description: metadata.description },
-    { "@type": "FAQPage", "@id": "https://paytium.io/e-invoicing#faq", mainEntity: faq.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
+    { "@type": "Service", "@id": "https://paytium.io/e-invoicing/#service", name: "Facturation électronique Maroc & Paytium e-Invoice Connector", serviceType: "Conseil et intégration de facturation électronique", provider: { "@id": "https://paytium.io/#organization" }, areaServed: { "@type": "Country", name: "Maroc" }, url: "https://paytium.io/e-invoicing/", description: metadata.description },
+    { "@type": "FAQPage", "@id": "https://paytium.io/e-invoicing/#faq", mainEntity: faq.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
   ],
 };
 
 export default function ElectronicInvoicingPage() {
   return <PageShell translationHref="/en/e-invoicing/" activeNav="e-invoicing">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-    <Breadcrumbs items={[{ label: "Facturation électronique", href: "/e-invoicing" }]} sections={{ connector: "Connector", offres: "Offres", consultation: "Consultation", faq: "FAQ" }} />
+    <Breadcrumbs items={[{ label: "Facturation électronique", href: "/e-invoicing/" }]} sections={{ connector: "Connector", offres: "Offres", consultation: "Consultation", faq: "FAQ" }} />
 
     <section className="einvoice-hero">
       <div className="einvoice-hero-copy">

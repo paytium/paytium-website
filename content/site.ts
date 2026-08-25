@@ -66,7 +66,7 @@ export const services = [
     description: "Paytium Academy propose des formations technologiques, produit, data, cloud, agiles et managériales. Chaque parcours associe apports ciblés, ateliers pratiques et cas proches de votre réalité métier.",
     capabilities: ["Formations inter-entreprises", "Sessions intra-entreprise", "Parcours sur mesure", "Ateliers pratiques et études de cas", "Programmes pour managers et équipes opérationnelles", "Formats en présentiel, à distance ou hybrides"],
     outcomes: "Compétences immédiatement mobilisables, langage commun et autonomie durable des équipes.",
-    href: "/academy",
+    href: "/academy/",
   },
 ];
 

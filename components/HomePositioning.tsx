@@ -22,10 +22,10 @@ const content = {
     valueEyebrow: "PROPOSITION DE VALEUR",
     valueTitle: <>Quatre enjeux clients. <em>Une réponse intégrée.</em></>,
     propositions: [
-      { number: "01", pillar: "Cadrer", challenge: "Les décisions et investissements technologiques", answer: "Business & Technology Consulting", detail: "Audit SI, due diligence, architecture et roadmaps", href: "/services#consulting" },
-      { number: "02", pillar: "Construire", challenge: "Les produits, les données et les intégrations", answer: "Digital & Data Factory", detail: "Product delivery, Data & IA, APIs et TMA", href: "/services#digital-data" },
-      { number: "03", pillar: "Accélérer", challenge: "La capacité et la performance du delivery", answer: "Squad As Service", detail: "Squads, centres de services et expertises ciblées", href: "/services#engineering" },
-      { number: "04", pillar: "Industrialiser", challenge: "La qualité, la sécurité et la résilience", answer: "DevSecOps & Cloud Engineering", detail: "Cloud, CI/CD, plateformes et observabilité", href: "/services#cloud-devops" },
+      { number: "01", pillar: "Cadrer", challenge: "Les décisions et investissements technologiques", answer: "Business & Technology Consulting", detail: "Audit SI, due diligence, architecture et roadmaps", href: "/services/#consulting" },
+      { number: "02", pillar: "Construire", challenge: "Les produits, les données et les intégrations", answer: "Digital & Data Factory", detail: "Product delivery, Data & IA, APIs et TMA", href: "/services/#digital-data" },
+      { number: "03", pillar: "Accélérer", challenge: "La capacité et la performance du delivery", answer: "Squad As Service", detail: "Squads, centres de services et expertises ciblées", href: "/services/#engineering" },
+      { number: "04", pillar: "Industrialiser", challenge: "La qualité, la sécurité et la résilience", answer: "DevSecOps & Cloud Engineering", detail: "Cloud, CI/CD, plateformes et observabilité", href: "/services/#cloud-devops" },
     ],
     servicesLink: "Explorer nos services",
     expertiseLink: "Découvrir nos expertises",
@@ -50,10 +50,10 @@ const content = {
     valueEyebrow: "VALUE PROPOSITION",
     valueTitle: <>Four client priorities. <em>One integrated response.</em></>,
     propositions: [
-      { number: "01", pillar: "Frame", challenge: "Technology decisions and investment priorities", answer: "Business & Technology Consulting", detail: "IT assessment, due diligence, architecture and roadmaps", href: "/en/services#consulting" },
-      { number: "02", pillar: "Build", challenge: "Digital products, data and integration", answer: "Digital & Data Factory", detail: "Product delivery, Data & AI, APIs and application support", href: "/en/services#digital-data" },
-      { number: "03", pillar: "Accelerate", challenge: "Delivery capacity and performance", answer: "Squad As Service", detail: "Squads, managed delivery centres and targeted specialists", href: "/en/services#engineering" },
-      { number: "04", pillar: "Industrialise", challenge: "Quality, security and resilience", answer: "DevSecOps & Cloud Engineering", detail: "Cloud, CI/CD, platforms and observability", href: "/en/services#cloud-devops" },
+      { number: "01", pillar: "Frame", challenge: "Technology decisions and investment priorities", answer: "Business & Technology Consulting", detail: "IT assessment, due diligence, architecture and roadmaps", href: "/en/services/#consulting" },
+      { number: "02", pillar: "Build", challenge: "Digital products, data and integration", answer: "Digital & Data Factory", detail: "Product delivery, Data & AI, APIs and application support", href: "/en/services/#digital-data" },
+      { number: "03", pillar: "Accelerate", challenge: "Delivery capacity and performance", answer: "Squad As Service", detail: "Squads, managed delivery centres and targeted specialists", href: "/en/services/#engineering" },
+      { number: "04", pillar: "Industrialise", challenge: "Quality, security and resilience", answer: "DevSecOps & Cloud Engineering", detail: "Cloud, CI/CD, platforms and observability", href: "/en/services/#cloud-devops" },
     ],
     servicesLink: "Explore our services",
     expertiseLink: "Discover our expertise",
@@ -88,7 +88,7 @@ export function HomePositioning({ locale = "fr" }: { locale?: Locale }) {
           <a href={item.href}><span><b>{item.answer}</b><small>{item.detail}</small></span><Arrow /></a>
         </article>)}
       </div>
-      <div className="value-proposition-actions"><a className="button button-primary" href={`${prefix}/services`}>{copy.servicesLink} <Arrow /></a><a className="button button-secondary" href={`${prefix}/services#expertise`}>{copy.expertiseLink} <Arrow /></a></div>
+      <div className="value-proposition-actions"><a className="button button-primary" href={`${prefix}/services/`}>{copy.servicesLink} <Arrow /></a><a className="button button-secondary" href={`${prefix}/services/#expertise`}>{copy.expertiseLink} <Arrow /></a></div>
     </section>
 
     <section className="section approach-section" id="method">
