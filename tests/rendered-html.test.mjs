@@ -364,10 +364,13 @@ test("uses animated commercial storytelling across the homepage visuals", async 
     assert.match(html, /E-SIGNATURE/);
   }
   assert.match(fr, /Cadrage/);
-  assert.match(fr, /TMA \/ Centre/);
+  assert.match(fr, /Backlog produit/);
   assert.match(en, /build-and-test sprints/);
-  assert.match(en, /Client autonomy/);
-  assert.match(heroSource, /agile-feedback/);
+  assert.match(en, /capability transfer/);
+  assert.match(heroSource, /scrum-map/);
+  assert.match(heroSource, /Sprint Planning/);
+  assert.match(heroSource, /Sprint Review/);
+  assert.match(heroSource, /Sprint Retrospective/);
   assert.match(heroSource, /invoice-role-diagram/);
   assert.match(heroSource, /einvoice-connection-map/);
   assert.match(heroSource, /ERP/);
@@ -375,6 +378,7 @@ test("uses animated commercial storytelling across the homepage visuals", async 
   assert.match(heroSource, /logo-dgi\.png/);
   assert.match(heroSource, /talent-diagram/);
   assert.match(heroSource, /engineering-heroes/);
+  assert.match(heroSource, /Architecture/);
   assert.match(heroSource, /Junior/);
   assert.match(heroSource, /Confirmé/);
   assert.match(heroSource, /Senior/);
