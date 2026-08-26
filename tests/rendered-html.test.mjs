@@ -410,8 +410,11 @@ test("uses page-specific Paytium visuals without decorative case-study artwork",
     render("/case-studies").then((response) => response.text()),
     readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8"),
   ]);
-  for (const html of [servicesFr, servicesEn]) assert.match(html, /class="services-wheel"/);
-  for (const html of [academyFr, academyEn]) assert.match(html, /class="academy-trainer-visual"/);
+  for (const html of [servicesFr, servicesEn]) {
+    assert.match(html, /class="services-wheel"/);
+    for (const service of ["Business &amp; Technology Consulting", "Digital &amp; Data Factory", "Squad As Service", "DevSecOps &amp; Cloud Engineering"]) assert.match(html, new RegExp(service));
+  }
+  for (const html of [academyFr, academyEn]) assert.match(html, /academy-light-poster/);
   for (const html of [contactFr, contactEn]) assert.match(html, /class="contact-rocket-visual"/);
   assert.match(casesFr, /page-hero-text-only/);
   assert.doesNotMatch(casesFr, /expertise-cases-visual/);
