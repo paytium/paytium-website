@@ -395,6 +395,9 @@ test("uses animated commercial storytelling across the homepage visuals", async 
   assert.match(invoiceSource, /logo-dgi\.png/);
   assert.doesNotMatch(invoiceSource, /tag-data|tag-erp|tag-archive/);
   assert.match(css, /@keyframes agileLoop/);
+  assert.match(css, /animation:agileStageLift 8s/);
+  assert.match(css, /animation:agileFlowDot 6s/);
+  assert.match(css, /animation:agileFeedbackTravel 7s/);
   assert.match(css, /@keyframes invoiceScan/);
   assert.match(css, /prefers-reduced-motion:reduce/);
 });
