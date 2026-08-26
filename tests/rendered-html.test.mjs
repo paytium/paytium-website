@@ -246,8 +246,10 @@ test("strengthens brand and page hierarchy signals for search engines", async ()
   assert.match(pagesScript, /"@type": "SiteNavigationElement"/);
   assert.match(pagesScript, /path: "\/about"/);
   assert.match(pagesScript, /path: "\/contact"/);
-  assert.match(hero, /PAYTIUM — CONSEIL & TECHNOLOGIE/);
-  assert.match(hero, /PAYTIUM — CONSULTING & TECHNOLOGY/);
+  assert.match(hero, /DIGITAL & DATA FACTORY/);
+  assert.match(hero, /FACTURATION ÉLECTRONIQUE/);
+  assert.match(hero, /E-INVOICING/);
+  assert.match(hero, /SQUAD AS SERVICE/);
 });
 
 test("publishes dedicated bilingual about and contact pages for search sitelinks", async () => {
@@ -341,6 +343,43 @@ test("restructures the homepage around mission, value proposition and approach",
   const source = await readFile(new URL("../components/HomePositioning.tsx", import.meta.url), "utf8");
   assert.match(source, /services\/#consulting/);
   assert.match(source, /services\/#expertise/);
+});
+
+test("uses animated commercial storytelling across the homepage visuals", async () => {
+  const [fr, en, heroSource, positioningSource, invoiceSource, css] = await Promise.all([
+    render("/").then((response) => response.text()),
+    render("/en").then((response) => response.text()),
+    readFile(new URL("../components/HomeHero.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/HomePositioning.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/ElectronicInvoiceVisual.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  for (const html of [fr, en]) {
+    assert.match(html, /class="hero-diagram agile-delivery-diagram"/);
+    assert.match(html, /class="about-visual about-differentiators"/);
+    assert.match(html, /class="invoice-visual electronic-invoice-visual"/);
+    assert.match(html, /UBL 2\.1 · XML/);
+    assert.match(html, /DGI/);
+    assert.match(html, /E-SIGNATURE/);
+  }
+  assert.match(fr, /Cadrage/);
+  assert.match(fr, /TMA \/ Centre/);
+  assert.match(en, /Iterative sprints/);
+  assert.match(en, /Client autonomy/);
+  assert.match(heroSource, /agile-feedback/);
+  assert.match(heroSource, /invoice-role-diagram/);
+  assert.match(heroSource, /talent-diagram/);
+  assert.match(heroSource, /Junior/);
+  assert.match(heroSource, /Confirmé/);
+  assert.match(heroSource, /Senior/);
+  assert.match(heroSource, /Expert/);
+  assert.match(heroSource, /Advisory/);
+  assert.match(positioningSource, /differentiator-core/);
+  assert.match(invoiceSource, /binary-stream/);
+  assert.match(css, /@keyframes agileLoop/);
+  assert.match(css, /@keyframes invoiceScan/);
+  assert.match(css, /prefers-reduced-motion:reduce/);
 });
 
 test("uses English URL anchors across both locales and preserves legacy hash migration", async () => {

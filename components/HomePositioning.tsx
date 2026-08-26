@@ -1,4 +1,4 @@
-import { Arrow, Eyebrow, OrbitMark } from "./Brand";
+import { Arrow, Eyebrow } from "./Brand";
 import { methods } from "../content/site";
 import { methodsEn } from "../content/site-en";
 
@@ -9,7 +9,7 @@ const content = {
     aboutEyebrow: "À PROPOS DE PAYTIUM",
     aboutTitle: <>Un partenaire engagé dans votre <em>transformation.</em></>,
     aboutText: "Paytium est un cabinet de conseil et de delivery digital. Nous accompagnons les organisations dans la conception, la réalisation et l’évolution de leurs initiatives digitales, en reliant compréhension métier, excellence technologique et proximité opérationnelle.",
-    disciplines: ["Conseil", "Design", "Squads", "Run"],
+    disciplines: ["Vision métier", "Delivery maîtrisé", "Expertises ciblées", "Autonomie client"],
     values: [["Clarté", "Rendre les choix, les priorités et les résultats compréhensibles."], ["Engagement", "Travailler avec vos équipes et avancer avec transparence."], ["Excellence", "Privilégier qualité, sécurité, maintenabilité et progrès continu."]],
     missionEyebrow: "MISSION",
     missionTitle: <>Une promesse simple : <em>Build. Secure. Scale.</em></>,
@@ -37,7 +37,7 @@ const content = {
     aboutEyebrow: "ABOUT PAYTIUM",
     aboutTitle: <>A committed partner in your <em>transformation.</em></>,
     aboutText: "Paytium is a technology consulting and digital delivery company. We help organisations design, deliver and evolve digital initiatives by connecting business understanding, technology excellence and hands-on collaboration.",
-    disciplines: ["Consulting", "Design", "Squads", "Operate"],
+    disciplines: ["Business insight", "Delivery control", "Targeted expertise", "Client autonomy"],
     values: [["Clarity", "Make choices, priorities and outcomes understandable."], ["Commitment", "Work alongside your teams and move forward transparently."], ["Excellence", "Prioritise quality, security, maintainability and continuous improvement."]],
     missionEyebrow: "MISSION",
     missionTitle: <>One simple promise : <em>Build. Secure. Scale.</em></>,
@@ -71,7 +71,11 @@ export function HomePositioning({ locale = "fr" }: { locale?: Locale }) {
   return <>
     <section className="section about-section home-about" id="about">
       <div className="about-copy"><Eyebrow>{copy.aboutEyebrow}</Eyebrow><h2>{copy.aboutTitle}</h2><p>{copy.aboutText}</p></div>
-      <div className="about-visual"><OrbitMark /><div className="discipline-stack">{copy.disciplines.map((item) => <span key={item}>{item}</span>)}</div></div>
+      <div className="about-visual about-differentiators" aria-label={locale === "fr" ? "Les éléments différenciateurs de Paytium" : "Paytium differentiators"}>
+        <div className="differentiator-rings" aria-hidden="true"><i/><i/><i/></div>
+        <div className="differentiator-core"><img src="/paytium-icon-white.svg" alt=""/><b>PAYTIUM</b><small>Build. Secure. Scale.</small></div>
+        <div className="discipline-stack">{copy.disciplines.map((item, index) => <span className={`differentiator-node node-${index + 1}`} key={item}><i>{String(index + 1).padStart(2, "0")}</i><b>{item}</b></span>)}</div>
+      </div>
       <div className="values-row">{copy.values.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       <div className="mission-panel">
         <div className="mission-statement"><Eyebrow>{copy.missionEyebrow}</Eyebrow><h2>{copy.missionTitle}</h2><p>{copy.missionText}</p></div>

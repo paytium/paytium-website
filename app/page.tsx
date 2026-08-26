@@ -4,6 +4,7 @@ import { LuCheck, LuMail, LuMapPin, LuPhone, LuPlus } from "react-icons/lu";
 import { PageShell } from "../components/SiteShell";
 import { HomeHero } from "../components/HomeHero";
 import { HomePositioning } from "../components/HomePositioning";
+import { ElectronicInvoiceVisual } from "../components/ElectronicInvoiceVisual";
 import { ContactForm } from "../components/ContactForm";
 import { Arrow, Eyebrow } from "../components/Brand";
 import { ExpertiseBand, FinalCta, SectionHeading } from "../components/Sections";
@@ -40,7 +41,7 @@ export default function HomePage() {
 
       <section className="invoice-focus">
         <div className="invoice-copy"><Eyebrow>FOCUS E-INVOICING</Eyebrow><h2>Connectez votre facturation à l’écosystème DGI, <em>sans remplacer vos outils.</em></h2><p>De l’évaluation de votre préparation au déploiement, Paytium sécurise votre trajectoire e-invoice. Notre e-Invoice Connector relie vos ERP et applications métier aux échanges attendus, avec des contrôles, une traçabilité et une architecture conçue pour évoluer.</p><ul>{["Diagnostic de préparation métier, data et SI", "Intégration bidirectionnelle ERP, API et fichiers", "Contrôles, transformation et orchestration des flux", "Supervision, traçabilité et déploiement progressif"].map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul><div className="hero-actions"><a className="button button-light" href="/e-invoicing/#consultation">Réserver ma consultation gratuite de 30 minutes <Arrow /></a><a className="button button-outline-light" href="/e-invoicing/#offres">Explorer nos offres e-invoice</a></div></div>
-        <div className="invoice-visual"><div className="invoice-sheet"><small>FACTURE</small><span /><span /><span /><div><b>Contrôlée</b><b>Transmise</b><b>Archivée</b></div></div><div className="invoice-orbit"/><div className="system-tag tag-erp">ERP</div><div className="system-tag tag-data">DATA</div><div className="system-tag tag-archive">ARCHIVE</div></div>
+        <ElectronicInvoiceVisual />
       </section>
 
       <FinalCta />
