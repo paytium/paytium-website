@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://paytium.io/sitemap.xml
+Host: paytium.io
