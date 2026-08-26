@@ -169,8 +169,9 @@ test("publishes bilingual financial-platform case studies", async () => {
   assert.match(shell, /activeNav === "services"/);
   assert.match(shell, /activeNav === "e-invoicing"/);
   assert.match(css, /nav-services-trigger\.active:after/);
-  assert.match(shell, /\.expertise-cases-visual[\s\S]*\.expertise-domain-heading[\s\S]*\.case-study/);
-  assert.match(css, /@keyframes expertiseOrbit/);
+  assert.doesNotMatch(frenchHtml, /expertise-cases-visual/);
+  assert.doesNotMatch(englishHtml, /expertise-cases-visual/);
+  assert.match(css, /\.page-hero-text-only/);
   assert.match(css, /\.case-study\.reveal-item>div/);
   assert.match(frenchHtml, /Crédit et financement/);
   assert.match(englishHtml, /Digital lending/);
@@ -282,14 +283,15 @@ test("highlights About only on its page and keeps shared values aligned", async 
   assert.doesNotMatch(homeEn, /class="active" aria-current="page" href="\/en\/about\/"/);
   assert.match(aboutFr, /class="active" aria-current="page" href="\/about\/"/);
   assert.match(aboutEn, /class="active" aria-current="page" href="\/en\/about\/"/);
-  for (const text of ["Clarté", "Engagement", "Excellence", "Build. Secure. Scale."]) {
-    assert.match(homeFr, new RegExp(text.replaceAll(".", "\\.")));
+  for (const text of ["Clarté", "Engagement", "Excellence"]) {
+    assert.doesNotMatch(homeFr, new RegExp(text.replaceAll(".", "\\.")));
     assert.match(aboutFr, new RegExp(text.replaceAll(".", "\\.")));
   }
-  for (const text of ["Clarity", "Commitment", "Excellence", "Build. Secure. Scale."]) {
-    assert.match(homeEn, new RegExp(text.replaceAll(".", "\\.")));
+  for (const text of ["Clarity", "Commitment", "Excellence"]) {
+    assert.doesNotMatch(homeEn, new RegExp(text.replaceAll(".", "\\.")));
     assert.match(aboutEn, new RegExp(text.replaceAll(".", "\\.")));
   }
+  for (const html of [homeFr, homeEn, aboutFr, aboutEn]) assert.match(html, /Build\. Secure\. Scale\./);
   assert.doesNotMatch(aboutFr, /Construire\. Sécuriser\. Faire grandir\./);
   assert.doesNotMatch(aboutEn, /<span>Deliver<\/span>/);
 });
@@ -328,17 +330,21 @@ test("restructures the homepage around mission, value proposition and approach",
   for (const route of ["/", "/en"]) {
     const response = await render(route);
     const html = await response.text();
-    assert.match(html, /class="section about-section home-about"/);
-    assert.match(html, /class="mission-panel"/);
-    assert.match(html, /Build\. Secure\. Scale\./);
+    assert.doesNotMatch(html, /class="section about-section home-about/);
     assert.match(html, /class="section value-proposition"/);
     assert.doesNotMatch(html, /value-proposition-head/);
     assert.match(html, /Business &amp; Technology Consulting/);
     assert.match(html, /class="section approach-section"/);
     assert.match(html, /Vision[\s\S]*Architecture[\s\S]*Build[\s\S]*Run[\s\S]*Transfer/);
-    assert.ok(html.indexOf('class="section about-section home-about"') < html.indexOf('class="section value-proposition"'));
     assert.ok(html.indexOf('class="section value-proposition"') < html.indexOf('class="section approach-section"'));
     assert.doesNotMatch(html, /UNE TRAJECTOIRE DIGITALE PLUS CLAIRE|A CLEARER DIGITAL ROADMAP/);
+  }
+  for (const route of ["/about", "/en/about"]) {
+    const html = await (await render(route)).text();
+    assert.match(html, /class="section about-section home-about about-overview-page"/);
+    assert.match(html, /class="mission-panel"/);
+    assert.match(html, /Build\. Secure\. Scale\./);
+    assert.match(html, /class="about-visual about-differentiators"/);
   }
   const source = await readFile(new URL("../components/HomePositioning.tsx", import.meta.url), "utf8");
   assert.match(source, /services\/#consulting/);
@@ -357,7 +363,6 @@ test("uses animated commercial storytelling across the homepage visuals", async 
 
   for (const html of [fr, en]) {
     assert.match(html, /class="hero-diagram agile-delivery-diagram"/);
-    assert.match(html, /class="about-visual about-differentiators"/);
     assert.match(html, /class="invoice-visual electronic-invoice-visual"/);
     assert.match(html, /UBL 2\.1 · XML/);
     assert.match(html, /DGI/);
@@ -378,6 +383,7 @@ test("uses animated commercial storytelling across the homepage visuals", async 
   assert.match(heroSource, /talent-diagram/);
   assert.match(heroSource, /engineering-heroes/);
   assert.match(heroSource, /Architecture/);
+  assert.match(heroSource, /Coach · Scrum Master/);
   assert.match(heroSource, /Junior/);
   assert.match(heroSource, /Confirmé/);
   assert.match(heroSource, /Senior/);
@@ -393,11 +399,30 @@ test("uses animated commercial storytelling across the homepage visuals", async 
   assert.match(css, /prefers-reduced-motion:reduce/);
 });
 
+test("uses page-specific Paytium visuals without decorative case-study artwork", async () => {
+  const [servicesFr, servicesEn, academyFr, academyEn, contactFr, contactEn, casesFr, contactSource] = await Promise.all([
+    render("/services").then((response) => response.text()),
+    render("/en/services").then((response) => response.text()),
+    render("/academy").then((response) => response.text()),
+    render("/en/academy").then((response) => response.text()),
+    render("/contact").then((response) => response.text()),
+    render("/en/contact").then((response) => response.text()),
+    render("/case-studies").then((response) => response.text()),
+    readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8"),
+  ]);
+  for (const html of [servicesFr, servicesEn]) assert.match(html, /class="services-wheel"/);
+  for (const html of [academyFr, academyEn]) assert.match(html, /class="academy-trainer-visual"/);
+  for (const html of [contactFr, contactEn]) assert.match(html, /class="contact-rocket-visual"/);
+  assert.match(casesFr, /page-hero-text-only/);
+  assert.doesNotMatch(casesFr, /expertise-cases-visual/);
+  assert.match(contactSource, /LuRocket/);
+});
+
 test("uses English URL anchors across both locales and preserves legacy hash migration", async () => {
   for (const route of ["/", "/en"]) {
     const response = await render(route);
     const html = await response.text();
-    assert.match(html, /id="about"/);
+    assert.doesNotMatch(html, /id="about"/);
     assert.match(html, /id="value-proposition"/);
     assert.match(html, /id="method"/);
     assert.match(html, /id="approach"/);
@@ -558,8 +583,8 @@ test("validates the requested phone formats and keeps profile mission input stab
 
 test("uses the approved Mission and end-to-end approach copy in both languages", async () => {
   const [fr, en, css] = await Promise.all([
-    render("/").then((response) => response.text()),
-    render("/en").then((response) => response.text()),
+    render("/about").then((response) => response.text()),
+    render("/en/about").then((response) => response.text()),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
   for (const text of [

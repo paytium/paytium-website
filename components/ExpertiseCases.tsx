@@ -69,9 +69,7 @@ export function ExpertiseCasesPage({ locale = "fr" }: { locale?: Locale }) {
 
   return <PageShell locale={locale} translationHref={en ? "/case-studies/" : "/en/case-studies/"} activeNav="case-studies">
     <Breadcrumbs locale={locale} items={[{ label: copy.breadcrumb, href: `${prefix}/case-studies/` }]} sections={Object.fromEntries(domains.map((domain) => [domain.id, domain.label]))} />
-    <PageHero eyebrow={copy.eyebrow} title={copy.title} text={copy.intro} primary={[copy.explore, "#e-invoicing"]} secondary={[copy.talk, `${prefix}/contact/`]}>
-      <div className="expertise-cases-visual" aria-hidden="true"><span>PAY</span><span>API</span><span>ISO</span><span>DATA</span><i><img src="/paytium-icon-white.svg" alt="" /></i></div>
-    </PageHero>
+    <PageHero eyebrow={copy.eyebrow} title={copy.title} text={copy.intro} primary={[copy.explore, "#e-invoicing"]} secondary={[copy.talk, `${prefix}/contact/`]} visual={false} />
     <nav className="expertise-anchor-nav" aria-label={copy.nav}>{domains.map((domain) => <a key={domain.id} href={`#${domain.id}`}><span>{domain.number}</span>{domain.label}</a>)}</nav>
     {domains.map((domain, domainIndex) => <section className={`section expertise-domain domain-${domainIndex + 1}`} id={domain.id} key={domain.id}>
       <header className="expertise-domain-heading"><div><span>{domain.number}</span><i><DomainIcon id={domain.id} /></i></div><div><Eyebrow>{domain.label}</Eyebrow><h2>{domain.title}</h2><p>{domain.intro}</p></div></header>

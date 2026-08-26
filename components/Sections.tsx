@@ -14,6 +14,6 @@ export function FinalCta({ eyebrow = "VOTRE PROCHAINE ÉTAPE COMMENCE ICI", titl
   return <section className="final-cta"><OrbitMark /><Eyebrow>{eyebrow}</Eyebrow><h2>{title}</h2><p>{text}</p><div><a className="button button-primary" href={contactHref}>{primary} <Arrow /></a>{secondary && <a className="button button-secondary" href={secondary[1]}>{secondary[0]}</a>}</div></section>;
 }
 
-export function PageHero({ eyebrow, title, text, primary, secondary, children }: { eyebrow: string; title: React.ReactNode; text: string; primary: [string, string]; secondary: [string, string]; children?: React.ReactNode }) {
-  return <section className="page-hero"><div><Eyebrow className="page-kicker">{eyebrow}</Eyebrow><h1>{title}</h1><p>{text}</p><div className="hero-actions"><a className="button button-primary" href={primary[1]}>{primary[0]} <Arrow /></a><a className="button button-secondary" href={secondary[1]}>{secondary[0]}</a></div></div><div className="page-hero-visual">{children ?? <OrbitMark />}</div></section>;
+export function PageHero({ eyebrow, title, text, primary, secondary, children, visual = true }: { eyebrow: string; title: React.ReactNode; text: string; primary: [string, string]; secondary: [string, string]; children?: React.ReactNode; visual?: boolean }) {
+  return <section className={`page-hero ${visual ? "" : "page-hero-text-only"}`}><div><Eyebrow className="page-kicker">{eyebrow}</Eyebrow><h1>{title}</h1><p>{text}</p><div className="hero-actions"><a className="button button-primary" href={primary[1]}>{primary[0]} <Arrow /></a><a className="button button-secondary" href={secondary[1]}>{secondary[0]}</a></div></div>{visual && <div className="page-hero-visual">{children ?? <OrbitMark />}</div>}</section>;
 }

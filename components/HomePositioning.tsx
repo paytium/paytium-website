@@ -63,26 +63,30 @@ const content = {
   },
 };
 
+export function AboutOverview({ locale = "fr", page = false }: { locale?: Locale; page?: boolean }) {
+  const copy = content[locale];
+  const Heading = page ? "h1" : "h2";
+  return <section className={`section about-section home-about ${page ? "about-overview-page" : ""}`} id="about">
+    <div className="about-copy"><Eyebrow>{copy.aboutEyebrow}</Eyebrow><Heading>{copy.aboutTitle}</Heading><p>{copy.aboutText}</p></div>
+    <div className="about-visual about-differentiators" aria-label={locale === "fr" ? "Les éléments différenciateurs de Paytium" : "Paytium differentiators"}>
+      <div className="differentiator-rings" aria-hidden="true"><i/><i/><i/></div>
+      <div className="differentiator-core"><img src="/paytium-icon-white.svg" alt=""/><b>PAYTIUM</b><small>Build. Secure. Scale.</small></div>
+      <div className="discipline-stack">{copy.disciplines.map((item, index) => <span className={`differentiator-node node-${index + 1}`} key={item}><i>{String(index + 1).padStart(2, "0")}</i><b>{item}</b></span>)}</div>
+    </div>
+    <div className="values-row">{copy.values.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
+    <div className="mission-panel">
+      <div className="mission-statement"><Eyebrow>{copy.missionEyebrow}</Eyebrow><h2>{copy.missionTitle}</h2><p>{copy.missionText}</p></div>
+      <div className="mission-pillars">{copy.missionPillars.map(([number, title, text]) => <article key={title}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+    </div>
+  </section>;
+}
+
 export function HomePositioning({ locale = "fr" }: { locale?: Locale }) {
   const copy = content[locale];
   const approach = locale === "fr" ? methods : methodsEn;
   const prefix = locale === "en" ? "/en" : "";
 
   return <>
-    <section className="section about-section home-about" id="about">
-      <div className="about-copy"><Eyebrow>{copy.aboutEyebrow}</Eyebrow><h2>{copy.aboutTitle}</h2><p>{copy.aboutText}</p></div>
-      <div className="about-visual about-differentiators" aria-label={locale === "fr" ? "Les éléments différenciateurs de Paytium" : "Paytium differentiators"}>
-        <div className="differentiator-rings" aria-hidden="true"><i/><i/><i/></div>
-        <div className="differentiator-core"><img src="/paytium-icon-white.svg" alt=""/><b>PAYTIUM</b><small>Build. Secure. Scale.</small></div>
-        <div className="discipline-stack">{copy.disciplines.map((item, index) => <span className={`differentiator-node node-${index + 1}`} key={item}><i>{String(index + 1).padStart(2, "0")}</i><b>{item}</b></span>)}</div>
-      </div>
-      <div className="values-row">{copy.values.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
-      <div className="mission-panel">
-        <div className="mission-statement"><Eyebrow>{copy.missionEyebrow}</Eyebrow><h2>{copy.missionTitle}</h2><p>{copy.missionText}</p></div>
-        <div className="mission-pillars">{copy.missionPillars.map(([number, title, text]) => <article key={title}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
-      </div>
-    </section>
-
     <section className="section value-proposition" id="value-proposition">
       <Eyebrow>{copy.valueEyebrow}</Eyebrow>
       <h2>{copy.valueTitle}</h2>

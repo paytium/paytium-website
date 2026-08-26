@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { LuChevronDown, LuSend, LuShieldCheck } from "react-icons/lu";
+import { LuChevronDown, LuRocket, LuShieldCheck } from "react-icons/lu";
 import { siteConfig } from "../content/site";
 import { isValidPhoneNumber, normalizePhoneNumber, sanitizePhoneInput } from "../lib/contactValidation";
 
@@ -66,7 +66,7 @@ export function ContactForm({ locale = "fr" }: { locale?: "fr" | "en" }) {
       <label>{copy.subject}<span className="contact-select"><select name="subject" required defaultValue=""><option value="" disabled>{copy.choose}</option>{copy.subjects.map((subject) => <option key={subject}>{subject}</option>)}</select><LuChevronDown aria-hidden="true" /></span></label>
       <label><span className="field-label">{copy.message} <small aria-live="polite">{messageLength} / 2000</small></span><textarea name="message" rows={5} minLength={20} maxLength={2000} required placeholder={copy.messagePlaceholder} onInput={(event) => { event.currentTarget.setCustomValidity(""); setMessageLength(event.currentTarget.value.length); }} /></label>
       <p className="privacy-note"><LuShieldCheck aria-hidden="true" /><span>{copy.privacy}</span></p>
-      <button className="button button-primary" type="submit" disabled={loading}>{loading ? copy.sending : copy.send} <LuSend aria-hidden="true" /></button>
+      <button className="button button-primary" type="submit" disabled={loading}>{loading ? copy.sending : copy.send} <LuRocket aria-hidden="true" /></button>
       {message && <p className="form-message" role="status">{message}</p>}
     </form>
   );

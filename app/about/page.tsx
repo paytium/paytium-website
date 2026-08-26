@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Breadcrumbs, PageShell } from "../../components/SiteShell";
-import { FinalCta, PageHero, SectionHeading } from "../../components/Sections";
+import { FinalCta } from "../../components/Sections";
+import { AboutOverview } from "../../components/HomePositioning";
 import { methods } from "../../content/site";
 
 export const metadata: Metadata = {
@@ -17,20 +18,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return <PageShell translationHref="/en/about/" activeNav="about">
     <Breadcrumbs items={[{ label: "À propos", href: "/about/" }]} />
-    <PageHero eyebrow="À PROPOS DE PAYTIUM" title={<>Une promesse simple : <em>Build. Secure. Scale.</em></>} text="Paytium transforme vos enjeux métier en trajectoires digitales exécutables. De la stratégie à l’exploitation, nous alignons décisions, architecture et delivery avec un engagement constant sur la valeur, la qualité et l’autonomie." primary={["Échanger avec Paytium", "/contact/"]} secondary={["Découvrir nos services", "/services/"]}>
-      <div className="expertise-visual"><span>Build</span><span>Secure</span><span>Scale</span><i /></div>
-    </PageHero>
-
-    <section className="section partner-intent">
-      <SectionHeading eyebrow="NOS VALEURS" title={<>Clarté. Engagement. <em>Excellence.</em></>} text="Trois principes guident notre manière de conseiller, de construire et de collaborer avec vos équipes." />
-      <div className="values-row">
-        {[
-          ["Clarté", "Rendre les choix, les priorités et les résultats compréhensibles."],
-          ["Engagement", "Travailler avec vos équipes et avancer avec transparence."],
-          ["Excellence", "Privilégier qualité, sécurité, maintenabilité et progrès continu."],
-        ].map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}
-      </div>
-    </section>
+    <AboutOverview page />
 
     <section className="section approach-section">
       <div className="approach-heading"><span className="eyebrow"><span />NOTRE APPROCHE</span><h2>Une maîtrise <em>de bout en bout.</em></h2><p>De la définition de la vision à la montée en autonomie de vos équipes, Paytium intervient à chaque étape du cycle de vie de vos solutions.</p></div>
