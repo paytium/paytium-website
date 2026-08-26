@@ -11,8 +11,6 @@ import { ProfileRequestModal } from "../components/ProfileRequestModal";
 import { EinvoicePromoPopup } from "../components/EinvoicePromoPopup";
 import { services, siteConfig } from "../content/site";
 
-/* eslint-disable @next/next/no-html-link-for-pages -- This entry is also bundled by the standalone Vite build used for GitHub Pages. */
-
 export const metadata: Metadata = {
   title: "Paytium | Conseil & technologie",
   description: "Paytium est un cabinet de conseil et de delivery digital : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.",
@@ -27,7 +25,7 @@ const homeServices = services.filter((service) => service.id !== "academy");
 export default function HomePage() {
   const hasContact = siteConfig.contactEmail || siteConfig.contactPhone || siteConfig.addressFr;
   return (
-    <PageShell translationHref="/en/" activeNav="about">
+    <PageShell translationHref="/en/">
       <HomeHero />
       <nav className="quick-links" aria-label="Accès rapides">{quickLinks.map(([label, href, number]) => <a key={label} href={href}><span>{number}</span>{label}<b><Arrow /></b></a>)}</nav>
 

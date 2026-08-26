@@ -269,6 +269,29 @@ test("publishes dedicated bilingual about and contact pages for search sitelinks
   assert.match(sitemap, /\/contact\/.*\/en\/contact\//);
 });
 
+test("highlights About only on its page and keeps shared values aligned", async () => {
+  const [homeFr, homeEn, aboutFr, aboutEn] = await Promise.all([
+    render("/").then((response) => response.text()),
+    render("/en").then((response) => response.text()),
+    render("/about").then((response) => response.text()),
+    render("/en/about").then((response) => response.text()),
+  ]);
+  assert.doesNotMatch(homeFr, /class="active" aria-current="page" href="\/about\/"/);
+  assert.doesNotMatch(homeEn, /class="active" aria-current="page" href="\/en\/about\/"/);
+  assert.match(aboutFr, /class="active" aria-current="page" href="\/about\/"/);
+  assert.match(aboutEn, /class="active" aria-current="page" href="\/en\/about\/"/);
+  for (const text of ["Clarté", "Engagement", "Excellence", "Build. Secure. Scale."]) {
+    assert.match(homeFr, new RegExp(text.replaceAll(".", "\\.")));
+    assert.match(aboutFr, new RegExp(text.replaceAll(".", "\\.")));
+  }
+  for (const text of ["Clarity", "Commitment", "Excellence", "Build. Secure. Scale."]) {
+    assert.match(homeEn, new RegExp(text.replaceAll(".", "\\.")));
+    assert.match(aboutEn, new RegExp(text.replaceAll(".", "\\.")));
+  }
+  assert.doesNotMatch(aboutFr, /Construire\. Sécuriser\. Faire grandir\./);
+  assert.doesNotMatch(aboutEn, /<span>Deliver<\/span>/);
+});
+
 test("adds consistent spacing around the contact subject chevron", async () => {
   const [form, css] = await Promise.all([
     readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8"),

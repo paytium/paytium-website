@@ -17,19 +17,18 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return <PageShell translationHref="/en/about/" activeNav="about">
     <Breadcrumbs items={[{ label: "À propos", href: "/about/" }]} />
-    <PageHero eyebrow="À PROPOS DE PAYTIUM" title={<>La stratégie, la technologie et le delivery <em>réunis.</em></>} text="Paytium accompagne les organisations qui veulent transformer une ambition métier en solutions digitales utiles, fiables et capables d’évoluer." primary={["Échanger avec Paytium", "/contact/"]} secondary={["Découvrir nos services", "/services/"]}>
-      <div className="expertise-visual"><span>Build</span><span>Secure</span><span>Scale</span><span>Deliver</span><i /></div>
+    <PageHero eyebrow="À PROPOS DE PAYTIUM" title={<>Une promesse simple : <em>Build. Secure. Scale.</em></>} text="Paytium transforme vos enjeux métier en trajectoires digitales exécutables. De la stratégie à l’exploitation, nous alignons décisions, architecture et delivery avec un engagement constant sur la valeur, la qualité et l’autonomie." primary={["Échanger avec Paytium", "/contact/"]} secondary={["Découvrir nos services", "/services/"]}>
+      <div className="expertise-visual"><span>Build</span><span>Secure</span><span>Scale</span><i /></div>
     </PageHero>
 
     <section className="section partner-intent">
-      <SectionHeading eyebrow="NOTRE MISSION" title={<>Construire. Sécuriser. <em>Faire grandir.</em></>} text="Nous relions compréhension métier, excellence technologique et proximité opérationnelle pour produire des résultats concrets et renforcer durablement l’autonomie de vos équipes." />
-      <div className="partner-intent-grid">
+      <SectionHeading eyebrow="NOS VALEURS" title={<>Clarté. Engagement. <em>Excellence.</em></>} text="Trois principes guident notre manière de conseiller, de construire et de collaborer avec vos équipes." />
+      <div className="values-row">
         {[
-          ["Clarté", "Cadrer les choix, les priorités et les investissements avant d’engager l’exécution."],
-          ["Impact", "Concevoir des produits, des données et des plateformes alignés sur la valeur attendue."],
-          ["Maîtrise", "Intégrer qualité, sécurité, résilience et maintenabilité dès la conception."],
-          ["Autonomie", "Transmettre les méthodes et les savoir-faire pour faire progresser vos équipes."],
-        ].map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}
+          ["Clarté", "Rendre les choix, les priorités et les résultats compréhensibles."],
+          ["Engagement", "Travailler avec vos équipes et avancer avec transparence."],
+          ["Excellence", "Privilégier qualité, sécurité, maintenabilité et progrès continu."],
+        ].map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}
       </div>
     </section>
 
