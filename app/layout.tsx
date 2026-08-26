@@ -58,6 +58,44 @@ export const metadata: Metadata = {
   },
 };
 
+const organisationId = "https://paytium.io/#organization";
+const websiteId = "https://paytium.io/#website";
+const mainNavigation = [
+  ["À propos de Paytium", "https://paytium.io/about/"],
+  ["Services Paytium", "https://paytium.io/services/"],
+  ["Études de cas", "https://paytium.io/case-studies/"],
+  ["Facturation électronique", "https://paytium.io/e-invoicing/"],
+  ["Paytium Academy", "https://paytium.io/academy/"],
+  ["Contact Paytium", "https://paytium.io/contact/"],
+].map(([name, url], index) => ({ "@type": "SiteNavigationElement", "@id": `https://paytium.io/#navigation-${index + 1}`, name, url, isPartOf: { "@id": websiteId } }));
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organisationId,
+      name: "Paytium",
+      legalName: "Paytium",
+      alternateName: "paytium.io",
+      url: "https://paytium.io/",
+      description: "Cabinet de conseil et de delivery digital spécialisé en stratégie technologique, produits digitaux, Data & IA, Squad As Service, DevSecOps, cloud et facturation électronique.",
+      logo: { "@type": "ImageObject", "@id": "https://paytium.io/#logo", url: "https://paytium.io/apple-touch-icon.png", contentUrl: "https://paytium.io/apple-touch-icon.png", width: 192, height: 192, caption: "Paytium" },
+      image: { "@type": "ImageObject", url: "https://paytium.io/og-paytium.png", width: 1200, height: 630 },
+      email: "connect@paytium.io",
+      telephone: "+212707252336",
+      contactPoint: { "@type": "ContactPoint", contactType: "sales", email: "connect@paytium.io", telephone: "+212707252336", availableLanguage: ["French", "English"] },
+      sameAs: ["https://www.linkedin.com/company/paytium"],
+      address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" },
+      areaServed: "International",
+      knowsAbout: ["Transformation digitale", "Business & Technology Consulting", "Digital & Data Factory", "Squad As Service", "DevSecOps & Cloud Engineering", "Facturation électronique", "E-invoicing"],
+    },
+    { "@type": "WebSite", "@id": websiteId, url: "https://paytium.io/", name: "Paytium", alternateName: "paytium.io", publisher: { "@id": organisationId }, inLanguage: ["fr-FR", "en-US"] },
+    { "@type": "ProfessionalService", "@id": "https://paytium.io/#professional-service", name: "Paytium", url: "https://paytium.io/", description: "Conseil technologique, delivery digital et expertise à la demande.", logo: { "@id": "https://paytium.io/#logo" }, email: "connect@paytium.io", telephone: "+212707252336", sameAs: ["https://www.linkedin.com/company/paytium"], areaServed: "International", address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" }, parentOrganization: { "@id": organisationId } },
+    ...mainNavigation,
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,7 +106,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable}`}>
         <PageLoader />
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var p=location.pathname,s=localStorage.getItem('paytium-language'),n=(navigator.language||'fr').toLowerCase(),b=/bot|crawl|spider|slurp|bingpreview/i.test(navigator.userAgent),d=s==='en'||s==='fr'?s:n.indexOf('en')===0?'en':'fr';if(!b&&p==='/'&&d==='en')location.replace('/en/'+location.search+location.hash)}catch(e){}})();` }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "Organization", "@id": "https://paytium.io/#organization", name: "Paytium", alternateName: "paytium.io", url: "https://paytium.io/", logo: "https://paytium.io/apple-touch-icon.png", image: "https://paytium.io/og-paytium.png", email: "connect@paytium.io", telephone: "+212707252336", contactPoint: { "@type": "ContactPoint", contactType: "sales", email: "connect@paytium.io", telephone: "+212707252336", availableLanguage: ["French", "English"] }, sameAs: ["https://www.linkedin.com/company/paytium"], address: { "@type": "PostalAddress", addressLocality: "Casablanca" }, areaServed: "International", knowsAbout: ["Transformation digitale", "Business & Technology Consulting", "Digital & Data Factory", "Squad As Service", "DevSecOps & Cloud Engineering", "Facturation électronique", "E-invoicing"] }, { "@type": "WebSite", "@id": "https://paytium.io/#website", url: "https://paytium.io/", name: "Paytium", alternateName: "paytium.io", publisher: { "@id": "https://paytium.io/#organization" }, inLanguage: ["fr-FR", "en-US"] }, { "@type": "ProfessionalService", "@id": "https://paytium.io/#professional-service", name: "Paytium", url: "https://paytium.io/", email: "connect@paytium.io", telephone: "+212707252336", areaServed: "International", address: { "@type": "PostalAddress", addressLocality: "Casablanca" }, parentOrganization: { "@id": "https://paytium.io/#organization" } }] }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
         <GoogleAnalytics />
         {children}
       </body>

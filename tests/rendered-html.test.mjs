@@ -112,9 +112,11 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
   const expectedTitles = new Map([
     ["/", "Paytium | Conseil &amp; technologie"], ["/en", "Paytium | Consulting &amp; Technology"],
     ["/services", "Paytium | Services"], ["/en/services", "Paytium | Services"],
+    ["/about", "Paytium | À propos"], ["/en/about", "Paytium | About"],
     ["/academy", "Paytium | Academy"], ["/en/academy", "Paytium | Academy"],
     ["/e-invoicing", "Paytium | Facturation électronique &amp; e-Invoice Connector"], ["/en/e-invoicing", "Paytium | E-Invoicing &amp; DGI Connector"],
     ["/case-studies", "Paytium | Études de cas Fintech, Paiements et Digital Banking"], ["/en/case-studies", "Paytium | Fintech, Payments &amp; Digital Banking Case Studies"],
+    ["/contact", "Paytium | Contact &amp; consultation"], ["/en/contact", "Paytium | Contact &amp; Consultation"],
   ]);
   for (const [route, title] of expectedTitles) {
     const response = await render(route);
@@ -127,10 +129,10 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
 });
 
 test("links directly to canonical trailing-slash routes", async () => {
-  const routes = ["/", "/en", "/services", "/en/services", "/academy", "/en/academy", "/e-invoicing", "/en/e-invoicing", "/case-studies", "/en/case-studies"];
+  const routes = ["/", "/en", "/about", "/en/about", "/services", "/en/services", "/academy", "/en/academy", "/e-invoicing", "/en/e-invoicing", "/case-studies", "/en/case-studies", "/contact", "/en/contact"];
   for (const route of routes) {
     const html = await (await render(route)).text();
-    assert.doesNotMatch(html, /href="\/(?:en\/)?(?:services|academy|e-invoicing|case-studies)(?:#|")/);
+    assert.doesNotMatch(html, /href="\/(?:en\/)?(?:about|services|academy|e-invoicing|case-studies|contact)(?:#|")/);
   }
 });
 
@@ -233,12 +235,38 @@ test("strengthens brand and page hierarchy signals for search engines", async ()
     readFile(new URL("../components/HomeHero.tsx", import.meta.url), "utf8"),
   ]);
   assert.match(layout, /alternateName: "paytium\.io"/);
-  assert.match(layout, /logo: "https:\/\/paytium\.io\/apple-touch-icon\.png"/);
+  assert.match(layout, /contentUrl: "https:\/\/paytium\.io\/apple-touch-icon\.png"/);
+  assert.match(layout, /width: 192, height: 192/);
+  assert.match(layout, /addressCountry: "MA"/);
+  assert.match(layout, /https:\/\/www\.linkedin\.com\/company\/paytium/);
+  assert.match(layout, /"@type": "SiteNavigationElement"/);
   assert.match(pagesScript, /"@type": "BreadcrumbList"/);
   assert.match(pagesScript, /webPage\.breadcrumb = \{ "@id": breadcrumbId \}/);
   assert.match(pagesScript, /alternateName: "paytium\.io"/);
+  assert.match(pagesScript, /"@type": "SiteNavigationElement"/);
+  assert.match(pagesScript, /path: "\/about"/);
+  assert.match(pagesScript, /path: "\/contact"/);
   assert.match(hero, /PAYTIUM — CONSEIL & TECHNOLOGIE/);
   assert.match(hero, /PAYTIUM — CONSULTING & TECHNOLOGY/);
+});
+
+test("publishes dedicated bilingual about and contact pages for search sitelinks", async () => {
+  const [aboutFr, aboutEn, contactFr, contactEn, shell, sitemap] = await Promise.all([
+    render("/about").then((response) => response.text()),
+    render("/en/about").then((response) => response.text()),
+    render("/contact").then((response) => response.text()),
+    render("/en/contact").then((response) => response.text()),
+    readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8"),
+  ]);
+  assert.match(aboutFr, /À PROPOS DE PAYTIUM/);
+  assert.match(aboutEn, /ABOUT PAYTIUM/);
+  assert.match(contactFr, /Suivre Paytium sur LinkedIn/);
+  assert.match(contactEn, /Follow Paytium on LinkedIn/);
+  assert.match(shell, /href=\{`\$\{prefix\}\/about\/`\}/);
+  assert.match(shell, /href=\{`\$\{prefix\}\/contact\/`\}/);
+  assert.match(sitemap, /\/about\/.*\/en\/about\//);
+  assert.match(sitemap, /\/contact\/.*\/en\/contact\//);
 });
 
 test("adds consistent spacing around the contact subject chevron", async () => {
@@ -300,7 +328,7 @@ test("uses English URL anchors across both locales and preserves legacy hash mig
     assert.match(html, /id="value-proposition"/);
     assert.match(html, /id="method"/);
     assert.match(html, /id="approach"/);
-    assert.match(html, /href="(?:\/en)?\/#about"/);
+    assert.match(html, /href="(?:\/en)?\/about\/"/);
     assert.doesNotMatch(html, /id="(?:a-propos|proposition-valeur|methode|approche)"/);
   }
 

@@ -10,6 +10,8 @@ const { renderPage, renderNotFound } = await import(new URL("../dist-pages-ssr/p
 const routes = [
   { path: "/", lang: "fr", alternate: "/en", title: "Paytium | Conseil & technologie", breadcrumb: "Accueil", description: "Paytium est un cabinet de conseil et de delivery digital : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, Data IA, Cloud DevOps" },
   { path: "/en", lang: "en", alternate: "/", title: "Paytium | Consulting & Technology", breadcrumb: "Home", description: "Paytium provides technology consulting, digital product delivery, Squad As Service, Data & AI, DevSecOps, cloud engineering and e-invoicing integration.", keywords: "Paytium, Squad As Service, Agile squad, technology consulting company, digital transformation, digital product delivery, Data AI, DevSecOps, cloud engineering" },
+  { path: "/about", lang: "fr", alternate: "/en/about", title: "Paytium | À propos", breadcrumb: "À propos", description: "Découvrez Paytium, cabinet de conseil et de delivery digital qui relie stratégie, technologie et exécution pour construire, sécuriser et faire évoluer vos solutions.", keywords: "à propos Paytium, cabinet conseil digital, société conseil technologique, transformation digitale, delivery digital, Casablanca" },
+  { path: "/en/about", lang: "en", alternate: "/about", title: "Paytium | About", breadcrumb: "About", description: "Discover Paytium, a technology consulting and digital delivery company connecting strategy, technology and execution to build, secure and scale digital solutions.", keywords: "about Paytium, technology consulting company, digital delivery company, digital transformation, Casablanca" },
   { path: "/services", lang: "fr", alternate: "/en/services", title: "Paytium | Services", breadcrumb: "Services", description: "Paytium, cabinet de conseil IT : transformation digitale, Squad As Service, Data & IA, intégration ERP/API, Cloud, DevOps et DevSecOps.", keywords: "services Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, intégration ERP API, Data IA, Cloud DevOps, DevSecOps" },
   { path: "/en/services", lang: "en", alternate: "/services", title: "Paytium | Services", breadcrumb: "Services", description: "Paytium provides technology consulting, Digital & Data Factory delivery, Squad As Service, API integration and DevSecOps & Cloud Engineering.", keywords: "Paytium services, Squad As Service, Agile squad, product squad as a service, technology consulting company, digital transformation company, ERP API integration, Data AI, DevSecOps cloud engineering" },
   { path: "/academy", lang: "fr", alternate: "/en/academy", title: "Paytium | Academy", breadcrumb: "Academy", description: "Développez les compétences de vos équipes avec les formations pratiques Digital, Data, IA, Cloud, DevOps et Agile de Paytium Academy.", keywords: "Paytium Academy, formation digitale, formation Data IA, formation Cloud DevOps, formation Agile" },
@@ -18,6 +20,8 @@ const routes = [
   { path: "/en/e-invoicing", lang: "en", alternate: "/e-invoicing", title: "Paytium | E-Invoicing & DGI Connector", breadcrumb: "E-invoicing", description: "Connect ERP and business applications to the e-invoicing ecosystem with Paytium: advisory, bidirectional integration, e-Invoice Connector and CSP support.", keywords: "e-invoice, e invoice, e-invoicing, electronic invoicing, DGI e-invoicing, e-invoicing integration company, ERP invoice integration, Paytium", socialImage: "/og-einvoicing-casablanca.png", socialImageAlt: "Paytium — E-invoicing and e-Invoice Connector in Casablanca" },
   { path: "/case-studies", lang: "fr", alternate: "/en/case-studies", title: "Paytium | Études de cas Fintech, Paiements et Digital Banking", breadcrumb: "Études de cas", description: "Découvrez comment Paytium transforme des enjeux complexes de facturation électronique, paiements, banque digitale, interopérabilité et due diligence technique en décisions et plateformes créatrices de valeur.", keywords: "études de cas Paytium, due diligence technique, audit plateforme digitale, fintech, paiements, transaction banking, cash management, host-to-host, ISO 20022, banque digitale, crédit digital, API Gateway, facturation électronique", socialImage: null },
   { path: "/en/case-studies", lang: "en", alternate: "/case-studies", title: "Paytium | Fintech, Payments & Digital Banking Case Studies", breadcrumb: "Case studies", description: "See how Paytium turns complex e-invoicing, payments, digital banking, interoperability and technical due diligence challenges into confident decisions and platforms that deliver measurable value.", keywords: "Paytium case studies, technical due diligence, digital platform audit, fintech, payments, transaction banking, cash management, host-to-host, ISO 20022, digital banking, digital lending, Point of Sale POS, API Gateway, e-invoicing", socialImage: null },
+  { path: "/contact", lang: "fr", alternate: "/en/contact", title: "Paytium | Contact & consultation", breadcrumb: "Contact", description: "Contactez Paytium pour cadrer un projet de transformation digitale, data, cloud, Squad As Service ou facturation électronique.", keywords: "contact Paytium, consultation transformation digitale, expert IT, expert Data IA, expert Cloud DevSecOps, Squad As Service" },
+  { path: "/en/contact", lang: "en", alternate: "/contact", title: "Paytium | Contact & Consultation", breadcrumb: "Contact", description: "Contact Paytium to frame a digital transformation, data, cloud, Squad As Service or e-invoicing initiative.", keywords: "contact Paytium, digital transformation consultation, technology expert, Data AI expert, Cloud DevSecOps expert, Squad As Service" },
 ];
 
 const template = await readFile(new URL("index.html", output), "utf8");
@@ -36,15 +40,19 @@ function jsonLd(route) {
     "@type": "Organization",
     "@id": `${baseUrl}/#organization`,
     name: "Paytium",
+    legalName: "Paytium",
     alternateName: "paytium.io",
     url: `${baseUrl}/`,
-    logo: `${baseUrl}/apple-touch-icon.png`,
-    image: `${baseUrl}/og-paytium.png`,
+    description: isEnglish
+      ? "Technology consulting and digital delivery company specialising in digital products, Data & AI, Squad As Service, DevSecOps, cloud and e-invoicing."
+      : "Cabinet de conseil et de delivery digital spécialisé en produits digitaux, Data & IA, Squad As Service, DevSecOps, cloud et facturation électronique.",
+    logo: { "@type": "ImageObject", "@id": `${baseUrl}/#logo`, url: `${baseUrl}/apple-touch-icon.png`, contentUrl: `${baseUrl}/apple-touch-icon.png`, width: 192, height: 192, caption: "Paytium" },
+    image: { "@type": "ImageObject", url: `${baseUrl}/og-paytium.png`, width: 1200, height: 630 },
     email: "connect@paytium.io",
     telephone: "+212707252336",
     contactPoint: { "@type": "ContactPoint", contactType: "sales", email: "connect@paytium.io", telephone: "+212707252336", availableLanguage: ["French", "English"] },
     sameAs: ["https://www.linkedin.com/company/paytium"],
-    address: { "@type": "PostalAddress", addressLocality: "Casablanca" },
+    address: { "@type": "PostalAddress", addressLocality: "Casablanca", addressCountry: "MA" },
     areaServed: "International",
     knowsAbout: isEnglish
       ? ["Digital transformation", "Business & Technology Consulting", "Digital & Data Factory", "Squad As Service", "DevSecOps & Cloud Engineering", "E-invoice", "E-invoicing", "ERP integration"]
@@ -57,6 +65,11 @@ function jsonLd(route) {
     { "@type": "WebSite", "@id": `${baseUrl}/#website`, url: `${baseUrl}/`, name: "Paytium", alternateName: "paytium.io", publisher: { "@id": `${baseUrl}/#organization` }, inLanguage: ["fr-FR", "en-US"] },
     webPage,
   ];
+
+  const navigation = isEnglish
+    ? [["About Paytium", "/en/about"], ["Services", "/en/services"], ["Case studies", "/en/case-studies"], ["E-invoicing", "/en/e-invoicing"], ["Paytium Academy", "/en/academy"], ["Contact Paytium", "/en/contact"]]
+    : [["À propos de Paytium", "/about"], ["Services Paytium", "/services"], ["Études de cas", "/case-studies"], ["Facturation électronique", "/e-invoicing"], ["Paytium Academy", "/academy"], ["Contact Paytium", "/contact"]];
+  graph.push(...navigation.map(([name, path], index) => ({ "@type": "SiteNavigationElement", "@id": `${baseUrl}/#navigation-${isEnglish ? "en" : "fr"}-${index + 1}`, name, url: absolute(path), isPartOf: { "@id": `${baseUrl}/#website` } })));
 
   if (route.path !== "/" && route.path !== "/en") {
     webPage.breadcrumb = { "@id": breadcrumbId };
@@ -123,7 +136,7 @@ for (const route of routes) {
     .replace(/<link rel="alternate" hreflang="fr"[^>]*>\s*<link rel="alternate" hreflang="en"[^>]*>/, alternateLinks)
     .replace("</head>", `    <script type="application/ld+json">${jsonLd(route)}</script>\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root">${renderedContent}</div>`)
-    .replace(/href="(\/(?:en(?:\/(?:services|academy|e-invoicing|case-studies))?|services|academy|e-invoicing|case-studies))(#[^"]*)?"/g, (_match, path, hash = "") => `href="${path}/${hash}"`);
+    .replace(/href="(\/(?:en(?:\/(?:about|services|academy|e-invoicing|case-studies|contact))?|about|services|academy|e-invoicing|case-studies|contact))(#[^"]*)?"/g, (_match, path, hash = "") => `href="${path}/${hash}"`);
   if (!socialImage) html = html
     .replace(/\s*<meta property="og:image(?::[^" ]+)?"[^>]*\/>/g, "")
     .replace(/\s*<meta name="twitter:image(?::[^" ]+)?"[^>]*\/>/g, "");

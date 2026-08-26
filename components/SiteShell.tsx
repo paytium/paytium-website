@@ -47,7 +47,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`} id="top">
         <a className="brand" href={homeHref} aria-label={`Paytium — ${copy.home}`}><Brand /></a>
         <nav className="desktop-nav" aria-label={copy.nav}>
-          <a className={activeNav === "about" ? "active" : undefined} aria-current={activeNav === "about" ? "page" : undefined} href={`${prefix}/#about`}>{copy.about}</a>
+          <a className={activeNav === "about" ? "active" : undefined} aria-current={activeNav === "about" ? "page" : undefined} href={`${prefix}/about/`}>{copy.about}</a>
           <div className="nav-group">
             <button className={`nav-services-trigger ${activeNav === "services" ? "active" : ""}`} type="button" aria-haspopup="true">{copy.services} <LuChevronDown className="nav-chevron" aria-hidden="true" /></button>
             <div className="submenu">
@@ -67,7 +67,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
           <summary aria-label={locale === "fr" ? "Changer la langue" : "Change language"}><span>{locale === "fr" ? "FR" : "EN"}</span><LuChevronDown aria-hidden="true" /></summary>
           <a className="language-option" href={translationHref} hrefLang={locale === "fr" ? "en" : "fr"} onClick={() => window.localStorage.setItem("paytium-language", locale === "fr" ? "en" : "fr")}>{locale === "fr" ? "EN" : "FR"}</a>
         </details>
-        <a className="header-cta desktop-cta" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
+        <a className="header-cta desktop-cta" href={`${prefix}/contact/`}>{copy.talk} <Arrow /></a>
         <button className="menu-button" type="button" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>
           <LuMenu aria-hidden="true" /><span className="sr-only">{copy.open}</span>
         </button>
@@ -76,7 +76,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
       <aside className={`mobile-drawer ${open ? "open" : ""}`} id="mobile-menu" aria-hidden={!open}>
         <div className="drawer-top"><Brand /><button type="button" onClick={() => setOpen(false)} aria-label={copy.close}><LuX aria-hidden="true" /></button></div>
         <nav aria-label={copy.nav}>
-          <a className={activeNav === "about" ? "active" : undefined} aria-current={activeNav === "about" ? "page" : undefined} href={`${prefix}/#about`} onClick={() => setOpen(false)}>{copy.about}</a><span className={`drawer-menu-label ${activeNav === "services" ? "active" : ""}`}>{copy.services}</span>
+          <a className={activeNav === "about" ? "active" : undefined} aria-current={activeNav === "about" ? "page" : undefined} href={`${prefix}/about/`} onClick={() => setOpen(false)}>{copy.about}</a><span className={`drawer-menu-label ${activeNav === "services" ? "active" : ""}`}>{copy.services}</span>
           <a className="drawer-sub" href={`${prefix}/services/`} onClick={() => setOpen(false)}>{copy.playground}</a>
           <a className="drawer-sub" href={`${prefix}/services/#methods`} onClick={() => setOpen(false)}>{copy.methodsMenu}</a>
           <a className="drawer-sub" href={`${prefix}/services/#expertise`} onClick={() => setOpen(false)}>{copy.technologies}</a>
@@ -85,7 +85,7 @@ export function SiteHeader({ locale = "fr", translationHref = "/en/", activeNav 
           {caseStudyAreas.map(([label, id]) => <a className="drawer-sub" key={id} href={`${prefix}/case-studies/#${id}`} onClick={() => setOpen(false)}>{label}</a>)}
           <a className={activeNav === "e-invoicing" ? "active" : undefined} aria-current={activeNav === "e-invoicing" ? "page" : undefined} href={`${prefix}/e-invoicing/`} onClick={() => setOpen(false)}>{copy.invoice}</a>
         </nav>
-        <a className="button button-primary" href={`${prefix}/#contact`}>{copy.talk} <Arrow /></a>
+        <a className="button button-primary" href={`${prefix}/contact/`}>{copy.talk} <Arrow /></a>
       </aside>
     </>
   );
@@ -104,7 +104,7 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
     <footer className="site-footer">
       <div className="footer-intro"><a className="brand" href={homeHref}><Brand /></a><strong className="footer-slogan">Build. <em>Secure.</em> Scale.</strong><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><FaLinkedinIn className="linkedin-icon" aria-hidden="true" /></a>}</div>
       <div><h3>{copy.services}</h3>{(locale === "en" ? servicesEn : services).filter((service) => service.id !== "academy").map((service) => <a key={service.id} href={`${prefix}/services/#${service.id}`}>{service.title}</a>)}<a href={`${prefix}/academy/`}>Paytium Academy</a></div>
-      <div><h3>{copy.company}</h3><a href={`${prefix}/#about`}>{copy.about}</a><a href={`${prefix}/services/#methods`}>{copy.methodsMenu}</a><a href={`${prefix}/services/#expertise`}>{copy.technologies}</a><a href={`${prefix}/#contact`}>{copy.exchange}</a></div>
+      <div><h3>{copy.company}</h3><a href={`${prefix}/about/`}>{copy.about}</a><a href={`${prefix}/services/#methods`}>{copy.methodsMenu}</a><a href={`${prefix}/services/#expertise`}>{copy.technologies}</a><a href={`${prefix}/contact/`}>{copy.exchange}</a></div>
       <div><h3>{copy.invoice}</h3><a href={`${prefix}/e-invoicing/#offres`}>{copy.invoiceOffers}</a><a href={`${prefix}/e-invoicing/#consultation`}>{copy.freeConsultation}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
       <div className="footer-bottom"><span>© 2026 {siteConfig.legalCompanyName}</span><span>{copy.signature}</span></div>
     </footer>

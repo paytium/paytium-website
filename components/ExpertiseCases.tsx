@@ -69,7 +69,7 @@ export function ExpertiseCasesPage({ locale = "fr" }: { locale?: Locale }) {
 
   return <PageShell locale={locale} translationHref={en ? "/case-studies/" : "/en/case-studies/"} activeNav="case-studies">
     <Breadcrumbs locale={locale} items={[{ label: copy.breadcrumb, href: `${prefix}/case-studies/` }]} sections={Object.fromEntries(domains.map((domain) => [domain.id, domain.label]))} />
-    <PageHero eyebrow={copy.eyebrow} title={copy.title} text={copy.intro} primary={[copy.explore, "#e-invoicing"]} secondary={[copy.talk, `${prefix}/#contact`]}>
+    <PageHero eyebrow={copy.eyebrow} title={copy.title} text={copy.intro} primary={[copy.explore, "#e-invoicing"]} secondary={[copy.talk, `${prefix}/contact/`]}>
       <div className="expertise-cases-visual" aria-hidden="true"><span>PAY</span><span>API</span><span>ISO</span><span>DATA</span><i><img src="/paytium-icon-white.svg" alt="" /></i></div>
     </PageHero>
     <nav className="expertise-anchor-nav" aria-label={copy.nav}>{domains.map((domain) => <a key={domain.id} href={`#${domain.id}`}><span>{domain.number}</span>{domain.label}</a>)}</nav>
@@ -81,6 +81,6 @@ export function ExpertiseCasesPage({ locale = "fr" }: { locale?: Locale }) {
         <aside><small>{copy.value}</small><p>{study.value}</p></aside>
       </article>)}</div>
     </section>)}
-    <FinalCta eyebrow={en ? "LET’S BUILD THE NEXT PLATFORM" : "CONSTRUISONS LA PROCHAINE PLATEFORME"} title={copy.finalTitle} text={copy.finalText} primary={copy.talk} contactHref={`${prefix}/#contact`} />
+    <FinalCta eyebrow={en ? "LET’S BUILD THE NEXT PLATFORM" : "CONSTRUISONS LA PROCHAINE PLATEFORME"} title={copy.finalTitle} text={copy.finalText} primary={copy.talk} contactHref={`${prefix}/contact/`} />
   </PageShell>;
 }

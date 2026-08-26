@@ -37,7 +37,7 @@ export function AcademyCatalog({ locale = "fr" }: { locale?: AcademyLocale }) {
       <div className="course-meta"><span>{course.code}</span><b>{copy.types[course.type]}</b></div>
       <p className="course-domain">{course.domain}</p><h3>{course.title[locale]}</h3><p>{course.description[locale]}</p>
       <dl><div><dt>{copy.duration}</dt><dd>{course.duration.replace("days", locale === "fr" ? "jours" : "days").replace("day", locale === "fr" ? "jour" : "day")}</dd></div><div><dt>{copy.format}</dt><dd>{course.formats.map((item) => copy.formats[item]).join(" · ")}</dd></div></dl>
-      <a href={`${locale === "en" ? "/en" : ""}/#contact`}>{copy.details}<LuArrowUpRight aria-hidden="true" /></a>
+      <a href={`${locale === "en" ? "/en" : ""}/contact/`}>{copy.details}<LuArrowUpRight aria-hidden="true" /></a>
     </article>)}</div> : <div className="catalog-empty"><p>{copy.empty}</p><button className="button button-secondary" type="button" onClick={reset}>{copy.reset}</button></div>}
   </div>;
 }

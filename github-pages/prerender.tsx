@@ -9,6 +9,10 @@ import ElectronicInvoicingPage from "../app/e-invoicing/page";
 import EnglishElectronicInvoicingPage from "../app/en/e-invoicing/page";
 import CaseStudiesPage from "../app/case-studies/page";
 import EnglishCaseStudiesPage from "../app/en/case-studies/page";
+import AboutPage from "../app/about/page";
+import EnglishAboutPage from "../app/en/about/page";
+import ContactPage from "../app/contact/page";
+import EnglishContactPage from "../app/en/contact/page";
 import { PageLoader } from "../components/PageLoader";
 import NotFound from "../app/not-found";
 
@@ -23,6 +27,10 @@ const routes = {
   "/en/e-invoicing": EnglishElectronicInvoicingPage,
   "/case-studies": CaseStudiesPage,
   "/en/case-studies": EnglishCaseStudiesPage,
+  "/about": AboutPage,
+  "/en/about": EnglishAboutPage,
+  "/contact": ContactPage,
+  "/en/contact": EnglishContactPage,
 } as const;
 
 export function renderPage(path: string) {

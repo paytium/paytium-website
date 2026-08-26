@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return <PageShell translationHref="/en/services/" activeNav="services">
     <Breadcrumbs items={[{ label: "Services", href: "/services/" }]} sections={{ consulting: "Business & Technology Consulting", "digital-data": "Digital & Data Factory", engineering: "Squad As Service", "cloud-devops": "DevSecOps & Cloud Engineering", methods: "Méthodes de travail", expertise: "Nos expertises", technologies: "Nos expertises" }} />
-    <PageHero eyebrow="EXPERTISES PAYTIUM" title={<>De la vision à l’exploitation, une expertise <em>de bout en bout.</em></>} text="Paytium mobilise conseil, produit, Squad As Service, data et cloud pour concevoir des transformations cohérentes et les faire vivre dans la durée." primary={["Parler de votre projet", "/#contact"]} secondary={["Voir nos méthodes", "#methods"]}>
+    <PageHero eyebrow="EXPERTISES PAYTIUM" title={<>De la vision à l’exploitation, une expertise <em>de bout en bout.</em></>} text="Paytium mobilise conseil, produit, Squad As Service, data et cloud pour concevoir des transformations cohérentes et les faire vivre dans la durée." primary={["Parler de votre projet", "/contact/"]} secondary={["Voir nos méthodes", "#methods"]}>
       <div className="expertise-visual"><span>Conseil</span><span>Produit</span><span>Squads</span><span>Cloud</span><i /></div>
     </PageHero>
 
