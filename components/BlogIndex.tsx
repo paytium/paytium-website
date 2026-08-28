@@ -28,8 +28,8 @@ export function BlogIndex({ locale = "fr" }: { locale?: BlogLocale }) {
 
   return <>
     <div className="blog-filters" aria-label={locale === "fr" ? "Filtres des articles" : "Article filters"}>
-      <label><span>{copy.search}</span><div><LuSearch aria-hidden="true" /><input value={query} onChange={(event) => updateQuery(event.target.value)} placeholder={copy.placeholder} /></div></label>
-      <label><span>{locale === "fr" ? "Thème" : "Topic"}</span><select value={theme} onChange={(event) => updateTheme(event.target.value)}><option value="">{copy.themes}</option>{themes.map((item) => <option key={item}>{item}</option>)}</select></label>
+      <label><span className="sr-only">{copy.search}</span><div><LuSearch aria-hidden="true" /><input aria-label={copy.search} value={query} onChange={(event) => updateQuery(event.target.value)} placeholder={copy.placeholder} /></div></label>
+      <label><span className="sr-only">{locale === "fr" ? "Thème" : "Topic"}</span><select aria-label={locale === "fr" ? "Filtrer par thème" : "Filter by topic"} value={theme} onChange={(event) => updateTheme(event.target.value)}><option value="">{copy.themes}</option>{themes.map((item) => <option key={item}>{item}</option>)}</select></label>
       {(query || theme) && <button type="button" onClick={clear}><LuX aria-hidden="true" />{copy.clear}</button>}
     </div>
     <div className="blog-results-status" aria-live="polite">{filtered.length} {locale === "fr" ? filtered.length > 1 ? "articles" : "article" : filtered.length === 1 ? "article" : "articles"}</div>

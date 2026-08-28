@@ -680,9 +680,17 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   assert.match(englishIndex, /Search articles/);
   assert.match(frenchArticle, /Paytium \| Facturation électronique au Maroc/);
   assert.match(frenchArticle, /Imprimer l’article/);
+  assert.doesNotMatch(frenchArticle, /<kbd>Ctrl P<\/kbd>/);
   assert.match(frenchArticle, /Sources officielles/);
   assert.match(frenchArticle, /linkedin\.com\/sharing\/share-offsite/);
+  assert.match(frenchArticle, /<meta property="og:title" content="Facturation électronique au Maroc : ce qui est confirmé et comment se préparer">/);
+  assert.match(frenchArticle, /<meta property="og:description" content="État des lieux, chantiers prioritaires et feuille de route pragmatique/);
+  assert.match(frenchArticle, /<meta property="og:image" content="https:\/\/paytium\.io\/einvoicing-marrakech\.webp">/);
+  assert.match(frenchArticle, /<meta name="twitter:card" content="summary_large_image">/);
+  assert.match(frenchArticle, /<meta name="twitter:title" content="Facturation électronique au Maroc : ce qui est confirmé et comment se préparer">/);
   assert.match(englishArticle, /Paytium \| E-invoicing in Morocco/);
   assert.match(englishArticle, /Print article/);
+  assert.match(englishArticle, /<meta property="og:title" content="E-invoicing in Morocco: what is confirmed and how to prepare">/);
+  assert.match(englishArticle, /<meta name="twitter:title" content="E-invoicing in Morocco: what is confirmed and how to prepare">/);
   assert.doesNotMatch(frenchArticle, /obligation dès 2026|format UBL retenu/i);
 });
