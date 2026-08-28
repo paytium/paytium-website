@@ -6,6 +6,7 @@ export type BlogBlock =
   | { type: "list"; items: string[] }
   | { type: "orderedList"; items: string[] }
   | { type: "table"; headers: string[]; rows: string[][] }
+  | { type: "cspDiagram" }
   | { type: "sources"; items: { label: string; url: string }[] }
   | { type: "cta"; title: string; text: string; primary: { label: string; href: string }; secondary: { label: string; href: string } };
 

@@ -681,7 +681,10 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   assert.match(frenchArticle, /Paytium \| Facturation électronique au Maroc/);
   assert.match(frenchArticle, /Imprimer l’article/);
   assert.doesNotMatch(frenchArticle, /<kbd>Ctrl P<\/kbd>/);
-  assert.match(frenchArticle, /Sources et portée de l’analyse/);
+  assert.doesNotMatch(frenchArticle, /Sources et portée de l’analyse/);
+  assert.match(frenchArticle, /Modèle d’échange décentralisé/);
+  assert.match(frenchArticle, /fatoura\.gov\.ma/);
+  assert.doesNotMatch(frenchArticle, /fatourati\.gov\.ma/);
   assert.match(frenchArticle, /Consultation gratuite de 30 minutes/);
   assert.match(frenchArticle, /Découvrir nos offres e-invoice/);
   assert.match(frenchArticle, /linkedin\.com\/sharing\/share-offsite/);
