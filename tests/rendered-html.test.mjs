@@ -674,7 +674,8 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   ]);
   assert.match(frenchIndex, /Bienvenue sur le/);
   assert.match(frenchIndex, /Rechercher un article/);
-  assert.match(frenchIndex, /Pagination des articles/);
+  assert.equal((frenchIndex.match(/class="blog-card"/g) ?? []).length, 5);
+  assert.doesNotMatch(frenchIndex, /Pagination des articles/);
   assert.match(englishIndex, /Welcome to the/);
   assert.match(englishIndex, /Search articles/);
   assert.match(frenchArticle, /Paytium \| Facturation électronique au Maroc/);

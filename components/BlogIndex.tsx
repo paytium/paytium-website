@@ -5,7 +5,7 @@ import { LuArrowLeft, LuArrowRight, LuSearch, LuX } from "react-icons/lu";
 import { blogArticles, blogHref, formatBlogDate, type BlogLocale } from "../content/blog";
 import { BlogVisual } from "./BlogVisual";
 
-const pageSize = 3;
+const pageSize = 9;
 
 export function BlogIndex({ locale = "fr" }: { locale?: BlogLocale }) {
   const [query, setQuery] = useState("");
