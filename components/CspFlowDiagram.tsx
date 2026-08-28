@@ -4,9 +4,9 @@ import type { BlogLocale } from "../content/blog";
 export function CspFlowDiagram({ locale }: { locale: BlogLocale }) {
   const copy = locale === "fr" ? {
     kicker: "Modèle d’échange décentralisé",
-    title: "Des flux interopérables, contrôlés par l’autorité fiscale.",
+    title: "Des flux interopérables, validés par les CSP et tracés par la DGI.",
     authority: "DGI · Autorité fiscale",
-    authorityDetail: "Contrôle, clearance et traçabilité",
+    authorityDetail: "Collecte et traçabilité des données",
     issuer: "CSP fournisseur",
     receiver: "CSP client",
     providerDetail: "Prestataire certifié",
@@ -23,9 +23,9 @@ export function CspFlowDiagram({ locale }: { locale: BlogLocale }) {
     ],
   } : {
     kicker: "Decentralised exchange model",
-    title: "Interoperable flows controlled by the tax authority.",
+    title: "Interoperable flows validated by CSPs and traced by the DGI.",
     authority: "DGI · Tax authority",
-    authorityDetail: "Control, clearance and traceability",
+    authorityDetail: "Data collection and traceability",
     issuer: "Supplier CSP",
     receiver: "Customer CSP",
     providerDetail: "Certified service provider",
