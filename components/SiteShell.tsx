@@ -106,8 +106,8 @@ export function SiteFooter({ locale = "fr" }: { locale?: Locale }) {
     <footer className="site-footer">
       <div className="footer-intro"><a className="brand" href={homeHref}><Brand /></a><strong className="footer-slogan">Build. <em>Secure.</em> Scale.</strong><p>{copy.footer}</p>{siteConfig.linkedinUrl && <a className="footer-linkedin-icon" href={siteConfig.linkedinUrl} target="_blank" rel="noreferrer" aria-label={locale === "fr" ? "Suivre Paytium sur LinkedIn" : "Follow Paytium on LinkedIn"}><FaLinkedinIn className="linkedin-icon" aria-hidden="true" /></a>}</div>
       <div><h3>{copy.services}</h3>{(locale === "en" ? servicesEn : services).filter((service) => service.id !== "academy").map((service) => <a key={service.id} href={`${prefix}/services/#${service.id}`}>{service.title}</a>)}<a href={`${prefix}/academy/`}>Paytium Academy</a></div>
-      <div><h3>{copy.company}</h3><a href={`${prefix}/about/`}>{copy.about}</a><a href={`${prefix}/services/#methods`}>{copy.methodsMenu}</a><a href={`${prefix}/services/#expertise`}>{copy.technologies}</a><a href={`${prefix}/blog/`}>{copy.blog}</a><a href={`${prefix}/contact/`}>{copy.exchange}</a></div>
-      <div><h3>{copy.invoice}</h3><a href={`${prefix}/e-invoicing/#offres`}>{copy.invoiceOffers}</a><a href={`${prefix}/e-invoicing/#consultation`}>{copy.freeConsultation}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
+      <div><h3>{copy.company}</h3><a href={`${prefix}/about/`}>{copy.about}</a><a href={`${prefix}/services/#methods`}>{copy.methodsMenu}</a><a href={`${prefix}/services/#expertise`}>{copy.technologies}</a><a href={`${prefix}/case-studies/`}>{copy.cases}</a><a href={`${prefix}/blog/`}>{copy.blog}</a><a href={`${prefix}/contact/`}>{copy.exchange}</a></div>
+      <div><h3>{copy.invoice}</h3><a href={`${prefix}/e-invoicing/#offers`}>{copy.invoiceOffers}</a><a href={`${prefix}/e-invoicing/#consultation`}>{copy.freeConsultation}</a>{legalLinks.map(([label, url], index) => <a key={url} href={url}>{locale === "fr" ? label : index === 0 ? copy.legal : copy.privacy}</a>)}</div>
       <div className="footer-bottom"><span>© 2026 {siteConfig.legalCompanyName}</span><span>{copy.signature}</span></div>
     </footer>
   );
@@ -119,7 +119,7 @@ export function PageShell({ children, locale = "fr", translationHref = "/en/", a
     let secondFrame = 0;
     let retryTimers: number[] = [];
     const scrollToCurrentHash = (behavior: ScrollBehavior = "smooth") => {
-      const legacyHashes: Record<string, string> = { "a-propos": "about", "proposition-valeur": "value-proposition", methode: "method", approche: "approach", methodes: "methods", expertises: "expertise", catalogue: "catalog", "e-facture": "e-invoice" };
+      const legacyHashes: Record<string, string> = { "a-propos": "about", "proposition-valeur": "value-proposition", methode: "method", approche: "approach", methodes: "methods", expertises: "expertise", catalogue: "catalog", "e-facture": "e-invoice", offres: "offers" };
       const requestedId = decodeURIComponent(window.location.hash.slice(1));
       const id = legacyHashes[requestedId] ?? requestedId;
       if (!id) return;

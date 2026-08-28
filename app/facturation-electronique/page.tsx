@@ -115,7 +115,7 @@ const structuredData = {
 export default function ElectronicInvoicingPage() {
   return <PageShell translationHref="/en/e-invoicing/" activeNav="e-invoicing">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-    <Breadcrumbs items={[{ label: "Facturation électronique", href: "/e-invoicing/" }]} sections={{ connector: "Connector", offres: "Offres", consultation: "Consultation", faq: "FAQ" }} />
+    <Breadcrumbs items={[{ label: "Facturation électronique", href: "/e-invoicing/" }]} sections={{ connector: "Connector", offers: "Offres", consultation: "Consultation", faq: "FAQ" }} />
 
     <section className="einvoice-hero">
       <div className="einvoice-hero-copy">
@@ -170,7 +170,7 @@ export default function ElectronicInvoicingPage() {
       <TrackedLink className="button button-primary connector-cta" href="#consultation" eventName="einvoice_connector_cta_click">Évaluer mon architecture d’intégration <Arrow /></TrackedLink>
     </section>
 
-    <section className="section einvoice-offers" id="offres">
+    <section className="section einvoice-offers" id="offers">
       <SectionHeading invert eyebrow="DES OFFRES ADAPTÉES À VOTRE AMBITION" title={<>Du diagnostic au déploiement, <em>jusqu’au parcours CSP.</em></>} text="Un accompagnement modulaire pour préparer vos équipes, intégrer vos systèmes ou construire et sécuriser un parcours CSP." />
       <div className="einvoice-offer-grid">{offers.map((offer, index) => <article className={offer.featured ? "featured" : ""} key={offer.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{offer.title}</h3><p>{offer.text}</p><ul>{offer.items.map((item) => <li key={item}><LuCheck aria-hidden="true" />{item}</li>)}</ul>{index === 2 && <small>Objectif : accélérer et sécuriser le parcours, sans promettre un délai de certification.</small>}</article>)}</div>
     </section>

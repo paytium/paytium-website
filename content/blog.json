@@ -1,6 +1,6 @@
 [
   {
-    "slug": "facturation-electronique-maroc-comment-se-preparer",
+    "slug": "e-invoicing-morocco-how-to-prepare",
     "date": "2026-08-28",
     "theme": { "fr": "Facturation électronique", "en": "E-invoicing" },
     "title": { "fr": "Facturation électronique au Maroc : ce qui est confirmé et comment se préparer", "en": "E-invoicing in Morocco: what is confirmed and how to prepare" },
@@ -68,7 +68,7 @@
         { "type": "paragraph", "text": "La principale inconnue n’est plus l’orientation du dispositif, mais son cadre opérationnel définitif : calendrier par catégorie d’entreprise, schéma national de données, spécifications d’intégration, certification des CSP et règles de gestion détaillées. Les entreprises ont intérêt à commencer leur cadrage sans attendre, tout en gardant une architecture suffisamment flexible pour intégrer les futures exigences officielles." },
         { "type": "heading", "text": "Paytium vous accompagne dans votre mise en conformité" },
         { "type": "paragraph", "text": "Paytium accompagne les entreprises dans le cadrage et l’intégration de leurs projets de facturation électronique : analyse des flux, définition de l’architecture cible, intégration ERP/API/EDI, génération des formats structurés, gestion des signatures et certificats, orchestration des statuts, supervision et préparation des campagnes de tests." },
-        { "type": "cta", "title": "Préparez votre trajectoire e-invoice dès maintenant.", "text": "En 30 minutes, échangez avec un expert Paytium sur vos flux, votre ERP, vos priorités et les premières actions sans regret à engager.", "primary": { "label": "Consultation gratuite de 30 minutes", "href": "/e-invoicing/#consultation" }, "secondary": { "label": "Découvrir nos offres e-invoice", "href": "/e-invoicing/#offres" } }
+        { "type": "cta", "title": "Préparez votre trajectoire e-invoice dès maintenant.", "text": "En 30 minutes, échangez avec un expert Paytium sur vos flux, votre ERP, vos priorités et les premières actions sans regret à engager.", "primary": { "label": "Consultation gratuite de 30 minutes", "href": "/e-invoicing/#consultation" }, "secondary": { "label": "Découvrir nos offres e-invoice", "href": "/e-invoicing/#offers" } }
       ],
       "en": [
         { "type": "lead", "text": "E-invoicing in Morocco is entering a decisive phase. At the Grands Rendez-vous de Médias24 on 16 April 2026, Younès Idrissi Kaitouni, Director General of Taxes, shared further details on the planned framework: invoice standard, electronic signature, real-time clearance, certified service providers, access models and phased rollout." },
@@ -109,7 +109,7 @@
         { "type": "paragraph", "text": "The remaining uncertainty concerns the final operating framework: timetable by business category, national data schema, integration specifications, CSP certification and detailed business rules. Businesses should begin scoping now while keeping the architecture flexible enough to absorb the final official requirements." },
         { "type": "heading", "text": "Paytium supports your e-invoicing readiness" },
         { "type": "paragraph", "text": "Paytium supports businesses from scoping to integration: flow analysis, target architecture, ERP/API/EDI integration, structured-format generation, signature and certificate management, status orchestration, monitoring and test-campaign readiness." },
-        { "type": "cta", "title": "Start shaping your e-invoicing roadmap today.", "text": "In 30 minutes, discuss your flows, ERP landscape, priorities and no-regret first steps with a Paytium expert.", "primary": { "label": "Book a free 30-minute consultation", "href": "/en/e-invoicing/#consultation" }, "secondary": { "label": "Explore our e-invoicing offers", "href": "/en/e-invoicing/#offres" } }
+        { "type": "cta", "title": "Start shaping your e-invoicing roadmap today.", "text": "In 30 minutes, discuss your flows, ERP landscape, priorities and no-regret first steps with a Paytium expert.", "primary": { "label": "Book a free 30-minute consultation", "href": "/en/e-invoicing/#consultation" }, "secondary": { "label": "Explore our e-invoicing offers", "href": "/en/e-invoicing/#offers" } }
       ]
     }
   }

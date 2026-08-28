@@ -15,7 +15,7 @@ const slidesFr = [
     eyebrow: "FACTURATION ÉLECTRONIQUE",
     title: <>Connectez votre SI à la DGI avec le <em>Paytium e-Invoice Connector.</em></>,
     text: "Paytium relie vos ERP et TMS à la plateforme DGI, tout en complétant la solution par le conseil, le cadrage, le pilotage, l’intégration, les tests et l’accompagnement au déploiement.",
-    primary: ["Réserver ma consultation gratuite de 30 minutes", "/e-invoicing/#consultation"], secondary: ["Explorer nos offres e-invoice", "/e-invoicing/#offres"], visual: "invoice",
+    primary: ["Réserver ma consultation gratuite de 30 minutes", "/e-invoicing/#consultation"], secondary: ["Explorer nos offres e-invoice", "/e-invoicing/#offers"], visual: "invoice",
   },
   {
     eyebrow: "SQUAD AS SERVICE",
@@ -27,7 +27,7 @@ const slidesFr = [
 
 const slidesEn = [
   { eyebrow: "DIGITAL & DATA FACTORY", title: <>From framing to run, deliver through <em>short, controlled cycles.</em></>, text: "We frame your priorities, build in short cycles and release useful increments regularly. Your feedback guides every step through go-live, followed by application support, managed services or capability transfer.", primary: ["Explore the Digital & Data Factory", "/en/services/#digital-data"], secondary: ["Talk to an expert", "/en/#contact"], visual: "agile" },
-  { eyebrow: "E-INVOICING", title: <>Connect your systems to the DGI through the <em>Paytium e-Invoice Connector.</em></>, text: "Paytium connects ERP and TMS platforms to the DGI platform, complemented by advisory, scoping, programme steering, integration, testing and deployment support.", primary: ["Book my free 30-minute consultation", "/en/e-invoicing/#consultation"], secondary: ["Explore our e-invoicing offers", "/en/e-invoicing/#offres"], visual: "invoice" },
+  { eyebrow: "E-INVOICING", title: <>Connect your systems to the DGI through the <em>Paytium e-Invoice Connector.</em></>, text: "Paytium connects ERP and TMS platforms to the DGI platform, complemented by advisory, scoping, programme steering, integration, testing and deployment support.", primary: ["Book my free 30-minute consultation", "/en/e-invoicing/#consultation"], secondary: ["Explore our e-invoicing offers", "/en/e-invoicing/#offers"], visual: "invoice" },
   { eyebrow: "SQUAD AS SERVICE", title: <>A hero squad spanning your entire <em>transformation chain.</em></>, text: "Mobilise a multidisciplinary, qualified team across Product, Architecture, Software Engineering, Data & AI, Cloud, DevSecOps, QA, Agile Coaching and Scrum Mastery, from junior to expert.", primary: ["Explore Squad As Service", "/en/services/#engineering"], secondary: ["Request profiles", "/en/services/#engineering"], visual: "talent" },
 ];
 

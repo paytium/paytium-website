@@ -390,6 +390,22 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 @media(max-width:680px){.blog-hero{padding:42px 22px 48px}.blog-hero h1{font-size:clamp(2.8rem,13vw,4rem)}.blog-hero strong{font-size:18px}.blog-list-section{padding:22px 22px 64px}.blog-card h2{font-size:24px}.blog-filters{grid-template-columns:1fr;padding:9px}.blog-article{padding:44px 22px 62px}.blog-article>.blog-visual.large,.blog-article>.blog-visual.large img{min-height:260px}.article-content{margin-top:42px}.article-share{padding:36px 22px}.share-actions button{flex:0 0 46px}}
 @media print{.site-header,.breadcrumbs,.site-footer,.scroll-top,.article-print,.article-share,.page-loader{display:none!important}.blog-article{padding:0}.article-header h1{font-size:42pt}.blog-article>.blog-visual.large{min-height:350px}.blog-article>.blog-visual.large img{min-height:350px}.article-content{max-width:none;margin-top:35px}.article-content h2{break-after:avoid}.article-content p,.article-content li{font-size:11pt}.article-callout{margin-inline:0}a{color:#000!important;text-decoration:none!important}}
 
+/* Blog density, editorial branding and article media sizing. */
+.blog-hero{grid-template-columns:minmax(0,1.08fr) minmax(320px,.72fr);column-gap:clamp(42px,5vw,86px);row-gap:12px;padding-top:34px;padding-bottom:38px}
+.blog-hero .eyebrow{margin-bottom:4px}
+.blog-hero h1{font-size:clamp(3rem,4.5vw,4.85rem);line-height:.96}
+.blog-hero p{font-size:15px;line-height:1.55}
+.blog-hero strong{padding-top:14px;font-size:18px}
+.blog-list-section{padding-top:18px}
+.blog-filters{gap:12px;padding:0;border:0;border-radius:0;background:transparent}
+.blog-visual-brand{position:absolute;top:16px;left:16px;z-index:3;display:inline-flex;align-items:center;gap:5px;padding:8px 11px;border:1px solid rgba(255,255,255,.36);border-radius:999px;background:rgba(10,48,41,.82);color:#fff;font-family:var(--font-bricolage),sans-serif;font-size:8px;font-weight:650;letter-spacing:.13em;line-height:1;backdrop-filter:blur(9px);box-shadow:0 8px 22px rgba(10,48,41,.16)}
+.blog-visual-brand b{font-weight:800}
+.blog-article>.blog-visual.large{height:min(28vw,350px);min-height:0}
+.blog-article>.blog-visual.large img{height:100%;min-height:0;object-fit:cover}
+.blog-article>.blog-visual.large .blog-visual-brand{top:22px;left:22px;padding:10px 14px;font-size:9px}
+@media(max-width:1000px){.blog-hero{grid-template-columns:1fr;row-gap:16px;padding-block:34px}.blog-hero h1{max-width:720px}.blog-hero p,.blog-hero strong{max-width:760px}}
+@media(max-width:680px){.blog-hero{padding:30px 22px 34px}.blog-list-section{padding-top:14px}.blog-filters{padding:0}.blog-article>.blog-visual.large{height:220px;min-height:0}.blog-article>.blog-visual.large img{min-height:0}.blog-visual-brand{top:12px;left:12px}.blog-article>.blog-visual.large .blog-visual-brand{top:14px;left:14px}}
+
 /* CSP diagram: directional motion follows the actual exchange paths. */
 .csp-flow-diagram:before{display:none}
 .csp-clearance-lines{display:grid;width:58%;height:52px;grid-template-columns:1fr 1fr;gap:50%;place-items:start center}

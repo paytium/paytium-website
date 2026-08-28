@@ -26,11 +26,11 @@ const coreRoutes = [
 ];
 
 const blogRoutes = [
-  { path: "/blog", lang: "fr", alternate: "/en/blog", title: "Paytium | Blog", breadcrumb: "Blog", description: "Analyses Paytium sur la facturation électronique, les paiements, le Cash Management, le Digital Banking, les API et l’automatisation des processus.", keywords: "blog Paytium, facturation électronique, paiements, cash management, digital banking, API, automatisation" },
-  { path: "/en/blog", lang: "en", alternate: "/blog", title: "Paytium | Blog", breadcrumb: "Blog", description: "Paytium insights on e-invoicing, payments, cash management, digital banking, APIs and business process automation.", keywords: "Paytium blog, e-invoicing, payments, cash management, digital banking, API, automation" },
+  { path: "/blog", lang: "fr", alternate: "/en/blog", title: "Paytium | Blog", breadcrumb: "Blog", description: "Analyses Paytium sur la facturation électronique, les paiements, le Cash Management, le Digital Banking, les API et l’automatisation des processus.", keywords: "Paytium Insights, blog Paytium, facturation électronique Maroc, e-invoicing Morocco, DGI, paiements, cash management, digital banking, API, automatisation" },
+  { path: "/en/blog", lang: "en", alternate: "/blog", title: "Paytium | Blog", breadcrumb: "Blog", description: "Paytium insights on e-invoicing, payments, cash management, digital banking, APIs and business process automation.", keywords: "Paytium Insights, Paytium blog, e-invoicing Morocco, electronic invoicing Morocco, DGI, payments, cash management, digital banking, API, automation" },
   ...blogArticles.flatMap((article) => [
-    { path: `/blog/${article.slug}`, lang: "fr", alternate: `/en/blog/${article.slug}`, title: `Paytium | ${article.title.fr}`, breadcrumb: article.title.fr, description: article.summary.fr, keywords: `${article.theme.fr}, blog Paytium, transformation digitale`, socialImage: article.image, socialImageAlt: article.imageAlt.fr, article },
-    { path: `/en/blog/${article.slug}`, lang: "en", alternate: `/blog/${article.slug}`, title: `Paytium | ${article.title.en}`, breadcrumb: article.title.en, description: article.summary.en, keywords: `${article.theme.en}, Paytium blog, digital transformation`, socialImage: article.image, socialImageAlt: article.imageAlt.en, article },
+    { path: `/blog/${article.slug}`, lang: "fr", alternate: `/en/blog/${article.slug}`, title: `Paytium | ${article.title.fr}`, breadcrumb: article.title.fr, description: article.summary.fr, keywords: `${article.theme.fr}, Paytium Insights, facturation électronique Maroc, e-invoicing Morocco, DGI, UBL, ERP, CSP`, socialImage: article.image, socialImageAlt: article.imageAlt.fr, article },
+    { path: `/en/blog/${article.slug}`, lang: "en", alternate: `/blog/${article.slug}`, title: `Paytium | ${article.title.en}`, breadcrumb: article.title.en, description: article.summary.en, keywords: `${article.theme.en}, Paytium Insights, e-invoicing Morocco, electronic invoicing Morocco, DGI, UBL, ERP, CSP`, socialImage: article.image, socialImageAlt: article.imageAlt.en, article },
   ]),
 ];
 const routes = [...coreRoutes, ...blogRoutes];
@@ -102,11 +102,14 @@ function jsonLd(route) {
     "@id": `${absolute(route.path)}#article`,
     headline: route.article.title[route.lang],
     description: route.article.summary[route.lang],
+    articleSection: route.article.theme[route.lang],
+    keywords: route.keywords,
     datePublished: route.article.date,
     dateModified: route.article.date,
     inLanguage: isEnglish ? "en-US" : "fr-FR",
     author: { "@id": `${baseUrl}/#organization` },
     publisher: { "@id": `${baseUrl}/#organization` },
+    isPartOf: { "@type": "Blog", "@id": `${absolute(isEnglish ? "/en/blog" : "/blog")}#blog`, name: "Paytium Insights" },
     mainEntityOfPage: { "@id": `${absolute(route.path)}#webpage` },
     ...(route.article.image ? { image: `${baseUrl}${route.article.image}` } : {}),
   });
@@ -116,7 +119,7 @@ function jsonLd(route) {
     graph.push({ "@type": "ItemList", name: "Paytium services", itemListElement: services.map((name, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "Service", name, provider: { "@id": `${baseUrl}/#organization` }, areaServed: "International" } })) });
   }
 
-  if (route.path.includes("e-invoicing")) {
+  if (route.path === "/e-invoicing" || route.path === "/en/e-invoicing") {
     graph.push({ "@type": "Service", "@id": `${absolute(route.path)}#service`, name: isEnglish ? "E-invoicing readiness and integration" : "Préparation et intégration de la facturation électronique", serviceType: isEnglish ? "E-invoicing consulting and integration" : "Conseil et intégration en facturation électronique", provider: { "@id": `${baseUrl}/#organization` }, areaServed: "International", audience: { "@type": "BusinessAudience", audienceType: "Businesses and institutions" }, description: route.description });
     const faq = isEnglish
       ? [["What is the difference between a PDF invoice, an e-invoice and a structured electronic invoice?", "A PDF may be a readable representation without being a structured, machine-processable data flow. A structured electronic invoice enables automated exchange, checks and integration through the selected format and channel."], ["How should an ERP be prepared for DGI e-invoicing?", "Preparation starts by mapping flows, data, interfaces and controls. Paytium then identifies priority ERP, accounting and integration changes while keeping the target adaptable to official publications."], ["Does Paytium provide invoicing software or integration services?", "Paytium provides consulting, scoping, architecture, integration and automation. The solution scope — platform, connectors, portal or specific components — is selected around the client’s information system and needs."], ["Can a business prepare before every final requirement is published?", "Yes. Data quality, flow mapping, governance and an adaptable architecture can be prepared while choices that depend on official legislation and specifications remain open."], ["Does Paytium guarantee tax compliance?", "Paytium designs adaptable architecture and processes. Legal, tax and regulatory validation remains coordinated with the client’s relevant internal teams and official sources."]]
@@ -184,6 +187,8 @@ for (const [legacyPath, destinationPath, lang, title] of [
   ["/en/facturation-electronique", "/en/e-invoicing", "en", "Paytium | E-invoicing"],
   ["/expertises", "/case-studies", "fr", "Paytium | Études de cas"],
   ["/en/expertises", "/en/case-studies", "en", "Paytium | Case studies"],
+  ["/blog/facturation-electronique-maroc-comment-se-preparer", "/blog/e-invoicing-morocco-how-to-prepare", "fr", "Paytium | Facturation électronique au Maroc"],
+  ["/en/blog/facturation-electronique-maroc-comment-se-preparer", "/en/blog/e-invoicing-morocco-how-to-prepare", "en", "Paytium | E-invoicing in Morocco"],
 ]) {
   const destinationUrl = absolute(destinationPath);
   const redirectHtml = `<!doctype html>

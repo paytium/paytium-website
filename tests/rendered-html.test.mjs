@@ -189,7 +189,7 @@ test("presents the Moroccan e-invoicing offer, connector and consultation flow",
   assert.match(html, /Connectez votre système de facturation à l’écosystème DGI/);
   assert.match(html, /Paytium e-Invoice Connector/);
   assert.match(html, /id="connector"/);
-  assert.match(html, /id="offres"/);
+  assert.match(html, /id="offers"/);
   assert.match(html, /id="consultation"/);
   assert.match(html, /id="faq"/);
   assert.match(html, /API REST/);
@@ -627,7 +627,7 @@ test("orders the services menu and uses market-aware English labels", async () =
   assert.doesNotMatch(shell, /<a href=\{`\$\{prefix\}\/services\/`\}>\{copy\.services\}/);
   assert.match(shell, /copy\.playground[\s\S]*copy\.methodsMenu[\s\S]*copy\.technologies[\s\S]*copy\.academy/);
   assert.match(shell, /services\/#methods/);
-  assert.match(shell, /e-invoicing\/#offres/);
+  assert.match(shell, /e-invoicing\/#offers/);
   assert.match(shell, /e-invoicing\/#consultation/);
   assert.match(servicesPageEn, /DELIVERY METHODS/);
   assert.match(servicesPageEn, /workingMethodsEn/);
@@ -669,8 +669,8 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   const [frenchIndex, englishIndex, frenchArticle, englishArticle] = await Promise.all([
     render("/blog").then((response) => response.text()),
     render("/en/blog").then((response) => response.text()),
-    render("/blog/facturation-electronique-maroc-comment-se-preparer").then((response) => response.text()),
-    render("/en/blog/facturation-electronique-maroc-comment-se-preparer").then((response) => response.text()),
+    render("/blog/e-invoicing-morocco-how-to-prepare").then((response) => response.text()),
+    render("/en/blog/e-invoicing-morocco-how-to-prepare").then((response) => response.text()),
   ]);
   assert.match(frenchIndex, /Bienvenue sur le/);
   assert.match(frenchIndex, /Rechercher un article/);
