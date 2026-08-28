@@ -30,15 +30,21 @@ export function CspFlowDiagram({ locale }: { locale: BlogLocale }) {
 
   return <figure className="csp-flow-diagram" aria-labelledby="csp-flow-title">
     <figcaption><span>{copy.kicker}</span><strong id="csp-flow-title">{copy.title}</strong></figcaption>
-    <div className="csp-authority-node"><i><FaBuildingColumns /></i><b>{copy.authority}</b><small>{copy.authorityDetail}</small></div>
-    <div className="csp-clearance-lines" aria-hidden="true"><i></i><i></i></div>
+    <div className="csp-authority-node">
+      <div className="csp-authority-brands">
+        <img src="/flag-morocco.png" alt={locale === "fr" ? "Drapeau du Maroc" : "Flag of Morocco"} />
+        <img src="/logo-dgi.png" alt={locale === "fr" ? "Logo de la DGI" : "DGI logo"} />
+      </div>
+      <i aria-hidden="true"><FaBuildingColumns /></i><b>{copy.authority}</b><small>{copy.authorityDetail}</small>
+    </div>
+    <div className="csp-clearance-lines" aria-hidden="true"><i data-step="2"></i><i data-step="4"></i></div>
     <div className="csp-exchange-row">
       <div className="csp-provider-node"><i><FaServer /></i><b>{copy.issuer}</b><small>{copy.providerDetail}</small></div>
-      <div className="csp-exchange-bridge"><span>{copy.exchange}</span><i aria-hidden="true"></i></div>
+      <div className="csp-exchange-bridge"><span>{copy.exchange}</span><i aria-hidden="true"><b className="csp-step-marker">3</b></i></div>
       <div className="csp-provider-node"><i><FaServer /></i><b>{copy.receiver}</b><small>{copy.providerDetail}</small></div>
     </div>
     <div className="csp-actor-row">
-      <div><i><FaUserTie /></i><b>{copy.supplier}</b></div>
+      <div><b className="csp-step-marker" aria-hidden="true">1</b><i><FaUserTie /></i><b>{copy.supplier}</b></div>
       <div><i><FaUserTie /></i><b>{copy.customer}</b></div>
     </div>
     <div className="csp-flow-steps">{copy.steps.map((step, index) => <span key={step}><i><FaCircleCheck /></i><b>{String(index + 1).padStart(2, "0")}</b>{step}</span>)}</div>

@@ -402,3 +402,20 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 @keyframes cspClearanceFlow{to{background-position:0 30px}}
 @keyframes cspExchangeDot{0%{left:0}48%,52%{left:100%}100%{left:0}}
 @media(prefers-reduced-motion:reduce){.csp-clearance-lines i,.csp-exchange-bridge i:before{animation:none!important}.csp-exchange-bridge i:before{left:50%}}
+
+/* CSP diagram: institutional branding, numbered paths and aligned actors. */
+.csp-authority-node{width:min(100%,460px);grid-template-columns:auto 1fr;column-gap:13px;padding:16px 22px;text-align:left}
+.csp-authority-node .csp-authority-brands{grid-row:1/4;display:flex;align-items:center;align-self:stretch;gap:0;padding-right:13px;border-right:1px solid rgba(255,255,255,.2)}
+.csp-authority-brands img{display:block;width:48px;height:42px;object-fit:contain;background:#fff}
+.csp-authority-brands img:first-child{object-fit:cover}
+.csp-authority-node>i{display:none}
+.csp-authority-node>b,.csp-authority-node>small{grid-column:2;margin:0}
+.csp-clearance-lines i:before{content:attr(data-step);position:absolute;top:50%;left:50%;z-index:2;display:grid;width:24px;height:24px;place-items:center;border:2px solid var(--sage);border-radius:50%;background:#fff;color:var(--deep);font-size:9px;font-style:normal;font-weight:850;transform:translate(-50%,-50%)}
+.csp-exchange-row,.csp-actor-row{grid-template-columns:minmax(0,1fr) minmax(125px,.65fr) minmax(0,1fr);gap:16px}
+.csp-actor-row>div{position:relative;width:100%}
+.csp-actor-row>div:last-child{grid-column:3}
+.csp-step-marker{display:grid;width:24px;height:24px;place-items:center;border:2px solid var(--sage);border-radius:50%;background:#fff;color:var(--deep);font-size:9px;font-weight:850;line-height:1}
+.csp-actor-row .csp-step-marker{position:absolute;top:-12px;left:50%;transform:translateX(-50%)}
+.csp-exchange-bridge i>.csp-step-marker{position:absolute;top:50%;left:50%;z-index:3;transform:translate(-50%,-50%)}
+.csp-exchange-bridge i:before{z-index:2}
+@media(max-width:680px){.csp-authority-node{grid-template-columns:1fr;justify-items:center;text-align:center}.csp-authority-node .csp-authority-brands{grid-row:auto;grid-column:1;align-self:auto;padding:0 0 10px;border-right:0;border-bottom:1px solid rgba(255,255,255,.2)}.csp-authority-node>b,.csp-authority-node>small{grid-column:1}.csp-exchange-row,.csp-actor-row{grid-template-columns:1fr 1fr;gap:12px}.csp-exchange-bridge{grid-column:1/-1;grid-row:2}.csp-actor-row>div:last-child{grid-column:2}.csp-authority-brands img{width:42px;height:37px}}
