@@ -13,6 +13,10 @@ import AboutPage from "../app/about/page";
 import EnglishAboutPage from "../app/en/about/page";
 import ContactPage from "../app/contact/page";
 import EnglishContactPage from "../app/en/contact/page";
+import BlogPage from "../app/blog/page";
+import EnglishBlogPage from "../app/en/blog/page";
+import { BlogArticlePage } from "../components/BlogArticlePage";
+import { findBlogArticle } from "../content/blog";
 import { PageLoader } from "../components/PageLoader";
 import NotFound from "../app/not-found";
 
@@ -31,11 +35,18 @@ const routes = {
   "/en/about": EnglishAboutPage,
   "/contact": ContactPage,
   "/en/contact": EnglishContactPage,
+  "/blog": BlogPage,
+  "/en/blog": EnglishBlogPage,
 } as const;
 
 export function renderPage(path: string) {
   const Page = routes[path as keyof typeof routes];
-  if (!Page) throw new Error(`Unknown route: ${path}`);
+  if (!Page) {
+    const match = path.match(/^\/(en\/)?blog\/([^/]+)$/);
+    const article = match ? findBlogArticle(match[2]) : undefined;
+    if (article) return renderToString(<><PageLoader /><BlogArticlePage article={article} locale={match?.[1] ? "en" : "fr"} includeDocumentMetadata={false} /></>);
+    throw new Error(`Unknown route: ${path}`);
+  }
   return renderToString(<><PageLoader /><Page /></>);
 }
 

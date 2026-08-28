@@ -1,0 +1,97 @@
+[
+  {
+    "slug": "facturation-electronique-maroc-comment-se-preparer",
+    "date": "2026-08-28",
+    "theme": { "fr": "Facturation électronique", "en": "E-invoicing" },
+    "title": { "fr": "Facturation électronique au Maroc : ce qui est confirmé et comment se préparer", "en": "E-invoicing in Morocco: what is confirmed and how to prepare" },
+    "summary": { "fr": "État des lieux, chantiers prioritaires et feuille de route pragmatique pour préparer les données, les processus et le SI sans figer trop tôt les choix réglementaires.", "en": "A pragmatic view of the confirmed developments and the data, process and technology workstreams businesses can start without locking in regulatory assumptions." },
+    "image": "/einvoicing-marrakech.webp",
+    "imageAlt": { "fr": "Vue urbaine de Marrakech illustrant la transformation numérique au Maroc", "en": "Marrakech cityscape illustrating Morocco's digital transformation" },
+    "sections": {
+      "fr": [
+        { "type": "lead", "text": "La facturation électronique devient un chantier structurant pour les directions financières, fiscales et technologiques. Au-delà du remplacement du papier, elle transforme la facture en un flux de données contrôlable, traçable et directement exploitable par les systèmes." },
+        { "type": "heading", "text": "Ce que les sources officielles confirment" },
+        { "type": "paragraph", "text": "La Direction Générale des Impôts indique dans son rapport d’activité 2024 avoir lancé le projet de système de facturation électronique. Les spécifications fonctionnelles et techniques ont été finalisées et les développements engagés. Les objectifs annoncés portent notamment sur la transparence des transactions, la conformité fiscale et l’amélioration du contrôle." },
+        { "type": "callout", "text": "Le calendrier détaillé, le périmètre d’assujettissement, les formats techniques et les modalités de déploiement doivent être confirmés par les textes et spécifications officiellement publiés. Une préparation responsable distingue donc les travaux sans regret des choix dépendants du cadre final." },
+        { "type": "heading", "text": "Cinq chantiers à engager dès maintenant" },
+        { "type": "list", "items": ["Cartographier les parcours de facturation, les événements postérieurs et les responsabilités métier.", "Évaluer la qualité des données clients, fiscales, contractuelles et de paiement.", "Recenser les ERP, TMS, outils comptables, portails et interfaces concernés.", "Définir une architecture d’intégration découplée, sécurisée et observable.", "Organiser la gouvernance du programme entre Finance, Fiscalité, IT, Sécurité et Opérations."] },
+        { "type": "heading", "text": "Préparer une architecture adaptable" },
+        { "type": "paragraph", "text": "Le bon réflexe consiste à isoler la logique réglementaire derrière une couche d’intégration capable de convertir, contrôler, transmettre et tracer les flux. Cette approche limite l’impact sur les systèmes existants et permet d’ajuster formats, contrôles et canaux lorsque le cadre officiel évolue." },
+        { "type": "heading", "text": "Transformer la conformité en levier de performance" },
+        { "type": "paragraph", "text": "Une donnée mieux structurée réduit les ressaisies, facilite le rapprochement, accélère le traitement des anomalies et améliore la visibilité sur le cycle order-to-cash. Le projet peut ainsi dépasser la conformité et contribuer à la qualité opérationnelle, au pilotage du cash et à l’expérience partenaire." },
+        { "type": "heading", "text": "La démarche Paytium" },
+        { "type": "paragraph", "text": "Paytium accompagne les entreprises du diagnostic à l’intégration : cadrage métier et réglementaire, cartographie des flux, assessment data et SI, architecture cible, e-Invoice Connector, tests, déploiement et conduite du changement. La feuille de route reste modulaire afin de sécuriser les décisions prises avant la publication de toutes les modalités finales." },
+        { "type": "sources", "items": [{ "label": "DGI — Rapport d’activité 2024", "url": "https://www.finances.gov.ma/Publication/dgi/2025/ra-dgi2024.pdf" }, { "label": "Ministère de l’Économie et des Finances — Direction Générale des Impôts", "url": "https://www.finances.gov.ma/fr/Ministere/Pages/dgi.aspx" }] },
+        { "type": "note", "text": "Cet article fournit une information générale et ne constitue pas un conseil juridique ou fiscal. Les décisions de conformité doivent être validées à partir des textes officiels applicables et avec les fonctions compétentes de votre organisation." }
+      ],
+      "en": [
+        { "type": "lead", "text": "E-invoicing is becoming a defining programme for finance, tax and technology teams. Beyond replacing paper, it turns the invoice into a controlled, traceable data flow that enterprise systems can process directly." },
+        { "type": "heading", "text": "What official sources confirm" },
+        { "type": "paragraph", "text": "In its 2024 activity report, Morocco’s General Tax Directorate states that it launched the electronic invoicing system project. Functional and technical specifications were finalised and development started. The stated objectives include transaction transparency, tax compliance and stronger controls." },
+        { "type": "callout", "text": "The detailed timetable, scope, technical formats and rollout rules remain subject to officially published legislation and specifications. A responsible readiness programme therefore separates no-regret work from decisions that depend on the final framework." },
+        { "type": "heading", "text": "Five workstreams to start now" },
+        { "type": "list", "items": ["Map invoicing journeys, post-invoice events and business ownership.", "Assess customer, tax, contractual and payment data quality.", "Identify the ERP, TMS, accounting tools, portals and interfaces in scope.", "Design a decoupled, secure and observable integration architecture.", "Set up programme governance across Finance, Tax, IT, Security and Operations."] },
+        { "type": "heading", "text": "Build an adaptable architecture" },
+        { "type": "paragraph", "text": "A sound target isolates regulatory logic behind an integration layer able to convert, validate, transmit and trace flows. This limits changes to core systems and keeps formats, controls and channels adaptable as the official framework evolves." },
+        { "type": "heading", "text": "Turn compliance into operational value" },
+        { "type": "paragraph", "text": "Better structured data reduces rekeying, supports reconciliation, accelerates exception handling and improves order-to-cash visibility. The programme can therefore improve operational quality, cash steering and partner experience as well as compliance." },
+        { "type": "heading", "text": "The Paytium approach" },
+        { "type": "paragraph", "text": "Paytium supports businesses from assessment to integration: business and regulatory scoping, flow mapping, data and information-system readiness, target architecture, e-Invoice Connector, testing, deployment and change. The roadmap remains modular so early decisions stay safe while final requirements are published." },
+        { "type": "sources", "items": [{ "label": "DGI — 2024 Activity Report (French)", "url": "https://www.finances.gov.ma/Publication/dgi/2025/ra-dgi2024.pdf" }, { "label": "Ministry of Economy and Finance — General Tax Directorate", "url": "https://www.finances.gov.ma/fr/Ministere/Pages/dgi.aspx" }] },
+        { "type": "note", "text": "This article provides general information and is not legal or tax advice. Compliance decisions should be validated against applicable official publications and with your organisation’s qualified teams." }
+      ]
+    }
+  },
+  {
+    "slug": "api-management-services-financiers",
+    "date": "2026-08-20",
+    "theme": { "fr": "API & Open Finance", "en": "API & Open Finance" },
+    "title": { "fr": "API Management : passer de la connexion technique à un produit métier piloté", "en": "API management: turning technical connections into managed business products" },
+    "summary": { "fr": "Gouvernance, sécurité, expérience développeur et pilotage : les fondations d’un programme API qui crée réellement de la valeur.", "en": "Governance, security, developer experience and performance: the foundations of an API programme that creates measurable value." },
+    "image": null,
+    "imageAlt": { "fr": "Illustration d’un écosystème API connecté", "en": "Connected API ecosystem illustration" },
+    "sections": {
+      "fr": [{ "type": "lead", "text": "Une API ne crée pas de valeur parce qu’elle est exposée, mais parce qu’elle est fiable, compréhensible, sécurisée et intégrée à un parcours métier mesurable." }, { "type": "heading", "text": "Traiter l’API comme un produit" }, { "type": "paragraph", "text": "Un ownership clair, un catalogue lisible, des contrats versionnés et une feuille de route partagée transforment une collection d’interfaces en capacité d’entreprise." }, { "type": "heading", "text": "Industrialiser sans ralentir" }, { "type": "list", "items": ["Définir des standards de conception et de sécurité.", "Automatiser les contrôles dans la chaîne CI/CD.", "Mesurer disponibilité, latence, adoption et valeur métier.", "Soigner le portail et l’onboarding des consommateurs."] }, { "type": "paragraph", "text": "Paytium combine cadrage, architecture, API Management et delivery pour construire des écosystèmes ouverts qui restent gouvernables à l’échelle." }],
+      "en": [{ "type": "lead", "text": "An API creates value not merely when it is exposed, but when it is reliable, understandable, secure and tied to a measurable business journey." }, { "type": "heading", "text": "Manage the API as a product" }, { "type": "paragraph", "text": "Clear ownership, a usable catalogue, versioned contracts and a shared roadmap turn a collection of interfaces into an enterprise capability." }, { "type": "heading", "text": "Industrialise without slowing delivery" }, { "type": "list", "items": ["Define design and security standards.", "Automate controls in CI/CD.", "Measure availability, latency, adoption and business value.", "Make the developer portal and consumer onboarding frictionless."] }, { "type": "paragraph", "text": "Paytium combines advisory, architecture, API management and delivery to build open ecosystems that remain secure and governable at scale." }]
+    }
+  },
+  {
+    "slug": "cash-management-iso-20022",
+    "date": "2026-08-12",
+    "theme": { "fr": "Cash Management", "en": "Cash Management" },
+    "title": { "fr": "Cash Management et ISO 20022 : construire une donnée de paiement exploitable", "en": "Cash management and ISO 20022: making payment data actionable" },
+    "summary": { "fr": "Comment une donnée de paiement riche et normalisée améliore l’automatisation, le rapprochement et la visibilité de trésorerie.", "en": "How richer, standardised payment data improves automation, reconciliation and cash visibility." },
+    "image": null,
+    "imageAlt": { "fr": "Illustration de flux de paiement structurés", "en": "Structured payment flows illustration" },
+    "sections": {
+      "fr": [{ "type": "lead", "text": "ISO 20022 est plus qu’un format : c’est une opportunité de mieux relier paiements, référentiels, rapprochement et prévision de trésorerie." }, { "type": "heading", "text": "Partir des cas d’usage" }, { "type": "paragraph", "text": "La transformation gagne à prioriser les parcours qui concentrent les rejets, les ressaisies et les écarts de rapprochement, puis à aligner données et contrôles sur ces irritants." }, { "type": "heading", "text": "Une trajectoire maîtrisée" }, { "type": "list", "items": ["Cartographier les flux et variantes de messages.", "Évaluer la qualité des données de bout en bout.", "Sécuriser les transformations et la traçabilité.", "Mesurer les gains opérationnels après migration."] }, { "type": "paragraph", "text": "Paytium accompagne le cadrage, l’architecture et la mise en œuvre de chaînes de paiement interopérables et observables." }],
+      "en": [{ "type": "lead", "text": "ISO 20022 is more than a message format: it is an opportunity to connect payments, reference data, reconciliation and cash forecasting more effectively." }, { "type": "heading", "text": "Start from use cases" }, { "type": "paragraph", "text": "Prioritise journeys with the highest rejection, rekeying and reconciliation effort, then align data and controls to remove those pain points." }, { "type": "heading", "text": "A controlled transition" }, { "type": "list", "items": ["Map flows and message variants.", "Assess end-to-end data quality.", "Secure transformations and traceability.", "Measure operational gains after migration."] }, { "type": "paragraph", "text": "Paytium supports the scoping, architecture and delivery of interoperable, observable payment chains." }]
+    }
+  },
+  {
+    "slug": "digital-banking-parcours-credit",
+    "date": "2026-08-05",
+    "theme": { "fr": "Digital Banking", "en": "Digital Banking" },
+    "title": { "fr": "Crédit digital : accélérer le parcours sans affaiblir la maîtrise du risque", "en": "Digital lending: accelerate the journey without weakening risk control" },
+    "summary": { "fr": "Une approche produit pour réduire les délais, orchestrer les décisions et garder chaque étape explicable et traçable.", "en": "A product approach to shorten turnaround time, orchestrate decisions and keep every step explainable and traceable." },
+    "image": null,
+    "imageAlt": { "fr": "Illustration d’un parcours de crédit digital", "en": "Digital lending journey illustration" },
+    "sections": {
+      "fr": [{ "type": "lead", "text": "Digitaliser le crédit ne consiste pas à reproduire un formulaire papier à l’écran. Il faut repenser le parcours, la donnée, les décisions et la collaboration entre métiers." }, { "type": "heading", "text": "Un parcours orienté preuve" }, { "type": "paragraph", "text": "Chaque information demandée doit contribuer à une décision, une obligation ou une amélioration de l’expérience. Cette discipline réduit la friction et rend le traitement plus lisible." }, { "type": "heading", "text": "Les capacités clés" }, { "type": "list", "items": ["Orchestration des étapes et des acteurs.", "Intégration des sources et contrôles de données.", "Décisions explicables et piste d’audit.", "Pilotage du funnel et amélioration continue."] }, { "type": "paragraph", "text": "Paytium réunit expertise métier, product management, data et engineering pour livrer des parcours qui combinent vitesse, conformité et maîtrise opérationnelle." }],
+      "en": [{ "type": "lead", "text": "Digitising lending is not about putting a paper form on screen. The journey, data, decisions and collaboration between business teams must be redesigned together." }, { "type": "heading", "text": "An evidence-led journey" }, { "type": "paragraph", "text": "Every requested data point should support a decision, an obligation or a better experience. This discipline reduces friction and makes processing easier to understand." }, { "type": "heading", "text": "Core capabilities" }, { "type": "list", "items": ["Journey and stakeholder orchestration.", "Data-source integration and validation.", "Explainable decisions and audit trail.", "Funnel management and continuous improvement."] }, { "type": "paragraph", "text": "Paytium combines domain expertise, product management, data and engineering to deliver journeys that balance speed, compliance and operational control." }]
+    }
+  },
+  {
+    "slug": "automatisation-processus-metier",
+    "date": "2026-07-28",
+    "theme": { "fr": "Automatisation", "en": "Automation" },
+    "title": { "fr": "Automatisation des processus : choisir les bons leviers avant les bons outils", "en": "Process automation: choose the right levers before the right tools" },
+    "summary": { "fr": "Process mining, workflow, API, RPA ou IA : une grille de décision centrée sur la valeur, la robustesse et l’évolutivité.", "en": "Process mining, workflow, APIs, RPA or AI: a decision framework focused on value, robustness and scalability." },
+    "image": null,
+    "imageAlt": { "fr": "Illustration d’un processus métier automatisé", "en": "Automated business process illustration" },
+    "sections": {
+      "fr": [{ "type": "lead", "text": "Automatiser un processus instable amplifie souvent ses défauts. La première étape consiste à simplifier le parcours et à rendre les règles explicites." }, { "type": "heading", "text": "Une décision fondée sur le contexte" }, { "type": "paragraph", "text": "Un workflow structure une orchestration durable, une API connecte les systèmes, la RPA traite certains écarts hérités et l’IA aide lorsque la décision dépend d’informations complexes. Ces leviers sont complémentaires." }, { "type": "heading", "text": "Mesurer au-delà du temps gagné" }, { "type": "list", "items": ["Taux de traitement sans intervention.", "Qualité et traçabilité des décisions.", "Résilience face aux changements applicatifs.", "Coût complet de maintenance et d’exploitation."] }, { "type": "paragraph", "text": "Paytium cadre les cas d’usage, conçoit l’architecture et industrialise les automatisations avec une gouvernance claire." }],
+      "en": [{ "type": "lead", "text": "Automating an unstable process often amplifies its defects. Start by simplifying the journey and making its rules explicit." }, { "type": "heading", "text": "Choose by context" }, { "type": "paragraph", "text": "Workflow supports durable orchestration, APIs connect systems, RPA handles selected legacy gaps and AI helps where decisions depend on complex information. These levers complement each other." }, { "type": "heading", "text": "Measure more than time saved" }, { "type": "list", "items": ["Straight-through processing rate.", "Decision quality and traceability.", "Resilience to application changes.", "Total maintenance and operating cost."] }, { "type": "paragraph", "text": "Paytium frames use cases, designs the architecture and industrialises automation with clear governance." }]
+    }
+  }
+]

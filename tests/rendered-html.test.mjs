@@ -117,6 +117,7 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
     ["/e-invoicing", "Paytium | Facturation électronique &amp; e-Invoice Connector"], ["/en/e-invoicing", "Paytium | E-Invoicing &amp; DGI Connector"],
     ["/case-studies", "Paytium | Études de cas Fintech, Paiements et Digital Banking"], ["/en/case-studies", "Paytium | Fintech, Payments &amp; Digital Banking Case Studies"],
     ["/contact", "Paytium | Contact &amp; consultation"], ["/en/contact", "Paytium | Contact &amp; Consultation"],
+    ["/blog", "Paytium | Blog"], ["/en/blog", "Paytium | Blog"],
   ]);
   for (const [route, title] of expectedTitles) {
     const response = await render(route);
@@ -129,7 +130,7 @@ test("uses descriptive page titles and the e-invoicing route", async () => {
 });
 
 test("links directly to canonical trailing-slash routes", async () => {
-  const routes = ["/", "/en", "/about", "/en/about", "/services", "/en/services", "/academy", "/en/academy", "/e-invoicing", "/en/e-invoicing", "/case-studies", "/en/case-studies", "/contact", "/en/contact"];
+  const routes = ["/", "/en", "/about", "/en/about", "/services", "/en/services", "/academy", "/en/academy", "/e-invoicing", "/en/e-invoicing", "/case-studies", "/en/case-studies", "/blog", "/en/blog", "/contact", "/en/contact"];
   for (const route of routes) {
     const html = await (await render(route)).text();
     assert.doesNotMatch(html, /href="\/(?:en\/)?(?:about|services|academy|e-invoicing|case-studies|contact)(?:#|")/);
@@ -662,4 +663,25 @@ test("keeps the loader animated, accessible and limited to document navigation",
   assert.match(notFound, /Back to home/);
   assert.match(pagesEntry, /initialPath\.startsWith\("\/en\/"\)/);
   assert.match(pagesEntry, /<NotFound locale=\{notFoundLocale\} \/>/);
+});
+
+test("publishes a bilingual, searchable Paytium blog with article actions and SEO routes", async () => {
+  const [frenchIndex, englishIndex, frenchArticle, englishArticle] = await Promise.all([
+    render("/blog").then((response) => response.text()),
+    render("/en/blog").then((response) => response.text()),
+    render("/blog/facturation-electronique-maroc-comment-se-preparer").then((response) => response.text()),
+    render("/en/blog/facturation-electronique-maroc-comment-se-preparer").then((response) => response.text()),
+  ]);
+  assert.match(frenchIndex, /Bienvenue sur le/);
+  assert.match(frenchIndex, /Rechercher un article/);
+  assert.match(frenchIndex, /Pagination des articles/);
+  assert.match(englishIndex, /Welcome to the/);
+  assert.match(englishIndex, /Search articles/);
+  assert.match(frenchArticle, /Paytium \| Facturation électronique au Maroc/);
+  assert.match(frenchArticle, /Imprimer l’article/);
+  assert.match(frenchArticle, /Sources officielles/);
+  assert.match(frenchArticle, /linkedin\.com\/sharing\/share-offsite/);
+  assert.match(englishArticle, /Paytium \| E-invoicing in Morocco/);
+  assert.match(englishArticle, /Print article/);
+  assert.doesNotMatch(frenchArticle, /obligation dès 2026|format UBL retenu/i);
 });

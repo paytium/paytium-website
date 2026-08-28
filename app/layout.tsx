@@ -66,6 +66,7 @@ const mainNavigation = [
   ["Études de cas", "https://paytium.io/case-studies/"],
   ["Facturation électronique", "https://paytium.io/e-invoicing/"],
   ["Paytium Academy", "https://paytium.io/academy/"],
+  ["Blog Paytium", "https://paytium.io/blog/"],
   ["Contact Paytium", "https://paytium.io/contact/"],
 ].map(([name, url], index) => ({ "@type": "SiteNavigationElement", "@id": `https://paytium.io/#navigation-${index + 1}`, name, url, isPartOf: { "@id": websiteId } }));
 

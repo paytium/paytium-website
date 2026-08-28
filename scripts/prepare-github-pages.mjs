@@ -6,8 +6,9 @@ const output = new URL("../dist-pages/", import.meta.url);
 const baseUrl = "https://paytium.io";
 const lastModified = new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Casablanca", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 const { renderPage, renderNotFound } = await import(new URL("../dist-pages-ssr/prerender.js", import.meta.url));
+const blogArticles = JSON.parse(await readFile(new URL("../content/blog.json", import.meta.url), "utf8"));
 
-const routes = [
+const coreRoutes = [
   { path: "/", lang: "fr", alternate: "/en", title: "Paytium | Conseil & technologie", breadcrumb: "Accueil", description: "Paytium est un cabinet de conseil et de delivery digital : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, Data IA, Cloud DevOps" },
   { path: "/en", lang: "en", alternate: "/", title: "Paytium | Consulting & Technology", breadcrumb: "Home", description: "Paytium provides technology consulting, digital product delivery, Squad As Service, Data & AI, DevSecOps, cloud engineering and e-invoicing integration.", keywords: "Paytium, Squad As Service, Agile squad, technology consulting company, digital transformation, digital product delivery, Data AI, DevSecOps, cloud engineering" },
   { path: "/about", lang: "fr", alternate: "/en/about", title: "Paytium | À propos", breadcrumb: "À propos", description: "Découvrez Paytium, cabinet de conseil et de delivery digital qui relie stratégie, technologie et exécution pour construire, sécuriser et faire évoluer vos solutions.", keywords: "à propos Paytium, cabinet conseil digital, société conseil technologique, transformation digitale, delivery digital, Casablanca" },
@@ -23,6 +24,16 @@ const routes = [
   { path: "/contact", lang: "fr", alternate: "/en/contact", title: "Paytium | Contact & consultation", breadcrumb: "Contact", description: "Contactez Paytium pour cadrer un projet de transformation digitale, data, cloud, Squad As Service ou facturation électronique.", keywords: "contact Paytium, consultation transformation digitale, expert IT, expert Data IA, expert Cloud DevSecOps, Squad As Service" },
   { path: "/en/contact", lang: "en", alternate: "/contact", title: "Paytium | Contact & Consultation", breadcrumb: "Contact", description: "Contact Paytium to frame a digital transformation, data, cloud, Squad As Service or e-invoicing initiative.", keywords: "contact Paytium, digital transformation consultation, technology expert, Data AI expert, Cloud DevSecOps expert, Squad As Service" },
 ];
+
+const blogRoutes = [
+  { path: "/blog", lang: "fr", alternate: "/en/blog", title: "Paytium | Blog", breadcrumb: "Blog", description: "Analyses Paytium sur la facturation électronique, les paiements, le Cash Management, le Digital Banking, les API et l’automatisation des processus.", keywords: "blog Paytium, facturation électronique, paiements, cash management, digital banking, API, automatisation" },
+  { path: "/en/blog", lang: "en", alternate: "/blog", title: "Paytium | Blog", breadcrumb: "Blog", description: "Paytium insights on e-invoicing, payments, cash management, digital banking, APIs and business process automation.", keywords: "Paytium blog, e-invoicing, payments, cash management, digital banking, API, automation" },
+  ...blogArticles.flatMap((article) => [
+    { path: `/blog/${article.slug}`, lang: "fr", alternate: `/en/blog/${article.slug}`, title: `Paytium | ${article.title.fr}`, breadcrumb: article.title.fr, description: article.summary.fr, keywords: `${article.theme.fr}, blog Paytium, transformation digitale`, socialImage: article.image, socialImageAlt: article.imageAlt.fr, article },
+    { path: `/en/blog/${article.slug}`, lang: "en", alternate: `/blog/${article.slug}`, title: `Paytium | ${article.title.en}`, breadcrumb: article.title.en, description: article.summary.en, keywords: `${article.theme.en}, Paytium blog, digital transformation`, socialImage: article.image, socialImageAlt: article.imageAlt.en, article },
+  ]),
+];
+const routes = [...coreRoutes, ...blogRoutes];
 
 const template = await readFile(new URL("index.html", output), "utf8");
 
@@ -67,8 +78,8 @@ function jsonLd(route) {
   ];
 
   const navigation = isEnglish
-    ? [["About Paytium", "/en/about"], ["Services", "/en/services"], ["Case studies", "/en/case-studies"], ["E-invoicing", "/en/e-invoicing"], ["Paytium Academy", "/en/academy"], ["Contact Paytium", "/en/contact"]]
-    : [["À propos de Paytium", "/about"], ["Services Paytium", "/services"], ["Études de cas", "/case-studies"], ["Facturation électronique", "/e-invoicing"], ["Paytium Academy", "/academy"], ["Contact Paytium", "/contact"]];
+    ? [["About Paytium", "/en/about"], ["Services", "/en/services"], ["Case studies", "/en/case-studies"], ["E-invoicing", "/en/e-invoicing"], ["Paytium Academy", "/en/academy"], ["Paytium blog", "/en/blog"], ["Contact Paytium", "/en/contact"]]
+    : [["À propos de Paytium", "/about"], ["Services Paytium", "/services"], ["Études de cas", "/case-studies"], ["Facturation électronique", "/e-invoicing"], ["Paytium Academy", "/academy"], ["Blog Paytium", "/blog"], ["Contact Paytium", "/contact"]];
   graph.push(...navigation.map(([name, path], index) => ({ "@type": "SiteNavigationElement", "@id": `${baseUrl}/#navigation-${isEnglish ? "en" : "fr"}-${index + 1}`, name, url: absolute(path), isPartOf: { "@id": `${baseUrl}/#website` } })));
 
   if (route.path !== "/" && route.path !== "/en") {
@@ -78,10 +89,27 @@ function jsonLd(route) {
       "@id": breadcrumbId,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: isEnglish ? "Home" : "Accueil", item: absolute(isEnglish ? "/en" : "/") },
-        { "@type": "ListItem", position: 2, name: route.breadcrumb, item: absolute(route.path) },
+        ...(route.article ? [
+          { "@type": "ListItem", position: 2, name: "Blog", item: absolute(isEnglish ? "/en/blog" : "/blog") },
+          { "@type": "ListItem", position: 3, name: route.breadcrumb, item: absolute(route.path) },
+        ] : [{ "@type": "ListItem", position: 2, name: route.breadcrumb, item: absolute(route.path) }]),
       ],
     });
   }
+
+  if (route.article) graph.push({
+    "@type": "BlogPosting",
+    "@id": `${absolute(route.path)}#article`,
+    headline: route.article.title[route.lang],
+    description: route.article.summary[route.lang],
+    datePublished: route.article.date,
+    dateModified: route.article.date,
+    inLanguage: isEnglish ? "en-US" : "fr-FR",
+    author: { "@id": `${baseUrl}/#organization` },
+    publisher: { "@id": `${baseUrl}/#organization` },
+    mainEntityOfPage: { "@id": `${absolute(route.path)}#webpage` },
+    ...(route.article.image ? { image: `${baseUrl}${route.article.image}` } : {}),
+  });
 
   if (route.path.endsWith("/services") || route.path === "/services") {
     const services = ["Business & Technology Consulting", "Digital & Data Factory", "Squad As Service", "DevSecOps & Cloud Engineering"];
@@ -136,7 +164,7 @@ for (const route of routes) {
     .replace(/<link rel="alternate" hreflang="fr"[^>]*>\s*<link rel="alternate" hreflang="en"[^>]*>/, alternateLinks)
     .replace("</head>", `    <script type="application/ld+json">${jsonLd(route)}</script>\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root">${renderedContent}</div>`)
-    .replace(/href="(\/(?:en(?:\/(?:about|services|academy|e-invoicing|case-studies|contact))?|about|services|academy|e-invoicing|case-studies|contact))(#[^"]*)?"/g, (_match, path, hash = "") => `href="${path}/${hash}"`);
+    .replace(/href="(\/(?:en(?:\/(?:about|services|academy|e-invoicing|case-studies|blog(?:\/[^"#]+)?|contact))?|about|services|academy|e-invoicing|case-studies|blog(?:\/[^"#]+)?|contact))(#[^"]*)?"/g, (_match, path, hash = "") => `href="${path.replace(/\/+$/, "")}/${hash}"`);
   if (!socialImage) html = html
     .replace(/\s*<meta property="og:image(?::[^" ]+)?"[^>]*\/>/g, "")
     .replace(/\s*<meta name="twitter:image(?::[^" ]+)?"[^>]*\/>/g, "");

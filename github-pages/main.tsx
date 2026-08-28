@@ -13,6 +13,10 @@ import AboutPage from "../app/about/page";
 import EnglishAboutPage from "../app/en/about/page";
 import ContactPage from "../app/contact/page";
 import EnglishContactPage from "../app/en/contact/page";
+import BlogPage from "../app/blog/page";
+import EnglishBlogPage from "../app/en/blog/page";
+import { BlogArticlePage } from "../components/BlogArticlePage";
+import { findBlogArticle } from "../content/blog";
 import NotFound from "../app/not-found";
 import { PageLoader } from "../components/PageLoader";
 import "../app/globals.css";
@@ -52,9 +56,13 @@ const routes = {
   "/en/about": EnglishAboutPage,
   "/contact": ContactPage,
   "/en/contact": EnglishContactPage,
+  "/blog": BlogPage,
+  "/en/blog": EnglishBlogPage,
 } as const;
 
 const Page = routes[initialPath as keyof typeof routes];
+const articleMatch = initialPath.match(/^\/(en\/)?blog\/([^/]+)$/);
+const article = articleMatch ? findBlogArticle(articleMatch[2]) : undefined;
 const notFoundLocale = initialPath === "/en" || initialPath.startsWith("/en/") ? "en" : "fr";
 
 function prefixProjectPath(value: string) {
@@ -81,8 +89,8 @@ observer.observe(document.documentElement, { childList: true, subtree: true });
 document.documentElement.style.setProperty("--font-geist-sans", "'Geist'");
 document.documentElement.style.setProperty("--font-bricolage", "'Bricolage Grotesque'");
 const root = document.getElementById("root")!;
-const application = <><PageLoader />{Page ? <Page /> : <NotFound locale={notFoundLocale} />}</>;
-if (Page && root.hasChildNodes()) hydrateRoot(root, application);
+const application = <><PageLoader />{Page ? <Page /> : article ? <BlogArticlePage article={article} locale={articleMatch?.[1] ? "en" : "fr"} includeDocumentMetadata={false} /> : <NotFound locale={notFoundLocale} />}</>;
+if ((Page || article) && root.hasChildNodes()) hydrateRoot(root, application);
 else {
   root.replaceChildren();
   createRoot(root).render(application);
