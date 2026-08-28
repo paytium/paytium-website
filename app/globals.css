@@ -402,12 +402,12 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 .blog-visual-brand strong{font-size:17px;font-weight:850;letter-spacing:.035em}
 .blog-visual-brand small{font-size:7px;font-weight:750;letter-spacing:.24em}
 .blog-card-visual .blog-visual>img{object-position:40% 42%}
-.blog-article>.blog-visual.large{height:min(28vw,350px);min-height:0}
-.blog-article>.blog-visual.large img{height:100%;min-height:0;object-fit:cover}
-.blog-article>.blog-visual.large>img{object-position:40% 24%}
+.blog-article>.blog-visual.large{height:auto;min-height:0;aspect-ratio:3/2}
+.blog-article>.blog-visual.large img{width:100%;height:100%;min-height:0;object-fit:cover}
+.blog-article>.blog-visual.large>img{object-position:center}
 .blog-article>.blog-visual.large .blog-visual-brand{right:24px;bottom:22px}
 @media(max-width:1000px){.blog-hero{grid-template-columns:1fr;row-gap:16px;padding-block:34px}.blog-hero h1{max-width:720px}.blog-hero p,.blog-hero strong{max-width:760px}}
-@media(max-width:680px){.blog-hero{padding:30px 22px 34px}.blog-list-section{padding-top:14px}.blog-filters{padding:0}.blog-article>.blog-visual.large{height:220px;min-height:0}.blog-article>.blog-visual.large img{min-height:0}.blog-visual-brand{right:13px;bottom:12px}.blog-visual-brand strong{font-size:14px}.blog-article>.blog-visual.large .blog-visual-brand{right:15px;bottom:14px}}
+@media(max-width:680px){.blog-hero{padding:30px 22px 34px}.blog-list-section{padding-top:14px}.blog-filters{padding:0}.blog-article>.blog-visual.large{height:auto;min-height:0}.blog-article>.blog-visual.large img{min-height:0}.blog-visual-brand{right:13px;bottom:12px}.blog-visual-brand strong{font-size:14px}.blog-article>.blog-visual.large .blog-visual-brand{right:15px;bottom:14px}}
 
 /* CSP diagram: directional motion follows the actual exchange paths. */
 .csp-flow-diagram:before{display:none}
@@ -454,19 +454,11 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 @media(max-width:680px){.csp-party-links{height:46px;grid-template-columns:1fr 1fr;gap:12px}.csp-party-links i{height:46px}.csp-party-links i:last-child{grid-column:2}.csp-flow-steps{grid-template-columns:1fr 1fr}}
 @media(prefers-reduced-motion:reduce){.csp-party-links i{animation:none!important}}
 
-/* Shared breadcrumb-to-content rhythm across every public page template. */
-.breadcrumbs + .page-hero,
-.breadcrumbs + .about-overview-page,
-.breadcrumbs + .einvoice-hero,
-.breadcrumbs + .blog-hero,
-.breadcrumbs + .blog-article{padding-top:42px}
+/* Shared breadcrumb-to-content rhythm across every current and future page template. */
+.breadcrumbs + :is(section,article){padding-top:42px}
 .breadcrumbs + .page-hero{align-items:start}
 .breadcrumbs + .page-hero>div:first-child{align-self:start}
 .breadcrumbs + .einvoice-hero .einvoice-hero-copy{padding-top:0}
 @media(max-width:800px){
-  .breadcrumbs + .page-hero,
-  .breadcrumbs + .about-overview-page,
-  .breadcrumbs + .einvoice-hero,
-  .breadcrumbs + .blog-hero,
-  .breadcrumbs + .blog-article{padding-top:28px}
+  .breadcrumbs + :is(section,article){padding-top:28px}
 }
