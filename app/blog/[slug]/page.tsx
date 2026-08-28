@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { BlogArticlePage } from "../../../components/BlogArticlePage";
 import { blogArticles, findBlogArticle } from "../../../content/blog";
 
@@ -15,6 +16,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const article = findBlogArticle((await params).slug);
-  if (!article) return null;
+  if (!article) notFound();
   return <BlogArticlePage article={article} includeDocumentMetadata={false} />;
 }

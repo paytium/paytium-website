@@ -674,7 +674,7 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   ]);
   assert.match(frenchIndex, /Bienvenue sur le/);
   assert.match(frenchIndex, /Rechercher un article/);
-  assert.equal((frenchIndex.match(/class="blog-card"/g) ?? []).length, 5);
+  assert.equal((frenchIndex.match(/class="blog-card"/g) ?? []).length, 1);
   assert.doesNotMatch(frenchIndex, /Pagination des articles/);
   assert.match(englishIndex, /Welcome to the/);
   assert.match(englishIndex, /Search articles/);
@@ -693,4 +693,10 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   assert.match(englishArticle, /<meta property="og:title" content="E-invoicing in Morocco: what is confirmed and how to prepare">/);
   assert.match(englishArticle, /<meta name="twitter:title" content="E-invoicing in Morocco: what is confirmed and how to prepare">/);
   assert.doesNotMatch(frenchArticle, /obligation dès 2026|format UBL retenu/i);
+  const [removedFrenchArticle, removedEnglishArticle] = await Promise.all([
+    render("/blog/api-management-services-financiers"),
+    render("/en/blog/api-management-services-financiers"),
+  ]);
+  assert.equal(removedFrenchArticle.status, 404);
+  assert.equal(removedEnglishArticle.status, 404);
 });

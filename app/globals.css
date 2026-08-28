@@ -373,7 +373,7 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 .blog-card p{display:-webkit-box;min-height:4.8em;margin:15px 0 23px;overflow:hidden;font-size:13px;font-weight:450;line-height:1.6;-webkit-box-orient:vertical;-webkit-line-clamp:3}
 .blog-article{padding:58px 5vw 82px}
 .article-header{max-width:1200px;margin-bottom:34px}
-.article-header h1{max-width:980px;margin:20px 0 18px;font-size:clamp(2.4rem,4vw,3rem);line-height:1.03}
+.article-header h1{max-width:1120px;margin:20px 0 18px;font-size:clamp(3rem,5vw,4.2rem);line-height:1.02}
 .article-print kbd{display:none}
 .blog-article>.blog-visual.large,.blog-article>.blog-visual.large img{min-height:min(40vw,480px)}
 .blog-article>.blog-visual.large{width:min(100%,1200px);border-radius:30px}
