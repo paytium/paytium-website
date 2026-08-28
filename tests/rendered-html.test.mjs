@@ -691,7 +691,7 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   assert.match(frenchArticle, /<meta property="og:title" content="Facturation électronique au Maroc : ce qui est confirmé et comment se préparer">/);
   assert.match(frenchArticle, /<meta property="og:description" content="Standard UBL, signature électronique, clearance/);
   assert.match(frenchArticle, /<meta property="og:image" content="https:\/\/paytium\.io\/paytium-insights-e-invoicing-morocco\.jpg">/);
-  assert.match(frenchArticle, /class="blog-visual-brand-logo" src="\/logo-paytium\.svg"/);
+  assert.match(frenchArticle, /class="blog-visual-brand"[^>]*><strong>PAYTIUM<\/strong><small>INSIGHTS<\/small>/);
   assert.match(frenchArticle, /<meta name="twitter:card" content="summary_large_image">/);
   assert.match(frenchArticle, /<meta name="twitter:title" content="Facturation électronique au Maroc : ce qui est confirmé et comment se préparer">/);
   assert.match(englishArticle, /Paytium \| E-invoicing in Morocco/);

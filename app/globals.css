@@ -398,16 +398,16 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 .blog-hero strong{padding-top:14px;font-size:18px}
 .blog-list-section{padding-top:18px}
 .blog-filters{gap:12px;padding:0;border:0;border-radius:0;background:transparent}
-.blog-visual-brand{position:absolute;right:16px;bottom:16px;z-index:3;display:grid;justify-items:end;gap:5px;width:132px;padding:10px 12px;border:1px solid rgba(255,255,255,.58);border-radius:12px;background:rgba(255,255,255,.88);color:var(--deep);font-family:var(--font-bricolage),sans-serif;line-height:1;backdrop-filter:blur(9px);box-shadow:0 8px 22px rgba(10,48,41,.18)}
-.blog-visual .blog-visual-brand-logo{width:100%;height:auto;min-height:0;display:block;object-fit:contain;object-position:center;transition:none}
-.blog-visual-brand b{font-size:8px;font-weight:800;letter-spacing:.22em}
+.blog-visual-brand{position:absolute;right:18px;bottom:16px;z-index:3;display:grid;justify-items:end;gap:3px;color:#fff;font-family:var(--font-bricolage),sans-serif;line-height:1;text-align:right;text-shadow:0 2px 12px rgba(4,31,27,.72)}
+.blog-visual-brand strong{font-size:17px;font-weight:850;letter-spacing:.035em}
+.blog-visual-brand small{font-size:7px;font-weight:750;letter-spacing:.24em}
 .blog-card-visual .blog-visual>img{object-position:40% 42%}
 .blog-article>.blog-visual.large{height:min(28vw,350px);min-height:0}
 .blog-article>.blog-visual.large img{height:100%;min-height:0;object-fit:cover}
 .blog-article>.blog-visual.large>img{object-position:40% 24%}
-.blog-article>.blog-visual.large .blog-visual-brand{right:22px;bottom:22px;width:158px;padding:11px 14px}
+.blog-article>.blog-visual.large .blog-visual-brand{right:24px;bottom:22px}
 @media(max-width:1000px){.blog-hero{grid-template-columns:1fr;row-gap:16px;padding-block:34px}.blog-hero h1{max-width:720px}.blog-hero p,.blog-hero strong{max-width:760px}}
-@media(max-width:680px){.blog-hero{padding:30px 22px 34px}.blog-list-section{padding-top:14px}.blog-filters{padding:0}.blog-article>.blog-visual.large{height:220px;min-height:0}.blog-article>.blog-visual.large img{min-height:0}.blog-visual-brand{right:12px;bottom:12px;width:112px;padding:8px 10px}.blog-article>.blog-visual.large .blog-visual-brand{right:14px;bottom:14px;width:126px}}
+@media(max-width:680px){.blog-hero{padding:30px 22px 34px}.blog-list-section{padding-top:14px}.blog-filters{padding:0}.blog-article>.blog-visual.large{height:220px;min-height:0}.blog-article>.blog-visual.large img{min-height:0}.blog-visual-brand{right:13px;bottom:12px}.blog-visual-brand strong{font-size:14px}.blog-article>.blog-visual.large .blog-visual-brand{right:15px;bottom:14px}}
 
 /* CSP diagram: directional motion follows the actual exchange paths. */
 .csp-flow-diagram:before{display:none}
@@ -453,3 +453,20 @@ body{font-weight:400}h1{font-weight:600}h2{font-weight:600}h3{font-weight:650}.b
 .csp-flow-steps{grid-template-columns:repeat(3,1fr)}
 @media(max-width:680px){.csp-party-links{height:46px;grid-template-columns:1fr 1fr;gap:12px}.csp-party-links i{height:46px}.csp-party-links i:last-child{grid-column:2}.csp-flow-steps{grid-template-columns:1fr 1fr}}
 @media(prefers-reduced-motion:reduce){.csp-party-links i{animation:none!important}}
+
+/* Shared breadcrumb-to-content rhythm across every public page template. */
+.breadcrumbs + .page-hero,
+.breadcrumbs + .about-overview-page,
+.breadcrumbs + .einvoice-hero,
+.breadcrumbs + .blog-hero,
+.breadcrumbs + .blog-article{padding-top:42px}
+.breadcrumbs + .page-hero{align-items:start}
+.breadcrumbs + .page-hero>div:first-child{align-self:start}
+.breadcrumbs + .einvoice-hero .einvoice-hero-copy{padding-top:0}
+@media(max-width:800px){
+  .breadcrumbs + .page-hero,
+  .breadcrumbs + .about-overview-page,
+  .breadcrumbs + .einvoice-hero,
+  .breadcrumbs + .blog-hero,
+  .breadcrumbs + .blog-article{padding-top:28px}
+}
