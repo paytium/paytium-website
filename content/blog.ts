@@ -2,9 +2,12 @@ import blogData from "./blog.json";
 
 export type BlogLocale = "fr" | "en";
 export type BlogBlock =
-  | { type: "lead" | "paragraph" | "heading" | "callout" | "note"; text: string }
+  | { type: "lead" | "paragraph" | "heading" | "subheading" | "callout" | "note"; text: string }
   | { type: "list"; items: string[] }
-  | { type: "sources"; items: { label: string; url: string }[] };
+  | { type: "orderedList"; items: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] }
+  | { type: "sources"; items: { label: string; url: string }[] }
+  | { type: "cta"; title: string; text: string; primary: { label: string; href: string }; secondary: { label: string; href: string } };
 
 export type BlogArticle = {
   slug: string;
