@@ -18,7 +18,7 @@ export function CspFlowDiagram({ locale }: { locale: BlogLocale }) {
       { code: "2", label: "Validation (clearance)" },
       { code: "3′", label: "Échange standardisé entre CSP" },
       { code: "3″", label: "Collecte DGI : factures et statuts" },
-      { code: "4", label: "Réception par le client" },
+      { code: "4′", label: "Réception par le client" },
       { code: "4″", label: "Collecte DGI : statuts et événements" },
     ],
   } : {
@@ -37,7 +37,7 @@ export function CspFlowDiagram({ locale }: { locale: BlogLocale }) {
       { code: "2", label: "Validation (clearance)" },
       { code: "3′", label: "Standardised CSP-to-CSP exchange" },
       { code: "3″", label: "DGI data collection: invoices and statuses" },
-      { code: "4", label: "Receipt by the customer" },
+      { code: "4′", label: "Receipt by the customer" },
       { code: "4″", label: "DGI data collection: statuses and events" },
     ],
   };
@@ -57,7 +57,7 @@ export function CspFlowDiagram({ locale }: { locale: BlogLocale }) {
       <div className="csp-exchange-bridge"><span>{copy.exchange}</span><i aria-hidden="true"><b className="csp-step-marker">3′</b></i></div>
       <div className="csp-provider-node"><i><FaServer /></i><b>{copy.receiver}</b><small>{copy.providerDetail}</small></div>
     </div>
-    <div className="csp-party-links" aria-hidden="true"><i data-step="1"></i><i data-step="4"></i></div>
+    <div className="csp-party-links" aria-hidden="true"><i data-step="1"></i><i data-step="4′"></i></div>
     <div className="csp-actor-row">
       <div><i><FaUserTie /></i><b>{copy.supplier}</b></div>
       <div><i><FaUserTie /></i><b>{copy.customer}</b></div>
