@@ -5,8 +5,8 @@
     "theme": { "fr": "Facturation électronique", "en": "E-invoicing" },
     "title": { "fr": "Facturation électronique au Maroc : ce qui est confirmé et comment se préparer", "en": "E-invoicing in Morocco: what is confirmed and how to prepare" },
     "summary": { "fr": "Standard UBL, signature électronique, clearance, portail TPE/PME, intégration ERP et certification des CSP : les précisions annoncées par la DGI et les actions à engager.", "en": "UBL, electronic signatures, clearance, an SME portal, ERP integration and certified providers: the DGI announcements and the readiness actions businesses can start now." },
-    "image": "/einvoicing-marrakech.webp",
-    "imageAlt": { "fr": "Vue urbaine de Marrakech illustrant la transformation numérique au Maroc", "en": "Marrakech cityscape illustrating Morocco's digital transformation" },
+    "image": "/paytium-insights-e-invoicing-morocco.jpg",
+    "imageAlt": { "fr": "Mosquée Hassan II à Casablanca, face à l’océan Atlantique", "en": "Hassan II Mosque in Casablanca overlooking the Atlantic Ocean" },
     "sections": {
       "fr": [
         { "type": "lead", "text": "La facturation électronique au Maroc entre dans une phase décisive. Lors des Grands Rendez-vous de Médias24 du 16 avril 2026, Younès Idrissi Kaitouni, directeur général des impôts, a apporté plusieurs précisions sur le futur dispositif : standard de facture, signature électronique, validation en temps réel, rôle des prestataires certifiés, modes d’accès et déploiement progressif." },
