@@ -707,8 +707,7 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   assert.match(isoFrenchArticle, /Paytium \| ISO 20022 : moderniser les paiements et le Cash Management/);
   assert.match(isoFrenchArticle, /<meta property="og:image" content="https:\/\/paytium\.io\/paytium-insights-iso-20022\.jpg">/);
   assert.match(isoFrenchArticle, /Échangeons sur votre projet/);
-  assert.match(isoFrenchArticle, /iso-20022-rich-messages-between-financial-institutions\.png/);
-  assert.match(isoFrenchArticle, /ISO 20022 préserve de bout en bout la richesse des données de paiement/);
+  assert.doesNotMatch(isoFrenchArticle, /iso-20022-rich-messages-between-financial-institutions\.png/);
   assert.doesNotMatch(isoFrenchArticle, /Cette analyse se limite aux informations publiées officiellement/);
   assert.doesNotMatch(isoFrenchArticle, /Sources et références/);
   assert.match(isoEnglishArticle, /ISO 20022: the common language of modern payments/);
