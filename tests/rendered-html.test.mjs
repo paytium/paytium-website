@@ -666,15 +666,17 @@ test("keeps the loader animated, accessible and limited to document navigation",
 });
 
 test("publishes a bilingual, searchable Paytium blog with article actions and SEO routes", async () => {
-  const [frenchIndex, englishIndex, frenchArticle, englishArticle] = await Promise.all([
+  const [frenchIndex, englishIndex, frenchArticle, englishArticle, isoFrenchArticle, isoEnglishArticle] = await Promise.all([
     render("/blog").then((response) => response.text()),
     render("/en/blog").then((response) => response.text()),
     render("/blog/e-invoicing-morocco-how-to-prepare").then((response) => response.text()),
     render("/en/blog/e-invoicing-morocco-how-to-prepare").then((response) => response.text()),
+    render("/blog/iso-20022-langage-commun-paiements-modernes").then((response) => response.text()),
+    render("/en/blog/iso-20022-langage-commun-paiements-modernes").then((response) => response.text()),
   ]);
   assert.match(frenchIndex, /Bienvenue sur le/);
   assert.match(frenchIndex, /Rechercher un article/);
-  assert.equal((frenchIndex.match(/class="blog-card"/g) ?? []).length, 1);
+  assert.equal((frenchIndex.match(/class="blog-card"/g) ?? []).length, 2);
   assert.doesNotMatch(frenchIndex, /Pagination des articles/);
   assert.match(englishIndex, /Welcome to the/);
   assert.match(englishIndex, /Search articles/);
@@ -698,6 +700,17 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   assert.match(englishArticle, /Print article/);
   assert.match(englishArticle, /<meta property="og:title" content="E-invoicing in Morocco: what is confirmed and how to prepare">/);
   assert.match(englishArticle, /<meta name="twitter:title" content="E-invoicing in Morocco: what is confirmed and how to prepare">/);
+  assert.match(isoFrenchArticle, /ISO 20022 : le langage commun des paiements modernes/);
+  assert.match(isoFrenchArticle, /7 min de lecture/);
+  assert.match(isoFrenchArticle, /Paytium \| ISO 20022 : moderniser les paiements et le Cash Management/);
+  assert.match(isoFrenchArticle, /<meta property="og:image" content="https:\/\/paytium\.io\/paytium-insights-iso-20022\.jpg">/);
+  assert.match(isoFrenchArticle, /Échangeons sur votre projet/);
+  assert.match(isoFrenchArticle, /www\.iso20022\.org/);
+  assert.match(isoFrenchArticle, /www\.bkam\.ma/);
+  assert.match(isoFrenchArticle, /Sources et références/);
+  assert.match(isoEnglishArticle, /ISO 20022: the common language of modern payments/);
+  assert.match(isoEnglishArticle, /7 min read/);
+  assert.match(isoEnglishArticle, /Discuss your project/);
   assert.doesNotMatch(frenchArticle, /obligation dès 2026|format UBL retenu/i);
   const [removedFrenchArticle, removedEnglishArticle] = await Promise.all([
     render("/blog/api-management-services-financiers"),

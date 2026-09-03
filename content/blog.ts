@@ -13,9 +13,13 @@ export type BlogBlock =
 export type BlogArticle = {
   slug: string;
   date: string;
+  readingTime?: Record<BlogLocale, string>;
   theme: Record<BlogLocale, string>;
+  tags?: Record<BlogLocale, string[]>;
   title: Record<BlogLocale, string>;
   summary: Record<BlogLocale, string>;
+  metaTitle?: Record<BlogLocale, string>;
+  metaDescription?: Record<BlogLocale, string>;
   image: string | null;
   imageAlt: Record<BlogLocale, string>;
   sections: Record<BlogLocale, BlogBlock[]>;
@@ -36,9 +40,9 @@ export function blogArticleStructuredData(article: BlogArticle, locale: BlogLoca
         "@type": "BlogPosting",
         "@id": `${url}#article`,
         headline: article.title[locale],
-        description: article.summary[locale],
+        description: article.metaDescription?.[locale] || article.summary[locale],
         articleSection: article.theme[locale],
-        keywords: [article.theme[locale], "Paytium", "e-invoicing", "DGI", "UBL", "ERP", "CSP"],
+        keywords: article.tags?.[locale]?.length ? article.tags[locale] : [article.theme[locale], "Paytium"],
         datePublished: article.date,
         dateModified: article.date,
         inLanguage: language,
