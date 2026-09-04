@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://paytium.io/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/" />
@@ -11,7 +11,7 @@
   </url>
   <url>
     <loc>https://paytium.io/en/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/" />
@@ -20,7 +20,7 @@
   </url>
   <url>
     <loc>https://paytium.io/about/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/about/" />
@@ -29,7 +29,7 @@
   </url>
   <url>
     <loc>https://paytium.io/en/about/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/about/" />
@@ -37,26 +37,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/about/" />
   </url>
   <url>
-    <loc>https://paytium.io/services/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/services/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/services/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/services/" />
-  </url>
-  <url>
-    <loc>https://paytium.io/en/services/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/services/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/services/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/services/" />
-  </url>
-  <url>
     <loc>https://paytium.io/academy/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/academy/" />
@@ -65,7 +47,7 @@
   </url>
   <url>
     <loc>https://paytium.io/en/academy/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/academy/" />
@@ -73,62 +55,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/academy/" />
   </url>
   <url>
-    <loc>https://paytium.io/e-invoicing/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/e-invoicing/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/e-invoicing/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/e-invoicing/" />
-  </url>
-  <url>
-    <loc>https://paytium.io/en/e-invoicing/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/e-invoicing/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/e-invoicing/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/e-invoicing/" />
-  </url>
-  <url>
-    <loc>https://paytium.io/case-studies/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/case-studies/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/case-studies/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/case-studies/" />
-  </url>
-  <url>
-    <loc>https://paytium.io/en/case-studies/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/case-studies/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/case-studies/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/case-studies/" />
-  </url>
-  <url>
-    <loc>https://paytium.io/contact/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/contact/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/contact/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/contact/" />
-  </url>
-  <url>
-    <loc>https://paytium.io/en/contact/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/contact/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/contact/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/contact/" />
-  </url>
-  <url>
     <loc>https://paytium.io/blog/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/blog/" />
@@ -137,7 +65,7 @@
   </url>
   <url>
     <loc>https://paytium.io/en/blog/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/blog/" />
@@ -145,26 +73,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/blog/" />
   </url>
   <url>
-    <loc>https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/blog/iso-20022-langage-commun-paiements-modernes/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/" />
-  </url>
-  <url>
-    <loc>https://paytium.io/en/blog/iso-20022-langage-commun-paiements-modernes/</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/blog/iso-20022-langage-commun-paiements-modernes/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/" />
-  </url>
-  <url>
     <loc>https://paytium.io/blog/e-invoicing-morocco-how-to-prepare/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/blog/e-invoicing-morocco-how-to-prepare/" />
@@ -173,11 +83,101 @@
   </url>
   <url>
     <loc>https://paytium.io/en/blog/e-invoicing-morocco-how-to-prepare/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/blog/e-invoicing-morocco-how-to-prepare/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/blog/e-invoicing-morocco-how-to-prepare/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/blog/e-invoicing-morocco-how-to-prepare/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/blog/iso-20022-langage-commun-paiements-modernes/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/en/blog/iso-20022-langage-commun-paiements-modernes/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/blog/iso-20022-langage-commun-paiements-modernes/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/blog/iso-20022-langage-commun-paiements-modernes/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/case-studies/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/case-studies/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/case-studies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/case-studies/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/en/case-studies/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/case-studies/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/case-studies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/case-studies/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/contact/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/contact/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/en/contact/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/contact/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/e-invoicing/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/e-invoicing/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/e-invoicing/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/e-invoicing/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/en/e-invoicing/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/e-invoicing/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/e-invoicing/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/e-invoicing/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/services/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/services/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/services/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/services/" />
+  </url>
+  <url>
+    <loc>https://paytium.io/en/services/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://paytium.io/services/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://paytium.io/en/services/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://paytium.io/services/" />
   </url>
 </urlset>
