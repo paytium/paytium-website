@@ -255,13 +255,13 @@ test("strengthens brand and page hierarchy signals for search engines", async ()
 });
 
 test("publishes dedicated bilingual about and contact pages for search sitelinks", async () => {
-  const [aboutFr, aboutEn, contactFr, contactEn, shell, sitemap] = await Promise.all([
+  const [aboutFr, aboutEn, contactFr, contactEn, shell, publicRoutes] = await Promise.all([
     render("/about").then((response) => response.text()),
     render("/en/about").then((response) => response.text()),
     render("/contact").then((response) => response.text()),
     render("/en/contact").then((response) => response.text()),
     readFile(new URL("../components/SiteShell.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8"),
+    readFile(new URL("../content/generated-public-routes.json", import.meta.url), "utf8").then(JSON.parse),
   ]);
   assert.match(aboutFr, /À PROPOS DE PAYTIUM/);
   assert.match(aboutEn, /ABOUT PAYTIUM/);
@@ -269,8 +269,8 @@ test("publishes dedicated bilingual about and contact pages for search sitelinks
   assert.match(contactEn, /Follow Paytium on LinkedIn/);
   assert.match(shell, /href=\{`\$\{prefix\}\/about\/`\}/);
   assert.match(shell, /href=\{`\$\{prefix\}\/contact\/`\}/);
-  assert.match(sitemap, /\/about\/.*\/en\/about\//);
-  assert.match(sitemap, /\/contact\/.*\/en\/contact\//);
+  assert.ok(publicRoutes.some(({ fr, en }) => fr === "/about" && en === "/en/about"));
+  assert.ok(publicRoutes.some(({ fr, en }) => fr === "/contact" && en === "/en/contact"));
 });
 
 test("highlights About only on its page and keeps shared values aligned", async () => {
@@ -720,4 +720,15 @@ test("publishes a bilingual, searchable Paytium blog with article actions and SE
   ]);
   assert.equal(removedFrenchArticle.status, 404);
   assert.equal(removedEnglishArticle.status, 404);
+});
+
+test("generates the sitemap inventory automatically from public bilingual routes", async () => {
+  const publicRoutes = JSON.parse(await readFile(new URL("../content/generated-public-routes.json", import.meta.url), "utf8"));
+  const flattened = publicRoutes.flatMap(({ fr, en }) => [fr, en]);
+  assert.ok(flattened.includes("/"));
+  assert.ok(flattened.includes("/en"));
+  assert.ok(flattened.includes("/blog/iso-20022-langage-commun-paiements-modernes"));
+  assert.ok(flattened.includes("/en/blog/iso-20022-langage-commun-paiements-modernes"));
+  assert.ok(!flattened.includes("/expertises"));
+  assert.ok(!flattened.includes("/facturation-electronique"));
 });

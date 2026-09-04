@@ -1,0 +1,42 @@
+[
+  {
+    "fr": "/",
+    "en": "/en"
+  },
+  {
+    "fr": "/about",
+    "en": "/en/about"
+  },
+  {
+    "fr": "/academy",
+    "en": "/en/academy"
+  },
+  {
+    "fr": "/blog",
+    "en": "/en/blog"
+  },
+  {
+    "fr": "/blog/e-invoicing-morocco-how-to-prepare",
+    "en": "/en/blog/e-invoicing-morocco-how-to-prepare"
+  },
+  {
+    "fr": "/blog/iso-20022-langage-commun-paiements-modernes",
+    "en": "/en/blog/iso-20022-langage-commun-paiements-modernes"
+  },
+  {
+    "fr": "/case-studies",
+    "en": "/en/case-studies"
+  },
+  {
+    "fr": "/contact",
+    "en": "/en/contact"
+  },
+  {
+    "fr": "/e-invoicing",
+    "en": "/en/e-invoicing"
+  },
+  {
+    "fr": "/services",
+    "en": "/en/services"
+  }
+]

@@ -1,14 +1,13 @@
 import type { MetadataRoute } from "next";
-import { blogArticles } from "../content/blog";
+import publicRoutePairs from "../content/generated-public-routes.json";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://paytium.io";
-  const routes = [["", "/en/"], ["/about/", "/en/about/"], ["/services/", "/en/services/"], ["/case-studies/", "/en/case-studies/"], ["/e-invoicing/", "/en/e-invoicing/"], ["/academy/", "/en/academy/"], ["/blog/", "/en/blog/"], ...blogArticles.map(({ slug }) => [`/blog/${slug}/`, `/en/blog/${slug}/`]), ["/contact/", "/en/contact/"]];
-  return routes.flatMap(([fr, en], pairIndex) => [fr, en].map((route, localeIndex) => ({
-    url: `${base}${route || "/"}`,
+  return publicRoutePairs.flatMap(({ fr, en }, pairIndex) => [fr, en].map((route, localeIndex) => ({
+    url: `${base}${route === "/" ? "/" : `${route}/`}`,
     lastModified: new Date(),
     changeFrequency: pairIndex === 0 ? "weekly" : "monthly",
     priority: pairIndex === 0 ? localeIndex === 0 ? 1 : .9 : .8,
-    alternates: { languages: { fr: `${base}${fr || "/"}`, en: `${base}${en}`, "x-default": `${base}${fr || "/"}` } },
+    alternates: { languages: { fr: `${base}${fr === "/" ? "/" : `${fr}/`}`, en: `${base}${en}/`, "x-default": `${base}${fr === "/" ? "/" : `${fr}/`}` } },
   })));
 }

@@ -7,6 +7,7 @@ const baseUrl = "https://paytium.io";
 const lastModified = new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Casablanca", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 const { renderPage, renderNotFound } = await import(new URL("../dist-pages-ssr/prerender.js", import.meta.url));
 const blogArticles = JSON.parse(await readFile(new URL("../content/blog.json", import.meta.url), "utf8"));
+const publicRoutePairs = JSON.parse(await readFile(new URL("../content/generated-public-routes.json", import.meta.url), "utf8"));
 
 const coreRoutes = [
   { path: "/", lang: "fr", alternate: "/en", title: "Paytium | Conseil & technologie", breadcrumb: "Accueil", description: "Paytium est un cabinet de conseil et de delivery digital : stratégie IT, Squad As Service, Data & IA, Cloud, DevOps et facturation électronique.", keywords: "Paytium, Squad As Service, squad Agile, équipe produit externalisée, cabinet conseil IT, transformation digitale, Data IA, Cloud DevOps" },
@@ -34,6 +35,12 @@ const blogRoutes = [
   ]),
 ];
 const routes = [...coreRoutes, ...blogRoutes];
+const routeByPath = new Map(routes.map((route) => [route.path, route]));
+const sitemapRoutes = publicRoutePairs.flatMap(({ fr, en }) => [fr, en].map((path) => {
+  const route = routeByPath.get(path);
+  if (!route) throw new Error(`Public route ${path} is missing from the GitHub Pages renderer metadata`);
+  return route;
+}));
 
 const template = await readFile(new URL("index.html", output), "utf8");
 
@@ -212,7 +219,7 @@ for (const [legacyPath, destinationPath, lang, title] of [
 await writeFile(new URL(".nojekyll", output), "");
 await writeFile(new URL("CNAME", output), "paytium.io\n");
 await writeFile(new URL("robots.txt", output), `User-agent: *\nAllow: /\n\nSitemap: ${baseUrl}/sitemap.xml\nHost: paytium.io\n`);
-await writeFile(new URL("sitemap.xml", output), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${routes.map((route) => {
+await writeFile(new URL("sitemap.xml", output), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapRoutes.map((route) => {
   const routeUrl = absolute(route.path);
   const alternateUrl = absolute(route.alternate);
   const frUrl = route.lang === "fr" ? routeUrl : alternateUrl;
