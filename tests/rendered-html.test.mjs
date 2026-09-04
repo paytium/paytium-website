@@ -248,6 +248,7 @@ test("strengthens brand and page hierarchy signals for search engines", async ()
   assert.match(pagesScript, /"@type": "SiteNavigationElement"/);
   assert.match(pagesScript, /path: "\/about"/);
   assert.match(pagesScript, /path: "\/contact"/);
+  assert.doesNotMatch(pagesScript, /<meta name="robots" content="noindex, follow"/);
   assert.match(hero, /DIGITAL & DATA FACTORY/);
   assert.match(hero, /FACTURATION ÉLECTRONIQUE/);
   assert.match(hero, /E-INVOICING/);
